@@ -1,10 +1,4 @@
 % location: name
-
-numParts(0..10).
-numFlow(0..20).
-numFreq(0..10).
-bins(0).
-
 location(l1).
 location(l2).
 location(l3).
@@ -30,53 +24,21 @@ transportSpeed(tr2,2).
 
 % Part: name, validTR, size, value
 part(p1).
-% part(p2).
 partSize(p1,4).
-% partSize(p2,3).
 partTR(p1,tr1).
 partTR(p1,tr2).
-partTR(p2,tr1).
-partTR(p2,tr2).
 partVal(p1,1000).
-partVal(p2,600).
 
 
-% netSupplyDemand: part name, location, offer/ produced/able
+
+
 demandOffer(p1,l1,10).
-% demandOffer(p2,l1,40).
 demandOffer(p1,l2,20).
 
-% netSupplyDemand: part name, location, demand/ consumed/able
-% demandOffer(p2,l2,-10).
+
 demandOffer(p1,l5,-10).
-% demandOffer(p2,l5,-20).
 demandOffer(p1,l6,-20).
-% demandOffer(p2,l6,-10).
 
-% 'real' simple example including production plan constraints
-% productionPlan(fullFuselageShort,section34).
-%productionPlan(fullFuselageShort,section1).
-%productionPlan(fullFuselageShort,section34).
-%productionPlan(fullFuselageShort,section67).
-%productionPlan(section34,section3).
-%productionPlan(section34,section4).
-%productionPlan(section67,section7).
-%productionPlan(section67,section6).
-
-%offer(l1,fullFuselageShort,10).
-%demand(l1,section1,10).
-%demand(l1,section34,10).
-%demand(l1,section67,10).
-
-%offer(l2,section1,10).
-
-%offer(l4,section34,10).
-%demand(l4,section3,10).
-%demand(l4,section4,10).
-
-%offer(l6,section67,10).
-%demand(l6,section6,10).
-%demand(l6,section7,10).
 
 % route: from, to, transport mean, distance, cost (per 1)
 route(l1,l2,tr1,1,56).

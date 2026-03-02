@@ -9,33 +9,35 @@ netdemandSupply(Part, Location, 0) :-
     location(Location),
     part(Part).
 
+
+edge(From,To) :- route(From,To,_,_,_).
 % Customer: location with negative net value (demand)
 customer(Location, Part) :- netdemandSupply(Part, Location, Value), Value < 0.
 % Supplier: location with positive net value (supply)
 supplier(Location, Part) :- netdemandSupply(Part, Location, Value), Value > 0.
 
-% ============================================================================
-% 2. FLOW VARIABLES AND CONSTRAINTS
-% ============================================================================
 
 % Flow variable for each (route, part) combination
-&dom{0..maxItems} = flow(From,To,Part) :- route(From,To,_,_,_), part(Part).
+&dom{0..maxItems} = flow(From,To,Part) :- edge(From,To), part(Part).
 
 % Customers do not export: flow out of a customer for their demanded part = 0
-&sum{flow(From,To,Part)} = 0 :- route(From,To,_,_,_), customer(From, Part).
+&sum{flow(From,To,Part)} = 0 :- edge(From,To), customer(From, Part).
 % Suppliers do not import: flow into a supplier for their supplied part = 0
-&sum{flow(From,To,Part)} = 0 :- route(From,To,_,_,_), supplier(To, Part).
+&sum{flow(From,To,Part)} = 0 :- edge(From,To), supplier(To, Part).
 
 % Flow conservation at every location for every part:
 %   outflow - inflow = netdemandSupply
+% &sum{
+%     flow(Location,To,Part) : route(Location,To,_,_,_);
+%     -flow(From,Location,Part) : route(From,Location,_,_,_)
+% } = Value :- netdemandSupply(Part, Location, Value).
+
+
 &sum{
-    flow(Location,To,Part) : route(Location,To,_,_,_);
-    -flow(From,Location,Part) : route(From,Location,_,_,_)
+    flow(Location,To,Part) : edge(Location,To);
+    -flow(From,Location,Part) : edge(From,Location)
 } = Value :- netdemandSupply(Part, Location, Value).
 
-% ============================================================================
-% 3. PACKING CONFIGURATION (regular ASP choice)
-% ============================================================================
 
 packingId(0..2).
 
@@ -47,15 +49,12 @@ packingId(0..2).
    packingId(ID),
    #sum{ N*Size,P : pack(N,P,TR,ID), partSize(P,Size) } > Cap.
 
-% ============================================================================
-% 4. FREQUENCY VARIABLES
-% ============================================================================
 
 % Frequency variable: how many times packing pattern ID is dispatched on a route
 &dom{0..maxFreq} = frequency(From,To,TR,ID) :- route(From,To,TR,_,_), packingId(ID).
 
 % ============================================================================
-% 5. COUPLING CONSTRAINT (the critical fix)
+% 5. COUPLING CONSTRAINT
 
 % We need: sum over all (TR,ID) of  pack(N,Part,TR,ID) * frequency(From,To,TR,ID) = flow(From,To,Part)
 
@@ -73,7 +72,7 @@ packingId(0..2).
     route(From,To,TR,_,_), packingId(ID), part(Part).
 
 
-&sum{ N * frequency(From,To,TR,ID); -aux(From,To,TR,ID,Part) } = 0 :-
+&sum{ N * frequency(From,To,TR,ID); -aux(From,To,TR,ID,Part) } >= 0 :-
     pack(N, Part, TR, ID),
     route(From,To,TR,_,_),
     N > 0.
@@ -89,9 +88,6 @@ packingId(0..2).
     -flow(From,To,Part)
 } = 0 :- route(From,To,_,_,_), part(Part).
 
-% ============================================================================
-% 6. OBJECTIVE: minimize total transport cost
-% ============================================================================
 
 % Cost = Distance * CostPerUnit for each dispatch
 &minimize{

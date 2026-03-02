@@ -1,0 +1,1918 @@
+preset,backend_executable,encoding,encoding_path,instance,instance_path,axis,step,repeat,command,status,returncode,wall_time,reported_total_time,reported_ground_time,reported_solve_time,ground_time,solve_time,total_time,atoms,rules,choices,conflicts,restarts,optimum,stdout_tail,stderr_tail,parse_ok
+clingo_default,clingo,encoding_route.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp,A1_fixed_loc6_parts1.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/A1_fixed_loc6_parts1.lp,vary_parts,A1,1,clingo /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/A1_fixed_loc6_parts1.lp --stats=2,OPTIMUM,30,0.168631,0.028,0.0,0.12,0.0,0.12,0.028,12096,17815,7353,2546,14,688,"l4,tr2,0) freq(1,l1,l4,tr2,0) freq(0,l3,l5,tr1,0) freq(1,l3,l5,tr1,0) freq(0,l3,l5,tr2,0) freq(0,l4,l5,tr1,0) freq(1,l4,l5,tr1,0) freq(0,l4,l6,tr2,0) freq(1,l4,l6,tr2,0) flow(l2,l3,p1,0) flow(l2,l4,p1,0) flow(l1,l4,p1,0) flow(l4,l5,p1,0) flow(l4,l6,p1,0) pack(0,p1,1,l1,l3,tr1) pack(0,p1,0,l1,l3,tr2) pack(0,p1,0,l2,l3,tr1) pack(0,p1,1,l2,l3,tr1) pack(0,p1,0,l2,l4,tr2) pack(0,p1,1,l2,l4,tr2) pack(0,p1,0,l1,l4,tr2) pack(0,p1,1,l1,l4,tr2) pack(0,p1,1,l3,l5,tr1) pack(0,p1,0,l3,l5,tr2) pack(0,p1,0,l4,l5,tr1) pack(0,p1,1,l4,l5,tr1) pack(0,p1,0,l4,l6,tr2) pack(0,p1,1,l4,l6,tr2)
+Optimization: 160
+OPTIMUM FOUND
+
+Models       : 43
+  Optimum    : yes
+Optimization : 160
+Calls        : 1
+Time         : 0.145s (Solving: 0.12s 1st Model: 0.00s Unsat: 0.02s)
+CPU Time     : 0.143s
+
+Choices      : 7353    
+Conflicts    : 2546     (Analyzed: 2545)
+Restarts     : 14       (Average: 181.79 Last: 24 Blocked: 0)
+Model-Level  : 84.8    
+Problems     : 1        (Average Length: 0.00 Splits: 0)
+Lemmas       : 2545     (Deleted: 0)
+  Binary     : 73       (Ratio:   2.87%)
+  Ternary    : 146      (Ratio:   5.74%)
+  Conflict   : 2545     (Average Length:   26.3 Ratio: 100.00%) 
+  Loop       : 0        (Average Length:    0.0 Ratio:   0.00%) 
+  Other      : 0        (Average Length:    0.0 Ratio:   0.00%) 
+Backjumps    : 2545     (Average:  1.69 Max:  22 Sum:   4307)
+  Executed   : 2545     (Average:  1.69 Max:  22 Sum:   4307 Ratio: 100.00%)
+  Bounded    : 0        (Average:  0.00 Max:   0 Sum:      0 Ratio:   0.00%)
+
+Rules        : 17815    (Original: 16290)
+  Choice     : 48      
+  Minimize   : 1       
+Atoms        : 12096    (Original: 11838 Auxiliary: 258)
+Bodies       : 9359     (Original: 8234)
+  Sum        : 114      (Original: 134)
+  Count      : 2        (Original: 105)
+Equivalences : 24776    (Atom=Atom: 7561 Body=Body: 6216 Other: 10999)
+Tight        : Yes
+Variables    : 3577     (Eliminated:    0 Frozen: 2509)
+Constraints  : 11858    (Binary:  73.3% Ternary:  16.3% Other:  10.4%)
+
+",,True
+clingo_default,clingo,encoding_route.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp,A1_fixed_loc6_parts1.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/A1_fixed_loc6_parts1.lp,vary_parts,A1,2,clingo /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/A1_fixed_loc6_parts1.lp --stats=2,OPTIMUM,30,0.152227,0.025,0.0,0.12,0.0,0.12,0.025,12096,17815,7353,2546,14,688,"l4,tr2,0) freq(1,l1,l4,tr2,0) freq(0,l3,l5,tr1,0) freq(1,l3,l5,tr1,0) freq(0,l3,l5,tr2,0) freq(0,l4,l5,tr1,0) freq(1,l4,l5,tr1,0) freq(0,l4,l6,tr2,0) freq(1,l4,l6,tr2,0) flow(l2,l3,p1,0) flow(l2,l4,p1,0) flow(l1,l4,p1,0) flow(l4,l5,p1,0) flow(l4,l6,p1,0) pack(0,p1,1,l1,l3,tr1) pack(0,p1,0,l1,l3,tr2) pack(0,p1,0,l2,l3,tr1) pack(0,p1,1,l2,l3,tr1) pack(0,p1,0,l2,l4,tr2) pack(0,p1,1,l2,l4,tr2) pack(0,p1,0,l1,l4,tr2) pack(0,p1,1,l1,l4,tr2) pack(0,p1,1,l3,l5,tr1) pack(0,p1,0,l3,l5,tr2) pack(0,p1,0,l4,l5,tr1) pack(0,p1,1,l4,l5,tr1) pack(0,p1,0,l4,l6,tr2) pack(0,p1,1,l4,l6,tr2)
+Optimization: 160
+OPTIMUM FOUND
+
+Models       : 43
+  Optimum    : yes
+Optimization : 160
+Calls        : 1
+Time         : 0.141s (Solving: 0.12s 1st Model: 0.00s Unsat: 0.02s)
+CPU Time     : 0.141s
+
+Choices      : 7353    
+Conflicts    : 2546     (Analyzed: 2545)
+Restarts     : 14       (Average: 181.79 Last: 24 Blocked: 0)
+Model-Level  : 84.8    
+Problems     : 1        (Average Length: 0.00 Splits: 0)
+Lemmas       : 2545     (Deleted: 0)
+  Binary     : 73       (Ratio:   2.87%)
+  Ternary    : 146      (Ratio:   5.74%)
+  Conflict   : 2545     (Average Length:   26.3 Ratio: 100.00%) 
+  Loop       : 0        (Average Length:    0.0 Ratio:   0.00%) 
+  Other      : 0        (Average Length:    0.0 Ratio:   0.00%) 
+Backjumps    : 2545     (Average:  1.69 Max:  22 Sum:   4307)
+  Executed   : 2545     (Average:  1.69 Max:  22 Sum:   4307 Ratio: 100.00%)
+  Bounded    : 0        (Average:  0.00 Max:   0 Sum:      0 Ratio:   0.00%)
+
+Rules        : 17815    (Original: 16290)
+  Choice     : 48      
+  Minimize   : 1       
+Atoms        : 12096    (Original: 11838 Auxiliary: 258)
+Bodies       : 9359     (Original: 8234)
+  Sum        : 114      (Original: 134)
+  Count      : 2        (Original: 105)
+Equivalences : 24776    (Atom=Atom: 7561 Body=Body: 6216 Other: 10999)
+Tight        : Yes
+Variables    : 3577     (Eliminated:    0 Frozen: 2509)
+Constraints  : 11858    (Binary:  73.3% Ternary:  16.3% Other:  10.4%)
+
+",,True
+clingo_default,clingo,encoding_route.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp,A1_fixed_loc6_parts1.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/A1_fixed_loc6_parts1.lp,vary_parts,A1,3,clingo /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/A1_fixed_loc6_parts1.lp --stats=2,OPTIMUM,30,0.149807,0.024,0.0,0.12,0.0,0.12,0.024,12096,17815,7353,2546,14,688,"l4,tr2,0) freq(1,l1,l4,tr2,0) freq(0,l3,l5,tr1,0) freq(1,l3,l5,tr1,0) freq(0,l3,l5,tr2,0) freq(0,l4,l5,tr1,0) freq(1,l4,l5,tr1,0) freq(0,l4,l6,tr2,0) freq(1,l4,l6,tr2,0) flow(l2,l3,p1,0) flow(l2,l4,p1,0) flow(l1,l4,p1,0) flow(l4,l5,p1,0) flow(l4,l6,p1,0) pack(0,p1,1,l1,l3,tr1) pack(0,p1,0,l1,l3,tr2) pack(0,p1,0,l2,l3,tr1) pack(0,p1,1,l2,l3,tr1) pack(0,p1,0,l2,l4,tr2) pack(0,p1,1,l2,l4,tr2) pack(0,p1,0,l1,l4,tr2) pack(0,p1,1,l1,l4,tr2) pack(0,p1,1,l3,l5,tr1) pack(0,p1,0,l3,l5,tr2) pack(0,p1,0,l4,l5,tr1) pack(0,p1,1,l4,l5,tr1) pack(0,p1,0,l4,l6,tr2) pack(0,p1,1,l4,l6,tr2)
+Optimization: 160
+OPTIMUM FOUND
+
+Models       : 43
+  Optimum    : yes
+Optimization : 160
+Calls        : 1
+Time         : 0.140s (Solving: 0.12s 1st Model: 0.00s Unsat: 0.02s)
+CPU Time     : 0.140s
+
+Choices      : 7353    
+Conflicts    : 2546     (Analyzed: 2545)
+Restarts     : 14       (Average: 181.79 Last: 24 Blocked: 0)
+Model-Level  : 84.8    
+Problems     : 1        (Average Length: 0.00 Splits: 0)
+Lemmas       : 2545     (Deleted: 0)
+  Binary     : 73       (Ratio:   2.87%)
+  Ternary    : 146      (Ratio:   5.74%)
+  Conflict   : 2545     (Average Length:   26.3 Ratio: 100.00%) 
+  Loop       : 0        (Average Length:    0.0 Ratio:   0.00%) 
+  Other      : 0        (Average Length:    0.0 Ratio:   0.00%) 
+Backjumps    : 2545     (Average:  1.69 Max:  22 Sum:   4307)
+  Executed   : 2545     (Average:  1.69 Max:  22 Sum:   4307 Ratio: 100.00%)
+  Bounded    : 0        (Average:  0.00 Max:   0 Sum:      0 Ratio:   0.00%)
+
+Rules        : 17815    (Original: 16290)
+  Choice     : 48      
+  Minimize   : 1       
+Atoms        : 12096    (Original: 11838 Auxiliary: 258)
+Bodies       : 9359     (Original: 8234)
+  Sum        : 114      (Original: 134)
+  Count      : 2        (Original: 105)
+Equivalences : 24776    (Atom=Atom: 7561 Body=Body: 6216 Other: 10999)
+Tight        : Yes
+Variables    : 3577     (Eliminated:    0 Frozen: 2509)
+Constraints  : 11858    (Binary:  73.3% Ternary:  16.3% Other:  10.4%)
+
+",,True
+clingo_default,clingo,encoding_route.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp,A2_fixed_loc6_parts2.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/A2_fixed_loc6_parts2.lp,vary_parts,A2,1,clingo /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/A2_fixed_loc6_parts2.lp --stats=2,TIMEOUT,,120.005418,,,,,,120.005418,,,,,,,",0) flow(l4,l6,p2,0) pack(0,p2,0,l1,l3,tr1) pack(0,p2,1,l1,l3,tr1) pack(0,p1,0,l1,l3,tr2) pack(0,p1,1,l1,l3,tr2) pack(0,p1,1,l2,l4,tr2) pack(0,p1,0,l1,l4,tr2) pack(0,p1,1,l1,l4,tr2) pack(0,p1,0,l3,l5,tr2) pack(0,p2,1,l3,l5,tr2) pack(0,p1,1,l3,l6,tr2) pack(0,p2,1,l3,l6,tr2) pack(0,p1,0,l4,l6,tr2) pack(0,p2,0,l4,l6,tr2) pack(0,p2,1,l4,l6,tr2)
+Optimization: 416
+Answer: 114 (Time: 7.724s)
+freq(0,l1,l3,tr1,1) pack(4,p1,0,l1,l3,tr1) pack(4,p1,0,l1,l3,tr2) freq(1,l1,l3,tr1,2) pack(4,p1,1,l1,l3,tr1) flow(l1,l3,p1,12) pack(1,p2,0,l1,l3,tr2) freq(0,l2,l3,tr1,2) freq(1,l2,l3,tr1,4) pack(2,p2,0,l2,l3,tr1) pack(2,p2,1,l2,l3,tr1) flow(l2,l3,p2,11) freq(0,l2,l4,tr2,1) pack(4,p2,0,l2,l4,tr2) flow(l2,l4,p2,4) pack(4,p2,0,l1,l4,tr2) freq(0,l3,l5,tr1,1) freq(0,l3,l5,tr2,1) freq(1,l3,l5,tr1,2) pack(2,p1,1,l3,l5,tr2) pack(3,p1,1,l3,l5,tr1) flow(l3,l5,p1,5) pack(1,p2,0,l3,l5,tr1) pack(4,p2,0,l3,l5,tr2) pack(2,p2,1,l3,l5,tr1) flow(l3,l5,p2,9) freq(1,l3,l6,tr2,2) pack(4,p1,1,l3,l6,tr2) flow(l3,l6,p1,7) pack(1,p2,1,l3,l6,tr2) flow(l3,l6,p2,2) pack(3,p1,0,l4,l5,tr1) pack(2,p1,1,l4,l5,tr1) pack(1,p2,1,l4,l5,tr1) pack(4,p1,0,l4,l6,tr2) freq(1,l4,l6,tr2,1) pack(4,p2,1,l4,l6,tr2) flow(l4,l6,p2,4) freq(0,l1,l3,tr2,0) freq(1,l1,l3,tr2,0) freq(1,l2,l4,tr2,0) freq(0,l1,l4,tr2,0) freq(1,l1,l4,tr2,0) freq(1,l3,l5,tr2,0) freq(0,l3,l6,tr2,0) freq(0,l4,l5,tr1,0) freq(1,l4,l5,tr1,0) freq(0,l4,l6,tr2,0) flow(l1,l3,p2,0) flow(l2,l3,p1,0) flow(l2,l4,p1,0) flow(l1,l4,p1,0) flow(l1,l4,p2,0) flow(l4,l5,p1,0) flow(l4,l5,p2,0) flow(l4,l6,p1,0) pack(0,p2,0,l1,l3,tr1) pack(0,p2,1,l1,l3,tr1) pack(0,p1,1,l1,l3,tr2) pack(0,p2,1,l1,l3,tr2) pack(0,p1,0,l2,l3,tr1) pack(0,p1,1,l2,l3,tr1) pack(0,p1,0,l2,l4,tr2) pack(0,p1,1,l2,l4,tr2) pack(0,p2,1,l2,l4,tr2) pack(0,p1,0,l1,l4,tr2) pack(0,p1,1,l1,l4,tr2) pack(0,p2,1,l1,l4,tr2) pack(0,p1,0,l3,l5,tr1) pack(0,p1,0,l3,l5,tr2) pack(0,p2,1,l3,l5,tr2) pack(0,p1,0,l3,l6,tr2) pack(0,p2,0,l3,l6,tr2) pack(0,p2,0,l4,l5,tr1) pack(0,p2,0,l4,l6,tr2) pack(0,p1,1,l4,l6,tr2)
+Optimization: 412
+",,False
+clingo_default,clingo,encoding_route.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp,A2_fixed_loc6_parts2.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/A2_fixed_loc6_parts2.lp,vary_parts,A2,2,clingo /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/A2_fixed_loc6_parts2.lp --stats=2,TIMEOUT,,120.005534,,,,,,120.005534,,,,,,,",0) flow(l4,l6,p2,0) pack(0,p2,0,l1,l3,tr1) pack(0,p2,1,l1,l3,tr1) pack(0,p1,0,l1,l3,tr2) pack(0,p1,1,l1,l3,tr2) pack(0,p1,1,l2,l4,tr2) pack(0,p1,0,l1,l4,tr2) pack(0,p1,1,l1,l4,tr2) pack(0,p1,0,l3,l5,tr2) pack(0,p2,1,l3,l5,tr2) pack(0,p1,1,l3,l6,tr2) pack(0,p2,1,l3,l6,tr2) pack(0,p1,0,l4,l6,tr2) pack(0,p2,0,l4,l6,tr2) pack(0,p2,1,l4,l6,tr2)
+Optimization: 416
+Answer: 114 (Time: 7.117s)
+freq(0,l1,l3,tr1,1) pack(4,p1,0,l1,l3,tr1) pack(4,p1,0,l1,l3,tr2) freq(1,l1,l3,tr1,2) pack(4,p1,1,l1,l3,tr1) flow(l1,l3,p1,12) pack(1,p2,0,l1,l3,tr2) freq(0,l2,l3,tr1,2) freq(1,l2,l3,tr1,4) pack(2,p2,0,l2,l3,tr1) pack(2,p2,1,l2,l3,tr1) flow(l2,l3,p2,11) freq(0,l2,l4,tr2,1) pack(4,p2,0,l2,l4,tr2) flow(l2,l4,p2,4) pack(4,p2,0,l1,l4,tr2) freq(0,l3,l5,tr1,1) freq(0,l3,l5,tr2,1) freq(1,l3,l5,tr1,2) pack(2,p1,1,l3,l5,tr2) pack(3,p1,1,l3,l5,tr1) flow(l3,l5,p1,5) pack(1,p2,0,l3,l5,tr1) pack(4,p2,0,l3,l5,tr2) pack(2,p2,1,l3,l5,tr1) flow(l3,l5,p2,9) freq(1,l3,l6,tr2,2) pack(4,p1,1,l3,l6,tr2) flow(l3,l6,p1,7) pack(1,p2,1,l3,l6,tr2) flow(l3,l6,p2,2) pack(3,p1,0,l4,l5,tr1) pack(2,p1,1,l4,l5,tr1) pack(1,p2,1,l4,l5,tr1) pack(4,p1,0,l4,l6,tr2) freq(1,l4,l6,tr2,1) pack(4,p2,1,l4,l6,tr2) flow(l4,l6,p2,4) freq(0,l1,l3,tr2,0) freq(1,l1,l3,tr2,0) freq(1,l2,l4,tr2,0) freq(0,l1,l4,tr2,0) freq(1,l1,l4,tr2,0) freq(1,l3,l5,tr2,0) freq(0,l3,l6,tr2,0) freq(0,l4,l5,tr1,0) freq(1,l4,l5,tr1,0) freq(0,l4,l6,tr2,0) flow(l1,l3,p2,0) flow(l2,l3,p1,0) flow(l2,l4,p1,0) flow(l1,l4,p1,0) flow(l1,l4,p2,0) flow(l4,l5,p1,0) flow(l4,l5,p2,0) flow(l4,l6,p1,0) pack(0,p2,0,l1,l3,tr1) pack(0,p2,1,l1,l3,tr1) pack(0,p1,1,l1,l3,tr2) pack(0,p2,1,l1,l3,tr2) pack(0,p1,0,l2,l3,tr1) pack(0,p1,1,l2,l3,tr1) pack(0,p1,0,l2,l4,tr2) pack(0,p1,1,l2,l4,tr2) pack(0,p2,1,l2,l4,tr2) pack(0,p1,0,l1,l4,tr2) pack(0,p1,1,l1,l4,tr2) pack(0,p2,1,l1,l4,tr2) pack(0,p1,0,l3,l5,tr1) pack(0,p1,0,l3,l5,tr2) pack(0,p2,1,l3,l5,tr2) pack(0,p1,0,l3,l6,tr2) pack(0,p2,0,l3,l6,tr2) pack(0,p2,0,l4,l5,tr1) pack(0,p2,0,l4,l6,tr2) pack(0,p1,1,l4,l6,tr2)
+Optimization: 412
+",,False
+clingo_default,clingo,encoding_route.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp,A2_fixed_loc6_parts2.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/A2_fixed_loc6_parts2.lp,vary_parts,A2,3,clingo /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/A2_fixed_loc6_parts2.lp --stats=2,TIMEOUT,,120.00615,,,,,,120.00615,,,,,,,",0) flow(l4,l6,p2,0) pack(0,p2,0,l1,l3,tr1) pack(0,p2,1,l1,l3,tr1) pack(0,p1,0,l1,l3,tr2) pack(0,p1,1,l1,l3,tr2) pack(0,p1,1,l2,l4,tr2) pack(0,p1,0,l1,l4,tr2) pack(0,p1,1,l1,l4,tr2) pack(0,p1,0,l3,l5,tr2) pack(0,p2,1,l3,l5,tr2) pack(0,p1,1,l3,l6,tr2) pack(0,p2,1,l3,l6,tr2) pack(0,p1,0,l4,l6,tr2) pack(0,p2,0,l4,l6,tr2) pack(0,p2,1,l4,l6,tr2)
+Optimization: 416
+Answer: 114 (Time: 7.206s)
+freq(0,l1,l3,tr1,1) pack(4,p1,0,l1,l3,tr1) pack(4,p1,0,l1,l3,tr2) freq(1,l1,l3,tr1,2) pack(4,p1,1,l1,l3,tr1) flow(l1,l3,p1,12) pack(1,p2,0,l1,l3,tr2) freq(0,l2,l3,tr1,2) freq(1,l2,l3,tr1,4) pack(2,p2,0,l2,l3,tr1) pack(2,p2,1,l2,l3,tr1) flow(l2,l3,p2,11) freq(0,l2,l4,tr2,1) pack(4,p2,0,l2,l4,tr2) flow(l2,l4,p2,4) pack(4,p2,0,l1,l4,tr2) freq(0,l3,l5,tr1,1) freq(0,l3,l5,tr2,1) freq(1,l3,l5,tr1,2) pack(2,p1,1,l3,l5,tr2) pack(3,p1,1,l3,l5,tr1) flow(l3,l5,p1,5) pack(1,p2,0,l3,l5,tr1) pack(4,p2,0,l3,l5,tr2) pack(2,p2,1,l3,l5,tr1) flow(l3,l5,p2,9) freq(1,l3,l6,tr2,2) pack(4,p1,1,l3,l6,tr2) flow(l3,l6,p1,7) pack(1,p2,1,l3,l6,tr2) flow(l3,l6,p2,2) pack(3,p1,0,l4,l5,tr1) pack(2,p1,1,l4,l5,tr1) pack(1,p2,1,l4,l5,tr1) pack(4,p1,0,l4,l6,tr2) freq(1,l4,l6,tr2,1) pack(4,p2,1,l4,l6,tr2) flow(l4,l6,p2,4) freq(0,l1,l3,tr2,0) freq(1,l1,l3,tr2,0) freq(1,l2,l4,tr2,0) freq(0,l1,l4,tr2,0) freq(1,l1,l4,tr2,0) freq(1,l3,l5,tr2,0) freq(0,l3,l6,tr2,0) freq(0,l4,l5,tr1,0) freq(1,l4,l5,tr1,0) freq(0,l4,l6,tr2,0) flow(l1,l3,p2,0) flow(l2,l3,p1,0) flow(l2,l4,p1,0) flow(l1,l4,p1,0) flow(l1,l4,p2,0) flow(l4,l5,p1,0) flow(l4,l5,p2,0) flow(l4,l6,p1,0) pack(0,p2,0,l1,l3,tr1) pack(0,p2,1,l1,l3,tr1) pack(0,p1,1,l1,l3,tr2) pack(0,p2,1,l1,l3,tr2) pack(0,p1,0,l2,l3,tr1) pack(0,p1,1,l2,l3,tr1) pack(0,p1,0,l2,l4,tr2) pack(0,p1,1,l2,l4,tr2) pack(0,p2,1,l2,l4,tr2) pack(0,p1,0,l1,l4,tr2) pack(0,p1,1,l1,l4,tr2) pack(0,p2,1,l1,l4,tr2) pack(0,p1,0,l3,l5,tr1) pack(0,p1,0,l3,l5,tr2) pack(0,p2,1,l3,l5,tr2) pack(0,p1,0,l3,l6,tr2) pack(0,p2,0,l3,l6,tr2) pack(0,p2,0,l4,l5,tr1) pack(0,p2,0,l4,l6,tr2) pack(0,p1,1,l4,l6,tr2)
+Optimization: 412
+",,False
+clingo_default,clingo,encoding_route.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp,B1_fixed_loc6_tr1.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/B1_fixed_loc6_tr1.lp,vary_transport_resources,B1,1,clingo /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/B1_fixed_loc6_tr1.lp --stats=2,OPTIMUM,30,33.807764,0.068,0.0,33.73,0.0,33.73,0.068,39853,54810,698656,532489,1169,2468,"ack(1,p2,1,l4,l6,tr1) freq(0,l1,l3,tr1,0) freq(0,l2,l4,tr1,0) freq(1,l2,l4,tr1,0) freq(0,l1,l4,tr1,0) freq(1,l1,l4,tr1,0) freq(0,l4,l5,tr1,0) freq(1,l4,l5,tr1,0) freq(0,l4,l6,tr1,0) freq(1,l4,l6,tr1,0) flow(l1,l3,p2,0) flow(l2,l3,p1,0) flow(l2,l4,p1,0) flow(l2,l4,p2,0) flow(l1,l4,p1,0) flow(l1,l4,p2,0) flow(l4,l5,p1,0) flow(l4,l5,p2,0) flow(l4,l6,p1,0) flow(l4,l6,p2,0) pack(0,p1,0,l1,l3,tr1) pack(0,p2,1,l1,l3,tr1) pack(0,p1,1,l2,l3,tr1) pack(0,p1,0,l1,l4,tr1) pack(0,p1,1,l1,l4,tr1) pack(0,p2,1,l1,l4,tr1) pack(0,p2,0,l4,l5,tr1) pack(0,p1,1,l4,l5,tr1) pack(0,p2,0,l4,l6,tr1)
+Optimization: 428
+OPTIMUM FOUND
+
+Models       : 69
+  Optimum    : yes
+Optimization : 428
+Calls        : 1
+Time         : 33.792s (Solving: 33.73s 1st Model: 0.00s Unsat: 31.76s)
+CPU Time     : 33.515s
+
+Choices      : 698656  
+Conflicts    : 532489   (Analyzed: 532488)
+Restarts     : 1169     (Average: 455.51 Last: 48 Blocked: 0)
+Model-Level  : 76.4    
+Problems     : 1        (Average Length: 0.00 Splits: 0)
+Lemmas       : 532488   (Deleted: 472447)
+  Binary     : 534      (Ratio:   0.10%)
+  Ternary    : 1440     (Ratio:   0.27%)
+  Conflict   : 532488   (Average Length:   17.8 Ratio: 100.00%) 
+  Loop       : 0        (Average Length:    0.0 Ratio:   0.00%) 
+  Other      : 0        (Average Length:    0.0 Ratio:   0.00%) 
+Backjumps    : 532488   (Average:  1.29 Max:  48 Sum: 687171)
+  Executed   : 532488   (Average:  1.29 Max:  48 Sum: 687171 Ratio: 100.00%)
+  Bounded    : 0        (Average:  0.00 Max:   0 Sum:      0 Ratio:   0.00%)
+
+Rules        : 54810    (Original: 51872)
+  Choice     : 64      
+  Minimize   : 1       
+Atoms        : 39853    (Original: 39401 Auxiliary: 452)
+Bodies       : 26701    (Original: 24347)
+  Sum        : 308     
+  Count      : 4        (Original: 146)
+Equivalences : 58656    (Atom=Atom: 19555 Body=Body: 13512 Other: 25589)
+Tight        : Yes
+Variables    : 7110     (Eliminated:    0 Frozen: 5606)
+Constraints  : 21504    (Binary:  69.8% Ternary:  23.1% Other:   7.1%)
+
+",,True
+clingo_default,clingo,encoding_route.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp,B1_fixed_loc6_tr1.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/B1_fixed_loc6_tr1.lp,vary_transport_resources,B1,2,clingo /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/B1_fixed_loc6_tr1.lp --stats=2,OPTIMUM,30,34.302443,0.067,0.0,34.22,0.0,34.22,0.067,39853,54810,698656,532489,1169,2468,"ack(1,p2,1,l4,l6,tr1) freq(0,l1,l3,tr1,0) freq(0,l2,l4,tr1,0) freq(1,l2,l4,tr1,0) freq(0,l1,l4,tr1,0) freq(1,l1,l4,tr1,0) freq(0,l4,l5,tr1,0) freq(1,l4,l5,tr1,0) freq(0,l4,l6,tr1,0) freq(1,l4,l6,tr1,0) flow(l1,l3,p2,0) flow(l2,l3,p1,0) flow(l2,l4,p1,0) flow(l2,l4,p2,0) flow(l1,l4,p1,0) flow(l1,l4,p2,0) flow(l4,l5,p1,0) flow(l4,l5,p2,0) flow(l4,l6,p1,0) flow(l4,l6,p2,0) pack(0,p1,0,l1,l3,tr1) pack(0,p2,1,l1,l3,tr1) pack(0,p1,1,l2,l3,tr1) pack(0,p1,0,l1,l4,tr1) pack(0,p1,1,l1,l4,tr1) pack(0,p2,1,l1,l4,tr1) pack(0,p2,0,l4,l5,tr1) pack(0,p1,1,l4,l5,tr1) pack(0,p2,0,l4,l6,tr1)
+Optimization: 428
+OPTIMUM FOUND
+
+Models       : 69
+  Optimum    : yes
+Optimization : 428
+Calls        : 1
+Time         : 34.286s (Solving: 34.22s 1st Model: 0.00s Unsat: 32.29s)
+CPU Time     : 33.728s
+
+Choices      : 698656  
+Conflicts    : 532489   (Analyzed: 532488)
+Restarts     : 1169     (Average: 455.51 Last: 48 Blocked: 0)
+Model-Level  : 76.4    
+Problems     : 1        (Average Length: 0.00 Splits: 0)
+Lemmas       : 532488   (Deleted: 472447)
+  Binary     : 534      (Ratio:   0.10%)
+  Ternary    : 1440     (Ratio:   0.27%)
+  Conflict   : 532488   (Average Length:   17.8 Ratio: 100.00%) 
+  Loop       : 0        (Average Length:    0.0 Ratio:   0.00%) 
+  Other      : 0        (Average Length:    0.0 Ratio:   0.00%) 
+Backjumps    : 532488   (Average:  1.29 Max:  48 Sum: 687171)
+  Executed   : 532488   (Average:  1.29 Max:  48 Sum: 687171 Ratio: 100.00%)
+  Bounded    : 0        (Average:  0.00 Max:   0 Sum:      0 Ratio:   0.00%)
+
+Rules        : 54810    (Original: 51872)
+  Choice     : 64      
+  Minimize   : 1       
+Atoms        : 39853    (Original: 39401 Auxiliary: 452)
+Bodies       : 26701    (Original: 24347)
+  Sum        : 308     
+  Count      : 4        (Original: 146)
+Equivalences : 58656    (Atom=Atom: 19555 Body=Body: 13512 Other: 25589)
+Tight        : Yes
+Variables    : 7110     (Eliminated:    0 Frozen: 5606)
+Constraints  : 21504    (Binary:  69.8% Ternary:  23.1% Other:   7.1%)
+
+",,True
+clingo_default,clingo,encoding_route.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp,B1_fixed_loc6_tr1.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/B1_fixed_loc6_tr1.lp,vary_transport_resources,B1,3,clingo /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/B1_fixed_loc6_tr1.lp --stats=2,OPTIMUM,30,34.175077,0.066,0.0,34.09,0.0,34.09,0.066,39853,54810,698656,532489,1169,2468,"ack(1,p2,1,l4,l6,tr1) freq(0,l1,l3,tr1,0) freq(0,l2,l4,tr1,0) freq(1,l2,l4,tr1,0) freq(0,l1,l4,tr1,0) freq(1,l1,l4,tr1,0) freq(0,l4,l5,tr1,0) freq(1,l4,l5,tr1,0) freq(0,l4,l6,tr1,0) freq(1,l4,l6,tr1,0) flow(l1,l3,p2,0) flow(l2,l3,p1,0) flow(l2,l4,p1,0) flow(l2,l4,p2,0) flow(l1,l4,p1,0) flow(l1,l4,p2,0) flow(l4,l5,p1,0) flow(l4,l5,p2,0) flow(l4,l6,p1,0) flow(l4,l6,p2,0) pack(0,p1,0,l1,l3,tr1) pack(0,p2,1,l1,l3,tr1) pack(0,p1,1,l2,l3,tr1) pack(0,p1,0,l1,l4,tr1) pack(0,p1,1,l1,l4,tr1) pack(0,p2,1,l1,l4,tr1) pack(0,p2,0,l4,l5,tr1) pack(0,p1,1,l4,l5,tr1) pack(0,p2,0,l4,l6,tr1)
+Optimization: 428
+OPTIMUM FOUND
+
+Models       : 69
+  Optimum    : yes
+Optimization : 428
+Calls        : 1
+Time         : 34.158s (Solving: 34.09s 1st Model: 0.00s Unsat: 32.16s)
+CPU Time     : 33.614s
+
+Choices      : 698656  
+Conflicts    : 532489   (Analyzed: 532488)
+Restarts     : 1169     (Average: 455.51 Last: 48 Blocked: 0)
+Model-Level  : 76.4    
+Problems     : 1        (Average Length: 0.00 Splits: 0)
+Lemmas       : 532488   (Deleted: 472447)
+  Binary     : 534      (Ratio:   0.10%)
+  Ternary    : 1440     (Ratio:   0.27%)
+  Conflict   : 532488   (Average Length:   17.8 Ratio: 100.00%) 
+  Loop       : 0        (Average Length:    0.0 Ratio:   0.00%) 
+  Other      : 0        (Average Length:    0.0 Ratio:   0.00%) 
+Backjumps    : 532488   (Average:  1.29 Max:  48 Sum: 687171)
+  Executed   : 532488   (Average:  1.29 Max:  48 Sum: 687171 Ratio: 100.00%)
+  Bounded    : 0        (Average:  0.00 Max:   0 Sum:      0 Ratio:   0.00%)
+
+Rules        : 54810    (Original: 51872)
+  Choice     : 64      
+  Minimize   : 1       
+Atoms        : 39853    (Original: 39401 Auxiliary: 452)
+Bodies       : 26701    (Original: 24347)
+  Sum        : 308     
+  Count      : 4        (Original: 146)
+Equivalences : 58656    (Atom=Atom: 19555 Body=Body: 13512 Other: 25589)
+Tight        : Yes
+Variables    : 7110     (Eliminated:    0 Frozen: 5606)
+Constraints  : 21504    (Binary:  69.8% Ternary:  23.1% Other:   7.1%)
+
+",,True
+clingo_default,clingo,encoding_route.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp,B2_fixed_loc6_tr2.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/B2_fixed_loc6_tr2.lp,vary_transport_resources,B2,1,clingo /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/B2_fixed_loc6_tr2.lp --stats=2,TIMEOUT,,120.006355,,,,,,120.006355,,,,,,,",0) flow(l4,l6,p2,0) pack(0,p2,0,l1,l3,tr1) pack(0,p2,1,l1,l3,tr1) pack(0,p1,0,l1,l3,tr2) pack(0,p1,1,l1,l3,tr2) pack(0,p1,1,l2,l4,tr2) pack(0,p1,0,l1,l4,tr2) pack(0,p1,1,l1,l4,tr2) pack(0,p1,0,l3,l5,tr2) pack(0,p2,1,l3,l5,tr2) pack(0,p1,1,l3,l6,tr2) pack(0,p2,1,l3,l6,tr2) pack(0,p1,0,l4,l6,tr2) pack(0,p2,0,l4,l6,tr2) pack(0,p2,1,l4,l6,tr2)
+Optimization: 416
+Answer: 114 (Time: 7.637s)
+freq(0,l1,l3,tr1,1) pack(4,p1,0,l1,l3,tr1) pack(4,p1,0,l1,l3,tr2) freq(1,l1,l3,tr1,2) pack(4,p1,1,l1,l3,tr1) flow(l1,l3,p1,12) pack(1,p2,0,l1,l3,tr2) freq(0,l2,l3,tr1,2) freq(1,l2,l3,tr1,4) pack(2,p2,0,l2,l3,tr1) pack(2,p2,1,l2,l3,tr1) flow(l2,l3,p2,11) freq(0,l2,l4,tr2,1) pack(4,p2,0,l2,l4,tr2) flow(l2,l4,p2,4) pack(4,p2,0,l1,l4,tr2) freq(0,l3,l5,tr1,1) freq(0,l3,l5,tr2,1) freq(1,l3,l5,tr1,2) pack(2,p1,1,l3,l5,tr2) pack(3,p1,1,l3,l5,tr1) flow(l3,l5,p1,5) pack(1,p2,0,l3,l5,tr1) pack(4,p2,0,l3,l5,tr2) pack(2,p2,1,l3,l5,tr1) flow(l3,l5,p2,9) freq(1,l3,l6,tr2,2) pack(4,p1,1,l3,l6,tr2) flow(l3,l6,p1,7) pack(1,p2,1,l3,l6,tr2) flow(l3,l6,p2,2) pack(3,p1,0,l4,l5,tr1) pack(2,p1,1,l4,l5,tr1) pack(1,p2,1,l4,l5,tr1) pack(4,p1,0,l4,l6,tr2) freq(1,l4,l6,tr2,1) pack(4,p2,1,l4,l6,tr2) flow(l4,l6,p2,4) freq(0,l1,l3,tr2,0) freq(1,l1,l3,tr2,0) freq(1,l2,l4,tr2,0) freq(0,l1,l4,tr2,0) freq(1,l1,l4,tr2,0) freq(1,l3,l5,tr2,0) freq(0,l3,l6,tr2,0) freq(0,l4,l5,tr1,0) freq(1,l4,l5,tr1,0) freq(0,l4,l6,tr2,0) flow(l1,l3,p2,0) flow(l2,l3,p1,0) flow(l2,l4,p1,0) flow(l1,l4,p1,0) flow(l1,l4,p2,0) flow(l4,l5,p1,0) flow(l4,l5,p2,0) flow(l4,l6,p1,0) pack(0,p2,0,l1,l3,tr1) pack(0,p2,1,l1,l3,tr1) pack(0,p1,1,l1,l3,tr2) pack(0,p2,1,l1,l3,tr2) pack(0,p1,0,l2,l3,tr1) pack(0,p1,1,l2,l3,tr1) pack(0,p1,0,l2,l4,tr2) pack(0,p1,1,l2,l4,tr2) pack(0,p2,1,l2,l4,tr2) pack(0,p1,0,l1,l4,tr2) pack(0,p1,1,l1,l4,tr2) pack(0,p2,1,l1,l4,tr2) pack(0,p1,0,l3,l5,tr1) pack(0,p1,0,l3,l5,tr2) pack(0,p2,1,l3,l5,tr2) pack(0,p1,0,l3,l6,tr2) pack(0,p2,0,l3,l6,tr2) pack(0,p2,0,l4,l5,tr1) pack(0,p2,0,l4,l6,tr2) pack(0,p1,1,l4,l6,tr2)
+Optimization: 412
+",,False
+clingo_default,clingo,encoding_route.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp,B2_fixed_loc6_tr2.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/B2_fixed_loc6_tr2.lp,vary_transport_resources,B2,2,clingo /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/B2_fixed_loc6_tr2.lp --stats=2,TIMEOUT,,120.006183,,,,,,120.006183,,,,,,,",0) flow(l4,l6,p2,0) pack(0,p2,0,l1,l3,tr1) pack(0,p2,1,l1,l3,tr1) pack(0,p1,0,l1,l3,tr2) pack(0,p1,1,l1,l3,tr2) pack(0,p1,1,l2,l4,tr2) pack(0,p1,0,l1,l4,tr2) pack(0,p1,1,l1,l4,tr2) pack(0,p1,0,l3,l5,tr2) pack(0,p2,1,l3,l5,tr2) pack(0,p1,1,l3,l6,tr2) pack(0,p2,1,l3,l6,tr2) pack(0,p1,0,l4,l6,tr2) pack(0,p2,0,l4,l6,tr2) pack(0,p2,1,l4,l6,tr2)
+Optimization: 416
+Answer: 114 (Time: 7.271s)
+freq(0,l1,l3,tr1,1) pack(4,p1,0,l1,l3,tr1) pack(4,p1,0,l1,l3,tr2) freq(1,l1,l3,tr1,2) pack(4,p1,1,l1,l3,tr1) flow(l1,l3,p1,12) pack(1,p2,0,l1,l3,tr2) freq(0,l2,l3,tr1,2) freq(1,l2,l3,tr1,4) pack(2,p2,0,l2,l3,tr1) pack(2,p2,1,l2,l3,tr1) flow(l2,l3,p2,11) freq(0,l2,l4,tr2,1) pack(4,p2,0,l2,l4,tr2) flow(l2,l4,p2,4) pack(4,p2,0,l1,l4,tr2) freq(0,l3,l5,tr1,1) freq(0,l3,l5,tr2,1) freq(1,l3,l5,tr1,2) pack(2,p1,1,l3,l5,tr2) pack(3,p1,1,l3,l5,tr1) flow(l3,l5,p1,5) pack(1,p2,0,l3,l5,tr1) pack(4,p2,0,l3,l5,tr2) pack(2,p2,1,l3,l5,tr1) flow(l3,l5,p2,9) freq(1,l3,l6,tr2,2) pack(4,p1,1,l3,l6,tr2) flow(l3,l6,p1,7) pack(1,p2,1,l3,l6,tr2) flow(l3,l6,p2,2) pack(3,p1,0,l4,l5,tr1) pack(2,p1,1,l4,l5,tr1) pack(1,p2,1,l4,l5,tr1) pack(4,p1,0,l4,l6,tr2) freq(1,l4,l6,tr2,1) pack(4,p2,1,l4,l6,tr2) flow(l4,l6,p2,4) freq(0,l1,l3,tr2,0) freq(1,l1,l3,tr2,0) freq(1,l2,l4,tr2,0) freq(0,l1,l4,tr2,0) freq(1,l1,l4,tr2,0) freq(1,l3,l5,tr2,0) freq(0,l3,l6,tr2,0) freq(0,l4,l5,tr1,0) freq(1,l4,l5,tr1,0) freq(0,l4,l6,tr2,0) flow(l1,l3,p2,0) flow(l2,l3,p1,0) flow(l2,l4,p1,0) flow(l1,l4,p1,0) flow(l1,l4,p2,0) flow(l4,l5,p1,0) flow(l4,l5,p2,0) flow(l4,l6,p1,0) pack(0,p2,0,l1,l3,tr1) pack(0,p2,1,l1,l3,tr1) pack(0,p1,1,l1,l3,tr2) pack(0,p2,1,l1,l3,tr2) pack(0,p1,0,l2,l3,tr1) pack(0,p1,1,l2,l3,tr1) pack(0,p1,0,l2,l4,tr2) pack(0,p1,1,l2,l4,tr2) pack(0,p2,1,l2,l4,tr2) pack(0,p1,0,l1,l4,tr2) pack(0,p1,1,l1,l4,tr2) pack(0,p2,1,l1,l4,tr2) pack(0,p1,0,l3,l5,tr1) pack(0,p1,0,l3,l5,tr2) pack(0,p2,1,l3,l5,tr2) pack(0,p1,0,l3,l6,tr2) pack(0,p2,0,l3,l6,tr2) pack(0,p2,0,l4,l5,tr1) pack(0,p2,0,l4,l6,tr2) pack(0,p1,1,l4,l6,tr2)
+Optimization: 412
+",,False
+clingo_default,clingo,encoding_route.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp,B2_fixed_loc6_tr2.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/B2_fixed_loc6_tr2.lp,vary_transport_resources,B2,3,clingo /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/B2_fixed_loc6_tr2.lp --stats=2,TIMEOUT,,120.005849,,,,,,120.005849,,,,,,,",0) flow(l4,l6,p2,0) pack(0,p2,0,l1,l3,tr1) pack(0,p2,1,l1,l3,tr1) pack(0,p1,0,l1,l3,tr2) pack(0,p1,1,l1,l3,tr2) pack(0,p1,1,l2,l4,tr2) pack(0,p1,0,l1,l4,tr2) pack(0,p1,1,l1,l4,tr2) pack(0,p1,0,l3,l5,tr2) pack(0,p2,1,l3,l5,tr2) pack(0,p1,1,l3,l6,tr2) pack(0,p2,1,l3,l6,tr2) pack(0,p1,0,l4,l6,tr2) pack(0,p2,0,l4,l6,tr2) pack(0,p2,1,l4,l6,tr2)
+Optimization: 416
+Answer: 114 (Time: 7.267s)
+freq(0,l1,l3,tr1,1) pack(4,p1,0,l1,l3,tr1) pack(4,p1,0,l1,l3,tr2) freq(1,l1,l3,tr1,2) pack(4,p1,1,l1,l3,tr1) flow(l1,l3,p1,12) pack(1,p2,0,l1,l3,tr2) freq(0,l2,l3,tr1,2) freq(1,l2,l3,tr1,4) pack(2,p2,0,l2,l3,tr1) pack(2,p2,1,l2,l3,tr1) flow(l2,l3,p2,11) freq(0,l2,l4,tr2,1) pack(4,p2,0,l2,l4,tr2) flow(l2,l4,p2,4) pack(4,p2,0,l1,l4,tr2) freq(0,l3,l5,tr1,1) freq(0,l3,l5,tr2,1) freq(1,l3,l5,tr1,2) pack(2,p1,1,l3,l5,tr2) pack(3,p1,1,l3,l5,tr1) flow(l3,l5,p1,5) pack(1,p2,0,l3,l5,tr1) pack(4,p2,0,l3,l5,tr2) pack(2,p2,1,l3,l5,tr1) flow(l3,l5,p2,9) freq(1,l3,l6,tr2,2) pack(4,p1,1,l3,l6,tr2) flow(l3,l6,p1,7) pack(1,p2,1,l3,l6,tr2) flow(l3,l6,p2,2) pack(3,p1,0,l4,l5,tr1) pack(2,p1,1,l4,l5,tr1) pack(1,p2,1,l4,l5,tr1) pack(4,p1,0,l4,l6,tr2) freq(1,l4,l6,tr2,1) pack(4,p2,1,l4,l6,tr2) flow(l4,l6,p2,4) freq(0,l1,l3,tr2,0) freq(1,l1,l3,tr2,0) freq(1,l2,l4,tr2,0) freq(0,l1,l4,tr2,0) freq(1,l1,l4,tr2,0) freq(1,l3,l5,tr2,0) freq(0,l3,l6,tr2,0) freq(0,l4,l5,tr1,0) freq(1,l4,l5,tr1,0) freq(0,l4,l6,tr2,0) flow(l1,l3,p2,0) flow(l2,l3,p1,0) flow(l2,l4,p1,0) flow(l1,l4,p1,0) flow(l1,l4,p2,0) flow(l4,l5,p1,0) flow(l4,l5,p2,0) flow(l4,l6,p1,0) pack(0,p2,0,l1,l3,tr1) pack(0,p2,1,l1,l3,tr1) pack(0,p1,1,l1,l3,tr2) pack(0,p2,1,l1,l3,tr2) pack(0,p1,0,l2,l3,tr1) pack(0,p1,1,l2,l3,tr1) pack(0,p1,0,l2,l4,tr2) pack(0,p1,1,l2,l4,tr2) pack(0,p2,1,l2,l4,tr2) pack(0,p1,0,l1,l4,tr2) pack(0,p1,1,l1,l4,tr2) pack(0,p2,1,l1,l4,tr2) pack(0,p1,0,l3,l5,tr1) pack(0,p1,0,l3,l5,tr2) pack(0,p2,1,l3,l5,tr2) pack(0,p1,0,l3,l6,tr2) pack(0,p2,0,l3,l6,tr2) pack(0,p2,0,l4,l5,tr1) pack(0,p2,0,l4,l6,tr2) pack(0,p1,1,l4,l6,tr2)
+Optimization: 412
+",,False
+clingo_default,clingo,encoding_route.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp,C1_loc4_parts2_tr2.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/C1_loc4_parts2_tr2.lp,vary_locations,C1,1,clingo /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/C1_loc4_parts2_tr2.lp --stats=2,OPTIMUM,30,9.894426,0.059,0.0,9.83,0.0,9.83,0.059,23486,36691,243216,183930,509,1380,"l3,p2,15) pack(2,p1,0,l3,l4,tr2) freq(0,l3,l4,tr1,3) pack(3,p1,0,l3,l4,tr1) freq(1,l3,l4,tr1,1) freq(1,l3,l4,tr2,2) pack(3,p1,1,l3,l4,tr1) flow(l3,l4,p1,12) pack(2,p2,0,l3,l4,tr1) pack(2,p2,1,l3,l4,tr1) pack(4,p2,1,l3,l4,tr2) flow(l3,l4,p2,15) freq(0,l1,l3,tr1,0) freq(0,l1,l3,tr2,0) freq(1,l1,l3,tr2,0) freq(0,l2,l3,tr1,0) freq(1,l2,l3,tr1,0) freq(0,l3,l4,tr2,0) flow(l1,l3,p2,0) flow(l2,l3,p1,0) pack(0,p2,0,l1,l3,tr1) pack(0,p2,1,l1,l3,tr1) pack(0,p2,0,l1,l3,tr2) pack(0,p1,1,l1,l3,tr2) pack(0,p1,1,l2,l3,tr1) pack(0,p1,0,l2,l3,tr2) pack(0,p2,0,l3,l4,tr2) pack(0,p1,1,l3,l4,tr2)
+Optimization: 308
+OPTIMUM FOUND
+
+Models       : 70
+  Optimum    : yes
+Optimization : 308
+Calls        : 1
+Time         : 9.879s (Solving: 9.83s 1st Model: 0.01s Unsat: 8.74s)
+CPU Time     : 9.413s
+
+Choices      : 243216  
+Conflicts    : 183930   (Analyzed: 183929)
+Restarts     : 509      (Average: 361.35 Last: 1242 Blocked: 0)
+Model-Level  : 49.1    
+Problems     : 1        (Average Length: 0.00 Splits: 0)
+Lemmas       : 183929   (Deleted: 153420)
+  Binary     : 291      (Ratio:   0.16%)
+  Ternary    : 1336     (Ratio:   0.73%)
+  Conflict   : 183929   (Average Length:   20.0 Ratio: 100.00%) 
+  Loop       : 0        (Average Length:    0.0 Ratio:   0.00%) 
+  Other      : 0        (Average Length:    0.0 Ratio:   0.00%) 
+Backjumps    : 183929   (Average:  1.30 Max:  92 Sum: 238213)
+  Executed   : 183929   (Average:  1.30 Max:  92 Sum: 238213 Ratio: 100.00%)
+  Bounded    : 0        (Average:  0.00 Max:   0 Sum:      0 Ratio:   0.00%)
+
+Rules        : 36691    (Original: 35195)
+  Choice     : 42      
+  Minimize   : 1       
+Atoms        : 23486    (Original: 23234 Auxiliary: 252)
+Bodies       : 19813    (Original: 18645)
+  Sum        : 126     
+  Count      : 2        (Original: 92)
+Equivalences : 43412    (Atom=Atom: 13471 Body=Body: 12310 Other: 17631)
+Tight        : Yes
+Variables    : 4984     (Eliminated:    0 Frozen: 3768)
+Constraints  : 19038    (Binary:  75.8% Ternary:  12.5% Other:  11.7%)
+
+",,True
+clingo_default,clingo,encoding_route.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp,C1_loc4_parts2_tr2.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/C1_loc4_parts2_tr2.lp,vary_locations,C1,2,clingo /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/C1_loc4_parts2_tr2.lp --stats=2,OPTIMUM,30,9.275147,0.05,0.0,9.21,0.0,9.21,0.05,23486,36691,243216,183930,509,1380,"l3,p2,15) pack(2,p1,0,l3,l4,tr2) freq(0,l3,l4,tr1,3) pack(3,p1,0,l3,l4,tr1) freq(1,l3,l4,tr1,1) freq(1,l3,l4,tr2,2) pack(3,p1,1,l3,l4,tr1) flow(l3,l4,p1,12) pack(2,p2,0,l3,l4,tr1) pack(2,p2,1,l3,l4,tr1) pack(4,p2,1,l3,l4,tr2) flow(l3,l4,p2,15) freq(0,l1,l3,tr1,0) freq(0,l1,l3,tr2,0) freq(1,l1,l3,tr2,0) freq(0,l2,l3,tr1,0) freq(1,l2,l3,tr1,0) freq(0,l3,l4,tr2,0) flow(l1,l3,p2,0) flow(l2,l3,p1,0) pack(0,p2,0,l1,l3,tr1) pack(0,p2,1,l1,l3,tr1) pack(0,p2,0,l1,l3,tr2) pack(0,p1,1,l1,l3,tr2) pack(0,p1,1,l2,l3,tr1) pack(0,p1,0,l2,l3,tr2) pack(0,p2,0,l3,l4,tr2) pack(0,p1,1,l3,l4,tr2)
+Optimization: 308
+OPTIMUM FOUND
+
+Models       : 70
+  Optimum    : yes
+Optimization : 308
+Calls        : 1
+Time         : 9.258s (Solving: 9.21s 1st Model: 0.01s Unsat: 8.16s)
+CPU Time     : 9.158s
+
+Choices      : 243216  
+Conflicts    : 183930   (Analyzed: 183929)
+Restarts     : 509      (Average: 361.35 Last: 1242 Blocked: 0)
+Model-Level  : 49.1    
+Problems     : 1        (Average Length: 0.00 Splits: 0)
+Lemmas       : 183929   (Deleted: 153420)
+  Binary     : 291      (Ratio:   0.16%)
+  Ternary    : 1336     (Ratio:   0.73%)
+  Conflict   : 183929   (Average Length:   20.0 Ratio: 100.00%) 
+  Loop       : 0        (Average Length:    0.0 Ratio:   0.00%) 
+  Other      : 0        (Average Length:    0.0 Ratio:   0.00%) 
+Backjumps    : 183929   (Average:  1.30 Max:  92 Sum: 238213)
+  Executed   : 183929   (Average:  1.30 Max:  92 Sum: 238213 Ratio: 100.00%)
+  Bounded    : 0        (Average:  0.00 Max:   0 Sum:      0 Ratio:   0.00%)
+
+Rules        : 36691    (Original: 35195)
+  Choice     : 42      
+  Minimize   : 1       
+Atoms        : 23486    (Original: 23234 Auxiliary: 252)
+Bodies       : 19813    (Original: 18645)
+  Sum        : 126     
+  Count      : 2        (Original: 92)
+Equivalences : 43412    (Atom=Atom: 13471 Body=Body: 12310 Other: 17631)
+Tight        : Yes
+Variables    : 4984     (Eliminated:    0 Frozen: 3768)
+Constraints  : 19038    (Binary:  75.8% Ternary:  12.5% Other:  11.7%)
+
+",,True
+clingo_default,clingo,encoding_route.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp,C1_loc4_parts2_tr2.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/C1_loc4_parts2_tr2.lp,vary_locations,C1,3,clingo /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/C1_loc4_parts2_tr2.lp --stats=2,OPTIMUM,30,9.241798,0.048,0.0,9.18,0.0,9.18,0.048,23486,36691,243216,183930,509,1380,"l3,p2,15) pack(2,p1,0,l3,l4,tr2) freq(0,l3,l4,tr1,3) pack(3,p1,0,l3,l4,tr1) freq(1,l3,l4,tr1,1) freq(1,l3,l4,tr2,2) pack(3,p1,1,l3,l4,tr1) flow(l3,l4,p1,12) pack(2,p2,0,l3,l4,tr1) pack(2,p2,1,l3,l4,tr1) pack(4,p2,1,l3,l4,tr2) flow(l3,l4,p2,15) freq(0,l1,l3,tr1,0) freq(0,l1,l3,tr2,0) freq(1,l1,l3,tr2,0) freq(0,l2,l3,tr1,0) freq(1,l2,l3,tr1,0) freq(0,l3,l4,tr2,0) flow(l1,l3,p2,0) flow(l2,l3,p1,0) pack(0,p2,0,l1,l3,tr1) pack(0,p2,1,l1,l3,tr1) pack(0,p2,0,l1,l3,tr2) pack(0,p1,1,l1,l3,tr2) pack(0,p1,1,l2,l3,tr1) pack(0,p1,0,l2,l3,tr2) pack(0,p2,0,l3,l4,tr2) pack(0,p1,1,l3,l4,tr2)
+Optimization: 308
+OPTIMUM FOUND
+
+Models       : 70
+  Optimum    : yes
+Optimization : 308
+Calls        : 1
+Time         : 9.228s (Solving: 9.18s 1st Model: 0.01s Unsat: 8.13s)
+CPU Time     : 9.136s
+
+Choices      : 243216  
+Conflicts    : 183930   (Analyzed: 183929)
+Restarts     : 509      (Average: 361.35 Last: 1242 Blocked: 0)
+Model-Level  : 49.1    
+Problems     : 1        (Average Length: 0.00 Splits: 0)
+Lemmas       : 183929   (Deleted: 153420)
+  Binary     : 291      (Ratio:   0.16%)
+  Ternary    : 1336     (Ratio:   0.73%)
+  Conflict   : 183929   (Average Length:   20.0 Ratio: 100.00%) 
+  Loop       : 0        (Average Length:    0.0 Ratio:   0.00%) 
+  Other      : 0        (Average Length:    0.0 Ratio:   0.00%) 
+Backjumps    : 183929   (Average:  1.30 Max:  92 Sum: 238213)
+  Executed   : 183929   (Average:  1.30 Max:  92 Sum: 238213 Ratio: 100.00%)
+  Bounded    : 0        (Average:  0.00 Max:   0 Sum:      0 Ratio:   0.00%)
+
+Rules        : 36691    (Original: 35195)
+  Choice     : 42      
+  Minimize   : 1       
+Atoms        : 23486    (Original: 23234 Auxiliary: 252)
+Bodies       : 19813    (Original: 18645)
+  Sum        : 126     
+  Count      : 2        (Original: 92)
+Equivalences : 43412    (Atom=Atom: 13471 Body=Body: 12310 Other: 17631)
+Tight        : Yes
+Variables    : 4984     (Eliminated:    0 Frozen: 3768)
+Constraints  : 19038    (Binary:  75.8% Ternary:  12.5% Other:  11.7%)
+
+",,True
+clingo_default,clingo,encoding_route.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp,C2_loc6_parts2_tr2.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/C2_loc6_parts2_tr2.lp,vary_locations,C2,1,clingo /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/C2_loc6_parts2_tr2.lp --stats=2,TIMEOUT,,120.005838,,,,,,120.005838,,,,,,,",0) flow(l4,l6,p2,0) pack(0,p2,0,l1,l3,tr1) pack(0,p2,1,l1,l3,tr1) pack(0,p1,0,l1,l3,tr2) pack(0,p1,1,l1,l3,tr2) pack(0,p1,1,l2,l4,tr2) pack(0,p1,0,l1,l4,tr2) pack(0,p1,1,l1,l4,tr2) pack(0,p1,0,l3,l5,tr2) pack(0,p2,1,l3,l5,tr2) pack(0,p1,1,l3,l6,tr2) pack(0,p2,1,l3,l6,tr2) pack(0,p1,0,l4,l6,tr2) pack(0,p2,0,l4,l6,tr2) pack(0,p2,1,l4,l6,tr2)
+Optimization: 416
+Answer: 114 (Time: 7.827s)
+freq(0,l1,l3,tr1,1) pack(4,p1,0,l1,l3,tr1) pack(4,p1,0,l1,l3,tr2) freq(1,l1,l3,tr1,2) pack(4,p1,1,l1,l3,tr1) flow(l1,l3,p1,12) pack(1,p2,0,l1,l3,tr2) freq(0,l2,l3,tr1,2) freq(1,l2,l3,tr1,4) pack(2,p2,0,l2,l3,tr1) pack(2,p2,1,l2,l3,tr1) flow(l2,l3,p2,11) freq(0,l2,l4,tr2,1) pack(4,p2,0,l2,l4,tr2) flow(l2,l4,p2,4) pack(4,p2,0,l1,l4,tr2) freq(0,l3,l5,tr1,1) freq(0,l3,l5,tr2,1) freq(1,l3,l5,tr1,2) pack(2,p1,1,l3,l5,tr2) pack(3,p1,1,l3,l5,tr1) flow(l3,l5,p1,5) pack(1,p2,0,l3,l5,tr1) pack(4,p2,0,l3,l5,tr2) pack(2,p2,1,l3,l5,tr1) flow(l3,l5,p2,9) freq(1,l3,l6,tr2,2) pack(4,p1,1,l3,l6,tr2) flow(l3,l6,p1,7) pack(1,p2,1,l3,l6,tr2) flow(l3,l6,p2,2) pack(3,p1,0,l4,l5,tr1) pack(2,p1,1,l4,l5,tr1) pack(1,p2,1,l4,l5,tr1) pack(4,p1,0,l4,l6,tr2) freq(1,l4,l6,tr2,1) pack(4,p2,1,l4,l6,tr2) flow(l4,l6,p2,4) freq(0,l1,l3,tr2,0) freq(1,l1,l3,tr2,0) freq(1,l2,l4,tr2,0) freq(0,l1,l4,tr2,0) freq(1,l1,l4,tr2,0) freq(1,l3,l5,tr2,0) freq(0,l3,l6,tr2,0) freq(0,l4,l5,tr1,0) freq(1,l4,l5,tr1,0) freq(0,l4,l6,tr2,0) flow(l1,l3,p2,0) flow(l2,l3,p1,0) flow(l2,l4,p1,0) flow(l1,l4,p1,0) flow(l1,l4,p2,0) flow(l4,l5,p1,0) flow(l4,l5,p2,0) flow(l4,l6,p1,0) pack(0,p2,0,l1,l3,tr1) pack(0,p2,1,l1,l3,tr1) pack(0,p1,1,l1,l3,tr2) pack(0,p2,1,l1,l3,tr2) pack(0,p1,0,l2,l3,tr1) pack(0,p1,1,l2,l3,tr1) pack(0,p1,0,l2,l4,tr2) pack(0,p1,1,l2,l4,tr2) pack(0,p2,1,l2,l4,tr2) pack(0,p1,0,l1,l4,tr2) pack(0,p1,1,l1,l4,tr2) pack(0,p2,1,l1,l4,tr2) pack(0,p1,0,l3,l5,tr1) pack(0,p1,0,l3,l5,tr2) pack(0,p2,1,l3,l5,tr2) pack(0,p1,0,l3,l6,tr2) pack(0,p2,0,l3,l6,tr2) pack(0,p2,0,l4,l5,tr1) pack(0,p2,0,l4,l6,tr2) pack(0,p1,1,l4,l6,tr2)
+Optimization: 412
+",,False
+clingo_default,clingo,encoding_route.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp,C2_loc6_parts2_tr2.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/C2_loc6_parts2_tr2.lp,vary_locations,C2,2,clingo /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/C2_loc6_parts2_tr2.lp --stats=2,TIMEOUT,,120.005667,,,,,,120.005667,,,,,,,",0) flow(l4,l6,p2,0) pack(0,p2,0,l1,l3,tr1) pack(0,p2,1,l1,l3,tr1) pack(0,p1,0,l1,l3,tr2) pack(0,p1,1,l1,l3,tr2) pack(0,p1,1,l2,l4,tr2) pack(0,p1,0,l1,l4,tr2) pack(0,p1,1,l1,l4,tr2) pack(0,p1,0,l3,l5,tr2) pack(0,p2,1,l3,l5,tr2) pack(0,p1,1,l3,l6,tr2) pack(0,p2,1,l3,l6,tr2) pack(0,p1,0,l4,l6,tr2) pack(0,p2,0,l4,l6,tr2) pack(0,p2,1,l4,l6,tr2)
+Optimization: 416
+Answer: 114 (Time: 7.639s)
+freq(0,l1,l3,tr1,1) pack(4,p1,0,l1,l3,tr1) pack(4,p1,0,l1,l3,tr2) freq(1,l1,l3,tr1,2) pack(4,p1,1,l1,l3,tr1) flow(l1,l3,p1,12) pack(1,p2,0,l1,l3,tr2) freq(0,l2,l3,tr1,2) freq(1,l2,l3,tr1,4) pack(2,p2,0,l2,l3,tr1) pack(2,p2,1,l2,l3,tr1) flow(l2,l3,p2,11) freq(0,l2,l4,tr2,1) pack(4,p2,0,l2,l4,tr2) flow(l2,l4,p2,4) pack(4,p2,0,l1,l4,tr2) freq(0,l3,l5,tr1,1) freq(0,l3,l5,tr2,1) freq(1,l3,l5,tr1,2) pack(2,p1,1,l3,l5,tr2) pack(3,p1,1,l3,l5,tr1) flow(l3,l5,p1,5) pack(1,p2,0,l3,l5,tr1) pack(4,p2,0,l3,l5,tr2) pack(2,p2,1,l3,l5,tr1) flow(l3,l5,p2,9) freq(1,l3,l6,tr2,2) pack(4,p1,1,l3,l6,tr2) flow(l3,l6,p1,7) pack(1,p2,1,l3,l6,tr2) flow(l3,l6,p2,2) pack(3,p1,0,l4,l5,tr1) pack(2,p1,1,l4,l5,tr1) pack(1,p2,1,l4,l5,tr1) pack(4,p1,0,l4,l6,tr2) freq(1,l4,l6,tr2,1) pack(4,p2,1,l4,l6,tr2) flow(l4,l6,p2,4) freq(0,l1,l3,tr2,0) freq(1,l1,l3,tr2,0) freq(1,l2,l4,tr2,0) freq(0,l1,l4,tr2,0) freq(1,l1,l4,tr2,0) freq(1,l3,l5,tr2,0) freq(0,l3,l6,tr2,0) freq(0,l4,l5,tr1,0) freq(1,l4,l5,tr1,0) freq(0,l4,l6,tr2,0) flow(l1,l3,p2,0) flow(l2,l3,p1,0) flow(l2,l4,p1,0) flow(l1,l4,p1,0) flow(l1,l4,p2,0) flow(l4,l5,p1,0) flow(l4,l5,p2,0) flow(l4,l6,p1,0) pack(0,p2,0,l1,l3,tr1) pack(0,p2,1,l1,l3,tr1) pack(0,p1,1,l1,l3,tr2) pack(0,p2,1,l1,l3,tr2) pack(0,p1,0,l2,l3,tr1) pack(0,p1,1,l2,l3,tr1) pack(0,p1,0,l2,l4,tr2) pack(0,p1,1,l2,l4,tr2) pack(0,p2,1,l2,l4,tr2) pack(0,p1,0,l1,l4,tr2) pack(0,p1,1,l1,l4,tr2) pack(0,p2,1,l1,l4,tr2) pack(0,p1,0,l3,l5,tr1) pack(0,p1,0,l3,l5,tr2) pack(0,p2,1,l3,l5,tr2) pack(0,p1,0,l3,l6,tr2) pack(0,p2,0,l3,l6,tr2) pack(0,p2,0,l4,l5,tr1) pack(0,p2,0,l4,l6,tr2) pack(0,p1,1,l4,l6,tr2)
+Optimization: 412
+",,False
+clingo_default,clingo,encoding_route.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp,C2_loc6_parts2_tr2.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/C2_loc6_parts2_tr2.lp,vary_locations,C2,3,clingo /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/C2_loc6_parts2_tr2.lp --stats=2,TIMEOUT,,120.005209,,,,,,120.005209,,,,,,,",0) flow(l4,l6,p2,0) pack(0,p2,0,l1,l3,tr1) pack(0,p2,1,l1,l3,tr1) pack(0,p1,0,l1,l3,tr2) pack(0,p1,1,l1,l3,tr2) pack(0,p1,1,l2,l4,tr2) pack(0,p1,0,l1,l4,tr2) pack(0,p1,1,l1,l4,tr2) pack(0,p1,0,l3,l5,tr2) pack(0,p2,1,l3,l5,tr2) pack(0,p1,1,l3,l6,tr2) pack(0,p2,1,l3,l6,tr2) pack(0,p1,0,l4,l6,tr2) pack(0,p2,0,l4,l6,tr2) pack(0,p2,1,l4,l6,tr2)
+Optimization: 416
+Answer: 114 (Time: 8.582s)
+freq(0,l1,l3,tr1,1) pack(4,p1,0,l1,l3,tr1) pack(4,p1,0,l1,l3,tr2) freq(1,l1,l3,tr1,2) pack(4,p1,1,l1,l3,tr1) flow(l1,l3,p1,12) pack(1,p2,0,l1,l3,tr2) freq(0,l2,l3,tr1,2) freq(1,l2,l3,tr1,4) pack(2,p2,0,l2,l3,tr1) pack(2,p2,1,l2,l3,tr1) flow(l2,l3,p2,11) freq(0,l2,l4,tr2,1) pack(4,p2,0,l2,l4,tr2) flow(l2,l4,p2,4) pack(4,p2,0,l1,l4,tr2) freq(0,l3,l5,tr1,1) freq(0,l3,l5,tr2,1) freq(1,l3,l5,tr1,2) pack(2,p1,1,l3,l5,tr2) pack(3,p1,1,l3,l5,tr1) flow(l3,l5,p1,5) pack(1,p2,0,l3,l5,tr1) pack(4,p2,0,l3,l5,tr2) pack(2,p2,1,l3,l5,tr1) flow(l3,l5,p2,9) freq(1,l3,l6,tr2,2) pack(4,p1,1,l3,l6,tr2) flow(l3,l6,p1,7) pack(1,p2,1,l3,l6,tr2) flow(l3,l6,p2,2) pack(3,p1,0,l4,l5,tr1) pack(2,p1,1,l4,l5,tr1) pack(1,p2,1,l4,l5,tr1) pack(4,p1,0,l4,l6,tr2) freq(1,l4,l6,tr2,1) pack(4,p2,1,l4,l6,tr2) flow(l4,l6,p2,4) freq(0,l1,l3,tr2,0) freq(1,l1,l3,tr2,0) freq(1,l2,l4,tr2,0) freq(0,l1,l4,tr2,0) freq(1,l1,l4,tr2,0) freq(1,l3,l5,tr2,0) freq(0,l3,l6,tr2,0) freq(0,l4,l5,tr1,0) freq(1,l4,l5,tr1,0) freq(0,l4,l6,tr2,0) flow(l1,l3,p2,0) flow(l2,l3,p1,0) flow(l2,l4,p1,0) flow(l1,l4,p1,0) flow(l1,l4,p2,0) flow(l4,l5,p1,0) flow(l4,l5,p2,0) flow(l4,l6,p1,0) pack(0,p2,0,l1,l3,tr1) pack(0,p2,1,l1,l3,tr1) pack(0,p1,1,l1,l3,tr2) pack(0,p2,1,l1,l3,tr2) pack(0,p1,0,l2,l3,tr1) pack(0,p1,1,l2,l3,tr1) pack(0,p1,0,l2,l4,tr2) pack(0,p1,1,l2,l4,tr2) pack(0,p2,1,l2,l4,tr2) pack(0,p1,0,l1,l4,tr2) pack(0,p1,1,l1,l4,tr2) pack(0,p2,1,l1,l4,tr2) pack(0,p1,0,l3,l5,tr1) pack(0,p1,0,l3,l5,tr2) pack(0,p2,1,l3,l5,tr2) pack(0,p1,0,l3,l6,tr2) pack(0,p2,0,l3,l6,tr2) pack(0,p2,0,l4,l5,tr1) pack(0,p2,0,l4,l6,tr2) pack(0,p1,1,l4,l6,tr2)
+Optimization: 412
+",,False
+clingo_tweety,clingo,encoding_route.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp,A1_fixed_loc6_parts1.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/A1_fixed_loc6_parts1.lp,vary_parts,A1,1,clingo /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/A1_fixed_loc6_parts1.lp --stats=2 --configuration=tweety,OPTIMUM,30,0.163106,0.025,0.0,0.12,0.0,0.12,0.025,12096,17815,7353,2546,14,688,"l4,tr2,0) freq(1,l1,l4,tr2,0) freq(0,l3,l5,tr1,0) freq(1,l3,l5,tr1,0) freq(0,l3,l5,tr2,0) freq(0,l4,l5,tr1,0) freq(1,l4,l5,tr1,0) freq(0,l4,l6,tr2,0) freq(1,l4,l6,tr2,0) flow(l2,l3,p1,0) flow(l2,l4,p1,0) flow(l1,l4,p1,0) flow(l4,l5,p1,0) flow(l4,l6,p1,0) pack(0,p1,1,l1,l3,tr1) pack(0,p1,0,l1,l3,tr2) pack(0,p1,0,l2,l3,tr1) pack(0,p1,1,l2,l3,tr1) pack(0,p1,0,l2,l4,tr2) pack(0,p1,1,l2,l4,tr2) pack(0,p1,0,l1,l4,tr2) pack(0,p1,1,l1,l4,tr2) pack(0,p1,1,l3,l5,tr1) pack(0,p1,0,l3,l5,tr2) pack(0,p1,0,l4,l5,tr1) pack(0,p1,1,l4,l5,tr1) pack(0,p1,0,l4,l6,tr2) pack(0,p1,1,l4,l6,tr2)
+Optimization: 160
+OPTIMUM FOUND
+
+Models       : 43
+  Optimum    : yes
+Optimization : 160
+Calls        : 1
+Time         : 0.146s (Solving: 0.12s 1st Model: 0.00s Unsat: 0.02s)
+CPU Time     : 0.144s
+
+Choices      : 7353    
+Conflicts    : 2546     (Analyzed: 2545)
+Restarts     : 14       (Average: 181.79 Last: 24 Blocked: 0)
+Model-Level  : 84.8    
+Problems     : 1        (Average Length: 0.00 Splits: 0)
+Lemmas       : 2545     (Deleted: 0)
+  Binary     : 73       (Ratio:   2.87%)
+  Ternary    : 146      (Ratio:   5.74%)
+  Conflict   : 2545     (Average Length:   26.3 Ratio: 100.00%) 
+  Loop       : 0        (Average Length:    0.0 Ratio:   0.00%) 
+  Other      : 0        (Average Length:    0.0 Ratio:   0.00%) 
+Backjumps    : 2545     (Average:  1.69 Max:  22 Sum:   4307)
+  Executed   : 2545     (Average:  1.69 Max:  22 Sum:   4307 Ratio: 100.00%)
+  Bounded    : 0        (Average:  0.00 Max:   0 Sum:      0 Ratio:   0.00%)
+
+Rules        : 17815    (Original: 16290)
+  Choice     : 48      
+  Minimize   : 1       
+Atoms        : 12096    (Original: 11838 Auxiliary: 258)
+Bodies       : 9359     (Original: 8234)
+  Sum        : 114      (Original: 134)
+  Count      : 2        (Original: 105)
+Equivalences : 24776    (Atom=Atom: 7561 Body=Body: 6216 Other: 10999)
+Tight        : Yes
+Variables    : 3577     (Eliminated:    0 Frozen: 2509)
+Constraints  : 11858    (Binary:  73.3% Ternary:  16.3% Other:  10.4%)
+
+",,True
+clingo_tweety,clingo,encoding_route.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp,A1_fixed_loc6_parts1.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/A1_fixed_loc6_parts1.lp,vary_parts,A1,2,clingo /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/A1_fixed_loc6_parts1.lp --stats=2 --configuration=tweety,OPTIMUM,30,0.156125,0.024,0.0,0.12,0.0,0.12,0.024,12096,17815,7353,2546,14,688,"l4,tr2,0) freq(1,l1,l4,tr2,0) freq(0,l3,l5,tr1,0) freq(1,l3,l5,tr1,0) freq(0,l3,l5,tr2,0) freq(0,l4,l5,tr1,0) freq(1,l4,l5,tr1,0) freq(0,l4,l6,tr2,0) freq(1,l4,l6,tr2,0) flow(l2,l3,p1,0) flow(l2,l4,p1,0) flow(l1,l4,p1,0) flow(l4,l5,p1,0) flow(l4,l6,p1,0) pack(0,p1,1,l1,l3,tr1) pack(0,p1,0,l1,l3,tr2) pack(0,p1,0,l2,l3,tr1) pack(0,p1,1,l2,l3,tr1) pack(0,p1,0,l2,l4,tr2) pack(0,p1,1,l2,l4,tr2) pack(0,p1,0,l1,l4,tr2) pack(0,p1,1,l1,l4,tr2) pack(0,p1,1,l3,l5,tr1) pack(0,p1,0,l3,l5,tr2) pack(0,p1,0,l4,l5,tr1) pack(0,p1,1,l4,l5,tr1) pack(0,p1,0,l4,l6,tr2) pack(0,p1,1,l4,l6,tr2)
+Optimization: 160
+OPTIMUM FOUND
+
+Models       : 43
+  Optimum    : yes
+Optimization : 160
+Calls        : 1
+Time         : 0.146s (Solving: 0.12s 1st Model: 0.00s Unsat: 0.02s)
+CPU Time     : 0.145s
+
+Choices      : 7353    
+Conflicts    : 2546     (Analyzed: 2545)
+Restarts     : 14       (Average: 181.79 Last: 24 Blocked: 0)
+Model-Level  : 84.8    
+Problems     : 1        (Average Length: 0.00 Splits: 0)
+Lemmas       : 2545     (Deleted: 0)
+  Binary     : 73       (Ratio:   2.87%)
+  Ternary    : 146      (Ratio:   5.74%)
+  Conflict   : 2545     (Average Length:   26.3 Ratio: 100.00%) 
+  Loop       : 0        (Average Length:    0.0 Ratio:   0.00%) 
+  Other      : 0        (Average Length:    0.0 Ratio:   0.00%) 
+Backjumps    : 2545     (Average:  1.69 Max:  22 Sum:   4307)
+  Executed   : 2545     (Average:  1.69 Max:  22 Sum:   4307 Ratio: 100.00%)
+  Bounded    : 0        (Average:  0.00 Max:   0 Sum:      0 Ratio:   0.00%)
+
+Rules        : 17815    (Original: 16290)
+  Choice     : 48      
+  Minimize   : 1       
+Atoms        : 12096    (Original: 11838 Auxiliary: 258)
+Bodies       : 9359     (Original: 8234)
+  Sum        : 114      (Original: 134)
+  Count      : 2        (Original: 105)
+Equivalences : 24776    (Atom=Atom: 7561 Body=Body: 6216 Other: 10999)
+Tight        : Yes
+Variables    : 3577     (Eliminated:    0 Frozen: 2509)
+Constraints  : 11858    (Binary:  73.3% Ternary:  16.3% Other:  10.4%)
+
+",,True
+clingo_tweety,clingo,encoding_route.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp,A1_fixed_loc6_parts1.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/A1_fixed_loc6_parts1.lp,vary_parts,A1,3,clingo /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/A1_fixed_loc6_parts1.lp --stats=2 --configuration=tweety,OPTIMUM,30,0.157123,0.024,0.0,0.12,0.0,0.12,0.024,12096,17815,7353,2546,14,688,"l4,tr2,0) freq(1,l1,l4,tr2,0) freq(0,l3,l5,tr1,0) freq(1,l3,l5,tr1,0) freq(0,l3,l5,tr2,0) freq(0,l4,l5,tr1,0) freq(1,l4,l5,tr1,0) freq(0,l4,l6,tr2,0) freq(1,l4,l6,tr2,0) flow(l2,l3,p1,0) flow(l2,l4,p1,0) flow(l1,l4,p1,0) flow(l4,l5,p1,0) flow(l4,l6,p1,0) pack(0,p1,1,l1,l3,tr1) pack(0,p1,0,l1,l3,tr2) pack(0,p1,0,l2,l3,tr1) pack(0,p1,1,l2,l3,tr1) pack(0,p1,0,l2,l4,tr2) pack(0,p1,1,l2,l4,tr2) pack(0,p1,0,l1,l4,tr2) pack(0,p1,1,l1,l4,tr2) pack(0,p1,1,l3,l5,tr1) pack(0,p1,0,l3,l5,tr2) pack(0,p1,0,l4,l5,tr1) pack(0,p1,1,l4,l5,tr1) pack(0,p1,0,l4,l6,tr2) pack(0,p1,1,l4,l6,tr2)
+Optimization: 160
+OPTIMUM FOUND
+
+Models       : 43
+  Optimum    : yes
+Optimization : 160
+Calls        : 1
+Time         : 0.145s (Solving: 0.12s 1st Model: 0.00s Unsat: 0.02s)
+CPU Time     : 0.144s
+
+Choices      : 7353    
+Conflicts    : 2546     (Analyzed: 2545)
+Restarts     : 14       (Average: 181.79 Last: 24 Blocked: 0)
+Model-Level  : 84.8    
+Problems     : 1        (Average Length: 0.00 Splits: 0)
+Lemmas       : 2545     (Deleted: 0)
+  Binary     : 73       (Ratio:   2.87%)
+  Ternary    : 146      (Ratio:   5.74%)
+  Conflict   : 2545     (Average Length:   26.3 Ratio: 100.00%) 
+  Loop       : 0        (Average Length:    0.0 Ratio:   0.00%) 
+  Other      : 0        (Average Length:    0.0 Ratio:   0.00%) 
+Backjumps    : 2545     (Average:  1.69 Max:  22 Sum:   4307)
+  Executed   : 2545     (Average:  1.69 Max:  22 Sum:   4307 Ratio: 100.00%)
+  Bounded    : 0        (Average:  0.00 Max:   0 Sum:      0 Ratio:   0.00%)
+
+Rules        : 17815    (Original: 16290)
+  Choice     : 48      
+  Minimize   : 1       
+Atoms        : 12096    (Original: 11838 Auxiliary: 258)
+Bodies       : 9359     (Original: 8234)
+  Sum        : 114      (Original: 134)
+  Count      : 2        (Original: 105)
+Equivalences : 24776    (Atom=Atom: 7561 Body=Body: 6216 Other: 10999)
+Tight        : Yes
+Variables    : 3577     (Eliminated:    0 Frozen: 2509)
+Constraints  : 11858    (Binary:  73.3% Ternary:  16.3% Other:  10.4%)
+
+",,True
+clingo_tweety,clingo,encoding_route.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp,A2_fixed_loc6_parts2.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/A2_fixed_loc6_parts2.lp,vary_parts,A2,1,clingo /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/A2_fixed_loc6_parts2.lp --stats=2 --configuration=tweety,TIMEOUT,,120.004941,,,,,,120.004941,,,,,,,",0) flow(l4,l6,p2,0) pack(0,p2,0,l1,l3,tr1) pack(0,p2,1,l1,l3,tr1) pack(0,p1,0,l1,l3,tr2) pack(0,p1,1,l1,l3,tr2) pack(0,p1,1,l2,l4,tr2) pack(0,p1,0,l1,l4,tr2) pack(0,p1,1,l1,l4,tr2) pack(0,p1,0,l3,l5,tr2) pack(0,p2,1,l3,l5,tr2) pack(0,p1,1,l3,l6,tr2) pack(0,p2,1,l3,l6,tr2) pack(0,p1,0,l4,l6,tr2) pack(0,p2,0,l4,l6,tr2) pack(0,p2,1,l4,l6,tr2)
+Optimization: 416
+Answer: 114 (Time: 7.585s)
+freq(0,l1,l3,tr1,1) pack(4,p1,0,l1,l3,tr1) pack(4,p1,0,l1,l3,tr2) freq(1,l1,l3,tr1,2) pack(4,p1,1,l1,l3,tr1) flow(l1,l3,p1,12) pack(1,p2,0,l1,l3,tr2) freq(0,l2,l3,tr1,2) freq(1,l2,l3,tr1,4) pack(2,p2,0,l2,l3,tr1) pack(2,p2,1,l2,l3,tr1) flow(l2,l3,p2,11) freq(0,l2,l4,tr2,1) pack(4,p2,0,l2,l4,tr2) flow(l2,l4,p2,4) pack(4,p2,0,l1,l4,tr2) freq(0,l3,l5,tr1,1) freq(0,l3,l5,tr2,1) freq(1,l3,l5,tr1,2) pack(2,p1,1,l3,l5,tr2) pack(3,p1,1,l3,l5,tr1) flow(l3,l5,p1,5) pack(1,p2,0,l3,l5,tr1) pack(4,p2,0,l3,l5,tr2) pack(2,p2,1,l3,l5,tr1) flow(l3,l5,p2,9) freq(1,l3,l6,tr2,2) pack(4,p1,1,l3,l6,tr2) flow(l3,l6,p1,7) pack(1,p2,1,l3,l6,tr2) flow(l3,l6,p2,2) pack(3,p1,0,l4,l5,tr1) pack(2,p1,1,l4,l5,tr1) pack(1,p2,1,l4,l5,tr1) pack(4,p1,0,l4,l6,tr2) freq(1,l4,l6,tr2,1) pack(4,p2,1,l4,l6,tr2) flow(l4,l6,p2,4) freq(0,l1,l3,tr2,0) freq(1,l1,l3,tr2,0) freq(1,l2,l4,tr2,0) freq(0,l1,l4,tr2,0) freq(1,l1,l4,tr2,0) freq(1,l3,l5,tr2,0) freq(0,l3,l6,tr2,0) freq(0,l4,l5,tr1,0) freq(1,l4,l5,tr1,0) freq(0,l4,l6,tr2,0) flow(l1,l3,p2,0) flow(l2,l3,p1,0) flow(l2,l4,p1,0) flow(l1,l4,p1,0) flow(l1,l4,p2,0) flow(l4,l5,p1,0) flow(l4,l5,p2,0) flow(l4,l6,p1,0) pack(0,p2,0,l1,l3,tr1) pack(0,p2,1,l1,l3,tr1) pack(0,p1,1,l1,l3,tr2) pack(0,p2,1,l1,l3,tr2) pack(0,p1,0,l2,l3,tr1) pack(0,p1,1,l2,l3,tr1) pack(0,p1,0,l2,l4,tr2) pack(0,p1,1,l2,l4,tr2) pack(0,p2,1,l2,l4,tr2) pack(0,p1,0,l1,l4,tr2) pack(0,p1,1,l1,l4,tr2) pack(0,p2,1,l1,l4,tr2) pack(0,p1,0,l3,l5,tr1) pack(0,p1,0,l3,l5,tr2) pack(0,p2,1,l3,l5,tr2) pack(0,p1,0,l3,l6,tr2) pack(0,p2,0,l3,l6,tr2) pack(0,p2,0,l4,l5,tr1) pack(0,p2,0,l4,l6,tr2) pack(0,p1,1,l4,l6,tr2)
+Optimization: 412
+",,False
+clingo_tweety,clingo,encoding_route.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp,A2_fixed_loc6_parts2.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/A2_fixed_loc6_parts2.lp,vary_parts,A2,2,clingo /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/A2_fixed_loc6_parts2.lp --stats=2 --configuration=tweety,TIMEOUT,,120.006162,,,,,,120.006162,,,,,,,",0) flow(l4,l6,p2,0) pack(0,p2,0,l1,l3,tr1) pack(0,p2,1,l1,l3,tr1) pack(0,p1,0,l1,l3,tr2) pack(0,p1,1,l1,l3,tr2) pack(0,p1,1,l2,l4,tr2) pack(0,p1,0,l1,l4,tr2) pack(0,p1,1,l1,l4,tr2) pack(0,p1,0,l3,l5,tr2) pack(0,p2,1,l3,l5,tr2) pack(0,p1,1,l3,l6,tr2) pack(0,p2,1,l3,l6,tr2) pack(0,p1,0,l4,l6,tr2) pack(0,p2,0,l4,l6,tr2) pack(0,p2,1,l4,l6,tr2)
+Optimization: 416
+Answer: 114 (Time: 7.710s)
+freq(0,l1,l3,tr1,1) pack(4,p1,0,l1,l3,tr1) pack(4,p1,0,l1,l3,tr2) freq(1,l1,l3,tr1,2) pack(4,p1,1,l1,l3,tr1) flow(l1,l3,p1,12) pack(1,p2,0,l1,l3,tr2) freq(0,l2,l3,tr1,2) freq(1,l2,l3,tr1,4) pack(2,p2,0,l2,l3,tr1) pack(2,p2,1,l2,l3,tr1) flow(l2,l3,p2,11) freq(0,l2,l4,tr2,1) pack(4,p2,0,l2,l4,tr2) flow(l2,l4,p2,4) pack(4,p2,0,l1,l4,tr2) freq(0,l3,l5,tr1,1) freq(0,l3,l5,tr2,1) freq(1,l3,l5,tr1,2) pack(2,p1,1,l3,l5,tr2) pack(3,p1,1,l3,l5,tr1) flow(l3,l5,p1,5) pack(1,p2,0,l3,l5,tr1) pack(4,p2,0,l3,l5,tr2) pack(2,p2,1,l3,l5,tr1) flow(l3,l5,p2,9) freq(1,l3,l6,tr2,2) pack(4,p1,1,l3,l6,tr2) flow(l3,l6,p1,7) pack(1,p2,1,l3,l6,tr2) flow(l3,l6,p2,2) pack(3,p1,0,l4,l5,tr1) pack(2,p1,1,l4,l5,tr1) pack(1,p2,1,l4,l5,tr1) pack(4,p1,0,l4,l6,tr2) freq(1,l4,l6,tr2,1) pack(4,p2,1,l4,l6,tr2) flow(l4,l6,p2,4) freq(0,l1,l3,tr2,0) freq(1,l1,l3,tr2,0) freq(1,l2,l4,tr2,0) freq(0,l1,l4,tr2,0) freq(1,l1,l4,tr2,0) freq(1,l3,l5,tr2,0) freq(0,l3,l6,tr2,0) freq(0,l4,l5,tr1,0) freq(1,l4,l5,tr1,0) freq(0,l4,l6,tr2,0) flow(l1,l3,p2,0) flow(l2,l3,p1,0) flow(l2,l4,p1,0) flow(l1,l4,p1,0) flow(l1,l4,p2,0) flow(l4,l5,p1,0) flow(l4,l5,p2,0) flow(l4,l6,p1,0) pack(0,p2,0,l1,l3,tr1) pack(0,p2,1,l1,l3,tr1) pack(0,p1,1,l1,l3,tr2) pack(0,p2,1,l1,l3,tr2) pack(0,p1,0,l2,l3,tr1) pack(0,p1,1,l2,l3,tr1) pack(0,p1,0,l2,l4,tr2) pack(0,p1,1,l2,l4,tr2) pack(0,p2,1,l2,l4,tr2) pack(0,p1,0,l1,l4,tr2) pack(0,p1,1,l1,l4,tr2) pack(0,p2,1,l1,l4,tr2) pack(0,p1,0,l3,l5,tr1) pack(0,p1,0,l3,l5,tr2) pack(0,p2,1,l3,l5,tr2) pack(0,p1,0,l3,l6,tr2) pack(0,p2,0,l3,l6,tr2) pack(0,p2,0,l4,l5,tr1) pack(0,p2,0,l4,l6,tr2) pack(0,p1,1,l4,l6,tr2)
+Optimization: 412
+",,False
+clingo_tweety,clingo,encoding_route.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp,A2_fixed_loc6_parts2.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/A2_fixed_loc6_parts2.lp,vary_parts,A2,3,clingo /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/A2_fixed_loc6_parts2.lp --stats=2 --configuration=tweety,TIMEOUT,,120.006392,,,,,,120.006392,,,,,,,",0) flow(l4,l6,p2,0) pack(0,p2,0,l1,l3,tr1) pack(0,p2,1,l1,l3,tr1) pack(0,p1,0,l1,l3,tr2) pack(0,p1,1,l1,l3,tr2) pack(0,p1,1,l2,l4,tr2) pack(0,p1,0,l1,l4,tr2) pack(0,p1,1,l1,l4,tr2) pack(0,p1,0,l3,l5,tr2) pack(0,p2,1,l3,l5,tr2) pack(0,p1,1,l3,l6,tr2) pack(0,p2,1,l3,l6,tr2) pack(0,p1,0,l4,l6,tr2) pack(0,p2,0,l4,l6,tr2) pack(0,p2,1,l4,l6,tr2)
+Optimization: 416
+Answer: 114 (Time: 7.229s)
+freq(0,l1,l3,tr1,1) pack(4,p1,0,l1,l3,tr1) pack(4,p1,0,l1,l3,tr2) freq(1,l1,l3,tr1,2) pack(4,p1,1,l1,l3,tr1) flow(l1,l3,p1,12) pack(1,p2,0,l1,l3,tr2) freq(0,l2,l3,tr1,2) freq(1,l2,l3,tr1,4) pack(2,p2,0,l2,l3,tr1) pack(2,p2,1,l2,l3,tr1) flow(l2,l3,p2,11) freq(0,l2,l4,tr2,1) pack(4,p2,0,l2,l4,tr2) flow(l2,l4,p2,4) pack(4,p2,0,l1,l4,tr2) freq(0,l3,l5,tr1,1) freq(0,l3,l5,tr2,1) freq(1,l3,l5,tr1,2) pack(2,p1,1,l3,l5,tr2) pack(3,p1,1,l3,l5,tr1) flow(l3,l5,p1,5) pack(1,p2,0,l3,l5,tr1) pack(4,p2,0,l3,l5,tr2) pack(2,p2,1,l3,l5,tr1) flow(l3,l5,p2,9) freq(1,l3,l6,tr2,2) pack(4,p1,1,l3,l6,tr2) flow(l3,l6,p1,7) pack(1,p2,1,l3,l6,tr2) flow(l3,l6,p2,2) pack(3,p1,0,l4,l5,tr1) pack(2,p1,1,l4,l5,tr1) pack(1,p2,1,l4,l5,tr1) pack(4,p1,0,l4,l6,tr2) freq(1,l4,l6,tr2,1) pack(4,p2,1,l4,l6,tr2) flow(l4,l6,p2,4) freq(0,l1,l3,tr2,0) freq(1,l1,l3,tr2,0) freq(1,l2,l4,tr2,0) freq(0,l1,l4,tr2,0) freq(1,l1,l4,tr2,0) freq(1,l3,l5,tr2,0) freq(0,l3,l6,tr2,0) freq(0,l4,l5,tr1,0) freq(1,l4,l5,tr1,0) freq(0,l4,l6,tr2,0) flow(l1,l3,p2,0) flow(l2,l3,p1,0) flow(l2,l4,p1,0) flow(l1,l4,p1,0) flow(l1,l4,p2,0) flow(l4,l5,p1,0) flow(l4,l5,p2,0) flow(l4,l6,p1,0) pack(0,p2,0,l1,l3,tr1) pack(0,p2,1,l1,l3,tr1) pack(0,p1,1,l1,l3,tr2) pack(0,p2,1,l1,l3,tr2) pack(0,p1,0,l2,l3,tr1) pack(0,p1,1,l2,l3,tr1) pack(0,p1,0,l2,l4,tr2) pack(0,p1,1,l2,l4,tr2) pack(0,p2,1,l2,l4,tr2) pack(0,p1,0,l1,l4,tr2) pack(0,p1,1,l1,l4,tr2) pack(0,p2,1,l1,l4,tr2) pack(0,p1,0,l3,l5,tr1) pack(0,p1,0,l3,l5,tr2) pack(0,p2,1,l3,l5,tr2) pack(0,p1,0,l3,l6,tr2) pack(0,p2,0,l3,l6,tr2) pack(0,p2,0,l4,l5,tr1) pack(0,p2,0,l4,l6,tr2) pack(0,p1,1,l4,l6,tr2)
+Optimization: 412
+",,False
+clingo_tweety,clingo,encoding_route.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp,B1_fixed_loc6_tr1.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/B1_fixed_loc6_tr1.lp,vary_transport_resources,B1,1,clingo /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/B1_fixed_loc6_tr1.lp --stats=2 --configuration=tweety,OPTIMUM,30,34.444597,0.068,0.0,34.36,0.0,34.36,0.068,39853,54810,698656,532489,1169,2468,"ack(1,p2,1,l4,l6,tr1) freq(0,l1,l3,tr1,0) freq(0,l2,l4,tr1,0) freq(1,l2,l4,tr1,0) freq(0,l1,l4,tr1,0) freq(1,l1,l4,tr1,0) freq(0,l4,l5,tr1,0) freq(1,l4,l5,tr1,0) freq(0,l4,l6,tr1,0) freq(1,l4,l6,tr1,0) flow(l1,l3,p2,0) flow(l2,l3,p1,0) flow(l2,l4,p1,0) flow(l2,l4,p2,0) flow(l1,l4,p1,0) flow(l1,l4,p2,0) flow(l4,l5,p1,0) flow(l4,l5,p2,0) flow(l4,l6,p1,0) flow(l4,l6,p2,0) pack(0,p1,0,l1,l3,tr1) pack(0,p2,1,l1,l3,tr1) pack(0,p1,1,l2,l3,tr1) pack(0,p1,0,l1,l4,tr1) pack(0,p1,1,l1,l4,tr1) pack(0,p2,1,l1,l4,tr1) pack(0,p2,0,l4,l5,tr1) pack(0,p1,1,l4,l5,tr1) pack(0,p2,0,l4,l6,tr1)
+Optimization: 428
+OPTIMUM FOUND
+
+Models       : 69
+  Optimum    : yes
+Optimization : 428
+Calls        : 1
+Time         : 34.426s (Solving: 34.36s 1st Model: 0.00s Unsat: 32.43s)
+CPU Time     : 33.511s
+
+Choices      : 698656  
+Conflicts    : 532489   (Analyzed: 532488)
+Restarts     : 1169     (Average: 455.51 Last: 48 Blocked: 0)
+Model-Level  : 76.4    
+Problems     : 1        (Average Length: 0.00 Splits: 0)
+Lemmas       : 532488   (Deleted: 472447)
+  Binary     : 534      (Ratio:   0.10%)
+  Ternary    : 1440     (Ratio:   0.27%)
+  Conflict   : 532488   (Average Length:   17.8 Ratio: 100.00%) 
+  Loop       : 0        (Average Length:    0.0 Ratio:   0.00%) 
+  Other      : 0        (Average Length:    0.0 Ratio:   0.00%) 
+Backjumps    : 532488   (Average:  1.29 Max:  48 Sum: 687171)
+  Executed   : 532488   (Average:  1.29 Max:  48 Sum: 687171 Ratio: 100.00%)
+  Bounded    : 0        (Average:  0.00 Max:   0 Sum:      0 Ratio:   0.00%)
+
+Rules        : 54810    (Original: 51872)
+  Choice     : 64      
+  Minimize   : 1       
+Atoms        : 39853    (Original: 39401 Auxiliary: 452)
+Bodies       : 26701    (Original: 24347)
+  Sum        : 308     
+  Count      : 4        (Original: 146)
+Equivalences : 58656    (Atom=Atom: 19555 Body=Body: 13512 Other: 25589)
+Tight        : Yes
+Variables    : 7110     (Eliminated:    0 Frozen: 5606)
+Constraints  : 21504    (Binary:  69.8% Ternary:  23.1% Other:   7.1%)
+
+",,True
+clingo_tweety,clingo,encoding_route.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp,B1_fixed_loc6_tr1.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/B1_fixed_loc6_tr1.lp,vary_transport_resources,B1,2,clingo /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/B1_fixed_loc6_tr1.lp --stats=2 --configuration=tweety,OPTIMUM,30,34.253384,0.067,0.0,34.17,0.0,34.17,0.067,39853,54810,698656,532489,1169,2468,"ack(1,p2,1,l4,l6,tr1) freq(0,l1,l3,tr1,0) freq(0,l2,l4,tr1,0) freq(1,l2,l4,tr1,0) freq(0,l1,l4,tr1,0) freq(1,l1,l4,tr1,0) freq(0,l4,l5,tr1,0) freq(1,l4,l5,tr1,0) freq(0,l4,l6,tr1,0) freq(1,l4,l6,tr1,0) flow(l1,l3,p2,0) flow(l2,l3,p1,0) flow(l2,l4,p1,0) flow(l2,l4,p2,0) flow(l1,l4,p1,0) flow(l1,l4,p2,0) flow(l4,l5,p1,0) flow(l4,l5,p2,0) flow(l4,l6,p1,0) flow(l4,l6,p2,0) pack(0,p1,0,l1,l3,tr1) pack(0,p2,1,l1,l3,tr1) pack(0,p1,1,l2,l3,tr1) pack(0,p1,0,l1,l4,tr1) pack(0,p1,1,l1,l4,tr1) pack(0,p2,1,l1,l4,tr1) pack(0,p2,0,l4,l5,tr1) pack(0,p1,1,l4,l5,tr1) pack(0,p2,0,l4,l6,tr1)
+Optimization: 428
+OPTIMUM FOUND
+
+Models       : 69
+  Optimum    : yes
+Optimization : 428
+Calls        : 1
+Time         : 34.236s (Solving: 34.17s 1st Model: 0.00s Unsat: 32.22s)
+CPU Time     : 33.760s
+
+Choices      : 698656  
+Conflicts    : 532489   (Analyzed: 532488)
+Restarts     : 1169     (Average: 455.51 Last: 48 Blocked: 0)
+Model-Level  : 76.4    
+Problems     : 1        (Average Length: 0.00 Splits: 0)
+Lemmas       : 532488   (Deleted: 472447)
+  Binary     : 534      (Ratio:   0.10%)
+  Ternary    : 1440     (Ratio:   0.27%)
+  Conflict   : 532488   (Average Length:   17.8 Ratio: 100.00%) 
+  Loop       : 0        (Average Length:    0.0 Ratio:   0.00%) 
+  Other      : 0        (Average Length:    0.0 Ratio:   0.00%) 
+Backjumps    : 532488   (Average:  1.29 Max:  48 Sum: 687171)
+  Executed   : 532488   (Average:  1.29 Max:  48 Sum: 687171 Ratio: 100.00%)
+  Bounded    : 0        (Average:  0.00 Max:   0 Sum:      0 Ratio:   0.00%)
+
+Rules        : 54810    (Original: 51872)
+  Choice     : 64      
+  Minimize   : 1       
+Atoms        : 39853    (Original: 39401 Auxiliary: 452)
+Bodies       : 26701    (Original: 24347)
+  Sum        : 308     
+  Count      : 4        (Original: 146)
+Equivalences : 58656    (Atom=Atom: 19555 Body=Body: 13512 Other: 25589)
+Tight        : Yes
+Variables    : 7110     (Eliminated:    0 Frozen: 5606)
+Constraints  : 21504    (Binary:  69.8% Ternary:  23.1% Other:   7.1%)
+
+",,True
+clingo_tweety,clingo,encoding_route.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp,B1_fixed_loc6_tr1.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/B1_fixed_loc6_tr1.lp,vary_transport_resources,B1,3,clingo /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/B1_fixed_loc6_tr1.lp --stats=2 --configuration=tweety,OPTIMUM,30,33.510143,0.067,0.0,33.43,0.0,33.43,0.067,39853,54810,698656,532489,1169,2468,"ack(1,p2,1,l4,l6,tr1) freq(0,l1,l3,tr1,0) freq(0,l2,l4,tr1,0) freq(1,l2,l4,tr1,0) freq(0,l1,l4,tr1,0) freq(1,l1,l4,tr1,0) freq(0,l4,l5,tr1,0) freq(1,l4,l5,tr1,0) freq(0,l4,l6,tr1,0) freq(1,l4,l6,tr1,0) flow(l1,l3,p2,0) flow(l2,l3,p1,0) flow(l2,l4,p1,0) flow(l2,l4,p2,0) flow(l1,l4,p1,0) flow(l1,l4,p2,0) flow(l4,l5,p1,0) flow(l4,l5,p2,0) flow(l4,l6,p1,0) flow(l4,l6,p2,0) pack(0,p1,0,l1,l3,tr1) pack(0,p2,1,l1,l3,tr1) pack(0,p1,1,l2,l3,tr1) pack(0,p1,0,l1,l4,tr1) pack(0,p1,1,l1,l4,tr1) pack(0,p2,1,l1,l4,tr1) pack(0,p2,0,l4,l5,tr1) pack(0,p1,1,l4,l5,tr1) pack(0,p2,0,l4,l6,tr1)
+Optimization: 428
+OPTIMUM FOUND
+
+Models       : 69
+  Optimum    : yes
+Optimization : 428
+Calls        : 1
+Time         : 33.497s (Solving: 33.43s 1st Model: 0.00s Unsat: 31.55s)
+CPU Time     : 33.239s
+
+Choices      : 698656  
+Conflicts    : 532489   (Analyzed: 532488)
+Restarts     : 1169     (Average: 455.51 Last: 48 Blocked: 0)
+Model-Level  : 76.4    
+Problems     : 1        (Average Length: 0.00 Splits: 0)
+Lemmas       : 532488   (Deleted: 472447)
+  Binary     : 534      (Ratio:   0.10%)
+  Ternary    : 1440     (Ratio:   0.27%)
+  Conflict   : 532488   (Average Length:   17.8 Ratio: 100.00%) 
+  Loop       : 0        (Average Length:    0.0 Ratio:   0.00%) 
+  Other      : 0        (Average Length:    0.0 Ratio:   0.00%) 
+Backjumps    : 532488   (Average:  1.29 Max:  48 Sum: 687171)
+  Executed   : 532488   (Average:  1.29 Max:  48 Sum: 687171 Ratio: 100.00%)
+  Bounded    : 0        (Average:  0.00 Max:   0 Sum:      0 Ratio:   0.00%)
+
+Rules        : 54810    (Original: 51872)
+  Choice     : 64      
+  Minimize   : 1       
+Atoms        : 39853    (Original: 39401 Auxiliary: 452)
+Bodies       : 26701    (Original: 24347)
+  Sum        : 308     
+  Count      : 4        (Original: 146)
+Equivalences : 58656    (Atom=Atom: 19555 Body=Body: 13512 Other: 25589)
+Tight        : Yes
+Variables    : 7110     (Eliminated:    0 Frozen: 5606)
+Constraints  : 21504    (Binary:  69.8% Ternary:  23.1% Other:   7.1%)
+
+",,True
+clingo_tweety,clingo,encoding_route.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp,B2_fixed_loc6_tr2.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/B2_fixed_loc6_tr2.lp,vary_transport_resources,B2,1,clingo /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/B2_fixed_loc6_tr2.lp --stats=2 --configuration=tweety,TIMEOUT,,120.005214,,,,,,120.005214,,,,,,,",0) flow(l4,l6,p2,0) pack(0,p2,0,l1,l3,tr1) pack(0,p2,1,l1,l3,tr1) pack(0,p1,0,l1,l3,tr2) pack(0,p1,1,l1,l3,tr2) pack(0,p1,1,l2,l4,tr2) pack(0,p1,0,l1,l4,tr2) pack(0,p1,1,l1,l4,tr2) pack(0,p1,0,l3,l5,tr2) pack(0,p2,1,l3,l5,tr2) pack(0,p1,1,l3,l6,tr2) pack(0,p2,1,l3,l6,tr2) pack(0,p1,0,l4,l6,tr2) pack(0,p2,0,l4,l6,tr2) pack(0,p2,1,l4,l6,tr2)
+Optimization: 416
+Answer: 114 (Time: 7.484s)
+freq(0,l1,l3,tr1,1) pack(4,p1,0,l1,l3,tr1) pack(4,p1,0,l1,l3,tr2) freq(1,l1,l3,tr1,2) pack(4,p1,1,l1,l3,tr1) flow(l1,l3,p1,12) pack(1,p2,0,l1,l3,tr2) freq(0,l2,l3,tr1,2) freq(1,l2,l3,tr1,4) pack(2,p2,0,l2,l3,tr1) pack(2,p2,1,l2,l3,tr1) flow(l2,l3,p2,11) freq(0,l2,l4,tr2,1) pack(4,p2,0,l2,l4,tr2) flow(l2,l4,p2,4) pack(4,p2,0,l1,l4,tr2) freq(0,l3,l5,tr1,1) freq(0,l3,l5,tr2,1) freq(1,l3,l5,tr1,2) pack(2,p1,1,l3,l5,tr2) pack(3,p1,1,l3,l5,tr1) flow(l3,l5,p1,5) pack(1,p2,0,l3,l5,tr1) pack(4,p2,0,l3,l5,tr2) pack(2,p2,1,l3,l5,tr1) flow(l3,l5,p2,9) freq(1,l3,l6,tr2,2) pack(4,p1,1,l3,l6,tr2) flow(l3,l6,p1,7) pack(1,p2,1,l3,l6,tr2) flow(l3,l6,p2,2) pack(3,p1,0,l4,l5,tr1) pack(2,p1,1,l4,l5,tr1) pack(1,p2,1,l4,l5,tr1) pack(4,p1,0,l4,l6,tr2) freq(1,l4,l6,tr2,1) pack(4,p2,1,l4,l6,tr2) flow(l4,l6,p2,4) freq(0,l1,l3,tr2,0) freq(1,l1,l3,tr2,0) freq(1,l2,l4,tr2,0) freq(0,l1,l4,tr2,0) freq(1,l1,l4,tr2,0) freq(1,l3,l5,tr2,0) freq(0,l3,l6,tr2,0) freq(0,l4,l5,tr1,0) freq(1,l4,l5,tr1,0) freq(0,l4,l6,tr2,0) flow(l1,l3,p2,0) flow(l2,l3,p1,0) flow(l2,l4,p1,0) flow(l1,l4,p1,0) flow(l1,l4,p2,0) flow(l4,l5,p1,0) flow(l4,l5,p2,0) flow(l4,l6,p1,0) pack(0,p2,0,l1,l3,tr1) pack(0,p2,1,l1,l3,tr1) pack(0,p1,1,l1,l3,tr2) pack(0,p2,1,l1,l3,tr2) pack(0,p1,0,l2,l3,tr1) pack(0,p1,1,l2,l3,tr1) pack(0,p1,0,l2,l4,tr2) pack(0,p1,1,l2,l4,tr2) pack(0,p2,1,l2,l4,tr2) pack(0,p1,0,l1,l4,tr2) pack(0,p1,1,l1,l4,tr2) pack(0,p2,1,l1,l4,tr2) pack(0,p1,0,l3,l5,tr1) pack(0,p1,0,l3,l5,tr2) pack(0,p2,1,l3,l5,tr2) pack(0,p1,0,l3,l6,tr2) pack(0,p2,0,l3,l6,tr2) pack(0,p2,0,l4,l5,tr1) pack(0,p2,0,l4,l6,tr2) pack(0,p1,1,l4,l6,tr2)
+Optimization: 412
+",,False
+clingo_tweety,clingo,encoding_route.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp,B2_fixed_loc6_tr2.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/B2_fixed_loc6_tr2.lp,vary_transport_resources,B2,2,clingo /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/B2_fixed_loc6_tr2.lp --stats=2 --configuration=tweety,TIMEOUT,,120.005323,,,,,,120.005323,,,,,,,",0) flow(l4,l6,p2,0) pack(0,p2,0,l1,l3,tr1) pack(0,p2,1,l1,l3,tr1) pack(0,p1,0,l1,l3,tr2) pack(0,p1,1,l1,l3,tr2) pack(0,p1,1,l2,l4,tr2) pack(0,p1,0,l1,l4,tr2) pack(0,p1,1,l1,l4,tr2) pack(0,p1,0,l3,l5,tr2) pack(0,p2,1,l3,l5,tr2) pack(0,p1,1,l3,l6,tr2) pack(0,p2,1,l3,l6,tr2) pack(0,p1,0,l4,l6,tr2) pack(0,p2,0,l4,l6,tr2) pack(0,p2,1,l4,l6,tr2)
+Optimization: 416
+Answer: 114 (Time: 7.558s)
+freq(0,l1,l3,tr1,1) pack(4,p1,0,l1,l3,tr1) pack(4,p1,0,l1,l3,tr2) freq(1,l1,l3,tr1,2) pack(4,p1,1,l1,l3,tr1) flow(l1,l3,p1,12) pack(1,p2,0,l1,l3,tr2) freq(0,l2,l3,tr1,2) freq(1,l2,l3,tr1,4) pack(2,p2,0,l2,l3,tr1) pack(2,p2,1,l2,l3,tr1) flow(l2,l3,p2,11) freq(0,l2,l4,tr2,1) pack(4,p2,0,l2,l4,tr2) flow(l2,l4,p2,4) pack(4,p2,0,l1,l4,tr2) freq(0,l3,l5,tr1,1) freq(0,l3,l5,tr2,1) freq(1,l3,l5,tr1,2) pack(2,p1,1,l3,l5,tr2) pack(3,p1,1,l3,l5,tr1) flow(l3,l5,p1,5) pack(1,p2,0,l3,l5,tr1) pack(4,p2,0,l3,l5,tr2) pack(2,p2,1,l3,l5,tr1) flow(l3,l5,p2,9) freq(1,l3,l6,tr2,2) pack(4,p1,1,l3,l6,tr2) flow(l3,l6,p1,7) pack(1,p2,1,l3,l6,tr2) flow(l3,l6,p2,2) pack(3,p1,0,l4,l5,tr1) pack(2,p1,1,l4,l5,tr1) pack(1,p2,1,l4,l5,tr1) pack(4,p1,0,l4,l6,tr2) freq(1,l4,l6,tr2,1) pack(4,p2,1,l4,l6,tr2) flow(l4,l6,p2,4) freq(0,l1,l3,tr2,0) freq(1,l1,l3,tr2,0) freq(1,l2,l4,tr2,0) freq(0,l1,l4,tr2,0) freq(1,l1,l4,tr2,0) freq(1,l3,l5,tr2,0) freq(0,l3,l6,tr2,0) freq(0,l4,l5,tr1,0) freq(1,l4,l5,tr1,0) freq(0,l4,l6,tr2,0) flow(l1,l3,p2,0) flow(l2,l3,p1,0) flow(l2,l4,p1,0) flow(l1,l4,p1,0) flow(l1,l4,p2,0) flow(l4,l5,p1,0) flow(l4,l5,p2,0) flow(l4,l6,p1,0) pack(0,p2,0,l1,l3,tr1) pack(0,p2,1,l1,l3,tr1) pack(0,p1,1,l1,l3,tr2) pack(0,p2,1,l1,l3,tr2) pack(0,p1,0,l2,l3,tr1) pack(0,p1,1,l2,l3,tr1) pack(0,p1,0,l2,l4,tr2) pack(0,p1,1,l2,l4,tr2) pack(0,p2,1,l2,l4,tr2) pack(0,p1,0,l1,l4,tr2) pack(0,p1,1,l1,l4,tr2) pack(0,p2,1,l1,l4,tr2) pack(0,p1,0,l3,l5,tr1) pack(0,p1,0,l3,l5,tr2) pack(0,p2,1,l3,l5,tr2) pack(0,p1,0,l3,l6,tr2) pack(0,p2,0,l3,l6,tr2) pack(0,p2,0,l4,l5,tr1) pack(0,p2,0,l4,l6,tr2) pack(0,p1,1,l4,l6,tr2)
+Optimization: 412
+",,False
+clingo_tweety,clingo,encoding_route.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp,B2_fixed_loc6_tr2.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/B2_fixed_loc6_tr2.lp,vary_transport_resources,B2,3,clingo /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/B2_fixed_loc6_tr2.lp --stats=2 --configuration=tweety,TIMEOUT,,120.004862,,,,,,120.004862,,,,,,,",0) flow(l4,l6,p2,0) pack(0,p2,0,l1,l3,tr1) pack(0,p2,1,l1,l3,tr1) pack(0,p1,0,l1,l3,tr2) pack(0,p1,1,l1,l3,tr2) pack(0,p1,1,l2,l4,tr2) pack(0,p1,0,l1,l4,tr2) pack(0,p1,1,l1,l4,tr2) pack(0,p1,0,l3,l5,tr2) pack(0,p2,1,l3,l5,tr2) pack(0,p1,1,l3,l6,tr2) pack(0,p2,1,l3,l6,tr2) pack(0,p1,0,l4,l6,tr2) pack(0,p2,0,l4,l6,tr2) pack(0,p2,1,l4,l6,tr2)
+Optimization: 416
+Answer: 114 (Time: 7.155s)
+freq(0,l1,l3,tr1,1) pack(4,p1,0,l1,l3,tr1) pack(4,p1,0,l1,l3,tr2) freq(1,l1,l3,tr1,2) pack(4,p1,1,l1,l3,tr1) flow(l1,l3,p1,12) pack(1,p2,0,l1,l3,tr2) freq(0,l2,l3,tr1,2) freq(1,l2,l3,tr1,4) pack(2,p2,0,l2,l3,tr1) pack(2,p2,1,l2,l3,tr1) flow(l2,l3,p2,11) freq(0,l2,l4,tr2,1) pack(4,p2,0,l2,l4,tr2) flow(l2,l4,p2,4) pack(4,p2,0,l1,l4,tr2) freq(0,l3,l5,tr1,1) freq(0,l3,l5,tr2,1) freq(1,l3,l5,tr1,2) pack(2,p1,1,l3,l5,tr2) pack(3,p1,1,l3,l5,tr1) flow(l3,l5,p1,5) pack(1,p2,0,l3,l5,tr1) pack(4,p2,0,l3,l5,tr2) pack(2,p2,1,l3,l5,tr1) flow(l3,l5,p2,9) freq(1,l3,l6,tr2,2) pack(4,p1,1,l3,l6,tr2) flow(l3,l6,p1,7) pack(1,p2,1,l3,l6,tr2) flow(l3,l6,p2,2) pack(3,p1,0,l4,l5,tr1) pack(2,p1,1,l4,l5,tr1) pack(1,p2,1,l4,l5,tr1) pack(4,p1,0,l4,l6,tr2) freq(1,l4,l6,tr2,1) pack(4,p2,1,l4,l6,tr2) flow(l4,l6,p2,4) freq(0,l1,l3,tr2,0) freq(1,l1,l3,tr2,0) freq(1,l2,l4,tr2,0) freq(0,l1,l4,tr2,0) freq(1,l1,l4,tr2,0) freq(1,l3,l5,tr2,0) freq(0,l3,l6,tr2,0) freq(0,l4,l5,tr1,0) freq(1,l4,l5,tr1,0) freq(0,l4,l6,tr2,0) flow(l1,l3,p2,0) flow(l2,l3,p1,0) flow(l2,l4,p1,0) flow(l1,l4,p1,0) flow(l1,l4,p2,0) flow(l4,l5,p1,0) flow(l4,l5,p2,0) flow(l4,l6,p1,0) pack(0,p2,0,l1,l3,tr1) pack(0,p2,1,l1,l3,tr1) pack(0,p1,1,l1,l3,tr2) pack(0,p2,1,l1,l3,tr2) pack(0,p1,0,l2,l3,tr1) pack(0,p1,1,l2,l3,tr1) pack(0,p1,0,l2,l4,tr2) pack(0,p1,1,l2,l4,tr2) pack(0,p2,1,l2,l4,tr2) pack(0,p1,0,l1,l4,tr2) pack(0,p1,1,l1,l4,tr2) pack(0,p2,1,l1,l4,tr2) pack(0,p1,0,l3,l5,tr1) pack(0,p1,0,l3,l5,tr2) pack(0,p2,1,l3,l5,tr2) pack(0,p1,0,l3,l6,tr2) pack(0,p2,0,l3,l6,tr2) pack(0,p2,0,l4,l5,tr1) pack(0,p2,0,l4,l6,tr2) pack(0,p1,1,l4,l6,tr2)
+Optimization: 412
+",,False
+clingo_tweety,clingo,encoding_route.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp,C1_loc4_parts2_tr2.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/C1_loc4_parts2_tr2.lp,vary_locations,C1,1,clingo /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/C1_loc4_parts2_tr2.lp --stats=2 --configuration=tweety,OPTIMUM,30,8.803058,0.047,0.0,8.75,0.0,8.75,0.047,23486,36691,243216,183930,509,1380,"l3,p2,15) pack(2,p1,0,l3,l4,tr2) freq(0,l3,l4,tr1,3) pack(3,p1,0,l3,l4,tr1) freq(1,l3,l4,tr1,1) freq(1,l3,l4,tr2,2) pack(3,p1,1,l3,l4,tr1) flow(l3,l4,p1,12) pack(2,p2,0,l3,l4,tr1) pack(2,p2,1,l3,l4,tr1) pack(4,p2,1,l3,l4,tr2) flow(l3,l4,p2,15) freq(0,l1,l3,tr1,0) freq(0,l1,l3,tr2,0) freq(1,l1,l3,tr2,0) freq(0,l2,l3,tr1,0) freq(1,l2,l3,tr1,0) freq(0,l3,l4,tr2,0) flow(l1,l3,p2,0) flow(l2,l3,p1,0) pack(0,p2,0,l1,l3,tr1) pack(0,p2,1,l1,l3,tr1) pack(0,p2,0,l1,l3,tr2) pack(0,p1,1,l1,l3,tr2) pack(0,p1,1,l2,l3,tr1) pack(0,p1,0,l2,l3,tr2) pack(0,p2,0,l3,l4,tr2) pack(0,p1,1,l3,l4,tr2)
+Optimization: 308
+OPTIMUM FOUND
+
+Models       : 70
+  Optimum    : yes
+Optimization : 308
+Calls        : 1
+Time         : 8.788s (Solving: 8.75s 1st Model: 0.01s Unsat: 7.76s)
+CPU Time     : 8.768s
+
+Choices      : 243216  
+Conflicts    : 183930   (Analyzed: 183929)
+Restarts     : 509      (Average: 361.35 Last: 1242 Blocked: 0)
+Model-Level  : 49.1    
+Problems     : 1        (Average Length: 0.00 Splits: 0)
+Lemmas       : 183929   (Deleted: 153420)
+  Binary     : 291      (Ratio:   0.16%)
+  Ternary    : 1336     (Ratio:   0.73%)
+  Conflict   : 183929   (Average Length:   20.0 Ratio: 100.00%) 
+  Loop       : 0        (Average Length:    0.0 Ratio:   0.00%) 
+  Other      : 0        (Average Length:    0.0 Ratio:   0.00%) 
+Backjumps    : 183929   (Average:  1.30 Max:  92 Sum: 238213)
+  Executed   : 183929   (Average:  1.30 Max:  92 Sum: 238213 Ratio: 100.00%)
+  Bounded    : 0        (Average:  0.00 Max:   0 Sum:      0 Ratio:   0.00%)
+
+Rules        : 36691    (Original: 35195)
+  Choice     : 42      
+  Minimize   : 1       
+Atoms        : 23486    (Original: 23234 Auxiliary: 252)
+Bodies       : 19813    (Original: 18645)
+  Sum        : 126     
+  Count      : 2        (Original: 92)
+Equivalences : 43412    (Atom=Atom: 13471 Body=Body: 12310 Other: 17631)
+Tight        : Yes
+Variables    : 4984     (Eliminated:    0 Frozen: 3768)
+Constraints  : 19038    (Binary:  75.8% Ternary:  12.5% Other:  11.7%)
+
+",,True
+clingo_tweety,clingo,encoding_route.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp,C1_loc4_parts2_tr2.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/C1_loc4_parts2_tr2.lp,vary_locations,C1,2,clingo /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/C1_loc4_parts2_tr2.lp --stats=2 --configuration=tweety,OPTIMUM,30,8.752522,0.046,0.0,8.7,0.0,8.7,0.046,23486,36691,243216,183930,509,1380,"l3,p2,15) pack(2,p1,0,l3,l4,tr2) freq(0,l3,l4,tr1,3) pack(3,p1,0,l3,l4,tr1) freq(1,l3,l4,tr1,1) freq(1,l3,l4,tr2,2) pack(3,p1,1,l3,l4,tr1) flow(l3,l4,p1,12) pack(2,p2,0,l3,l4,tr1) pack(2,p2,1,l3,l4,tr1) pack(4,p2,1,l3,l4,tr2) flow(l3,l4,p2,15) freq(0,l1,l3,tr1,0) freq(0,l1,l3,tr2,0) freq(1,l1,l3,tr2,0) freq(0,l2,l3,tr1,0) freq(1,l2,l3,tr1,0) freq(0,l3,l4,tr2,0) flow(l1,l3,p2,0) flow(l2,l3,p1,0) pack(0,p2,0,l1,l3,tr1) pack(0,p2,1,l1,l3,tr1) pack(0,p2,0,l1,l3,tr2) pack(0,p1,1,l1,l3,tr2) pack(0,p1,1,l2,l3,tr1) pack(0,p1,0,l2,l3,tr2) pack(0,p2,0,l3,l4,tr2) pack(0,p1,1,l3,l4,tr2)
+Optimization: 308
+OPTIMUM FOUND
+
+Models       : 70
+  Optimum    : yes
+Optimization : 308
+Calls        : 1
+Time         : 8.737s (Solving: 8.70s 1st Model: 0.01s Unsat: 7.70s)
+CPU Time     : 8.736s
+
+Choices      : 243216  
+Conflicts    : 183930   (Analyzed: 183929)
+Restarts     : 509      (Average: 361.35 Last: 1242 Blocked: 0)
+Model-Level  : 49.1    
+Problems     : 1        (Average Length: 0.00 Splits: 0)
+Lemmas       : 183929   (Deleted: 153420)
+  Binary     : 291      (Ratio:   0.16%)
+  Ternary    : 1336     (Ratio:   0.73%)
+  Conflict   : 183929   (Average Length:   20.0 Ratio: 100.00%) 
+  Loop       : 0        (Average Length:    0.0 Ratio:   0.00%) 
+  Other      : 0        (Average Length:    0.0 Ratio:   0.00%) 
+Backjumps    : 183929   (Average:  1.30 Max:  92 Sum: 238213)
+  Executed   : 183929   (Average:  1.30 Max:  92 Sum: 238213 Ratio: 100.00%)
+  Bounded    : 0        (Average:  0.00 Max:   0 Sum:      0 Ratio:   0.00%)
+
+Rules        : 36691    (Original: 35195)
+  Choice     : 42      
+  Minimize   : 1       
+Atoms        : 23486    (Original: 23234 Auxiliary: 252)
+Bodies       : 19813    (Original: 18645)
+  Sum        : 126     
+  Count      : 2        (Original: 92)
+Equivalences : 43412    (Atom=Atom: 13471 Body=Body: 12310 Other: 17631)
+Tight        : Yes
+Variables    : 4984     (Eliminated:    0 Frozen: 3768)
+Constraints  : 19038    (Binary:  75.8% Ternary:  12.5% Other:  11.7%)
+
+",,True
+clingo_tweety,clingo,encoding_route.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp,C1_loc4_parts2_tr2.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/C1_loc4_parts2_tr2.lp,vary_locations,C1,3,clingo /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/C1_loc4_parts2_tr2.lp --stats=2 --configuration=tweety,OPTIMUM,30,8.77837,0.047,0.0,8.72,0.0,8.72,0.047,23486,36691,243216,183930,509,1380,"l3,p2,15) pack(2,p1,0,l3,l4,tr2) freq(0,l3,l4,tr1,3) pack(3,p1,0,l3,l4,tr1) freq(1,l3,l4,tr1,1) freq(1,l3,l4,tr2,2) pack(3,p1,1,l3,l4,tr1) flow(l3,l4,p1,12) pack(2,p2,0,l3,l4,tr1) pack(2,p2,1,l3,l4,tr1) pack(4,p2,1,l3,l4,tr2) flow(l3,l4,p2,15) freq(0,l1,l3,tr1,0) freq(0,l1,l3,tr2,0) freq(1,l1,l3,tr2,0) freq(0,l2,l3,tr1,0) freq(1,l2,l3,tr1,0) freq(0,l3,l4,tr2,0) flow(l1,l3,p2,0) flow(l2,l3,p1,0) pack(0,p2,0,l1,l3,tr1) pack(0,p2,1,l1,l3,tr1) pack(0,p2,0,l1,l3,tr2) pack(0,p1,1,l1,l3,tr2) pack(0,p1,1,l2,l3,tr1) pack(0,p1,0,l2,l3,tr2) pack(0,p2,0,l3,l4,tr2) pack(0,p1,1,l3,l4,tr2)
+Optimization: 308
+OPTIMUM FOUND
+
+Models       : 70
+  Optimum    : yes
+Optimization : 308
+Calls        : 1
+Time         : 8.762s (Solving: 8.72s 1st Model: 0.01s Unsat: 7.72s)
+CPU Time     : 8.747s
+
+Choices      : 243216  
+Conflicts    : 183930   (Analyzed: 183929)
+Restarts     : 509      (Average: 361.35 Last: 1242 Blocked: 0)
+Model-Level  : 49.1    
+Problems     : 1        (Average Length: 0.00 Splits: 0)
+Lemmas       : 183929   (Deleted: 153420)
+  Binary     : 291      (Ratio:   0.16%)
+  Ternary    : 1336     (Ratio:   0.73%)
+  Conflict   : 183929   (Average Length:   20.0 Ratio: 100.00%) 
+  Loop       : 0        (Average Length:    0.0 Ratio:   0.00%) 
+  Other      : 0        (Average Length:    0.0 Ratio:   0.00%) 
+Backjumps    : 183929   (Average:  1.30 Max:  92 Sum: 238213)
+  Executed   : 183929   (Average:  1.30 Max:  92 Sum: 238213 Ratio: 100.00%)
+  Bounded    : 0        (Average:  0.00 Max:   0 Sum:      0 Ratio:   0.00%)
+
+Rules        : 36691    (Original: 35195)
+  Choice     : 42      
+  Minimize   : 1       
+Atoms        : 23486    (Original: 23234 Auxiliary: 252)
+Bodies       : 19813    (Original: 18645)
+  Sum        : 126     
+  Count      : 2        (Original: 92)
+Equivalences : 43412    (Atom=Atom: 13471 Body=Body: 12310 Other: 17631)
+Tight        : Yes
+Variables    : 4984     (Eliminated:    0 Frozen: 3768)
+Constraints  : 19038    (Binary:  75.8% Ternary:  12.5% Other:  11.7%)
+
+",,True
+clingo_tweety,clingo,encoding_route.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp,C2_loc6_parts2_tr2.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/C2_loc6_parts2_tr2.lp,vary_locations,C2,1,clingo /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/C2_loc6_parts2_tr2.lp --stats=2 --configuration=tweety,TIMEOUT,,120.004656,,,,,,120.004656,,,,,,,",0) flow(l4,l6,p2,0) pack(0,p2,0,l1,l3,tr1) pack(0,p2,1,l1,l3,tr1) pack(0,p1,0,l1,l3,tr2) pack(0,p1,1,l1,l3,tr2) pack(0,p1,1,l2,l4,tr2) pack(0,p1,0,l1,l4,tr2) pack(0,p1,1,l1,l4,tr2) pack(0,p1,0,l3,l5,tr2) pack(0,p2,1,l3,l5,tr2) pack(0,p1,1,l3,l6,tr2) pack(0,p2,1,l3,l6,tr2) pack(0,p1,0,l4,l6,tr2) pack(0,p2,0,l4,l6,tr2) pack(0,p2,1,l4,l6,tr2)
+Optimization: 416
+Answer: 114 (Time: 7.192s)
+freq(0,l1,l3,tr1,1) pack(4,p1,0,l1,l3,tr1) pack(4,p1,0,l1,l3,tr2) freq(1,l1,l3,tr1,2) pack(4,p1,1,l1,l3,tr1) flow(l1,l3,p1,12) pack(1,p2,0,l1,l3,tr2) freq(0,l2,l3,tr1,2) freq(1,l2,l3,tr1,4) pack(2,p2,0,l2,l3,tr1) pack(2,p2,1,l2,l3,tr1) flow(l2,l3,p2,11) freq(0,l2,l4,tr2,1) pack(4,p2,0,l2,l4,tr2) flow(l2,l4,p2,4) pack(4,p2,0,l1,l4,tr2) freq(0,l3,l5,tr1,1) freq(0,l3,l5,tr2,1) freq(1,l3,l5,tr1,2) pack(2,p1,1,l3,l5,tr2) pack(3,p1,1,l3,l5,tr1) flow(l3,l5,p1,5) pack(1,p2,0,l3,l5,tr1) pack(4,p2,0,l3,l5,tr2) pack(2,p2,1,l3,l5,tr1) flow(l3,l5,p2,9) freq(1,l3,l6,tr2,2) pack(4,p1,1,l3,l6,tr2) flow(l3,l6,p1,7) pack(1,p2,1,l3,l6,tr2) flow(l3,l6,p2,2) pack(3,p1,0,l4,l5,tr1) pack(2,p1,1,l4,l5,tr1) pack(1,p2,1,l4,l5,tr1) pack(4,p1,0,l4,l6,tr2) freq(1,l4,l6,tr2,1) pack(4,p2,1,l4,l6,tr2) flow(l4,l6,p2,4) freq(0,l1,l3,tr2,0) freq(1,l1,l3,tr2,0) freq(1,l2,l4,tr2,0) freq(0,l1,l4,tr2,0) freq(1,l1,l4,tr2,0) freq(1,l3,l5,tr2,0) freq(0,l3,l6,tr2,0) freq(0,l4,l5,tr1,0) freq(1,l4,l5,tr1,0) freq(0,l4,l6,tr2,0) flow(l1,l3,p2,0) flow(l2,l3,p1,0) flow(l2,l4,p1,0) flow(l1,l4,p1,0) flow(l1,l4,p2,0) flow(l4,l5,p1,0) flow(l4,l5,p2,0) flow(l4,l6,p1,0) pack(0,p2,0,l1,l3,tr1) pack(0,p2,1,l1,l3,tr1) pack(0,p1,1,l1,l3,tr2) pack(0,p2,1,l1,l3,tr2) pack(0,p1,0,l2,l3,tr1) pack(0,p1,1,l2,l3,tr1) pack(0,p1,0,l2,l4,tr2) pack(0,p1,1,l2,l4,tr2) pack(0,p2,1,l2,l4,tr2) pack(0,p1,0,l1,l4,tr2) pack(0,p1,1,l1,l4,tr2) pack(0,p2,1,l1,l4,tr2) pack(0,p1,0,l3,l5,tr1) pack(0,p1,0,l3,l5,tr2) pack(0,p2,1,l3,l5,tr2) pack(0,p1,0,l3,l6,tr2) pack(0,p2,0,l3,l6,tr2) pack(0,p2,0,l4,l5,tr1) pack(0,p2,0,l4,l6,tr2) pack(0,p1,1,l4,l6,tr2)
+Optimization: 412
+",,False
+clingo_tweety,clingo,encoding_route.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp,C2_loc6_parts2_tr2.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/C2_loc6_parts2_tr2.lp,vary_locations,C2,2,clingo /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/C2_loc6_parts2_tr2.lp --stats=2 --configuration=tweety,TIMEOUT,,120.005197,,,,,,120.005197,,,,,,,",0) flow(l4,l6,p2,0) pack(0,p2,0,l1,l3,tr1) pack(0,p2,1,l1,l3,tr1) pack(0,p1,0,l1,l3,tr2) pack(0,p1,1,l1,l3,tr2) pack(0,p1,1,l2,l4,tr2) pack(0,p1,0,l1,l4,tr2) pack(0,p1,1,l1,l4,tr2) pack(0,p1,0,l3,l5,tr2) pack(0,p2,1,l3,l5,tr2) pack(0,p1,1,l3,l6,tr2) pack(0,p2,1,l3,l6,tr2) pack(0,p1,0,l4,l6,tr2) pack(0,p2,0,l4,l6,tr2) pack(0,p2,1,l4,l6,tr2)
+Optimization: 416
+Answer: 114 (Time: 7.025s)
+freq(0,l1,l3,tr1,1) pack(4,p1,0,l1,l3,tr1) pack(4,p1,0,l1,l3,tr2) freq(1,l1,l3,tr1,2) pack(4,p1,1,l1,l3,tr1) flow(l1,l3,p1,12) pack(1,p2,0,l1,l3,tr2) freq(0,l2,l3,tr1,2) freq(1,l2,l3,tr1,4) pack(2,p2,0,l2,l3,tr1) pack(2,p2,1,l2,l3,tr1) flow(l2,l3,p2,11) freq(0,l2,l4,tr2,1) pack(4,p2,0,l2,l4,tr2) flow(l2,l4,p2,4) pack(4,p2,0,l1,l4,tr2) freq(0,l3,l5,tr1,1) freq(0,l3,l5,tr2,1) freq(1,l3,l5,tr1,2) pack(2,p1,1,l3,l5,tr2) pack(3,p1,1,l3,l5,tr1) flow(l3,l5,p1,5) pack(1,p2,0,l3,l5,tr1) pack(4,p2,0,l3,l5,tr2) pack(2,p2,1,l3,l5,tr1) flow(l3,l5,p2,9) freq(1,l3,l6,tr2,2) pack(4,p1,1,l3,l6,tr2) flow(l3,l6,p1,7) pack(1,p2,1,l3,l6,tr2) flow(l3,l6,p2,2) pack(3,p1,0,l4,l5,tr1) pack(2,p1,1,l4,l5,tr1) pack(1,p2,1,l4,l5,tr1) pack(4,p1,0,l4,l6,tr2) freq(1,l4,l6,tr2,1) pack(4,p2,1,l4,l6,tr2) flow(l4,l6,p2,4) freq(0,l1,l3,tr2,0) freq(1,l1,l3,tr2,0) freq(1,l2,l4,tr2,0) freq(0,l1,l4,tr2,0) freq(1,l1,l4,tr2,0) freq(1,l3,l5,tr2,0) freq(0,l3,l6,tr2,0) freq(0,l4,l5,tr1,0) freq(1,l4,l5,tr1,0) freq(0,l4,l6,tr2,0) flow(l1,l3,p2,0) flow(l2,l3,p1,0) flow(l2,l4,p1,0) flow(l1,l4,p1,0) flow(l1,l4,p2,0) flow(l4,l5,p1,0) flow(l4,l5,p2,0) flow(l4,l6,p1,0) pack(0,p2,0,l1,l3,tr1) pack(0,p2,1,l1,l3,tr1) pack(0,p1,1,l1,l3,tr2) pack(0,p2,1,l1,l3,tr2) pack(0,p1,0,l2,l3,tr1) pack(0,p1,1,l2,l3,tr1) pack(0,p1,0,l2,l4,tr2) pack(0,p1,1,l2,l4,tr2) pack(0,p2,1,l2,l4,tr2) pack(0,p1,0,l1,l4,tr2) pack(0,p1,1,l1,l4,tr2) pack(0,p2,1,l1,l4,tr2) pack(0,p1,0,l3,l5,tr1) pack(0,p1,0,l3,l5,tr2) pack(0,p2,1,l3,l5,tr2) pack(0,p1,0,l3,l6,tr2) pack(0,p2,0,l3,l6,tr2) pack(0,p2,0,l4,l5,tr1) pack(0,p2,0,l4,l6,tr2) pack(0,p1,1,l4,l6,tr2)
+Optimization: 412
+",,False
+clingo_tweety,clingo,encoding_route.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp,C2_loc6_parts2_tr2.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/C2_loc6_parts2_tr2.lp,vary_locations,C2,3,clingo /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/C2_loc6_parts2_tr2.lp --stats=2 --configuration=tweety,TIMEOUT,,120.005587,,,,,,120.005587,,,,,,,",0) flow(l4,l6,p2,0) pack(0,p2,0,l1,l3,tr1) pack(0,p2,1,l1,l3,tr1) pack(0,p1,0,l1,l3,tr2) pack(0,p1,1,l1,l3,tr2) pack(0,p1,1,l2,l4,tr2) pack(0,p1,0,l1,l4,tr2) pack(0,p1,1,l1,l4,tr2) pack(0,p1,0,l3,l5,tr2) pack(0,p2,1,l3,l5,tr2) pack(0,p1,1,l3,l6,tr2) pack(0,p2,1,l3,l6,tr2) pack(0,p1,0,l4,l6,tr2) pack(0,p2,0,l4,l6,tr2) pack(0,p2,1,l4,l6,tr2)
+Optimization: 416
+Answer: 114 (Time: 7.080s)
+freq(0,l1,l3,tr1,1) pack(4,p1,0,l1,l3,tr1) pack(4,p1,0,l1,l3,tr2) freq(1,l1,l3,tr1,2) pack(4,p1,1,l1,l3,tr1) flow(l1,l3,p1,12) pack(1,p2,0,l1,l3,tr2) freq(0,l2,l3,tr1,2) freq(1,l2,l3,tr1,4) pack(2,p2,0,l2,l3,tr1) pack(2,p2,1,l2,l3,tr1) flow(l2,l3,p2,11) freq(0,l2,l4,tr2,1) pack(4,p2,0,l2,l4,tr2) flow(l2,l4,p2,4) pack(4,p2,0,l1,l4,tr2) freq(0,l3,l5,tr1,1) freq(0,l3,l5,tr2,1) freq(1,l3,l5,tr1,2) pack(2,p1,1,l3,l5,tr2) pack(3,p1,1,l3,l5,tr1) flow(l3,l5,p1,5) pack(1,p2,0,l3,l5,tr1) pack(4,p2,0,l3,l5,tr2) pack(2,p2,1,l3,l5,tr1) flow(l3,l5,p2,9) freq(1,l3,l6,tr2,2) pack(4,p1,1,l3,l6,tr2) flow(l3,l6,p1,7) pack(1,p2,1,l3,l6,tr2) flow(l3,l6,p2,2) pack(3,p1,0,l4,l5,tr1) pack(2,p1,1,l4,l5,tr1) pack(1,p2,1,l4,l5,tr1) pack(4,p1,0,l4,l6,tr2) freq(1,l4,l6,tr2,1) pack(4,p2,1,l4,l6,tr2) flow(l4,l6,p2,4) freq(0,l1,l3,tr2,0) freq(1,l1,l3,tr2,0) freq(1,l2,l4,tr2,0) freq(0,l1,l4,tr2,0) freq(1,l1,l4,tr2,0) freq(1,l3,l5,tr2,0) freq(0,l3,l6,tr2,0) freq(0,l4,l5,tr1,0) freq(1,l4,l5,tr1,0) freq(0,l4,l6,tr2,0) flow(l1,l3,p2,0) flow(l2,l3,p1,0) flow(l2,l4,p1,0) flow(l1,l4,p1,0) flow(l1,l4,p2,0) flow(l4,l5,p1,0) flow(l4,l5,p2,0) flow(l4,l6,p1,0) pack(0,p2,0,l1,l3,tr1) pack(0,p2,1,l1,l3,tr1) pack(0,p1,1,l1,l3,tr2) pack(0,p2,1,l1,l3,tr2) pack(0,p1,0,l2,l3,tr1) pack(0,p1,1,l2,l3,tr1) pack(0,p1,0,l2,l4,tr2) pack(0,p1,1,l2,l4,tr2) pack(0,p2,1,l2,l4,tr2) pack(0,p1,0,l1,l4,tr2) pack(0,p1,1,l1,l4,tr2) pack(0,p2,1,l1,l4,tr2) pack(0,p1,0,l3,l5,tr1) pack(0,p1,0,l3,l5,tr2) pack(0,p2,1,l3,l5,tr2) pack(0,p1,0,l3,l6,tr2) pack(0,p2,0,l3,l6,tr2) pack(0,p2,0,l4,l5,tr1) pack(0,p2,0,l4,l6,tr2) pack(0,p1,1,l4,l6,tr2)
+Optimization: 412
+",,False
+clingo_usc,clingo,encoding_route.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp,A1_fixed_loc6_parts1.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/A1_fixed_loc6_parts1.lp,vary_parts,A1,1,clingo /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/A1_fixed_loc6_parts1.lp --stats=2 --opt-strategy=usc,OPTIMUM,30,0.051795,0.024,0.014,0.01,0.014,0.01,0.024,12096,17815,829,429,2,160,"4,tr2,0) freq(0,l3,l5,tr1,0) freq(1,l3,l5,tr1,0) freq(1,l3,l5,tr2,0) freq(0,l4,l5,tr1,0) freq(1,l4,l5,tr1,0) freq(0,l4,l6,tr2,0) freq(1,l4,l6,tr2,0) flow(l2,l3,p1,0) flow(l2,l4,p1,0) flow(l1,l4,p1,0) flow(l4,l5,p1,0) flow(l4,l6,p1,0) pack(0,p1,0,l1,l3,tr2) pack(0,p1,1,l1,l3,tr2) pack(0,p1,0,l2,l3,tr1) pack(0,p1,1,l2,l3,tr1) pack(0,p1,0,l2,l4,tr2) pack(0,p1,1,l2,l4,tr2) pack(0,p1,0,l1,l4,tr2) pack(0,p1,1,l1,l4,tr2) pack(0,p1,0,l3,l5,tr1) pack(0,p1,1,l3,l5,tr1) pack(0,p1,1,l3,l5,tr2) pack(0,p1,0,l4,l5,tr1) pack(0,p1,1,l4,l5,tr1) pack(0,p1,0,l4,l6,tr2) pack(0,p1,1,l4,l6,tr2)
+Optimization: 160
+OPTIMUM FOUND
+
+Models       : 1
+  Optimum    : yes
+Optimization : 160
+Calls        : 1
+Time         : 0.037s (Solving: 0.01s 1st Model: 0.01s Unsat: 0.00s)
+CPU Time     : 0.036s
+
+Choices      : 829     
+Conflicts    : 429      (Analyzed: 417)
+Restarts     : 2        (Average: 208.50 Last: 65 Blocked: 0)
+Model-Level  : 190.0   
+Problems     : 12       (Average Length: 0.00 Splits: 0)
+Lemmas       : 417      (Deleted: 0)
+  Binary     : 0        (Ratio:   0.00%)
+  Ternary    : 20       (Ratio:   4.80%)
+  Conflict   : 417      (Average Length:  109.6 Ratio: 100.00%) 
+  Loop       : 0        (Average Length:    0.0 Ratio:   0.00%) 
+  Other      : 0        (Average Length:    0.0 Ratio:   0.00%) 
+Backjumps    : 417      (Average:  1.94 Max:  74 Sum:    811)
+  Executed   : 398      (Average:  1.79 Max:  74 Sum:    745 Ratio:  91.86%)
+  Bounded    : 19       (Average:  3.47 Max:   6 Sum:     66 Ratio:   8.14%)
+
+Rules        : 17815    (Original: 16290)
+  Choice     : 48      
+  Minimize   : 1       
+Atoms        : 12096    (Original: 11838 Auxiliary: 258)
+Bodies       : 9359     (Original: 8234)
+  Sum        : 114      (Original: 134)
+  Count      : 2        (Original: 105)
+Equivalences : 24776    (Atom=Atom: 7561 Body=Body: 6216 Other: 10999)
+Tight        : Yes
+Variables    : 3577     (Eliminated:    0 Frozen: 2509)
+Constraints  : 11858    (Binary:  73.3% Ternary:  16.3% Other:  10.4%)
+
+",,True
+clingo_usc,clingo,encoding_route.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp,A1_fixed_loc6_parts1.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/A1_fixed_loc6_parts1.lp,vary_parts,A1,2,clingo /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/A1_fixed_loc6_parts1.lp --stats=2 --opt-strategy=usc,OPTIMUM,30,0.048044,0.024,0.014,0.01,0.014,0.01,0.024,12096,17815,829,429,2,160,"4,tr2,0) freq(0,l3,l5,tr1,0) freq(1,l3,l5,tr1,0) freq(1,l3,l5,tr2,0) freq(0,l4,l5,tr1,0) freq(1,l4,l5,tr1,0) freq(0,l4,l6,tr2,0) freq(1,l4,l6,tr2,0) flow(l2,l3,p1,0) flow(l2,l4,p1,0) flow(l1,l4,p1,0) flow(l4,l5,p1,0) flow(l4,l6,p1,0) pack(0,p1,0,l1,l3,tr2) pack(0,p1,1,l1,l3,tr2) pack(0,p1,0,l2,l3,tr1) pack(0,p1,1,l2,l3,tr1) pack(0,p1,0,l2,l4,tr2) pack(0,p1,1,l2,l4,tr2) pack(0,p1,0,l1,l4,tr2) pack(0,p1,1,l1,l4,tr2) pack(0,p1,0,l3,l5,tr1) pack(0,p1,1,l3,l5,tr1) pack(0,p1,1,l3,l5,tr2) pack(0,p1,0,l4,l5,tr1) pack(0,p1,1,l4,l5,tr1) pack(0,p1,0,l4,l6,tr2) pack(0,p1,1,l4,l6,tr2)
+Optimization: 160
+OPTIMUM FOUND
+
+Models       : 1
+  Optimum    : yes
+Optimization : 160
+Calls        : 1
+Time         : 0.037s (Solving: 0.01s 1st Model: 0.01s Unsat: 0.00s)
+CPU Time     : 0.037s
+
+Choices      : 829     
+Conflicts    : 429      (Analyzed: 417)
+Restarts     : 2        (Average: 208.50 Last: 65 Blocked: 0)
+Model-Level  : 190.0   
+Problems     : 12       (Average Length: 0.00 Splits: 0)
+Lemmas       : 417      (Deleted: 0)
+  Binary     : 0        (Ratio:   0.00%)
+  Ternary    : 20       (Ratio:   4.80%)
+  Conflict   : 417      (Average Length:  109.6 Ratio: 100.00%) 
+  Loop       : 0        (Average Length:    0.0 Ratio:   0.00%) 
+  Other      : 0        (Average Length:    0.0 Ratio:   0.00%) 
+Backjumps    : 417      (Average:  1.94 Max:  74 Sum:    811)
+  Executed   : 398      (Average:  1.79 Max:  74 Sum:    745 Ratio:  91.86%)
+  Bounded    : 19       (Average:  3.47 Max:   6 Sum:     66 Ratio:   8.14%)
+
+Rules        : 17815    (Original: 16290)
+  Choice     : 48      
+  Minimize   : 1       
+Atoms        : 12096    (Original: 11838 Auxiliary: 258)
+Bodies       : 9359     (Original: 8234)
+  Sum        : 114      (Original: 134)
+  Count      : 2        (Original: 105)
+Equivalences : 24776    (Atom=Atom: 7561 Body=Body: 6216 Other: 10999)
+Tight        : Yes
+Variables    : 3577     (Eliminated:    0 Frozen: 2509)
+Constraints  : 11858    (Binary:  73.3% Ternary:  16.3% Other:  10.4%)
+
+",,True
+clingo_usc,clingo,encoding_route.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp,A1_fixed_loc6_parts1.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/A1_fixed_loc6_parts1.lp,vary_parts,A1,3,clingo /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/A1_fixed_loc6_parts1.lp --stats=2 --opt-strategy=usc,OPTIMUM,30,0.047771,0.024,0.014,0.01,0.014,0.01,0.024,12096,17815,829,429,2,160,"4,tr2,0) freq(0,l3,l5,tr1,0) freq(1,l3,l5,tr1,0) freq(1,l3,l5,tr2,0) freq(0,l4,l5,tr1,0) freq(1,l4,l5,tr1,0) freq(0,l4,l6,tr2,0) freq(1,l4,l6,tr2,0) flow(l2,l3,p1,0) flow(l2,l4,p1,0) flow(l1,l4,p1,0) flow(l4,l5,p1,0) flow(l4,l6,p1,0) pack(0,p1,0,l1,l3,tr2) pack(0,p1,1,l1,l3,tr2) pack(0,p1,0,l2,l3,tr1) pack(0,p1,1,l2,l3,tr1) pack(0,p1,0,l2,l4,tr2) pack(0,p1,1,l2,l4,tr2) pack(0,p1,0,l1,l4,tr2) pack(0,p1,1,l1,l4,tr2) pack(0,p1,0,l3,l5,tr1) pack(0,p1,1,l3,l5,tr1) pack(0,p1,1,l3,l5,tr2) pack(0,p1,0,l4,l5,tr1) pack(0,p1,1,l4,l5,tr1) pack(0,p1,0,l4,l6,tr2) pack(0,p1,1,l4,l6,tr2)
+Optimization: 160
+OPTIMUM FOUND
+
+Models       : 1
+  Optimum    : yes
+Optimization : 160
+Calls        : 1
+Time         : 0.037s (Solving: 0.01s 1st Model: 0.01s Unsat: 0.00s)
+CPU Time     : 0.037s
+
+Choices      : 829     
+Conflicts    : 429      (Analyzed: 417)
+Restarts     : 2        (Average: 208.50 Last: 65 Blocked: 0)
+Model-Level  : 190.0   
+Problems     : 12       (Average Length: 0.00 Splits: 0)
+Lemmas       : 417      (Deleted: 0)
+  Binary     : 0        (Ratio:   0.00%)
+  Ternary    : 20       (Ratio:   4.80%)
+  Conflict   : 417      (Average Length:  109.6 Ratio: 100.00%) 
+  Loop       : 0        (Average Length:    0.0 Ratio:   0.00%) 
+  Other      : 0        (Average Length:    0.0 Ratio:   0.00%) 
+Backjumps    : 417      (Average:  1.94 Max:  74 Sum:    811)
+  Executed   : 398      (Average:  1.79 Max:  74 Sum:    745 Ratio:  91.86%)
+  Bounded    : 19       (Average:  3.47 Max:   6 Sum:     66 Ratio:   8.14%)
+
+Rules        : 17815    (Original: 16290)
+  Choice     : 48      
+  Minimize   : 1       
+Atoms        : 12096    (Original: 11838 Auxiliary: 258)
+Bodies       : 9359     (Original: 8234)
+  Sum        : 114      (Original: 134)
+  Count      : 2        (Original: 105)
+Equivalences : 24776    (Atom=Atom: 7561 Body=Body: 6216 Other: 10999)
+Tight        : Yes
+Variables    : 3577     (Eliminated:    0 Frozen: 2509)
+Constraints  : 11858    (Binary:  73.3% Ternary:  16.3% Other:  10.4%)
+
+",,True
+clingo_usc,clingo,encoding_route.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp,A2_fixed_loc6_parts2.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/A2_fixed_loc6_parts2.lp,vary_parts,A2,1,clingo /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/A2_fixed_loc6_parts2.lp --stats=2 --opt-strategy=usc,OPTIMUM,30,20.879861,0.067,0.0,20.8,0.0,20.8,0.067,39377,56634,285720,219613,888,412,",tr2,0) freq(0,l3,l5,tr2,0) freq(1,l4,l5,tr1,0) freq(1,l4,l6,tr2,0) flow(l1,l3,p2,0) flow(l2,l3,p1,0) flow(l2,l4,p1,0) flow(l1,l4,p1,0) flow(l1,l4,p2,0) flow(l4,l5,p1,0) flow(l4,l6,p1,0) pack(0,p2,0,l1,l3,tr1) pack(0,p1,1,l1,l3,tr1) pack(0,p2,1,l1,l3,tr1) pack(0,p1,1,l1,l3,tr2) pack(0,p1,1,l2,l3,tr1) pack(0,p1,0,l2,l4,tr2) pack(0,p2,1,l2,l4,tr2) pack(0,p1,0,l1,l4,tr2) pack(0,p1,1,l1,l4,tr2) pack(0,p2,1,l1,l4,tr2) pack(0,p1,0,l3,l5,tr2) pack(0,p2,0,l3,l5,tr2) pack(0,p1,1,l3,l5,tr2) pack(0,p2,1,l4,l5,tr1) pack(0,p1,0,l4,l6,tr2) pack(0,p1,1,l4,l6,tr2) pack(0,p2,1,l4,l6,tr2)
+Optimization: 412
+OPTIMUM FOUND
+
+Models       : 1
+  Optimum    : yes
+Optimization : 412
+Calls        : 1
+Time         : 20.866s (Solving: 20.80s 1st Model: 20.79s Unsat: 0.01s)
+CPU Time     : 20.777s
+
+Choices      : 285720  
+Conflicts    : 219613   (Analyzed: 219548)
+Restarts     : 888      (Average: 247.24 Last: 1472 Blocked: 0)
+Model-Level  : 187.0   
+Problems     : 65       (Average Length: 0.00 Splits: 0)
+Lemmas       : 219548   (Deleted: 200299)
+  Binary     : 29       (Ratio:   0.01%)
+  Ternary    : 1533     (Ratio:   0.70%)
+  Conflict   : 219548   (Average Length:   80.1 Ratio: 100.00%) 
+  Loop       : 0        (Average Length:    0.0 Ratio:   0.00%) 
+  Other      : 0        (Average Length:    0.0 Ratio:   0.00%) 
+Backjumps    : 219548   (Average:  1.29 Max:  44 Sum: 284024)
+  Executed   : 219506   (Average:  1.29 Max:  44 Sum: 283679 Ratio:  99.88%)
+  Bounded    : 42       (Average:  8.21 Max:  34 Sum:    345 Ratio:   0.12%)
+
+Rules        : 56634    (Original: 53692)
+  Choice     : 76      
+  Minimize   : 1       
+Atoms        : 39377    (Original: 38937 Auxiliary: 440)
+Bodies       : 28481    (Original: 26123)
+  Sum        : 312     
+  Count      : 4        (Original: 170)
+Equivalences : 71904    (Atom=Atom: 23311 Body=Body: 17868 Other: 30725)
+Tight        : Yes
+Variables    : 8698     (Eliminated:    0 Frozen: 6782)
+Constraints  : 29652    (Binary:  72.9% Ternary:  16.3% Other:  10.8%)
+
+",,True
+clingo_usc,clingo,encoding_route.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp,A2_fixed_loc6_parts2.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/A2_fixed_loc6_parts2.lp,vary_parts,A2,2,clingo /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/A2_fixed_loc6_parts2.lp --stats=2 --opt-strategy=usc,OPTIMUM,30,22.770269,0.073,0.0,22.68,0.0,22.68,0.073,39377,56634,285720,219613,888,412,",tr2,0) freq(0,l3,l5,tr2,0) freq(1,l4,l5,tr1,0) freq(1,l4,l6,tr2,0) flow(l1,l3,p2,0) flow(l2,l3,p1,0) flow(l2,l4,p1,0) flow(l1,l4,p1,0) flow(l1,l4,p2,0) flow(l4,l5,p1,0) flow(l4,l6,p1,0) pack(0,p2,0,l1,l3,tr1) pack(0,p1,1,l1,l3,tr1) pack(0,p2,1,l1,l3,tr1) pack(0,p1,1,l1,l3,tr2) pack(0,p1,1,l2,l3,tr1) pack(0,p1,0,l2,l4,tr2) pack(0,p2,1,l2,l4,tr2) pack(0,p1,0,l1,l4,tr2) pack(0,p1,1,l1,l4,tr2) pack(0,p2,1,l1,l4,tr2) pack(0,p1,0,l3,l5,tr2) pack(0,p2,0,l3,l5,tr2) pack(0,p1,1,l3,l5,tr2) pack(0,p2,1,l4,l5,tr1) pack(0,p1,0,l4,l6,tr2) pack(0,p1,1,l4,l6,tr2) pack(0,p2,1,l4,l6,tr2)
+Optimization: 412
+OPTIMUM FOUND
+
+Models       : 1
+  Optimum    : yes
+Optimization : 412
+Calls        : 1
+Time         : 22.751s (Solving: 22.68s 1st Model: 22.67s Unsat: 0.01s)
+CPU Time     : 22.199s
+
+Choices      : 285720  
+Conflicts    : 219613   (Analyzed: 219548)
+Restarts     : 888      (Average: 247.24 Last: 1472 Blocked: 0)
+Model-Level  : 187.0   
+Problems     : 65       (Average Length: 0.00 Splits: 0)
+Lemmas       : 219548   (Deleted: 200299)
+  Binary     : 29       (Ratio:   0.01%)
+  Ternary    : 1533     (Ratio:   0.70%)
+  Conflict   : 219548   (Average Length:   80.1 Ratio: 100.00%) 
+  Loop       : 0        (Average Length:    0.0 Ratio:   0.00%) 
+  Other      : 0        (Average Length:    0.0 Ratio:   0.00%) 
+Backjumps    : 219548   (Average:  1.29 Max:  44 Sum: 284024)
+  Executed   : 219506   (Average:  1.29 Max:  44 Sum: 283679 Ratio:  99.88%)
+  Bounded    : 42       (Average:  8.21 Max:  34 Sum:    345 Ratio:   0.12%)
+
+Rules        : 56634    (Original: 53692)
+  Choice     : 76      
+  Minimize   : 1       
+Atoms        : 39377    (Original: 38937 Auxiliary: 440)
+Bodies       : 28481    (Original: 26123)
+  Sum        : 312     
+  Count      : 4        (Original: 170)
+Equivalences : 71904    (Atom=Atom: 23311 Body=Body: 17868 Other: 30725)
+Tight        : Yes
+Variables    : 8698     (Eliminated:    0 Frozen: 6782)
+Constraints  : 29652    (Binary:  72.9% Ternary:  16.3% Other:  10.8%)
+
+",,True
+clingo_usc,clingo,encoding_route.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp,A2_fixed_loc6_parts2.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/A2_fixed_loc6_parts2.lp,vary_parts,A2,3,clingo /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/A2_fixed_loc6_parts2.lp --stats=2 --opt-strategy=usc,OPTIMUM,30,23.364463,0.073,0.0,23.27,0.0,23.27,0.073,39377,56634,285720,219613,888,412,",tr2,0) freq(0,l3,l5,tr2,0) freq(1,l4,l5,tr1,0) freq(1,l4,l6,tr2,0) flow(l1,l3,p2,0) flow(l2,l3,p1,0) flow(l2,l4,p1,0) flow(l1,l4,p1,0) flow(l1,l4,p2,0) flow(l4,l5,p1,0) flow(l4,l6,p1,0) pack(0,p2,0,l1,l3,tr1) pack(0,p1,1,l1,l3,tr1) pack(0,p2,1,l1,l3,tr1) pack(0,p1,1,l1,l3,tr2) pack(0,p1,1,l2,l3,tr1) pack(0,p1,0,l2,l4,tr2) pack(0,p2,1,l2,l4,tr2) pack(0,p1,0,l1,l4,tr2) pack(0,p1,1,l1,l4,tr2) pack(0,p2,1,l1,l4,tr2) pack(0,p1,0,l3,l5,tr2) pack(0,p2,0,l3,l5,tr2) pack(0,p1,1,l3,l5,tr2) pack(0,p2,1,l4,l5,tr1) pack(0,p1,0,l4,l6,tr2) pack(0,p1,1,l4,l6,tr2) pack(0,p2,1,l4,l6,tr2)
+Optimization: 412
+OPTIMUM FOUND
+
+Models       : 1
+  Optimum    : yes
+Optimization : 412
+Calls        : 1
+Time         : 23.346s (Solving: 23.27s 1st Model: 23.27s Unsat: 0.01s)
+CPU Time     : 22.703s
+
+Choices      : 285720  
+Conflicts    : 219613   (Analyzed: 219548)
+Restarts     : 888      (Average: 247.24 Last: 1472 Blocked: 0)
+Model-Level  : 187.0   
+Problems     : 65       (Average Length: 0.00 Splits: 0)
+Lemmas       : 219548   (Deleted: 200299)
+  Binary     : 29       (Ratio:   0.01%)
+  Ternary    : 1533     (Ratio:   0.70%)
+  Conflict   : 219548   (Average Length:   80.1 Ratio: 100.00%) 
+  Loop       : 0        (Average Length:    0.0 Ratio:   0.00%) 
+  Other      : 0        (Average Length:    0.0 Ratio:   0.00%) 
+Backjumps    : 219548   (Average:  1.29 Max:  44 Sum: 284024)
+  Executed   : 219506   (Average:  1.29 Max:  44 Sum: 283679 Ratio:  99.88%)
+  Bounded    : 42       (Average:  8.21 Max:  34 Sum:    345 Ratio:   0.12%)
+
+Rules        : 56634    (Original: 53692)
+  Choice     : 76      
+  Minimize   : 1       
+Atoms        : 39377    (Original: 38937 Auxiliary: 440)
+Bodies       : 28481    (Original: 26123)
+  Sum        : 312     
+  Count      : 4        (Original: 170)
+Equivalences : 71904    (Atom=Atom: 23311 Body=Body: 17868 Other: 30725)
+Tight        : Yes
+Variables    : 8698     (Eliminated:    0 Frozen: 6782)
+Constraints  : 29652    (Binary:  72.9% Ternary:  16.3% Other:  10.8%)
+
+",,True
+clingo_usc,clingo,encoding_route.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp,B1_fixed_loc6_tr1.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/B1_fixed_loc6_tr1.lp,vary_transport_resources,B1,1,clingo /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/B1_fixed_loc6_tr1.lp --stats=2 --opt-strategy=usc,OPTIMUM,30,17.59191,0.071,0.0,17.5,0.0,17.5,0.071,39853,54810,177131,139670,747,428,"pack(1,p1,1,l4,l6,tr1) freq(0,l1,l3,tr1,0) freq(0,l2,l4,tr1,0) freq(1,l2,l4,tr1,0) freq(0,l1,l4,tr1,0) freq(1,l1,l4,tr1,0) freq(0,l4,l5,tr1,0) freq(1,l4,l5,tr1,0) freq(0,l4,l6,tr1,0) freq(1,l4,l6,tr1,0) flow(l1,l3,p2,0) flow(l2,l3,p1,0) flow(l2,l4,p1,0) flow(l2,l4,p2,0) flow(l1,l4,p1,0) flow(l1,l4,p2,0) flow(l4,l5,p1,0) flow(l4,l5,p2,0) flow(l4,l6,p1,0) flow(l4,l6,p2,0) pack(0,p1,0,l1,l3,tr1) pack(0,p2,1,l1,l3,tr1) pack(0,p2,0,l2,l4,tr1) pack(0,p2,1,l2,l4,tr1) pack(0,p1,1,l3,l5,tr1) pack(0,p2,0,l4,l5,tr1) pack(0,p2,1,l4,l5,tr1) pack(0,p2,0,l4,l6,tr1) pack(0,p2,1,l4,l6,tr1)
+Optimization: 428
+OPTIMUM FOUND
+
+Models       : 1
+  Optimum    : yes
+Optimization : 428
+Calls        : 1
+Time         : 17.574s (Solving: 17.50s 1st Model: 17.50s Unsat: 0.00s)
+CPU Time     : 16.929s
+
+Choices      : 177131  
+Conflicts    : 139670   (Analyzed: 139603)
+Restarts     : 747      (Average: 186.88 Last: 76 Blocked: 0)
+Model-Level  : 178.0   
+Problems     : 67       (Average Length: 0.00 Splits: 0)
+Lemmas       : 139603   (Deleted: 121156)
+  Binary     : 52       (Ratio:   0.04%)
+  Ternary    : 1041     (Ratio:   0.75%)
+  Conflict   : 139603   (Average Length:   67.2 Ratio: 100.00%) 
+  Loop       : 0        (Average Length:    0.0 Ratio:   0.00%) 
+  Other      : 0        (Average Length:    0.0 Ratio:   0.00%) 
+Backjumps    : 139603   (Average:  1.26 Max:  83 Sum: 176269)
+  Executed   : 139566   (Average:  1.26 Max:  83 Sum: 175876 Ratio:  99.78%)
+  Bounded    : 37       (Average: 10.62 Max:  79 Sum:    393 Ratio:   0.22%)
+
+Rules        : 54810    (Original: 51872)
+  Choice     : 64      
+  Minimize   : 1       
+Atoms        : 39853    (Original: 39401 Auxiliary: 452)
+Bodies       : 26701    (Original: 24347)
+  Sum        : 308     
+  Count      : 4        (Original: 146)
+Equivalences : 58656    (Atom=Atom: 19555 Body=Body: 13512 Other: 25589)
+Tight        : Yes
+Variables    : 7110     (Eliminated:    0 Frozen: 5606)
+Constraints  : 21504    (Binary:  69.8% Ternary:  23.1% Other:   7.1%)
+
+",,True
+clingo_usc,clingo,encoding_route.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp,B1_fixed_loc6_tr1.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/B1_fixed_loc6_tr1.lp,vary_transport_resources,B1,2,clingo /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/B1_fixed_loc6_tr1.lp --stats=2 --opt-strategy=usc,OPTIMUM,30,18.66609,0.069,0.0,18.58,0.0,18.58,0.069,39853,54810,177131,139670,747,428,"pack(1,p1,1,l4,l6,tr1) freq(0,l1,l3,tr1,0) freq(0,l2,l4,tr1,0) freq(1,l2,l4,tr1,0) freq(0,l1,l4,tr1,0) freq(1,l1,l4,tr1,0) freq(0,l4,l5,tr1,0) freq(1,l4,l5,tr1,0) freq(0,l4,l6,tr1,0) freq(1,l4,l6,tr1,0) flow(l1,l3,p2,0) flow(l2,l3,p1,0) flow(l2,l4,p1,0) flow(l2,l4,p2,0) flow(l1,l4,p1,0) flow(l1,l4,p2,0) flow(l4,l5,p1,0) flow(l4,l5,p2,0) flow(l4,l6,p1,0) flow(l4,l6,p2,0) pack(0,p1,0,l1,l3,tr1) pack(0,p2,1,l1,l3,tr1) pack(0,p2,0,l2,l4,tr1) pack(0,p2,1,l2,l4,tr1) pack(0,p1,1,l3,l5,tr1) pack(0,p2,0,l4,l5,tr1) pack(0,p2,1,l4,l5,tr1) pack(0,p2,0,l4,l6,tr1) pack(0,p2,1,l4,l6,tr1)
+Optimization: 428
+OPTIMUM FOUND
+
+Models       : 1
+  Optimum    : yes
+Optimization : 428
+Calls        : 1
+Time         : 18.647s (Solving: 18.58s 1st Model: 18.57s Unsat: 0.00s)
+CPU Time     : 17.224s
+
+Choices      : 177131  
+Conflicts    : 139670   (Analyzed: 139603)
+Restarts     : 747      (Average: 186.88 Last: 76 Blocked: 0)
+Model-Level  : 178.0   
+Problems     : 67       (Average Length: 0.00 Splits: 0)
+Lemmas       : 139603   (Deleted: 121156)
+  Binary     : 52       (Ratio:   0.04%)
+  Ternary    : 1041     (Ratio:   0.75%)
+  Conflict   : 139603   (Average Length:   67.2 Ratio: 100.00%) 
+  Loop       : 0        (Average Length:    0.0 Ratio:   0.00%) 
+  Other      : 0        (Average Length:    0.0 Ratio:   0.00%) 
+Backjumps    : 139603   (Average:  1.26 Max:  83 Sum: 176269)
+  Executed   : 139566   (Average:  1.26 Max:  83 Sum: 175876 Ratio:  99.78%)
+  Bounded    : 37       (Average: 10.62 Max:  79 Sum:    393 Ratio:   0.22%)
+
+Rules        : 54810    (Original: 51872)
+  Choice     : 64      
+  Minimize   : 1       
+Atoms        : 39853    (Original: 39401 Auxiliary: 452)
+Bodies       : 26701    (Original: 24347)
+  Sum        : 308     
+  Count      : 4        (Original: 146)
+Equivalences : 58656    (Atom=Atom: 19555 Body=Body: 13512 Other: 25589)
+Tight        : Yes
+Variables    : 7110     (Eliminated:    0 Frozen: 5606)
+Constraints  : 21504    (Binary:  69.8% Ternary:  23.1% Other:   7.1%)
+
+",,True
+clingo_usc,clingo,encoding_route.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp,B1_fixed_loc6_tr1.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/B1_fixed_loc6_tr1.lp,vary_transport_resources,B1,3,clingo /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/B1_fixed_loc6_tr1.lp --stats=2 --opt-strategy=usc,OPTIMUM,30,15.622089,0.067,0.0,15.54,0.0,15.54,0.067,39853,54810,177131,139670,747,428,"pack(1,p1,1,l4,l6,tr1) freq(0,l1,l3,tr1,0) freq(0,l2,l4,tr1,0) freq(1,l2,l4,tr1,0) freq(0,l1,l4,tr1,0) freq(1,l1,l4,tr1,0) freq(0,l4,l5,tr1,0) freq(1,l4,l5,tr1,0) freq(0,l4,l6,tr1,0) freq(1,l4,l6,tr1,0) flow(l1,l3,p2,0) flow(l2,l3,p1,0) flow(l2,l4,p1,0) flow(l2,l4,p2,0) flow(l1,l4,p1,0) flow(l1,l4,p2,0) flow(l4,l5,p1,0) flow(l4,l5,p2,0) flow(l4,l6,p1,0) flow(l4,l6,p2,0) pack(0,p1,0,l1,l3,tr1) pack(0,p2,1,l1,l3,tr1) pack(0,p2,0,l2,l4,tr1) pack(0,p2,1,l2,l4,tr1) pack(0,p1,1,l3,l5,tr1) pack(0,p2,0,l4,l5,tr1) pack(0,p2,1,l4,l5,tr1) pack(0,p2,0,l4,l6,tr1) pack(0,p2,1,l4,l6,tr1)
+Optimization: 428
+OPTIMUM FOUND
+
+Models       : 1
+  Optimum    : yes
+Optimization : 428
+Calls        : 1
+Time         : 15.607s (Solving: 15.54s 1st Model: 15.54s Unsat: 0.00s)
+CPU Time     : 15.532s
+
+Choices      : 177131  
+Conflicts    : 139670   (Analyzed: 139603)
+Restarts     : 747      (Average: 186.88 Last: 76 Blocked: 0)
+Model-Level  : 178.0   
+Problems     : 67       (Average Length: 0.00 Splits: 0)
+Lemmas       : 139603   (Deleted: 121156)
+  Binary     : 52       (Ratio:   0.04%)
+  Ternary    : 1041     (Ratio:   0.75%)
+  Conflict   : 139603   (Average Length:   67.2 Ratio: 100.00%) 
+  Loop       : 0        (Average Length:    0.0 Ratio:   0.00%) 
+  Other      : 0        (Average Length:    0.0 Ratio:   0.00%) 
+Backjumps    : 139603   (Average:  1.26 Max:  83 Sum: 176269)
+  Executed   : 139566   (Average:  1.26 Max:  83 Sum: 175876 Ratio:  99.78%)
+  Bounded    : 37       (Average: 10.62 Max:  79 Sum:    393 Ratio:   0.22%)
+
+Rules        : 54810    (Original: 51872)
+  Choice     : 64      
+  Minimize   : 1       
+Atoms        : 39853    (Original: 39401 Auxiliary: 452)
+Bodies       : 26701    (Original: 24347)
+  Sum        : 308     
+  Count      : 4        (Original: 146)
+Equivalences : 58656    (Atom=Atom: 19555 Body=Body: 13512 Other: 25589)
+Tight        : Yes
+Variables    : 7110     (Eliminated:    0 Frozen: 5606)
+Constraints  : 21504    (Binary:  69.8% Ternary:  23.1% Other:   7.1%)
+
+",,True
+clingo_usc,clingo,encoding_route.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp,B2_fixed_loc6_tr2.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/B2_fixed_loc6_tr2.lp,vary_transport_resources,B2,1,clingo /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/B2_fixed_loc6_tr2.lp --stats=2 --opt-strategy=usc,OPTIMUM,30,20.726944,0.07,0.0,20.64,0.0,20.64,0.07,39377,56634,285720,219613,888,412,",tr2,0) freq(0,l3,l5,tr2,0) freq(1,l4,l5,tr1,0) freq(1,l4,l6,tr2,0) flow(l1,l3,p2,0) flow(l2,l3,p1,0) flow(l2,l4,p1,0) flow(l1,l4,p1,0) flow(l1,l4,p2,0) flow(l4,l5,p1,0) flow(l4,l6,p1,0) pack(0,p2,0,l1,l3,tr1) pack(0,p1,1,l1,l3,tr1) pack(0,p2,1,l1,l3,tr1) pack(0,p1,1,l1,l3,tr2) pack(0,p1,1,l2,l3,tr1) pack(0,p1,0,l2,l4,tr2) pack(0,p2,1,l2,l4,tr2) pack(0,p1,0,l1,l4,tr2) pack(0,p1,1,l1,l4,tr2) pack(0,p2,1,l1,l4,tr2) pack(0,p1,0,l3,l5,tr2) pack(0,p2,0,l3,l5,tr2) pack(0,p1,1,l3,l5,tr2) pack(0,p2,1,l4,l5,tr1) pack(0,p1,0,l4,l6,tr2) pack(0,p1,1,l4,l6,tr2) pack(0,p2,1,l4,l6,tr2)
+Optimization: 412
+OPTIMUM FOUND
+
+Models       : 1
+  Optimum    : yes
+Optimization : 412
+Calls        : 1
+Time         : 20.711s (Solving: 20.64s 1st Model: 20.64s Unsat: 0.00s)
+CPU Time     : 20.652s
+
+Choices      : 285720  
+Conflicts    : 219613   (Analyzed: 219548)
+Restarts     : 888      (Average: 247.24 Last: 1472 Blocked: 0)
+Model-Level  : 187.0   
+Problems     : 65       (Average Length: 0.00 Splits: 0)
+Lemmas       : 219548   (Deleted: 200299)
+  Binary     : 29       (Ratio:   0.01%)
+  Ternary    : 1533     (Ratio:   0.70%)
+  Conflict   : 219548   (Average Length:   80.1 Ratio: 100.00%) 
+  Loop       : 0        (Average Length:    0.0 Ratio:   0.00%) 
+  Other      : 0        (Average Length:    0.0 Ratio:   0.00%) 
+Backjumps    : 219548   (Average:  1.29 Max:  44 Sum: 284024)
+  Executed   : 219506   (Average:  1.29 Max:  44 Sum: 283679 Ratio:  99.88%)
+  Bounded    : 42       (Average:  8.21 Max:  34 Sum:    345 Ratio:   0.12%)
+
+Rules        : 56634    (Original: 53692)
+  Choice     : 76      
+  Minimize   : 1       
+Atoms        : 39377    (Original: 38937 Auxiliary: 440)
+Bodies       : 28481    (Original: 26123)
+  Sum        : 312     
+  Count      : 4        (Original: 170)
+Equivalences : 71904    (Atom=Atom: 23311 Body=Body: 17868 Other: 30725)
+Tight        : Yes
+Variables    : 8698     (Eliminated:    0 Frozen: 6782)
+Constraints  : 29652    (Binary:  72.9% Ternary:  16.3% Other:  10.8%)
+
+",,True
+clingo_usc,clingo,encoding_route.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp,B2_fixed_loc6_tr2.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/B2_fixed_loc6_tr2.lp,vary_transport_resources,B2,2,clingo /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/B2_fixed_loc6_tr2.lp --stats=2 --opt-strategy=usc,OPTIMUM,30,20.668059,0.07,0.0,20.58,0.0,20.58,0.07,39377,56634,285720,219613,888,412,",tr2,0) freq(0,l3,l5,tr2,0) freq(1,l4,l5,tr1,0) freq(1,l4,l6,tr2,0) flow(l1,l3,p2,0) flow(l2,l3,p1,0) flow(l2,l4,p1,0) flow(l1,l4,p1,0) flow(l1,l4,p2,0) flow(l4,l5,p1,0) flow(l4,l6,p1,0) pack(0,p2,0,l1,l3,tr1) pack(0,p1,1,l1,l3,tr1) pack(0,p2,1,l1,l3,tr1) pack(0,p1,1,l1,l3,tr2) pack(0,p1,1,l2,l3,tr1) pack(0,p1,0,l2,l4,tr2) pack(0,p2,1,l2,l4,tr2) pack(0,p1,0,l1,l4,tr2) pack(0,p1,1,l1,l4,tr2) pack(0,p2,1,l1,l4,tr2) pack(0,p1,0,l3,l5,tr2) pack(0,p2,0,l3,l5,tr2) pack(0,p1,1,l3,l5,tr2) pack(0,p2,1,l4,l5,tr1) pack(0,p1,0,l4,l6,tr2) pack(0,p1,1,l4,l6,tr2) pack(0,p2,1,l4,l6,tr2)
+Optimization: 412
+OPTIMUM FOUND
+
+Models       : 1
+  Optimum    : yes
+Optimization : 412
+Calls        : 1
+Time         : 20.650s (Solving: 20.58s 1st Model: 20.58s Unsat: 0.00s)
+CPU Time     : 20.553s
+
+Choices      : 285720  
+Conflicts    : 219613   (Analyzed: 219548)
+Restarts     : 888      (Average: 247.24 Last: 1472 Blocked: 0)
+Model-Level  : 187.0   
+Problems     : 65       (Average Length: 0.00 Splits: 0)
+Lemmas       : 219548   (Deleted: 200299)
+  Binary     : 29       (Ratio:   0.01%)
+  Ternary    : 1533     (Ratio:   0.70%)
+  Conflict   : 219548   (Average Length:   80.1 Ratio: 100.00%) 
+  Loop       : 0        (Average Length:    0.0 Ratio:   0.00%) 
+  Other      : 0        (Average Length:    0.0 Ratio:   0.00%) 
+Backjumps    : 219548   (Average:  1.29 Max:  44 Sum: 284024)
+  Executed   : 219506   (Average:  1.29 Max:  44 Sum: 283679 Ratio:  99.88%)
+  Bounded    : 42       (Average:  8.21 Max:  34 Sum:    345 Ratio:   0.12%)
+
+Rules        : 56634    (Original: 53692)
+  Choice     : 76      
+  Minimize   : 1       
+Atoms        : 39377    (Original: 38937 Auxiliary: 440)
+Bodies       : 28481    (Original: 26123)
+  Sum        : 312     
+  Count      : 4        (Original: 170)
+Equivalences : 71904    (Atom=Atom: 23311 Body=Body: 17868 Other: 30725)
+Tight        : Yes
+Variables    : 8698     (Eliminated:    0 Frozen: 6782)
+Constraints  : 29652    (Binary:  72.9% Ternary:  16.3% Other:  10.8%)
+
+",,True
+clingo_usc,clingo,encoding_route.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp,B2_fixed_loc6_tr2.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/B2_fixed_loc6_tr2.lp,vary_transport_resources,B2,3,clingo /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/B2_fixed_loc6_tr2.lp --stats=2 --opt-strategy=usc,OPTIMUM,30,20.516114,0.067,0.0,20.43,0.0,20.43,0.067,39377,56634,285720,219613,888,412,",tr2,0) freq(0,l3,l5,tr2,0) freq(1,l4,l5,tr1,0) freq(1,l4,l6,tr2,0) flow(l1,l3,p2,0) flow(l2,l3,p1,0) flow(l2,l4,p1,0) flow(l1,l4,p1,0) flow(l1,l4,p2,0) flow(l4,l5,p1,0) flow(l4,l6,p1,0) pack(0,p2,0,l1,l3,tr1) pack(0,p1,1,l1,l3,tr1) pack(0,p2,1,l1,l3,tr1) pack(0,p1,1,l1,l3,tr2) pack(0,p1,1,l2,l3,tr1) pack(0,p1,0,l2,l4,tr2) pack(0,p2,1,l2,l4,tr2) pack(0,p1,0,l1,l4,tr2) pack(0,p1,1,l1,l4,tr2) pack(0,p2,1,l1,l4,tr2) pack(0,p1,0,l3,l5,tr2) pack(0,p2,0,l3,l5,tr2) pack(0,p1,1,l3,l5,tr2) pack(0,p2,1,l4,l5,tr1) pack(0,p1,0,l4,l6,tr2) pack(0,p1,1,l4,l6,tr2) pack(0,p2,1,l4,l6,tr2)
+Optimization: 412
+OPTIMUM FOUND
+
+Models       : 1
+  Optimum    : yes
+Optimization : 412
+Calls        : 1
+Time         : 20.501s (Solving: 20.43s 1st Model: 20.43s Unsat: 0.00s)
+CPU Time     : 20.483s
+
+Choices      : 285720  
+Conflicts    : 219613   (Analyzed: 219548)
+Restarts     : 888      (Average: 247.24 Last: 1472 Blocked: 0)
+Model-Level  : 187.0   
+Problems     : 65       (Average Length: 0.00 Splits: 0)
+Lemmas       : 219548   (Deleted: 200299)
+  Binary     : 29       (Ratio:   0.01%)
+  Ternary    : 1533     (Ratio:   0.70%)
+  Conflict   : 219548   (Average Length:   80.1 Ratio: 100.00%) 
+  Loop       : 0        (Average Length:    0.0 Ratio:   0.00%) 
+  Other      : 0        (Average Length:    0.0 Ratio:   0.00%) 
+Backjumps    : 219548   (Average:  1.29 Max:  44 Sum: 284024)
+  Executed   : 219506   (Average:  1.29 Max:  44 Sum: 283679 Ratio:  99.88%)
+  Bounded    : 42       (Average:  8.21 Max:  34 Sum:    345 Ratio:   0.12%)
+
+Rules        : 56634    (Original: 53692)
+  Choice     : 76      
+  Minimize   : 1       
+Atoms        : 39377    (Original: 38937 Auxiliary: 440)
+Bodies       : 28481    (Original: 26123)
+  Sum        : 312     
+  Count      : 4        (Original: 170)
+Equivalences : 71904    (Atom=Atom: 23311 Body=Body: 17868 Other: 30725)
+Tight        : Yes
+Variables    : 8698     (Eliminated:    0 Frozen: 6782)
+Constraints  : 29652    (Binary:  72.9% Ternary:  16.3% Other:  10.8%)
+
+",,True
+clingo_usc,clingo,encoding_route.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp,C1_loc4_parts2_tr2.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/C1_loc4_parts2_tr2.lp,vary_locations,C1,1,clingo /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/C1_loc4_parts2_tr2.lp --stats=2 --opt-strategy=usc,OPTIMUM,30,0.120587,0.044,0.0,0.06,0.0,0.06,0.044,23486,36691,2777,2213,16,308,"4,tr2) pack(2,p2,1,l3,l4,tr1) pack(3,p2,1,l3,l4,tr2) flow(l3,l4,p2,15) freq(0,l1,l3,tr2,0) freq(1,l1,l3,tr2,0) freq(0,l2,l3,tr1,0) freq(1,l2,l3,tr1,0) freq(0,l2,l3,tr2,0) freq(0,l3,l4,tr1,0) flow(l1,l3,p2,0) flow(l2,l3,p1,0) pack(0,p2,0,l1,l3,tr1) pack(0,p2,1,l1,l3,tr1) pack(0,p1,0,l1,l3,tr2) pack(0,p2,0,l1,l3,tr2) pack(0,p1,1,l1,l3,tr2) pack(0,p2,1,l1,l3,tr2) pack(0,p1,0,l2,l3,tr1) pack(0,p2,0,l2,l3,tr1) pack(0,p1,1,l2,l3,tr1) pack(0,p2,1,l2,l3,tr1) pack(0,p1,0,l2,l3,tr2) pack(0,p2,0,l2,l3,tr2) pack(0,p1,1,l2,l3,tr2) pack(0,p1,0,l3,l4,tr1) pack(0,p2,0,l3,l4,tr1) pack(0,p1,0,l3,l4,tr2)
+Optimization: 308
+OPTIMUM FOUND
+
+Models       : 1
+  Optimum    : yes
+Optimization : 308
+Calls        : 1
+Time         : 0.104s (Solving: 0.06s 1st Model: 0.06s Unsat: 0.00s)
+CPU Time     : 0.104s
+
+Choices      : 2777    
+Conflicts    : 2213     (Analyzed: 2164)
+Restarts     : 16       (Average: 135.25 Last: 4 Blocked: 0)
+Model-Level  : 154.0   
+Problems     : 49       (Average Length: 0.00 Splits: 0)
+Lemmas       : 2164     (Deleted: 0)
+  Binary     : 18       (Ratio:   0.83%)
+  Ternary    : 86       (Ratio:   3.97%)
+  Conflict   : 2164     (Average Length:   36.9 Ratio: 100.00%) 
+  Loop       : 0        (Average Length:    0.0 Ratio:   0.00%) 
+  Other      : 0        (Average Length:    0.0 Ratio:   0.00%) 
+Backjumps    : 2164     (Average:  1.84 Max: 104 Sum:   3991)
+  Executed   : 2123     (Average:  1.25 Max: 104 Sum:   2714 Ratio:  68.00%)
+  Bounded    : 41       (Average: 31.15 Max:  99 Sum:   1277 Ratio:  32.00%)
+
+Rules        : 36691    (Original: 35195)
+  Choice     : 42      
+  Minimize   : 1       
+Atoms        : 23486    (Original: 23234 Auxiliary: 252)
+Bodies       : 19813    (Original: 18645)
+  Sum        : 126     
+  Count      : 2        (Original: 92)
+Equivalences : 43412    (Atom=Atom: 13471 Body=Body: 12310 Other: 17631)
+Tight        : Yes
+Variables    : 4984     (Eliminated:    0 Frozen: 3768)
+Constraints  : 19038    (Binary:  75.8% Ternary:  12.5% Other:  11.7%)
+
+",,True
+clingo_usc,clingo,encoding_route.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp,C1_loc4_parts2_tr2.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/C1_loc4_parts2_tr2.lp,vary_locations,C1,2,clingo /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/C1_loc4_parts2_tr2.lp --stats=2 --opt-strategy=usc,OPTIMUM,30,0.116798,0.043,0.0,0.06,0.0,0.06,0.043,23486,36691,2777,2213,16,308,"4,tr2) pack(2,p2,1,l3,l4,tr1) pack(3,p2,1,l3,l4,tr2) flow(l3,l4,p2,15) freq(0,l1,l3,tr2,0) freq(1,l1,l3,tr2,0) freq(0,l2,l3,tr1,0) freq(1,l2,l3,tr1,0) freq(0,l2,l3,tr2,0) freq(0,l3,l4,tr1,0) flow(l1,l3,p2,0) flow(l2,l3,p1,0) pack(0,p2,0,l1,l3,tr1) pack(0,p2,1,l1,l3,tr1) pack(0,p1,0,l1,l3,tr2) pack(0,p2,0,l1,l3,tr2) pack(0,p1,1,l1,l3,tr2) pack(0,p2,1,l1,l3,tr2) pack(0,p1,0,l2,l3,tr1) pack(0,p2,0,l2,l3,tr1) pack(0,p1,1,l2,l3,tr1) pack(0,p2,1,l2,l3,tr1) pack(0,p1,0,l2,l3,tr2) pack(0,p2,0,l2,l3,tr2) pack(0,p1,1,l2,l3,tr2) pack(0,p1,0,l3,l4,tr1) pack(0,p2,0,l3,l4,tr1) pack(0,p1,0,l3,l4,tr2)
+Optimization: 308
+OPTIMUM FOUND
+
+Models       : 1
+  Optimum    : yes
+Optimization : 308
+Calls        : 1
+Time         : 0.104s (Solving: 0.06s 1st Model: 0.06s Unsat: 0.00s)
+CPU Time     : 0.104s
+
+Choices      : 2777    
+Conflicts    : 2213     (Analyzed: 2164)
+Restarts     : 16       (Average: 135.25 Last: 4 Blocked: 0)
+Model-Level  : 154.0   
+Problems     : 49       (Average Length: 0.00 Splits: 0)
+Lemmas       : 2164     (Deleted: 0)
+  Binary     : 18       (Ratio:   0.83%)
+  Ternary    : 86       (Ratio:   3.97%)
+  Conflict   : 2164     (Average Length:   36.9 Ratio: 100.00%) 
+  Loop       : 0        (Average Length:    0.0 Ratio:   0.00%) 
+  Other      : 0        (Average Length:    0.0 Ratio:   0.00%) 
+Backjumps    : 2164     (Average:  1.84 Max: 104 Sum:   3991)
+  Executed   : 2123     (Average:  1.25 Max: 104 Sum:   2714 Ratio:  68.00%)
+  Bounded    : 41       (Average: 31.15 Max:  99 Sum:   1277 Ratio:  32.00%)
+
+Rules        : 36691    (Original: 35195)
+  Choice     : 42      
+  Minimize   : 1       
+Atoms        : 23486    (Original: 23234 Auxiliary: 252)
+Bodies       : 19813    (Original: 18645)
+  Sum        : 126     
+  Count      : 2        (Original: 92)
+Equivalences : 43412    (Atom=Atom: 13471 Body=Body: 12310 Other: 17631)
+Tight        : Yes
+Variables    : 4984     (Eliminated:    0 Frozen: 3768)
+Constraints  : 19038    (Binary:  75.8% Ternary:  12.5% Other:  11.7%)
+
+",,True
+clingo_usc,clingo,encoding_route.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp,C1_loc4_parts2_tr2.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/C1_loc4_parts2_tr2.lp,vary_locations,C1,3,clingo /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/C1_loc4_parts2_tr2.lp --stats=2 --opt-strategy=usc,OPTIMUM,30,0.113065,0.041,0.0,0.06,0.0,0.06,0.041,23486,36691,2777,2213,16,308,"4,tr2) pack(2,p2,1,l3,l4,tr1) pack(3,p2,1,l3,l4,tr2) flow(l3,l4,p2,15) freq(0,l1,l3,tr2,0) freq(1,l1,l3,tr2,0) freq(0,l2,l3,tr1,0) freq(1,l2,l3,tr1,0) freq(0,l2,l3,tr2,0) freq(0,l3,l4,tr1,0) flow(l1,l3,p2,0) flow(l2,l3,p1,0) pack(0,p2,0,l1,l3,tr1) pack(0,p2,1,l1,l3,tr1) pack(0,p1,0,l1,l3,tr2) pack(0,p2,0,l1,l3,tr2) pack(0,p1,1,l1,l3,tr2) pack(0,p2,1,l1,l3,tr2) pack(0,p1,0,l2,l3,tr1) pack(0,p2,0,l2,l3,tr1) pack(0,p1,1,l2,l3,tr1) pack(0,p2,1,l2,l3,tr1) pack(0,p1,0,l2,l3,tr2) pack(0,p2,0,l2,l3,tr2) pack(0,p1,1,l2,l3,tr2) pack(0,p1,0,l3,l4,tr1) pack(0,p2,0,l3,l4,tr1) pack(0,p1,0,l3,l4,tr2)
+Optimization: 308
+OPTIMUM FOUND
+
+Models       : 1
+  Optimum    : yes
+Optimization : 308
+Calls        : 1
+Time         : 0.101s (Solving: 0.06s 1st Model: 0.06s Unsat: 0.00s)
+CPU Time     : 0.101s
+
+Choices      : 2777    
+Conflicts    : 2213     (Analyzed: 2164)
+Restarts     : 16       (Average: 135.25 Last: 4 Blocked: 0)
+Model-Level  : 154.0   
+Problems     : 49       (Average Length: 0.00 Splits: 0)
+Lemmas       : 2164     (Deleted: 0)
+  Binary     : 18       (Ratio:   0.83%)
+  Ternary    : 86       (Ratio:   3.97%)
+  Conflict   : 2164     (Average Length:   36.9 Ratio: 100.00%) 
+  Loop       : 0        (Average Length:    0.0 Ratio:   0.00%) 
+  Other      : 0        (Average Length:    0.0 Ratio:   0.00%) 
+Backjumps    : 2164     (Average:  1.84 Max: 104 Sum:   3991)
+  Executed   : 2123     (Average:  1.25 Max: 104 Sum:   2714 Ratio:  68.00%)
+  Bounded    : 41       (Average: 31.15 Max:  99 Sum:   1277 Ratio:  32.00%)
+
+Rules        : 36691    (Original: 35195)
+  Choice     : 42      
+  Minimize   : 1       
+Atoms        : 23486    (Original: 23234 Auxiliary: 252)
+Bodies       : 19813    (Original: 18645)
+  Sum        : 126     
+  Count      : 2        (Original: 92)
+Equivalences : 43412    (Atom=Atom: 13471 Body=Body: 12310 Other: 17631)
+Tight        : Yes
+Variables    : 4984     (Eliminated:    0 Frozen: 3768)
+Constraints  : 19038    (Binary:  75.8% Ternary:  12.5% Other:  11.7%)
+
+",,True
+clingo_usc,clingo,encoding_route.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp,C2_loc6_parts2_tr2.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/C2_loc6_parts2_tr2.lp,vary_locations,C2,1,clingo /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/C2_loc6_parts2_tr2.lp --stats=2 --opt-strategy=usc,OPTIMUM,30,20.622846,0.069,0.0,20.54,0.0,20.54,0.069,39377,56634,285720,219613,888,412,",tr2,0) freq(0,l3,l5,tr2,0) freq(1,l4,l5,tr1,0) freq(1,l4,l6,tr2,0) flow(l1,l3,p2,0) flow(l2,l3,p1,0) flow(l2,l4,p1,0) flow(l1,l4,p1,0) flow(l1,l4,p2,0) flow(l4,l5,p1,0) flow(l4,l6,p1,0) pack(0,p2,0,l1,l3,tr1) pack(0,p1,1,l1,l3,tr1) pack(0,p2,1,l1,l3,tr1) pack(0,p1,1,l1,l3,tr2) pack(0,p1,1,l2,l3,tr1) pack(0,p1,0,l2,l4,tr2) pack(0,p2,1,l2,l4,tr2) pack(0,p1,0,l1,l4,tr2) pack(0,p1,1,l1,l4,tr2) pack(0,p2,1,l1,l4,tr2) pack(0,p1,0,l3,l5,tr2) pack(0,p2,0,l3,l5,tr2) pack(0,p1,1,l3,l5,tr2) pack(0,p2,1,l4,l5,tr1) pack(0,p1,0,l4,l6,tr2) pack(0,p1,1,l4,l6,tr2) pack(0,p2,1,l4,l6,tr2)
+Optimization: 412
+OPTIMUM FOUND
+
+Models       : 1
+  Optimum    : yes
+Optimization : 412
+Calls        : 1
+Time         : 20.611s (Solving: 20.54s 1st Model: 20.54s Unsat: 0.00s)
+CPU Time     : 20.507s
+
+Choices      : 285720  
+Conflicts    : 219613   (Analyzed: 219548)
+Restarts     : 888      (Average: 247.24 Last: 1472 Blocked: 0)
+Model-Level  : 187.0   
+Problems     : 65       (Average Length: 0.00 Splits: 0)
+Lemmas       : 219548   (Deleted: 200299)
+  Binary     : 29       (Ratio:   0.01%)
+  Ternary    : 1533     (Ratio:   0.70%)
+  Conflict   : 219548   (Average Length:   80.1 Ratio: 100.00%) 
+  Loop       : 0        (Average Length:    0.0 Ratio:   0.00%) 
+  Other      : 0        (Average Length:    0.0 Ratio:   0.00%) 
+Backjumps    : 219548   (Average:  1.29 Max:  44 Sum: 284024)
+  Executed   : 219506   (Average:  1.29 Max:  44 Sum: 283679 Ratio:  99.88%)
+  Bounded    : 42       (Average:  8.21 Max:  34 Sum:    345 Ratio:   0.12%)
+
+Rules        : 56634    (Original: 53692)
+  Choice     : 76      
+  Minimize   : 1       
+Atoms        : 39377    (Original: 38937 Auxiliary: 440)
+Bodies       : 28481    (Original: 26123)
+  Sum        : 312     
+  Count      : 4        (Original: 170)
+Equivalences : 71904    (Atom=Atom: 23311 Body=Body: 17868 Other: 30725)
+Tight        : Yes
+Variables    : 8698     (Eliminated:    0 Frozen: 6782)
+Constraints  : 29652    (Binary:  72.9% Ternary:  16.3% Other:  10.8%)
+
+",,True
+clingo_usc,clingo,encoding_route.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp,C2_loc6_parts2_tr2.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/C2_loc6_parts2_tr2.lp,vary_locations,C2,2,clingo /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/C2_loc6_parts2_tr2.lp --stats=2 --opt-strategy=usc,OPTIMUM,30,22.032699,0.087,0.0,21.93,0.0,21.93,0.087,39377,56634,285720,219613,888,412,",tr2,0) freq(0,l3,l5,tr2,0) freq(1,l4,l5,tr1,0) freq(1,l4,l6,tr2,0) flow(l1,l3,p2,0) flow(l2,l3,p1,0) flow(l2,l4,p1,0) flow(l1,l4,p1,0) flow(l1,l4,p2,0) flow(l4,l5,p1,0) flow(l4,l6,p1,0) pack(0,p2,0,l1,l3,tr1) pack(0,p1,1,l1,l3,tr1) pack(0,p2,1,l1,l3,tr1) pack(0,p1,1,l1,l3,tr2) pack(0,p1,1,l2,l3,tr1) pack(0,p1,0,l2,l4,tr2) pack(0,p2,1,l2,l4,tr2) pack(0,p1,0,l1,l4,tr2) pack(0,p1,1,l1,l4,tr2) pack(0,p2,1,l1,l4,tr2) pack(0,p1,0,l3,l5,tr2) pack(0,p2,0,l3,l5,tr2) pack(0,p1,1,l3,l5,tr2) pack(0,p2,1,l4,l5,tr1) pack(0,p1,0,l4,l6,tr2) pack(0,p1,1,l4,l6,tr2) pack(0,p2,1,l4,l6,tr2)
+Optimization: 412
+OPTIMUM FOUND
+
+Models       : 1
+  Optimum    : yes
+Optimization : 412
+Calls        : 1
+Time         : 22.019s (Solving: 21.93s 1st Model: 21.93s Unsat: 0.00s)
+CPU Time     : 21.316s
+
+Choices      : 285720  
+Conflicts    : 219613   (Analyzed: 219548)
+Restarts     : 888      (Average: 247.24 Last: 1472 Blocked: 0)
+Model-Level  : 187.0   
+Problems     : 65       (Average Length: 0.00 Splits: 0)
+Lemmas       : 219548   (Deleted: 200299)
+  Binary     : 29       (Ratio:   0.01%)
+  Ternary    : 1533     (Ratio:   0.70%)
+  Conflict   : 219548   (Average Length:   80.1 Ratio: 100.00%) 
+  Loop       : 0        (Average Length:    0.0 Ratio:   0.00%) 
+  Other      : 0        (Average Length:    0.0 Ratio:   0.00%) 
+Backjumps    : 219548   (Average:  1.29 Max:  44 Sum: 284024)
+  Executed   : 219506   (Average:  1.29 Max:  44 Sum: 283679 Ratio:  99.88%)
+  Bounded    : 42       (Average:  8.21 Max:  34 Sum:    345 Ratio:   0.12%)
+
+Rules        : 56634    (Original: 53692)
+  Choice     : 76      
+  Minimize   : 1       
+Atoms        : 39377    (Original: 38937 Auxiliary: 440)
+Bodies       : 28481    (Original: 26123)
+  Sum        : 312     
+  Count      : 4        (Original: 170)
+Equivalences : 71904    (Atom=Atom: 23311 Body=Body: 17868 Other: 30725)
+Tight        : Yes
+Variables    : 8698     (Eliminated:    0 Frozen: 6782)
+Constraints  : 29652    (Binary:  72.9% Ternary:  16.3% Other:  10.8%)
+
+",,True
+clingo_usc,clingo,encoding_route.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp,C2_loc6_parts2_tr2.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/C2_loc6_parts2_tr2.lp,vary_locations,C2,3,clingo /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/C2_loc6_parts2_tr2.lp --stats=2 --opt-strategy=usc,OPTIMUM,30,20.352546,0.066,0.0,20.27,0.0,20.27,0.066,39377,56634,285720,219613,888,412,",tr2,0) freq(0,l3,l5,tr2,0) freq(1,l4,l5,tr1,0) freq(1,l4,l6,tr2,0) flow(l1,l3,p2,0) flow(l2,l3,p1,0) flow(l2,l4,p1,0) flow(l1,l4,p1,0) flow(l1,l4,p2,0) flow(l4,l5,p1,0) flow(l4,l6,p1,0) pack(0,p2,0,l1,l3,tr1) pack(0,p1,1,l1,l3,tr1) pack(0,p2,1,l1,l3,tr1) pack(0,p1,1,l1,l3,tr2) pack(0,p1,1,l2,l3,tr1) pack(0,p1,0,l2,l4,tr2) pack(0,p2,1,l2,l4,tr2) pack(0,p1,0,l1,l4,tr2) pack(0,p1,1,l1,l4,tr2) pack(0,p2,1,l1,l4,tr2) pack(0,p1,0,l3,l5,tr2) pack(0,p2,0,l3,l5,tr2) pack(0,p1,1,l3,l5,tr2) pack(0,p2,1,l4,l5,tr1) pack(0,p1,0,l4,l6,tr2) pack(0,p1,1,l4,l6,tr2) pack(0,p2,1,l4,l6,tr2)
+Optimization: 412
+OPTIMUM FOUND
+
+Models       : 1
+  Optimum    : yes
+Optimization : 412
+Calls        : 1
+Time         : 20.339s (Solving: 20.27s 1st Model: 20.27s Unsat: 0.00s)
+CPU Time     : 20.323s
+
+Choices      : 285720  
+Conflicts    : 219613   (Analyzed: 219548)
+Restarts     : 888      (Average: 247.24 Last: 1472 Blocked: 0)
+Model-Level  : 187.0   
+Problems     : 65       (Average Length: 0.00 Splits: 0)
+Lemmas       : 219548   (Deleted: 200299)
+  Binary     : 29       (Ratio:   0.01%)
+  Ternary    : 1533     (Ratio:   0.70%)
+  Conflict   : 219548   (Average Length:   80.1 Ratio: 100.00%) 
+  Loop       : 0        (Average Length:    0.0 Ratio:   0.00%) 
+  Other      : 0        (Average Length:    0.0 Ratio:   0.00%) 
+Backjumps    : 219548   (Average:  1.29 Max:  44 Sum: 284024)
+  Executed   : 219506   (Average:  1.29 Max:  44 Sum: 283679 Ratio:  99.88%)
+  Bounded    : 42       (Average:  8.21 Max:  34 Sum:    345 Ratio:   0.12%)
+
+Rules        : 56634    (Original: 53692)
+  Choice     : 76      
+  Minimize   : 1       
+Atoms        : 39377    (Original: 38937 Auxiliary: 440)
+Bodies       : 28481    (Original: 26123)
+  Sum        : 312     
+  Count      : 4        (Original: 170)
+Equivalences : 71904    (Atom=Atom: 23311 Body=Body: 17868 Other: 30725)
+Tight        : Yes
+Variables    : 8698     (Eliminated:    0 Frozen: 6782)
+Constraints  : 29652    (Binary:  72.9% Ternary:  16.3% Other:  10.8%)
+
+",,True
+clingo_handy,clingo,encoding_route.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp,A1_fixed_loc6_parts1.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/A1_fixed_loc6_parts1.lp,vary_parts,A1,1,clingo /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/A1_fixed_loc6_parts1.lp --stats=2 --configuration=handy,OPTIMUM,30,0.220424,0.028,0.0,0.18,0.0,0.18,0.028,12096,17815,18577,5385,8,700,",tr1) pack(4,p1,1,l4,l5,tr1) pack(5,p1,1,l4,l6,tr2) freq(0,l1,l3,tr2,0) freq(1,l1,l3,tr2,0) freq(0,l2,l3,tr1,0) freq(1,l2,l3,tr1,0) freq(0,l2,l4,tr2,0) freq(1,l2,l4,tr2,0) freq(0,l1,l4,tr2,0) freq(1,l1,l4,tr2,0) freq(0,l3,l5,tr1,0) freq(1,l3,l5,tr1,0) freq(0,l3,l5,tr2,0) freq(1,l3,l6,tr2,0) freq(0,l4,l5,tr1,0) freq(1,l4,l5,tr1,0) freq(0,l4,l6,tr2,0) freq(1,l4,l6,tr2,0) flow(l2,l3,p1,0) flow(l2,l4,p1,0) flow(l1,l4,p1,0) flow(l4,l5,p1,0) flow(l4,l6,p1,0) pack(0,p1,0,l2,l3,tr1) pack(0,p1,1,l2,l3,tr1) pack(0,p1,0,l2,l4,tr2) pack(0,p1,1,l2,l4,tr2) pack(0,p1,0,l4,l6,tr2)
+Optimization: 160
+OPTIMUM FOUND
+
+Models       : 23
+  Optimum    : yes
+Optimization : 160
+Calls        : 1
+Time         : 0.209s (Solving: 0.18s 1st Model: 0.00s Unsat: 0.02s)
+CPU Time     : 0.208s
+
+Choices      : 18577   
+Conflicts    : 5385     (Analyzed: 5384)
+Restarts     : 8        (Average: 673.00 Last: 5007 Blocked: 0)
+Model-Level  : 123.3   
+Problems     : 1        (Average Length: 0.00 Splits: 0)
+Lemmas       : 5384     (Deleted: 2638)
+  Binary     : 18       (Ratio:   0.33%)
+  Ternary    : 45       (Ratio:   0.84%)
+  Conflict   : 5384     (Average Length:   26.4 Ratio: 100.00%) 
+  Loop       : 0        (Average Length:    0.0 Ratio:   0.00%) 
+  Other      : 0        (Average Length:    0.0 Ratio:   0.00%) 
+Backjumps    : 5384     (Average:  2.97 Max:  77 Sum:  16005)
+  Executed   : 5384     (Average:  2.97 Max:  77 Sum:  16005 Ratio: 100.00%)
+  Bounded    : 0        (Average:  0.00 Max:   0 Sum:      0 Ratio:   0.00%)
+
+Rules        : 17815    (Original: 16290)
+  Choice     : 48      
+  Minimize   : 1       
+Atoms        : 12096    (Original: 11838 Auxiliary: 258)
+Bodies       : 9359     (Original: 8234)
+  Sum        : 114      (Original: 134)
+  Count      : 2        (Original: 105)
+Equivalences : 24776    (Atom=Atom: 7561 Body=Body: 6216 Other: 10999)
+Tight        : Yes
+Variables    : 3577     (Eliminated:  448 Frozen: 2509)
+Constraints  : 10380    (Binary:  72.7% Ternary:  16.3% Other:  11.0%)
+
+",,True
+clingo_handy,clingo,encoding_route.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp,A1_fixed_loc6_parts1.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/A1_fixed_loc6_parts1.lp,vary_parts,A1,2,clingo /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/A1_fixed_loc6_parts1.lp --stats=2 --configuration=handy,OPTIMUM,30,0.219813,0.028,0.0,0.18,0.0,0.18,0.028,12096,17815,18577,5385,8,700,",tr1) pack(4,p1,1,l4,l5,tr1) pack(5,p1,1,l4,l6,tr2) freq(0,l1,l3,tr2,0) freq(1,l1,l3,tr2,0) freq(0,l2,l3,tr1,0) freq(1,l2,l3,tr1,0) freq(0,l2,l4,tr2,0) freq(1,l2,l4,tr2,0) freq(0,l1,l4,tr2,0) freq(1,l1,l4,tr2,0) freq(0,l3,l5,tr1,0) freq(1,l3,l5,tr1,0) freq(0,l3,l5,tr2,0) freq(1,l3,l6,tr2,0) freq(0,l4,l5,tr1,0) freq(1,l4,l5,tr1,0) freq(0,l4,l6,tr2,0) freq(1,l4,l6,tr2,0) flow(l2,l3,p1,0) flow(l2,l4,p1,0) flow(l1,l4,p1,0) flow(l4,l5,p1,0) flow(l4,l6,p1,0) pack(0,p1,0,l2,l3,tr1) pack(0,p1,1,l2,l3,tr1) pack(0,p1,0,l2,l4,tr2) pack(0,p1,1,l2,l4,tr2) pack(0,p1,0,l4,l6,tr2)
+Optimization: 160
+OPTIMUM FOUND
+
+Models       : 23
+  Optimum    : yes
+Optimization : 160
+Calls        : 1
+Time         : 0.209s (Solving: 0.18s 1st Model: 0.00s Unsat: 0.02s)
+CPU Time     : 0.209s
+
+Choices      : 18577   
+Conflicts    : 5385     (Analyzed: 5384)
+Restarts     : 8        (Average: 673.00 Last: 5007 Blocked: 0)
+Model-Level  : 123.3   
+Problems     : 1        (Average Length: 0.00 Splits: 0)
+Lemmas       : 5384     (Deleted: 2638)
+  Binary     : 18       (Ratio:   0.33%)
+  Ternary    : 45       (Ratio:   0.84%)
+  Conflict   : 5384     (Average Length:   26.4 Ratio: 100.00%) 
+  Loop       : 0        (Average Length:    0.0 Ratio:   0.00%) 
+  Other      : 0        (Average Length:    0.0 Ratio:   0.00%) 
+Backjumps    : 5384     (Average:  2.97 Max:  77 Sum:  16005)
+  Executed   : 5384     (Average:  2.97 Max:  77 Sum:  16005 Ratio: 100.00%)
+  Bounded    : 0        (Average:  0.00 Max:   0 Sum:      0 Ratio:   0.00%)
+
+Rules        : 17815    (Original: 16290)
+  Choice     : 48      
+  Minimize   : 1       
+Atoms        : 12096    (Original: 11838 Auxiliary: 258)
+Bodies       : 9359     (Original: 8234)
+  Sum        : 114      (Original: 134)
+  Count      : 2        (Original: 105)
+Equivalences : 24776    (Atom=Atom: 7561 Body=Body: 6216 Other: 10999)
+Tight        : Yes
+Variables    : 3577     (Eliminated:  448 Frozen: 2509)
+Constraints  : 10380    (Binary:  72.7% Ternary:  16.3% Other:  11.0%)
+
+",,True
+clingo_handy,clingo,encoding_route.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp,A1_fixed_loc6_parts1.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/A1_fixed_loc6_parts1.lp,vary_parts,A1,3,clingo /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/A1_fixed_loc6_parts1.lp --stats=2 --configuration=handy,OPTIMUM,30,0.224267,0.028,0.0,0.19,0.0,0.19,0.028,12096,17815,18577,5385,8,700,",tr1) pack(4,p1,1,l4,l5,tr1) pack(5,p1,1,l4,l6,tr2) freq(0,l1,l3,tr2,0) freq(1,l1,l3,tr2,0) freq(0,l2,l3,tr1,0) freq(1,l2,l3,tr1,0) freq(0,l2,l4,tr2,0) freq(1,l2,l4,tr2,0) freq(0,l1,l4,tr2,0) freq(1,l1,l4,tr2,0) freq(0,l3,l5,tr1,0) freq(1,l3,l5,tr1,0) freq(0,l3,l5,tr2,0) freq(1,l3,l6,tr2,0) freq(0,l4,l5,tr1,0) freq(1,l4,l5,tr1,0) freq(0,l4,l6,tr2,0) freq(1,l4,l6,tr2,0) flow(l2,l3,p1,0) flow(l2,l4,p1,0) flow(l1,l4,p1,0) flow(l4,l5,p1,0) flow(l4,l6,p1,0) pack(0,p1,0,l2,l3,tr1) pack(0,p1,1,l2,l3,tr1) pack(0,p1,0,l2,l4,tr2) pack(0,p1,1,l2,l4,tr2) pack(0,p1,0,l4,l6,tr2)
+Optimization: 160
+OPTIMUM FOUND
+
+Models       : 23
+  Optimum    : yes
+Optimization : 160
+Calls        : 1
+Time         : 0.213s (Solving: 0.19s 1st Model: 0.00s Unsat: 0.02s)
+CPU Time     : 0.213s
+
+Choices      : 18577   
+Conflicts    : 5385     (Analyzed: 5384)
+Restarts     : 8        (Average: 673.00 Last: 5007 Blocked: 0)
+Model-Level  : 123.3   
+Problems     : 1        (Average Length: 0.00 Splits: 0)
+Lemmas       : 5384     (Deleted: 2638)
+  Binary     : 18       (Ratio:   0.33%)
+  Ternary    : 45       (Ratio:   0.84%)
+  Conflict   : 5384     (Average Length:   26.4 Ratio: 100.00%) 
+  Loop       : 0        (Average Length:    0.0 Ratio:   0.00%) 
+  Other      : 0        (Average Length:    0.0 Ratio:   0.00%) 
+Backjumps    : 5384     (Average:  2.97 Max:  77 Sum:  16005)
+  Executed   : 5384     (Average:  2.97 Max:  77 Sum:  16005 Ratio: 100.00%)
+  Bounded    : 0        (Average:  0.00 Max:   0 Sum:      0 Ratio:   0.00%)
+
+Rules        : 17815    (Original: 16290)
+  Choice     : 48      
+  Minimize   : 1       
+Atoms        : 12096    (Original: 11838 Auxiliary: 258)
+Bodies       : 9359     (Original: 8234)
+  Sum        : 114      (Original: 134)
+  Count      : 2        (Original: 105)
+Equivalences : 24776    (Atom=Atom: 7561 Body=Body: 6216 Other: 10999)
+Tight        : Yes
+Variables    : 3577     (Eliminated:  448 Frozen: 2509)
+Constraints  : 10380    (Binary:  72.7% Ternary:  16.3% Other:  11.0%)
+
+",,True
+clingo_handy,clingo,encoding_route.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp,A2_fixed_loc6_parts2.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/A2_fixed_loc6_parts2.lp,vary_parts,A2,1,clingo /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/A2_fixed_loc6_parts2.lp --stats=2 --configuration=handy,TIMEOUT,,120.005878,,,,,,120.005878,,,,,,,"ack(0,p1,0,l2,l4,tr2) pack(0,p1,1,l2,l4,tr2) pack(0,p2,1,l2,l4,tr2) pack(0,p2,0,l1,l4,tr2) pack(0,p1,1,l1,l4,tr2) pack(0,p2,1,l1,l4,tr2) pack(0,p1,0,l3,l5,tr2) pack(0,p2,0,l3,l5,tr2) pack(0,p1,1,l3,l5,tr2) pack(0,p1,1,l3,l6,tr2) pack(0,p2,0,l4,l5,tr1) pack(0,p1,1,l4,l5,tr1) pack(0,p1,0,l4,l6,tr2) pack(0,p2,0,l4,l6,tr2) pack(0,p1,1,l4,l6,tr2)
+Optimization: 416
+Answer: 40 (Time: 5.602s)
+pack(4,p1,0,l1,l3,tr2) freq(1,l1,l3,tr1,3) pack(4,p1,1,l1,l3,tr1) flow(l1,l3,p1,12) freq(0,l2,l3,tr1,3) freq(1,l2,l3,tr1,3) pack(2,p2,0,l2,l3,tr1) pack(2,p2,1,l2,l3,tr1) flow(l2,l3,p2,11) freq(1,l2,l4,tr2,1) pack(4,p2,1,l2,l4,tr2) flow(l2,l4,p2,4) pack(1,p1,0,l1,l4,tr2) pack(1,p1,0,l3,l5,tr1) freq(0,l3,l5,tr1,2) freq(1,l3,l5,tr1,1) freq(1,l3,l5,tr2,1) pack(3,p1,1,l3,l5,tr1) flow(l3,l5,p1,5) pack(2,p2,0,l3,l5,tr1) pack(2,p2,1,l3,l5,tr1) pack(3,p2,1,l3,l5,tr2) flow(l3,l5,p2,9) freq(0,l3,l6,tr2,2) pack(4,p1,0,l3,l6,tr2) pack(1,p1,1,l3,l6,tr2) flow(l3,l6,p1,7) pack(1,p2,0,l3,l6,tr2) flow(l3,l6,p2,2) pack(3,p1,0,l4,l5,tr1) freq(1,l4,l6,tr2,1) pack(4,p2,1,l4,l6,tr2) flow(l4,l6,p2,4) freq(0,l1,l3,tr1,0) freq(0,l1,l3,tr2,0) freq(1,l1,l3,tr2,0) freq(0,l2,l4,tr2,0) freq(0,l1,l4,tr2,0) freq(1,l1,l4,tr2,0) freq(0,l3,l5,tr2,0) freq(1,l3,l6,tr2,0) freq(0,l4,l5,tr1,0) freq(1,l4,l5,tr1,0) freq(0,l4,l6,tr2,0) flow(l1,l3,p2,0) flow(l2,l3,p1,0) flow(l2,l4,p1,0) flow(l1,l4,p1,0) flow(l1,l4,p2,0) flow(l4,l5,p1,0) flow(l4,l5,p2,0) flow(l4,l6,p1,0) pack(0,p1,0,l1,l3,tr1) pack(0,p2,0,l1,l3,tr1) pack(0,p2,1,l1,l3,tr1) pack(0,p2,0,l1,l3,tr2) pack(0,p1,1,l1,l3,tr2) pack(0,p2,1,l1,l3,tr2) pack(0,p1,0,l2,l3,tr1) pack(0,p1,1,l2,l3,tr1) pack(0,p1,0,l2,l4,tr2) pack(0,p2,0,l2,l4,tr2) pack(0,p1,1,l2,l4,tr2) pack(0,p2,0,l1,l4,tr2) pack(0,p1,1,l1,l4,tr2) pack(0,p2,1,l1,l4,tr2) pack(0,p1,0,l3,l5,tr2) pack(0,p2,0,l3,l5,tr2) pack(0,p1,1,l3,l5,tr2) pack(0,p2,1,l3,l6,tr2) pack(0,p2,0,l4,l5,tr1) pack(0,p1,1,l4,l5,tr1) pack(0,p2,1,l4,l5,tr1) pack(0,p1,0,l4,l6,tr2) pack(0,p2,0,l4,l6,tr2) pack(0,p1,1,l4,l6,tr2)
+Optimization: 412
+",,False
+clingo_handy,clingo,encoding_route.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp,A2_fixed_loc6_parts2.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/A2_fixed_loc6_parts2.lp,vary_parts,A2,2,clingo /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/A2_fixed_loc6_parts2.lp --stats=2 --configuration=handy,TIMEOUT,,120.00567,,,,,,120.00567,,,,,,,"ack(0,p1,0,l2,l4,tr2) pack(0,p1,1,l2,l4,tr2) pack(0,p2,1,l2,l4,tr2) pack(0,p2,0,l1,l4,tr2) pack(0,p1,1,l1,l4,tr2) pack(0,p2,1,l1,l4,tr2) pack(0,p1,0,l3,l5,tr2) pack(0,p2,0,l3,l5,tr2) pack(0,p1,1,l3,l5,tr2) pack(0,p1,1,l3,l6,tr2) pack(0,p2,0,l4,l5,tr1) pack(0,p1,1,l4,l5,tr1) pack(0,p1,0,l4,l6,tr2) pack(0,p2,0,l4,l6,tr2) pack(0,p1,1,l4,l6,tr2)
+Optimization: 416
+Answer: 40 (Time: 5.432s)
+pack(4,p1,0,l1,l3,tr2) freq(1,l1,l3,tr1,3) pack(4,p1,1,l1,l3,tr1) flow(l1,l3,p1,12) freq(0,l2,l3,tr1,3) freq(1,l2,l3,tr1,3) pack(2,p2,0,l2,l3,tr1) pack(2,p2,1,l2,l3,tr1) flow(l2,l3,p2,11) freq(1,l2,l4,tr2,1) pack(4,p2,1,l2,l4,tr2) flow(l2,l4,p2,4) pack(1,p1,0,l1,l4,tr2) pack(1,p1,0,l3,l5,tr1) freq(0,l3,l5,tr1,2) freq(1,l3,l5,tr1,1) freq(1,l3,l5,tr2,1) pack(3,p1,1,l3,l5,tr1) flow(l3,l5,p1,5) pack(2,p2,0,l3,l5,tr1) pack(2,p2,1,l3,l5,tr1) pack(3,p2,1,l3,l5,tr2) flow(l3,l5,p2,9) freq(0,l3,l6,tr2,2) pack(4,p1,0,l3,l6,tr2) pack(1,p1,1,l3,l6,tr2) flow(l3,l6,p1,7) pack(1,p2,0,l3,l6,tr2) flow(l3,l6,p2,2) pack(3,p1,0,l4,l5,tr1) freq(1,l4,l6,tr2,1) pack(4,p2,1,l4,l6,tr2) flow(l4,l6,p2,4) freq(0,l1,l3,tr1,0) freq(0,l1,l3,tr2,0) freq(1,l1,l3,tr2,0) freq(0,l2,l4,tr2,0) freq(0,l1,l4,tr2,0) freq(1,l1,l4,tr2,0) freq(0,l3,l5,tr2,0) freq(1,l3,l6,tr2,0) freq(0,l4,l5,tr1,0) freq(1,l4,l5,tr1,0) freq(0,l4,l6,tr2,0) flow(l1,l3,p2,0) flow(l2,l3,p1,0) flow(l2,l4,p1,0) flow(l1,l4,p1,0) flow(l1,l4,p2,0) flow(l4,l5,p1,0) flow(l4,l5,p2,0) flow(l4,l6,p1,0) pack(0,p1,0,l1,l3,tr1) pack(0,p2,0,l1,l3,tr1) pack(0,p2,1,l1,l3,tr1) pack(0,p2,0,l1,l3,tr2) pack(0,p1,1,l1,l3,tr2) pack(0,p2,1,l1,l3,tr2) pack(0,p1,0,l2,l3,tr1) pack(0,p1,1,l2,l3,tr1) pack(0,p1,0,l2,l4,tr2) pack(0,p2,0,l2,l4,tr2) pack(0,p1,1,l2,l4,tr2) pack(0,p2,0,l1,l4,tr2) pack(0,p1,1,l1,l4,tr2) pack(0,p2,1,l1,l4,tr2) pack(0,p1,0,l3,l5,tr2) pack(0,p2,0,l3,l5,tr2) pack(0,p1,1,l3,l5,tr2) pack(0,p2,1,l3,l6,tr2) pack(0,p2,0,l4,l5,tr1) pack(0,p1,1,l4,l5,tr1) pack(0,p2,1,l4,l5,tr1) pack(0,p1,0,l4,l6,tr2) pack(0,p2,0,l4,l6,tr2) pack(0,p1,1,l4,l6,tr2)
+Optimization: 412
+",,False
+clingo_handy,clingo,encoding_route.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp,A2_fixed_loc6_parts2.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/A2_fixed_loc6_parts2.lp,vary_parts,A2,3,clingo /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/A2_fixed_loc6_parts2.lp --stats=2 --configuration=handy,TIMEOUT,,120.009291,,,,,,120.009291,,,,,,,"ack(0,p1,0,l2,l4,tr2) pack(0,p1,1,l2,l4,tr2) pack(0,p2,1,l2,l4,tr2) pack(0,p2,0,l1,l4,tr2) pack(0,p1,1,l1,l4,tr2) pack(0,p2,1,l1,l4,tr2) pack(0,p1,0,l3,l5,tr2) pack(0,p2,0,l3,l5,tr2) pack(0,p1,1,l3,l5,tr2) pack(0,p1,1,l3,l6,tr2) pack(0,p2,0,l4,l5,tr1) pack(0,p1,1,l4,l5,tr1) pack(0,p1,0,l4,l6,tr2) pack(0,p2,0,l4,l6,tr2) pack(0,p1,1,l4,l6,tr2)
+Optimization: 416
+Answer: 40 (Time: 5.474s)
+pack(4,p1,0,l1,l3,tr2) freq(1,l1,l3,tr1,3) pack(4,p1,1,l1,l3,tr1) flow(l1,l3,p1,12) freq(0,l2,l3,tr1,3) freq(1,l2,l3,tr1,3) pack(2,p2,0,l2,l3,tr1) pack(2,p2,1,l2,l3,tr1) flow(l2,l3,p2,11) freq(1,l2,l4,tr2,1) pack(4,p2,1,l2,l4,tr2) flow(l2,l4,p2,4) pack(1,p1,0,l1,l4,tr2) pack(1,p1,0,l3,l5,tr1) freq(0,l3,l5,tr1,2) freq(1,l3,l5,tr1,1) freq(1,l3,l5,tr2,1) pack(3,p1,1,l3,l5,tr1) flow(l3,l5,p1,5) pack(2,p2,0,l3,l5,tr1) pack(2,p2,1,l3,l5,tr1) pack(3,p2,1,l3,l5,tr2) flow(l3,l5,p2,9) freq(0,l3,l6,tr2,2) pack(4,p1,0,l3,l6,tr2) pack(1,p1,1,l3,l6,tr2) flow(l3,l6,p1,7) pack(1,p2,0,l3,l6,tr2) flow(l3,l6,p2,2) pack(3,p1,0,l4,l5,tr1) freq(1,l4,l6,tr2,1) pack(4,p2,1,l4,l6,tr2) flow(l4,l6,p2,4) freq(0,l1,l3,tr1,0) freq(0,l1,l3,tr2,0) freq(1,l1,l3,tr2,0) freq(0,l2,l4,tr2,0) freq(0,l1,l4,tr2,0) freq(1,l1,l4,tr2,0) freq(0,l3,l5,tr2,0) freq(1,l3,l6,tr2,0) freq(0,l4,l5,tr1,0) freq(1,l4,l5,tr1,0) freq(0,l4,l6,tr2,0) flow(l1,l3,p2,0) flow(l2,l3,p1,0) flow(l2,l4,p1,0) flow(l1,l4,p1,0) flow(l1,l4,p2,0) flow(l4,l5,p1,0) flow(l4,l5,p2,0) flow(l4,l6,p1,0) pack(0,p1,0,l1,l3,tr1) pack(0,p2,0,l1,l3,tr1) pack(0,p2,1,l1,l3,tr1) pack(0,p2,0,l1,l3,tr2) pack(0,p1,1,l1,l3,tr2) pack(0,p2,1,l1,l3,tr2) pack(0,p1,0,l2,l3,tr1) pack(0,p1,1,l2,l3,tr1) pack(0,p1,0,l2,l4,tr2) pack(0,p2,0,l2,l4,tr2) pack(0,p1,1,l2,l4,tr2) pack(0,p2,0,l1,l4,tr2) pack(0,p1,1,l1,l4,tr2) pack(0,p2,1,l1,l4,tr2) pack(0,p1,0,l3,l5,tr2) pack(0,p2,0,l3,l5,tr2) pack(0,p1,1,l3,l5,tr2) pack(0,p2,1,l3,l6,tr2) pack(0,p2,0,l4,l5,tr1) pack(0,p1,1,l4,l5,tr1) pack(0,p2,1,l4,l5,tr1) pack(0,p1,0,l4,l6,tr2) pack(0,p2,0,l4,l6,tr2) pack(0,p1,1,l4,l6,tr2)
+Optimization: 412
+",,False
+clingo_handy,clingo,encoding_route.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp,B1_fixed_loc6_tr1.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/B1_fixed_loc6_tr1.lp,vary_transport_resources,B1,1,clingo /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/B1_fixed_loc6_tr1.lp --stats=2 --configuration=handy,OPTIMUM,30,21.110955,0.073,0.0,21.02,0.0,21.02,0.073,39853,54810,770131,359127,289,1456,",0) freq(0,l4,l5,tr1,0) freq(1,l4,l5,tr1,0) freq(0,l4,l6,tr1,0) freq(1,l4,l6,tr1,0) flow(l1,l3,p2,0) flow(l2,l3,p1,0) flow(l2,l4,p1,0) flow(l2,l4,p2,0) flow(l1,l4,p1,0) flow(l1,l4,p2,0) flow(l4,l5,p1,0) flow(l4,l5,p2,0) flow(l4,l6,p1,0) flow(l4,l6,p2,0) pack(0,p2,0,l1,l3,tr1) pack(0,p2,1,l1,l3,tr1) pack(0,p1,0,l2,l3,tr1) pack(0,p1,1,l2,l3,tr1) pack(0,p1,0,l2,l4,tr1) pack(0,p1,1,l2,l4,tr1) pack(0,p2,0,l1,l4,tr1) pack(0,p2,1,l1,l4,tr1) pack(0,p1,0,l3,l5,tr1) pack(0,p2,0,l3,l6,tr1) pack(0,p1,0,l4,l5,tr1) pack(0,p1,1,l4,l5,tr1) pack(0,p1,0,l4,l6,tr1) pack(0,p1,1,l4,l6,tr1)
+Optimization: 428
+OPTIMUM FOUND
+
+Models       : 28
+  Optimum    : yes
+Optimization : 428
+Calls        : 1
+Time         : 21.091s (Solving: 21.02s 1st Model: 0.00s Unsat: 20.44s)
+CPU Time     : 21.091s
+
+Choices      : 770131  
+Conflicts    : 359127   (Analyzed: 359126)
+Restarts     : 289      (Average: 1242.65 Last: 8448 Blocked: 0)
+Model-Level  : 125.7   
+Problems     : 1        (Average Length: 0.00 Splits: 0)
+Lemmas       : 359126   (Deleted: 247396)
+  Binary     : 270      (Ratio:   0.08%)
+  Ternary    : 559      (Ratio:   0.16%)
+  Conflict   : 359126   (Average Length:   21.7 Ratio: 100.00%) 
+  Loop       : 0        (Average Length:    0.0 Ratio:   0.00%) 
+  Other      : 0        (Average Length:    0.0 Ratio:   0.00%) 
+Backjumps    : 359126   (Average:  2.10 Max:  90 Sum: 753952)
+  Executed   : 359126   (Average:  2.10 Max:  90 Sum: 753952 Ratio: 100.00%)
+  Bounded    : 0        (Average:  0.00 Max:   0 Sum:      0 Ratio:   0.00%)
+
+Rules        : 54810    (Original: 51872)
+  Choice     : 64      
+  Minimize   : 1       
+Atoms        : 39853    (Original: 39401 Auxiliary: 452)
+Bodies       : 26701    (Original: 24347)
+  Sum        : 308     
+  Count      : 4        (Original: 146)
+Equivalences : 58656    (Atom=Atom: 19555 Body=Body: 13512 Other: 25589)
+Tight        : Yes
+Variables    : 7110     (Eliminated:  735 Frozen: 5606)
+Constraints  : 19165    (Binary:  68.7% Ternary:  23.5% Other:   7.8%)
+
+",,True
+clingo_handy,clingo,encoding_route.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp,B1_fixed_loc6_tr1.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/B1_fixed_loc6_tr1.lp,vary_transport_resources,B1,2,clingo /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/B1_fixed_loc6_tr1.lp --stats=2 --configuration=handy,OPTIMUM,30,21.267926,0.072,0.0,21.18,0.0,21.18,0.072,39853,54810,770131,359127,289,1456,",0) freq(0,l4,l5,tr1,0) freq(1,l4,l5,tr1,0) freq(0,l4,l6,tr1,0) freq(1,l4,l6,tr1,0) flow(l1,l3,p2,0) flow(l2,l3,p1,0) flow(l2,l4,p1,0) flow(l2,l4,p2,0) flow(l1,l4,p1,0) flow(l1,l4,p2,0) flow(l4,l5,p1,0) flow(l4,l5,p2,0) flow(l4,l6,p1,0) flow(l4,l6,p2,0) pack(0,p2,0,l1,l3,tr1) pack(0,p2,1,l1,l3,tr1) pack(0,p1,0,l2,l3,tr1) pack(0,p1,1,l2,l3,tr1) pack(0,p1,0,l2,l4,tr1) pack(0,p1,1,l2,l4,tr1) pack(0,p2,0,l1,l4,tr1) pack(0,p2,1,l1,l4,tr1) pack(0,p1,0,l3,l5,tr1) pack(0,p2,0,l3,l6,tr1) pack(0,p1,0,l4,l5,tr1) pack(0,p1,1,l4,l5,tr1) pack(0,p1,0,l4,l6,tr1) pack(0,p1,1,l4,l6,tr1)
+Optimization: 428
+OPTIMUM FOUND
+
+Models       : 28
+  Optimum    : yes
+Optimization : 428
+Calls        : 1
+Time         : 21.251s (Solving: 21.18s 1st Model: 0.00s Unsat: 20.60s)
+CPU Time     : 21.221s
+
+Choices      : 770131  
+Conflicts    : 359127   (Analyzed: 359126)
+Restarts     : 289      (Average: 1242.65 Last: 8448 Blocked: 0)
+Model-Level  : 125.7   
+Problems     : 1        (Average Length: 0.00 Splits: 0)
+Lemmas       : 359126   (Deleted: 247396)
+  Binary     : 270      (Ratio:   0.08%)
+  Ternary    : 559      (Ratio:   0.16%)
+  Conflict   : 359126   (Average Length:   21.7 Ratio: 100.00%) 
+  Loop       : 0        (Average Length:    0.0 Ratio:   0.00%) 
+  Other      : 0        (Average Length:    0.0 Ratio:   0.00%) 
+Backjumps    : 359126   (Average:  2.10 Max:  90 Sum: 753952)
+  Executed   : 359126   (Average:  2.10 Max:  90 Sum: 753952 Ratio: 100.00%)
+  Bounded    : 0        (Average:  0.00 Max:   0 Sum:      0 Ratio:   0.00%)
+
+Rules        : 54810    (Original: 51872)
+  Choice     : 64      
+  Minimize   : 1       
+Atoms        : 39853    (Original: 39401 Auxiliary: 452)
+Bodies       : 26701    (Original: 24347)
+  Sum        : 308     
+  Count      : 4        (Original: 146)
+Equivalences : 58656    (Atom=Atom: 19555 Body=Body: 13512 Other: 25589)
+Tight        : Yes
+Variables    : 7110     (Eliminated:  735 Frozen: 5606)
+Constraints  : 19165    (Binary:  68.7% Ternary:  23.5% Other:   7.8%)
+
+",,True
+clingo_handy,clingo,encoding_route.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp,B1_fixed_loc6_tr1.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/B1_fixed_loc6_tr1.lp,vary_transport_resources,B1,3,clingo /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/B1_fixed_loc6_tr1.lp --stats=2 --configuration=handy,OPTIMUM,30,21.11332,0.072,0.0,21.03,0.0,21.03,0.072,39853,54810,770131,359127,289,1456,",0) freq(0,l4,l5,tr1,0) freq(1,l4,l5,tr1,0) freq(0,l4,l6,tr1,0) freq(1,l4,l6,tr1,0) flow(l1,l3,p2,0) flow(l2,l3,p1,0) flow(l2,l4,p1,0) flow(l2,l4,p2,0) flow(l1,l4,p1,0) flow(l1,l4,p2,0) flow(l4,l5,p1,0) flow(l4,l5,p2,0) flow(l4,l6,p1,0) flow(l4,l6,p2,0) pack(0,p2,0,l1,l3,tr1) pack(0,p2,1,l1,l3,tr1) pack(0,p1,0,l2,l3,tr1) pack(0,p1,1,l2,l3,tr1) pack(0,p1,0,l2,l4,tr1) pack(0,p1,1,l2,l4,tr1) pack(0,p2,0,l1,l4,tr1) pack(0,p2,1,l1,l4,tr1) pack(0,p1,0,l3,l5,tr1) pack(0,p2,0,l3,l6,tr1) pack(0,p1,0,l4,l5,tr1) pack(0,p1,1,l4,l5,tr1) pack(0,p1,0,l4,l6,tr1) pack(0,p1,1,l4,l6,tr1)
+Optimization: 428
+OPTIMUM FOUND
+
+Models       : 28
+  Optimum    : yes
+Optimization : 428
+Calls        : 1
+Time         : 21.096s (Solving: 21.03s 1st Model: 0.00s Unsat: 20.45s)
+CPU Time     : 21.089s
+
+Choices      : 770131  
+Conflicts    : 359127   (Analyzed: 359126)
+Restarts     : 289      (Average: 1242.65 Last: 8448 Blocked: 0)
+Model-Level  : 125.7   
+Problems     : 1        (Average Length: 0.00 Splits: 0)
+Lemmas       : 359126   (Deleted: 247396)
+  Binary     : 270      (Ratio:   0.08%)
+  Ternary    : 559      (Ratio:   0.16%)
+  Conflict   : 359126   (Average Length:   21.7 Ratio: 100.00%) 
+  Loop       : 0        (Average Length:    0.0 Ratio:   0.00%) 
+  Other      : 0        (Average Length:    0.0 Ratio:   0.00%) 
+Backjumps    : 359126   (Average:  2.10 Max:  90 Sum: 753952)
+  Executed   : 359126   (Average:  2.10 Max:  90 Sum: 753952 Ratio: 100.00%)
+  Bounded    : 0        (Average:  0.00 Max:   0 Sum:      0 Ratio:   0.00%)
+
+Rules        : 54810    (Original: 51872)
+  Choice     : 64      
+  Minimize   : 1       
+Atoms        : 39853    (Original: 39401 Auxiliary: 452)
+Bodies       : 26701    (Original: 24347)
+  Sum        : 308     
+  Count      : 4        (Original: 146)
+Equivalences : 58656    (Atom=Atom: 19555 Body=Body: 13512 Other: 25589)
+Tight        : Yes
+Variables    : 7110     (Eliminated:  735 Frozen: 5606)
+Constraints  : 19165    (Binary:  68.7% Ternary:  23.5% Other:   7.8%)
+
+",,True
+clingo_handy,clingo,encoding_route.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp,B2_fixed_loc6_tr2.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/B2_fixed_loc6_tr2.lp,vary_transport_resources,B2,1,clingo /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/B2_fixed_loc6_tr2.lp --stats=2 --configuration=handy,TIMEOUT,,120.007344,,,,,,120.007344,,,,,,,"ack(0,p1,0,l2,l4,tr2) pack(0,p1,1,l2,l4,tr2) pack(0,p2,1,l2,l4,tr2) pack(0,p2,0,l1,l4,tr2) pack(0,p1,1,l1,l4,tr2) pack(0,p2,1,l1,l4,tr2) pack(0,p1,0,l3,l5,tr2) pack(0,p2,0,l3,l5,tr2) pack(0,p1,1,l3,l5,tr2) pack(0,p1,1,l3,l6,tr2) pack(0,p2,0,l4,l5,tr1) pack(0,p1,1,l4,l5,tr1) pack(0,p1,0,l4,l6,tr2) pack(0,p2,0,l4,l6,tr2) pack(0,p1,1,l4,l6,tr2)
+Optimization: 416
+Answer: 40 (Time: 5.519s)
+pack(4,p1,0,l1,l3,tr2) freq(1,l1,l3,tr1,3) pack(4,p1,1,l1,l3,tr1) flow(l1,l3,p1,12) freq(0,l2,l3,tr1,3) freq(1,l2,l3,tr1,3) pack(2,p2,0,l2,l3,tr1) pack(2,p2,1,l2,l3,tr1) flow(l2,l3,p2,11) freq(1,l2,l4,tr2,1) pack(4,p2,1,l2,l4,tr2) flow(l2,l4,p2,4) pack(1,p1,0,l1,l4,tr2) pack(1,p1,0,l3,l5,tr1) freq(0,l3,l5,tr1,2) freq(1,l3,l5,tr1,1) freq(1,l3,l5,tr2,1) pack(3,p1,1,l3,l5,tr1) flow(l3,l5,p1,5) pack(2,p2,0,l3,l5,tr1) pack(2,p2,1,l3,l5,tr1) pack(3,p2,1,l3,l5,tr2) flow(l3,l5,p2,9) freq(0,l3,l6,tr2,2) pack(4,p1,0,l3,l6,tr2) pack(1,p1,1,l3,l6,tr2) flow(l3,l6,p1,7) pack(1,p2,0,l3,l6,tr2) flow(l3,l6,p2,2) pack(3,p1,0,l4,l5,tr1) freq(1,l4,l6,tr2,1) pack(4,p2,1,l4,l6,tr2) flow(l4,l6,p2,4) freq(0,l1,l3,tr1,0) freq(0,l1,l3,tr2,0) freq(1,l1,l3,tr2,0) freq(0,l2,l4,tr2,0) freq(0,l1,l4,tr2,0) freq(1,l1,l4,tr2,0) freq(0,l3,l5,tr2,0) freq(1,l3,l6,tr2,0) freq(0,l4,l5,tr1,0) freq(1,l4,l5,tr1,0) freq(0,l4,l6,tr2,0) flow(l1,l3,p2,0) flow(l2,l3,p1,0) flow(l2,l4,p1,0) flow(l1,l4,p1,0) flow(l1,l4,p2,0) flow(l4,l5,p1,0) flow(l4,l5,p2,0) flow(l4,l6,p1,0) pack(0,p1,0,l1,l3,tr1) pack(0,p2,0,l1,l3,tr1) pack(0,p2,1,l1,l3,tr1) pack(0,p2,0,l1,l3,tr2) pack(0,p1,1,l1,l3,tr2) pack(0,p2,1,l1,l3,tr2) pack(0,p1,0,l2,l3,tr1) pack(0,p1,1,l2,l3,tr1) pack(0,p1,0,l2,l4,tr2) pack(0,p2,0,l2,l4,tr2) pack(0,p1,1,l2,l4,tr2) pack(0,p2,0,l1,l4,tr2) pack(0,p1,1,l1,l4,tr2) pack(0,p2,1,l1,l4,tr2) pack(0,p1,0,l3,l5,tr2) pack(0,p2,0,l3,l5,tr2) pack(0,p1,1,l3,l5,tr2) pack(0,p2,1,l3,l6,tr2) pack(0,p2,0,l4,l5,tr1) pack(0,p1,1,l4,l5,tr1) pack(0,p2,1,l4,l5,tr1) pack(0,p1,0,l4,l6,tr2) pack(0,p2,0,l4,l6,tr2) pack(0,p1,1,l4,l6,tr2)
+Optimization: 412
+",,False
+clingo_handy,clingo,encoding_route.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp,B2_fixed_loc6_tr2.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/B2_fixed_loc6_tr2.lp,vary_transport_resources,B2,2,clingo /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/B2_fixed_loc6_tr2.lp --stats=2 --configuration=handy,TIMEOUT,,120.007513,,,,,,120.007513,,,,,,,"ack(0,p1,0,l2,l4,tr2) pack(0,p1,1,l2,l4,tr2) pack(0,p2,1,l2,l4,tr2) pack(0,p2,0,l1,l4,tr2) pack(0,p1,1,l1,l4,tr2) pack(0,p2,1,l1,l4,tr2) pack(0,p1,0,l3,l5,tr2) pack(0,p2,0,l3,l5,tr2) pack(0,p1,1,l3,l5,tr2) pack(0,p1,1,l3,l6,tr2) pack(0,p2,0,l4,l5,tr1) pack(0,p1,1,l4,l5,tr1) pack(0,p1,0,l4,l6,tr2) pack(0,p2,0,l4,l6,tr2) pack(0,p1,1,l4,l6,tr2)
+Optimization: 416
+Answer: 40 (Time: 5.419s)
+pack(4,p1,0,l1,l3,tr2) freq(1,l1,l3,tr1,3) pack(4,p1,1,l1,l3,tr1) flow(l1,l3,p1,12) freq(0,l2,l3,tr1,3) freq(1,l2,l3,tr1,3) pack(2,p2,0,l2,l3,tr1) pack(2,p2,1,l2,l3,tr1) flow(l2,l3,p2,11) freq(1,l2,l4,tr2,1) pack(4,p2,1,l2,l4,tr2) flow(l2,l4,p2,4) pack(1,p1,0,l1,l4,tr2) pack(1,p1,0,l3,l5,tr1) freq(0,l3,l5,tr1,2) freq(1,l3,l5,tr1,1) freq(1,l3,l5,tr2,1) pack(3,p1,1,l3,l5,tr1) flow(l3,l5,p1,5) pack(2,p2,0,l3,l5,tr1) pack(2,p2,1,l3,l5,tr1) pack(3,p2,1,l3,l5,tr2) flow(l3,l5,p2,9) freq(0,l3,l6,tr2,2) pack(4,p1,0,l3,l6,tr2) pack(1,p1,1,l3,l6,tr2) flow(l3,l6,p1,7) pack(1,p2,0,l3,l6,tr2) flow(l3,l6,p2,2) pack(3,p1,0,l4,l5,tr1) freq(1,l4,l6,tr2,1) pack(4,p2,1,l4,l6,tr2) flow(l4,l6,p2,4) freq(0,l1,l3,tr1,0) freq(0,l1,l3,tr2,0) freq(1,l1,l3,tr2,0) freq(0,l2,l4,tr2,0) freq(0,l1,l4,tr2,0) freq(1,l1,l4,tr2,0) freq(0,l3,l5,tr2,0) freq(1,l3,l6,tr2,0) freq(0,l4,l5,tr1,0) freq(1,l4,l5,tr1,0) freq(0,l4,l6,tr2,0) flow(l1,l3,p2,0) flow(l2,l3,p1,0) flow(l2,l4,p1,0) flow(l1,l4,p1,0) flow(l1,l4,p2,0) flow(l4,l5,p1,0) flow(l4,l5,p2,0) flow(l4,l6,p1,0) pack(0,p1,0,l1,l3,tr1) pack(0,p2,0,l1,l3,tr1) pack(0,p2,1,l1,l3,tr1) pack(0,p2,0,l1,l3,tr2) pack(0,p1,1,l1,l3,tr2) pack(0,p2,1,l1,l3,tr2) pack(0,p1,0,l2,l3,tr1) pack(0,p1,1,l2,l3,tr1) pack(0,p1,0,l2,l4,tr2) pack(0,p2,0,l2,l4,tr2) pack(0,p1,1,l2,l4,tr2) pack(0,p2,0,l1,l4,tr2) pack(0,p1,1,l1,l4,tr2) pack(0,p2,1,l1,l4,tr2) pack(0,p1,0,l3,l5,tr2) pack(0,p2,0,l3,l5,tr2) pack(0,p1,1,l3,l5,tr2) pack(0,p2,1,l3,l6,tr2) pack(0,p2,0,l4,l5,tr1) pack(0,p1,1,l4,l5,tr1) pack(0,p2,1,l4,l5,tr1) pack(0,p1,0,l4,l6,tr2) pack(0,p2,0,l4,l6,tr2) pack(0,p1,1,l4,l6,tr2)
+Optimization: 412
+",,False
+clingo_handy,clingo,encoding_route.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp,B2_fixed_loc6_tr2.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/B2_fixed_loc6_tr2.lp,vary_transport_resources,B2,3,clingo /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/B2_fixed_loc6_tr2.lp --stats=2 --configuration=handy,TIMEOUT,,120.006946,,,,,,120.006946,,,,,,,"ack(0,p1,0,l2,l4,tr2) pack(0,p1,1,l2,l4,tr2) pack(0,p2,1,l2,l4,tr2) pack(0,p2,0,l1,l4,tr2) pack(0,p1,1,l1,l4,tr2) pack(0,p2,1,l1,l4,tr2) pack(0,p1,0,l3,l5,tr2) pack(0,p2,0,l3,l5,tr2) pack(0,p1,1,l3,l5,tr2) pack(0,p1,1,l3,l6,tr2) pack(0,p2,0,l4,l5,tr1) pack(0,p1,1,l4,l5,tr1) pack(0,p1,0,l4,l6,tr2) pack(0,p2,0,l4,l6,tr2) pack(0,p1,1,l4,l6,tr2)
+Optimization: 416
+Answer: 40 (Time: 5.439s)
+pack(4,p1,0,l1,l3,tr2) freq(1,l1,l3,tr1,3) pack(4,p1,1,l1,l3,tr1) flow(l1,l3,p1,12) freq(0,l2,l3,tr1,3) freq(1,l2,l3,tr1,3) pack(2,p2,0,l2,l3,tr1) pack(2,p2,1,l2,l3,tr1) flow(l2,l3,p2,11) freq(1,l2,l4,tr2,1) pack(4,p2,1,l2,l4,tr2) flow(l2,l4,p2,4) pack(1,p1,0,l1,l4,tr2) pack(1,p1,0,l3,l5,tr1) freq(0,l3,l5,tr1,2) freq(1,l3,l5,tr1,1) freq(1,l3,l5,tr2,1) pack(3,p1,1,l3,l5,tr1) flow(l3,l5,p1,5) pack(2,p2,0,l3,l5,tr1) pack(2,p2,1,l3,l5,tr1) pack(3,p2,1,l3,l5,tr2) flow(l3,l5,p2,9) freq(0,l3,l6,tr2,2) pack(4,p1,0,l3,l6,tr2) pack(1,p1,1,l3,l6,tr2) flow(l3,l6,p1,7) pack(1,p2,0,l3,l6,tr2) flow(l3,l6,p2,2) pack(3,p1,0,l4,l5,tr1) freq(1,l4,l6,tr2,1) pack(4,p2,1,l4,l6,tr2) flow(l4,l6,p2,4) freq(0,l1,l3,tr1,0) freq(0,l1,l3,tr2,0) freq(1,l1,l3,tr2,0) freq(0,l2,l4,tr2,0) freq(0,l1,l4,tr2,0) freq(1,l1,l4,tr2,0) freq(0,l3,l5,tr2,0) freq(1,l3,l6,tr2,0) freq(0,l4,l5,tr1,0) freq(1,l4,l5,tr1,0) freq(0,l4,l6,tr2,0) flow(l1,l3,p2,0) flow(l2,l3,p1,0) flow(l2,l4,p1,0) flow(l1,l4,p1,0) flow(l1,l4,p2,0) flow(l4,l5,p1,0) flow(l4,l5,p2,0) flow(l4,l6,p1,0) pack(0,p1,0,l1,l3,tr1) pack(0,p2,0,l1,l3,tr1) pack(0,p2,1,l1,l3,tr1) pack(0,p2,0,l1,l3,tr2) pack(0,p1,1,l1,l3,tr2) pack(0,p2,1,l1,l3,tr2) pack(0,p1,0,l2,l3,tr1) pack(0,p1,1,l2,l3,tr1) pack(0,p1,0,l2,l4,tr2) pack(0,p2,0,l2,l4,tr2) pack(0,p1,1,l2,l4,tr2) pack(0,p2,0,l1,l4,tr2) pack(0,p1,1,l1,l4,tr2) pack(0,p2,1,l1,l4,tr2) pack(0,p1,0,l3,l5,tr2) pack(0,p2,0,l3,l5,tr2) pack(0,p1,1,l3,l5,tr2) pack(0,p2,1,l3,l6,tr2) pack(0,p2,0,l4,l5,tr1) pack(0,p1,1,l4,l5,tr1) pack(0,p2,1,l4,l5,tr1) pack(0,p1,0,l4,l6,tr2) pack(0,p2,0,l4,l6,tr2) pack(0,p1,1,l4,l6,tr2)
+Optimization: 412
+",,False
+clingo_handy,clingo,encoding_route.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp,C1_loc4_parts2_tr2.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/C1_loc4_parts2_tr2.lp,vary_locations,C1,1,clingo /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/C1_loc4_parts2_tr2.lp --stats=2 --configuration=handy,OPTIMUM,30,6.535618,0.049,0.0,6.47,0.0,6.47,0.049,23486,36691,311641,142276,246,916,"tr1) freq(1,l3,l4,tr1,2) freq(1,l3,l4,tr2,2) pack(3,p1,1,l3,l4,tr1) flow(l3,l4,p1,12) pack(2,p2,0,l3,l4,tr1) pack(4,p2,0,l3,l4,tr2) pack(2,p2,1,l3,l4,tr1) pack(4,p2,1,l3,l4,tr2) flow(l3,l4,p2,15) freq(0,l1,l3,tr2,0) freq(1,l1,l3,tr2,0) freq(0,l2,l3,tr1,0) freq(1,l2,l3,tr1,0) freq(0,l3,l4,tr2,0) flow(l1,l3,p2,0) flow(l2,l3,p1,0) pack(0,p2,0,l1,l3,tr1) pack(0,p2,1,l1,l3,tr1) pack(0,p1,0,l1,l3,tr2) pack(0,p2,0,l1,l3,tr2) pack(0,p2,1,l1,l3,tr2) pack(0,p1,0,l2,l3,tr1) pack(0,p1,1,l2,l3,tr1) pack(0,p1,0,l2,l3,tr2) pack(0,p1,1,l2,l3,tr2) pack(0,p1,0,l3,l4,tr2) pack(0,p1,1,l3,l4,tr2)
+Optimization: 308
+OPTIMUM FOUND
+
+Models       : 28
+  Optimum    : yes
+Optimization : 308
+Calls        : 1
+Time         : 6.519s (Solving: 6.47s 1st Model: 0.00s Unsat: 5.64s)
+CPU Time     : 6.519s
+
+Choices      : 311641  
+Conflicts    : 142276   (Analyzed: 142275)
+Restarts     : 246      (Average: 578.35 Last: 3465 Blocked: 0)
+Model-Level  : 165.0   
+Problems     : 1        (Average Length: 0.00 Splits: 0)
+Lemmas       : 142275   (Deleted: 87102)
+  Binary     : 159      (Ratio:   0.11%)
+  Ternary    : 576      (Ratio:   0.40%)
+  Conflict   : 142275   (Average Length:   24.9 Ratio: 100.00%) 
+  Loop       : 0        (Average Length:    0.0 Ratio:   0.00%) 
+  Other      : 0        (Average Length:    0.0 Ratio:   0.00%) 
+Backjumps    : 142275   (Average:  2.08 Max: 444 Sum: 296529)
+  Executed   : 142275   (Average:  2.08 Max: 444 Sum: 296529 Ratio: 100.00%)
+  Bounded    : 0        (Average:  0.00 Max:   0 Sum:      0 Ratio:   0.00%)
+
+Rules        : 36691    (Original: 35195)
+  Choice     : 42      
+  Minimize   : 1       
+Atoms        : 23486    (Original: 23234 Auxiliary: 252)
+Bodies       : 19813    (Original: 18645)
+  Sum        : 126     
+  Count      : 2        (Original: 92)
+Equivalences : 43412    (Atom=Atom: 13471 Body=Body: 12310 Other: 17631)
+Tight        : Yes
+Variables    : 4984     (Eliminated:  460 Frozen: 3768)
+Constraints  : 17414    (Binary:  75.4% Ternary:  12.4% Other:  12.2%)
+
+",,True
+clingo_handy,clingo,encoding_route.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp,C1_loc4_parts2_tr2.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/C1_loc4_parts2_tr2.lp,vary_locations,C1,2,clingo /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/C1_loc4_parts2_tr2.lp --stats=2 --configuration=handy,OPTIMUM,30,6.486061,0.049,0.0,6.43,0.0,6.43,0.049,23486,36691,311641,142276,246,916,"tr1) freq(1,l3,l4,tr1,2) freq(1,l3,l4,tr2,2) pack(3,p1,1,l3,l4,tr1) flow(l3,l4,p1,12) pack(2,p2,0,l3,l4,tr1) pack(4,p2,0,l3,l4,tr2) pack(2,p2,1,l3,l4,tr1) pack(4,p2,1,l3,l4,tr2) flow(l3,l4,p2,15) freq(0,l1,l3,tr2,0) freq(1,l1,l3,tr2,0) freq(0,l2,l3,tr1,0) freq(1,l2,l3,tr1,0) freq(0,l3,l4,tr2,0) flow(l1,l3,p2,0) flow(l2,l3,p1,0) pack(0,p2,0,l1,l3,tr1) pack(0,p2,1,l1,l3,tr1) pack(0,p1,0,l1,l3,tr2) pack(0,p2,0,l1,l3,tr2) pack(0,p2,1,l1,l3,tr2) pack(0,p1,0,l2,l3,tr1) pack(0,p1,1,l2,l3,tr1) pack(0,p1,0,l2,l3,tr2) pack(0,p1,1,l2,l3,tr2) pack(0,p1,0,l3,l4,tr2) pack(0,p1,1,l3,l4,tr2)
+Optimization: 308
+OPTIMUM FOUND
+
+Models       : 28
+  Optimum    : yes
+Optimization : 308
+Calls        : 1
+Time         : 6.474s (Solving: 6.43s 1st Model: 0.00s Unsat: 5.60s)
+CPU Time     : 6.472s
+
+Choices      : 311641  
+Conflicts    : 142276   (Analyzed: 142275)
+Restarts     : 246      (Average: 578.35 Last: 3465 Blocked: 0)
+Model-Level  : 165.0   
+Problems     : 1        (Average Length: 0.00 Splits: 0)
+Lemmas       : 142275   (Deleted: 87102)
+  Binary     : 159      (Ratio:   0.11%)
+  Ternary    : 576      (Ratio:   0.40%)
+  Conflict   : 142275   (Average Length:   24.9 Ratio: 100.00%) 
+  Loop       : 0        (Average Length:    0.0 Ratio:   0.00%) 
+  Other      : 0        (Average Length:    0.0 Ratio:   0.00%) 
+Backjumps    : 142275   (Average:  2.08 Max: 444 Sum: 296529)
+  Executed   : 142275   (Average:  2.08 Max: 444 Sum: 296529 Ratio: 100.00%)
+  Bounded    : 0        (Average:  0.00 Max:   0 Sum:      0 Ratio:   0.00%)
+
+Rules        : 36691    (Original: 35195)
+  Choice     : 42      
+  Minimize   : 1       
+Atoms        : 23486    (Original: 23234 Auxiliary: 252)
+Bodies       : 19813    (Original: 18645)
+  Sum        : 126     
+  Count      : 2        (Original: 92)
+Equivalences : 43412    (Atom=Atom: 13471 Body=Body: 12310 Other: 17631)
+Tight        : Yes
+Variables    : 4984     (Eliminated:  460 Frozen: 3768)
+Constraints  : 17414    (Binary:  75.4% Ternary:  12.4% Other:  12.2%)
+
+",,True
+clingo_handy,clingo,encoding_route.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp,C1_loc4_parts2_tr2.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/C1_loc4_parts2_tr2.lp,vary_locations,C1,3,clingo /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/C1_loc4_parts2_tr2.lp --stats=2 --configuration=handy,OPTIMUM,30,6.621147,0.048,0.0,6.56,0.0,6.56,0.048,23486,36691,311641,142276,246,916,"tr1) freq(1,l3,l4,tr1,2) freq(1,l3,l4,tr2,2) pack(3,p1,1,l3,l4,tr1) flow(l3,l4,p1,12) pack(2,p2,0,l3,l4,tr1) pack(4,p2,0,l3,l4,tr2) pack(2,p2,1,l3,l4,tr1) pack(4,p2,1,l3,l4,tr2) flow(l3,l4,p2,15) freq(0,l1,l3,tr2,0) freq(1,l1,l3,tr2,0) freq(0,l2,l3,tr1,0) freq(1,l2,l3,tr1,0) freq(0,l3,l4,tr2,0) flow(l1,l3,p2,0) flow(l2,l3,p1,0) pack(0,p2,0,l1,l3,tr1) pack(0,p2,1,l1,l3,tr1) pack(0,p1,0,l1,l3,tr2) pack(0,p2,0,l1,l3,tr2) pack(0,p2,1,l1,l3,tr2) pack(0,p1,0,l2,l3,tr1) pack(0,p1,1,l2,l3,tr1) pack(0,p1,0,l2,l3,tr2) pack(0,p1,1,l2,l3,tr2) pack(0,p1,0,l3,l4,tr2) pack(0,p1,1,l3,l4,tr2)
+Optimization: 308
+OPTIMUM FOUND
+
+Models       : 28
+  Optimum    : yes
+Optimization : 308
+Calls        : 1
+Time         : 6.609s (Solving: 6.56s 1st Model: 0.00s Unsat: 5.76s)
+CPU Time     : 6.609s
+
+Choices      : 311641  
+Conflicts    : 142276   (Analyzed: 142275)
+Restarts     : 246      (Average: 578.35 Last: 3465 Blocked: 0)
+Model-Level  : 165.0   
+Problems     : 1        (Average Length: 0.00 Splits: 0)
+Lemmas       : 142275   (Deleted: 87102)
+  Binary     : 159      (Ratio:   0.11%)
+  Ternary    : 576      (Ratio:   0.40%)
+  Conflict   : 142275   (Average Length:   24.9 Ratio: 100.00%) 
+  Loop       : 0        (Average Length:    0.0 Ratio:   0.00%) 
+  Other      : 0        (Average Length:    0.0 Ratio:   0.00%) 
+Backjumps    : 142275   (Average:  2.08 Max: 444 Sum: 296529)
+  Executed   : 142275   (Average:  2.08 Max: 444 Sum: 296529 Ratio: 100.00%)
+  Bounded    : 0        (Average:  0.00 Max:   0 Sum:      0 Ratio:   0.00%)
+
+Rules        : 36691    (Original: 35195)
+  Choice     : 42      
+  Minimize   : 1       
+Atoms        : 23486    (Original: 23234 Auxiliary: 252)
+Bodies       : 19813    (Original: 18645)
+  Sum        : 126     
+  Count      : 2        (Original: 92)
+Equivalences : 43412    (Atom=Atom: 13471 Body=Body: 12310 Other: 17631)
+Tight        : Yes
+Variables    : 4984     (Eliminated:  460 Frozen: 3768)
+Constraints  : 17414    (Binary:  75.4% Ternary:  12.4% Other:  12.2%)
+
+",,True
+clingo_handy,clingo,encoding_route.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp,C2_loc6_parts2_tr2.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/C2_loc6_parts2_tr2.lp,vary_locations,C2,1,clingo /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/C2_loc6_parts2_tr2.lp --stats=2 --configuration=handy,TIMEOUT,,120.007033,,,,,,120.007033,,,,,,,"ack(0,p1,0,l2,l4,tr2) pack(0,p1,1,l2,l4,tr2) pack(0,p2,1,l2,l4,tr2) pack(0,p2,0,l1,l4,tr2) pack(0,p1,1,l1,l4,tr2) pack(0,p2,1,l1,l4,tr2) pack(0,p1,0,l3,l5,tr2) pack(0,p2,0,l3,l5,tr2) pack(0,p1,1,l3,l5,tr2) pack(0,p1,1,l3,l6,tr2) pack(0,p2,0,l4,l5,tr1) pack(0,p1,1,l4,l5,tr1) pack(0,p1,0,l4,l6,tr2) pack(0,p2,0,l4,l6,tr2) pack(0,p1,1,l4,l6,tr2)
+Optimization: 416
+Answer: 40 (Time: 5.509s)
+pack(4,p1,0,l1,l3,tr2) freq(1,l1,l3,tr1,3) pack(4,p1,1,l1,l3,tr1) flow(l1,l3,p1,12) freq(0,l2,l3,tr1,3) freq(1,l2,l3,tr1,3) pack(2,p2,0,l2,l3,tr1) pack(2,p2,1,l2,l3,tr1) flow(l2,l3,p2,11) freq(1,l2,l4,tr2,1) pack(4,p2,1,l2,l4,tr2) flow(l2,l4,p2,4) pack(1,p1,0,l1,l4,tr2) pack(1,p1,0,l3,l5,tr1) freq(0,l3,l5,tr1,2) freq(1,l3,l5,tr1,1) freq(1,l3,l5,tr2,1) pack(3,p1,1,l3,l5,tr1) flow(l3,l5,p1,5) pack(2,p2,0,l3,l5,tr1) pack(2,p2,1,l3,l5,tr1) pack(3,p2,1,l3,l5,tr2) flow(l3,l5,p2,9) freq(0,l3,l6,tr2,2) pack(4,p1,0,l3,l6,tr2) pack(1,p1,1,l3,l6,tr2) flow(l3,l6,p1,7) pack(1,p2,0,l3,l6,tr2) flow(l3,l6,p2,2) pack(3,p1,0,l4,l5,tr1) freq(1,l4,l6,tr2,1) pack(4,p2,1,l4,l6,tr2) flow(l4,l6,p2,4) freq(0,l1,l3,tr1,0) freq(0,l1,l3,tr2,0) freq(1,l1,l3,tr2,0) freq(0,l2,l4,tr2,0) freq(0,l1,l4,tr2,0) freq(1,l1,l4,tr2,0) freq(0,l3,l5,tr2,0) freq(1,l3,l6,tr2,0) freq(0,l4,l5,tr1,0) freq(1,l4,l5,tr1,0) freq(0,l4,l6,tr2,0) flow(l1,l3,p2,0) flow(l2,l3,p1,0) flow(l2,l4,p1,0) flow(l1,l4,p1,0) flow(l1,l4,p2,0) flow(l4,l5,p1,0) flow(l4,l5,p2,0) flow(l4,l6,p1,0) pack(0,p1,0,l1,l3,tr1) pack(0,p2,0,l1,l3,tr1) pack(0,p2,1,l1,l3,tr1) pack(0,p2,0,l1,l3,tr2) pack(0,p1,1,l1,l3,tr2) pack(0,p2,1,l1,l3,tr2) pack(0,p1,0,l2,l3,tr1) pack(0,p1,1,l2,l3,tr1) pack(0,p1,0,l2,l4,tr2) pack(0,p2,0,l2,l4,tr2) pack(0,p1,1,l2,l4,tr2) pack(0,p2,0,l1,l4,tr2) pack(0,p1,1,l1,l4,tr2) pack(0,p2,1,l1,l4,tr2) pack(0,p1,0,l3,l5,tr2) pack(0,p2,0,l3,l5,tr2) pack(0,p1,1,l3,l5,tr2) pack(0,p2,1,l3,l6,tr2) pack(0,p2,0,l4,l5,tr1) pack(0,p1,1,l4,l5,tr1) pack(0,p2,1,l4,l5,tr1) pack(0,p1,0,l4,l6,tr2) pack(0,p2,0,l4,l6,tr2) pack(0,p1,1,l4,l6,tr2)
+Optimization: 412
+",,False
+clingo_handy,clingo,encoding_route.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp,C2_loc6_parts2_tr2.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/C2_loc6_parts2_tr2.lp,vary_locations,C2,2,clingo /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/C2_loc6_parts2_tr2.lp --stats=2 --configuration=handy,TIMEOUT,,120.009388,,,,,,120.009388,,,,,,,"ack(0,p1,0,l2,l4,tr2) pack(0,p1,1,l2,l4,tr2) pack(0,p2,1,l2,l4,tr2) pack(0,p2,0,l1,l4,tr2) pack(0,p1,1,l1,l4,tr2) pack(0,p2,1,l1,l4,tr2) pack(0,p1,0,l3,l5,tr2) pack(0,p2,0,l3,l5,tr2) pack(0,p1,1,l3,l5,tr2) pack(0,p1,1,l3,l6,tr2) pack(0,p2,0,l4,l5,tr1) pack(0,p1,1,l4,l5,tr1) pack(0,p1,0,l4,l6,tr2) pack(0,p2,0,l4,l6,tr2) pack(0,p1,1,l4,l6,tr2)
+Optimization: 416
+Answer: 40 (Time: 5.546s)
+pack(4,p1,0,l1,l3,tr2) freq(1,l1,l3,tr1,3) pack(4,p1,1,l1,l3,tr1) flow(l1,l3,p1,12) freq(0,l2,l3,tr1,3) freq(1,l2,l3,tr1,3) pack(2,p2,0,l2,l3,tr1) pack(2,p2,1,l2,l3,tr1) flow(l2,l3,p2,11) freq(1,l2,l4,tr2,1) pack(4,p2,1,l2,l4,tr2) flow(l2,l4,p2,4) pack(1,p1,0,l1,l4,tr2) pack(1,p1,0,l3,l5,tr1) freq(0,l3,l5,tr1,2) freq(1,l3,l5,tr1,1) freq(1,l3,l5,tr2,1) pack(3,p1,1,l3,l5,tr1) flow(l3,l5,p1,5) pack(2,p2,0,l3,l5,tr1) pack(2,p2,1,l3,l5,tr1) pack(3,p2,1,l3,l5,tr2) flow(l3,l5,p2,9) freq(0,l3,l6,tr2,2) pack(4,p1,0,l3,l6,tr2) pack(1,p1,1,l3,l6,tr2) flow(l3,l6,p1,7) pack(1,p2,0,l3,l6,tr2) flow(l3,l6,p2,2) pack(3,p1,0,l4,l5,tr1) freq(1,l4,l6,tr2,1) pack(4,p2,1,l4,l6,tr2) flow(l4,l6,p2,4) freq(0,l1,l3,tr1,0) freq(0,l1,l3,tr2,0) freq(1,l1,l3,tr2,0) freq(0,l2,l4,tr2,0) freq(0,l1,l4,tr2,0) freq(1,l1,l4,tr2,0) freq(0,l3,l5,tr2,0) freq(1,l3,l6,tr2,0) freq(0,l4,l5,tr1,0) freq(1,l4,l5,tr1,0) freq(0,l4,l6,tr2,0) flow(l1,l3,p2,0) flow(l2,l3,p1,0) flow(l2,l4,p1,0) flow(l1,l4,p1,0) flow(l1,l4,p2,0) flow(l4,l5,p1,0) flow(l4,l5,p2,0) flow(l4,l6,p1,0) pack(0,p1,0,l1,l3,tr1) pack(0,p2,0,l1,l3,tr1) pack(0,p2,1,l1,l3,tr1) pack(0,p2,0,l1,l3,tr2) pack(0,p1,1,l1,l3,tr2) pack(0,p2,1,l1,l3,tr2) pack(0,p1,0,l2,l3,tr1) pack(0,p1,1,l2,l3,tr1) pack(0,p1,0,l2,l4,tr2) pack(0,p2,0,l2,l4,tr2) pack(0,p1,1,l2,l4,tr2) pack(0,p2,0,l1,l4,tr2) pack(0,p1,1,l1,l4,tr2) pack(0,p2,1,l1,l4,tr2) pack(0,p1,0,l3,l5,tr2) pack(0,p2,0,l3,l5,tr2) pack(0,p1,1,l3,l5,tr2) pack(0,p2,1,l3,l6,tr2) pack(0,p2,0,l4,l5,tr1) pack(0,p1,1,l4,l5,tr1) pack(0,p2,1,l4,l5,tr1) pack(0,p1,0,l4,l6,tr2) pack(0,p2,0,l4,l6,tr2) pack(0,p1,1,l4,l6,tr2)
+Optimization: 412
+",,False
+clingo_handy,clingo,encoding_route.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp,C2_loc6_parts2_tr2.lp,/Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/C2_loc6_parts2_tr2.lp,vary_locations,C2,3,clingo /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/encoding_route.lp /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/analysis/data/test_instances/C2_loc6_parts2_tr2.lp --stats=2 --configuration=handy,TIMEOUT,,120.007389,,,,,,120.007389,,,,,,,"ack(0,p1,0,l2,l4,tr2) pack(0,p1,1,l2,l4,tr2) pack(0,p2,1,l2,l4,tr2) pack(0,p2,0,l1,l4,tr2) pack(0,p1,1,l1,l4,tr2) pack(0,p2,1,l1,l4,tr2) pack(0,p1,0,l3,l5,tr2) pack(0,p2,0,l3,l5,tr2) pack(0,p1,1,l3,l5,tr2) pack(0,p1,1,l3,l6,tr2) pack(0,p2,0,l4,l5,tr1) pack(0,p1,1,l4,l5,tr1) pack(0,p1,0,l4,l6,tr2) pack(0,p2,0,l4,l6,tr2) pack(0,p1,1,l4,l6,tr2)
+Optimization: 416
+Answer: 40 (Time: 6.353s)
+pack(4,p1,0,l1,l3,tr2) freq(1,l1,l3,tr1,3) pack(4,p1,1,l1,l3,tr1) flow(l1,l3,p1,12) freq(0,l2,l3,tr1,3) freq(1,l2,l3,tr1,3) pack(2,p2,0,l2,l3,tr1) pack(2,p2,1,l2,l3,tr1) flow(l2,l3,p2,11) freq(1,l2,l4,tr2,1) pack(4,p2,1,l2,l4,tr2) flow(l2,l4,p2,4) pack(1,p1,0,l1,l4,tr2) pack(1,p1,0,l3,l5,tr1) freq(0,l3,l5,tr1,2) freq(1,l3,l5,tr1,1) freq(1,l3,l5,tr2,1) pack(3,p1,1,l3,l5,tr1) flow(l3,l5,p1,5) pack(2,p2,0,l3,l5,tr1) pack(2,p2,1,l3,l5,tr1) pack(3,p2,1,l3,l5,tr2) flow(l3,l5,p2,9) freq(0,l3,l6,tr2,2) pack(4,p1,0,l3,l6,tr2) pack(1,p1,1,l3,l6,tr2) flow(l3,l6,p1,7) pack(1,p2,0,l3,l6,tr2) flow(l3,l6,p2,2) pack(3,p1,0,l4,l5,tr1) freq(1,l4,l6,tr2,1) pack(4,p2,1,l4,l6,tr2) flow(l4,l6,p2,4) freq(0,l1,l3,tr1,0) freq(0,l1,l3,tr2,0) freq(1,l1,l3,tr2,0) freq(0,l2,l4,tr2,0) freq(0,l1,l4,tr2,0) freq(1,l1,l4,tr2,0) freq(0,l3,l5,tr2,0) freq(1,l3,l6,tr2,0) freq(0,l4,l5,tr1,0) freq(1,l4,l5,tr1,0) freq(0,l4,l6,tr2,0) flow(l1,l3,p2,0) flow(l2,l3,p1,0) flow(l2,l4,p1,0) flow(l1,l4,p1,0) flow(l1,l4,p2,0) flow(l4,l5,p1,0) flow(l4,l5,p2,0) flow(l4,l6,p1,0) pack(0,p1,0,l1,l3,tr1) pack(0,p2,0,l1,l3,tr1) pack(0,p2,1,l1,l3,tr1) pack(0,p2,0,l1,l3,tr2) pack(0,p1,1,l1,l3,tr2) pack(0,p2,1,l1,l3,tr2) pack(0,p1,0,l2,l3,tr1) pack(0,p1,1,l2,l3,tr1) pack(0,p1,0,l2,l4,tr2) pack(0,p2,0,l2,l4,tr2) pack(0,p1,1,l2,l4,tr2) pack(0,p2,0,l1,l4,tr2) pack(0,p1,1,l1,l4,tr2) pack(0,p2,1,l1,l4,tr2) pack(0,p1,0,l3,l5,tr2) pack(0,p2,0,l3,l5,tr2) pack(0,p1,1,l3,l5,tr2) pack(0,p2,1,l3,l6,tr2) pack(0,p2,0,l4,l5,tr1) pack(0,p1,1,l4,l5,tr1) pack(0,p2,1,l4,l5,tr1) pack(0,p1,0,l4,l6,tr2) pack(0,p2,0,l4,l6,tr2) pack(0,p1,1,l4,l6,tr2)
+Optimization: 412
+",,False

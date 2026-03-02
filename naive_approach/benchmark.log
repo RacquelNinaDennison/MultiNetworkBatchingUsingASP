@@ -1,0 +1,38 @@
+====================================================================================================
+FIXED BENCHMARK RUN
+====================================================================================================
+Encodings : ['encoding_route.lp']
+Instances : ['A1_fixed_loc6_parts1.lp', 'A2_fixed_loc6_parts2.lp', 'A3_fixed_loc6_parts3.lp', 'B1_fixed_loc6_tr1.lp', 'B2_fixed_loc6_tr2.lp', 'B3_fixed_loc6_tr3.lp', 'C1_loc4_parts2_tr2.lp', 'C2_loc6_parts2_tr2.lp', 'C3_loc8_parts2_tr2.lp']
+Presets   : ['clingo_default']
+Repeats   : 3
+----------------------------------------------------------------------------------------------------
+encoding_route.lp        clingo_default       A1_fixed_loc6_parts1.lp      OPTIMUM  G=0.0 S=0.12
+encoding_route.lp        clingo_default       A1_fixed_loc6_parts1.lp      OPTIMUM  G=0.0 S=0.13
+encoding_route.lp        clingo_default       A1_fixed_loc6_parts1.lp      OPTIMUM  G=0.0 S=0.12
+encoding_route.lp        clingo_default       A2_fixed_loc6_parts2.lp      OPTIMUM  G=0.0 S=344.08
+encoding_route.lp        clingo_default       A2_fixed_loc6_parts2.lp      OPTIMUM  G=0.0 S=344.64
+encoding_route.lp        clingo_default       A2_fixed_loc6_parts2.lp      OPTIMUM  G=0.0 S=345.82
+encoding_route.lp        clingo_default       A3_fixed_loc6_parts3.lp      OPTIMUM  G=0.0 S=17084.02
+encoding_route.lp        clingo_default       A3_fixed_loc6_parts3.lp      OPTIMUM  G=0.0 S=30200.61
+encoding_route.lp        clingo_default       A3_fixed_loc6_parts3.lp      OPTIMUM  G=0.0 S=1802.73
+encoding_route.lp        clingo_default       B1_fixed_loc6_tr1.lp         OPTIMUM  G=0.0 S=19.78
+encoding_route.lp        clingo_default       B1_fixed_loc6_tr1.lp         OPTIMUM  G=0.0 S=20.19
+encoding_route.lp        clingo_default       B1_fixed_loc6_tr1.lp         OPTIMUM  G=0.0 S=20.02
+encoding_route.lp        clingo_default       B2_fixed_loc6_tr2.lp         OPTIMUM  G=0.0 S=208.17
+encoding_route.lp        clingo_default       B2_fixed_loc6_tr2.lp         OPTIMUM  G=0.0 S=204.24
+encoding_route.lp        clingo_default       B2_fixed_loc6_tr2.lp         OPTIMUM  G=0.0 S=202.68
+encoding_route.lp        clingo_default       B3_fixed_loc6_tr3.lp         OPTIMUM  G=0.0 S=5585.81
+encoding_route.lp        clingo_default       B3_fixed_loc6_tr3.lp         NO_STATUS G=- S=-
+encoding_route.lp        clingo_default       B3_fixed_loc6_tr3.lp         NO_STATUS G=- S=-
+encoding_route.lp        clingo_default       C1_loc4_parts2_tr2.lp        OPTIMUM  G=0.0 S=9.83
+encoding_route.lp        clingo_default       C1_loc4_parts2_tr2.lp        OPTIMUM  G=0.0 S=9.93
+encoding_route.lp        clingo_default       C1_loc4_parts2_tr2.lp        OPTIMUM  G=0.0 S=9.89
+encoding_route.lp        clingo_default       C2_loc6_parts2_tr2.lp        OPTIMUM  G=0.0 S=380.23
+encoding_route.lp        clingo_default       C2_loc6_parts2_tr2.lp        OPTIMUM  G=0.0 S=388.8
+encoding_route.lp        clingo_default       C2_loc6_parts2_tr2.lp        OPTIMUM  G=0.0 S=369.64
+encoding_route.lp        clingo_default       C3_loc8_parts2_tr2.lp        NO_STATUS G=- S=-
+encoding_route.lp        clingo_default       C3_loc8_parts2_tr2.lp        NO_STATUS G=- S=-
+encoding_route.lp        clingo_default       C3_loc8_parts2_tr2.lp        NO_STATUS G=- S=-
+----------------------------------------------------------------------------------------------------
+Raw CSV     : /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/fixed_benchmark_results.csv
+Summary CSV : /Users/racqueldennison/Desktop/realdeal_masters/MultiNetworkBatchingUsingASP/naive_approach/fixed_benchmark_summary.csv

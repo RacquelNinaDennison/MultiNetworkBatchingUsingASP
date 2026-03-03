@@ -28,28 +28,28 @@ totalDemand(p1, 20).
 totalDemand(p2, 20).
 % Part: name, validTR, size, value
 part(p1).
-part(p2).
+% part(p2).
 partSize(p1,4).
-partSize(p2,3).
+% partSize(p2,3).
 partTR(p1,tr1).
 partTR(p1,tr2).
-partTR(p2,tr1).
-partTR(p2,tr2).
+% partTR(p2,tr1).
+% partTR(p2,tr2).
 partVal(p1,1000).
 partVal(p2,600).
 
 
 % netSupplyDemand: part name, location, offer/ produced/able
 demandSupply(p1,l1,10).
-demandSupply(p2,l1,40).
+% demandSupply(p2,l1,40).
 demandSupply(p1,l2,20).
 
 % netSupplyDemand: part name, location, demand/ consumed/able
-demandSupply(p2,l2,-10).
+% demandSupply(p2,l2,-10).
 demandSupply(p1,l5,-10).
-demandSupply(p2,l5,-20).
+% demandSupply(p2,l5,-20).
 demandSupply(p1,l6,-20).
-demandSupply(p2,l6,-10).
+% demandSupply(p2,l6,-10).
 
 % 'real' simple example including production plan constraints
 % productionPlan(fullFuselageShort,section34).

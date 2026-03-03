@@ -1,0 +1,71 @@
+clingcon version 5.2.1
+Reading from encoding_alternative.lp ...
+Solving...
+Answer: 105 (Time: 0.865s)
+pack(0,p1,1,l1,l3,tr2) pack(0,p1,1,l1,l4,tr1) pack(0,p1,1,l1,l4,tr2) pack(0,p1,1,l2,l3,tr2) pack(0,p1,1,l2,l4,tr1) pack(0,p1,1,l2,l6,tr1) pack(0,p1,1,l3,l5,tr1) pack(0,p1,1,l3,l5,tr2) pack(0,p1,1,l3,l6,tr1) pack(0,p1,1,l3,l6,tr2) pack(0,p1,1,l4,l5,tr1) pack(0,p1,1,l4,l5,tr2) pack(0,p1,1,l4,l6,tr1) pack(0,p1,1,l4,l6,tr2) pack(0,p1,2,l1,l3,tr1) pack(0,p1,2,l1,l4,tr1) pack(0,p1,2,l1,l4,tr2) pack(0,p1,2,l2,l3,tr2) pack(0,p1,2,l2,l6,tr1) pack(0,p1,2,l3,l5,tr2) pack(0,p1,2,l4,l5,tr2) pack(0,p1,2,l4,l6,tr1) pack(0,p1,2,l4,l6,tr2) pack(2,p1,1,l1,l2,tr1) pack(2,p1,1,l1,l3,tr1) pack(2,p1,1,l2,l3,tr1) pack(2,p1,2,l1,l2,tr1) pack(2,p1,2,l2,l3,tr1) pack(2,p1,2,l2,l4,tr1) pack(2,p1,2,l3,l5,tr1) pack(2,p1,2,l3,l6,tr1) pack(2,p1,2,l3,l6,tr2) pack(2,p1,2,l4,l5,tr1) pack(3,p1,1,l1,l2,tr2) pack(3,p1,1,l2,l4,tr2) pack(3,p1,2,l1,l2,tr2) pack(3,p1,2,l1,l3,tr2) pack(3,p1,2,l2,l4,tr2)
+Assignment:
+flow(l1,l2,p1)=0 flow(l1,l3,p1)=10 flow(l1,l4,p1)=0 flow(l2,l3,p1)=18 flow(l2,l4,p1)=2 flow(l2,l6,p1)=0 flow(l3,l5,p1)=8 flow(l3,l6,p1)=20 flow(l4,l5,p1)=2 flow(l4,l6,p1)=0
+Cost: 4200
+SATISFIABLE
+
+TIME LIMIT   : 1
+Models       : 105+
+Calls        : 1
+Time         : 2.005s (Solving: 2.00s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 2.003s
+
+Choices      : 178366  
+Conflicts    : 109169   (Analyzed: 105767)
+Restarts     : 15       (Average: 7051.13 Last: 9187 Blocked: 0)
+Model-Level  : 90.2    
+Problems     : 1        (Average Length: 1.00 Splits: 0)
+Lemmas       : 1121667  (Deleted: 1115271)
+  Binary     : 1793     (Ratio:   0.16%)
+  Ternary    : 50086    (Ratio:   4.47%)
+  Conflict   : 105767   (Average Length:   19.4 Ratio:   9.43%) 
+  Loop       : 0        (Average Length:    0.0 Ratio:   0.00%) 
+  Other      : 1015900  (Average Length:    9.0 Ratio:  90.57%) 
+Backjumps    : 105767   (Average:  1.66 Max:  68 Sum: 175126)
+  Executed   : 105719   (Average:  1.65 Max:  68 Sum: 174741 Ratio:  99.78%)
+  Bounded    : 48       (Average:  8.02 Max:  63 Sum:    385 Ratio:   0.22%)
+
+Rules        : 585     
+  Choice     : 38      
+Atoms        : 641     
+Bodies       : 247     
+  Count      : 76      
+Equivalences : 548      (Atom=Atom: 170 Body=Body: 0 Other: 378)
+Tight        : Yes
+Variables    : 1412     (Eliminated:    0 Frozen: 1412)
+Constraints  : 6186     (Binary:   5.2% Ternary:  47.5% Other:  47.3%)
+
+Clingcon
+  Cost       : 4200
+  Init time in seconds
+    Total    : 0.001226
+    Simplify : 4.8e-05
+    Translate: 0.000409167
+  Problem
+    Constraints: 17
+    Variables: 86
+    Clauses  : 6374
+    Literals : 1242
+  Translate
+    Constraints removed: 204
+    Constraints added: 0
+    Clauses  : 6066
+    Weight constraints: 10
+    Literals : 1166
+  [Thread 0]
+    Time in seconds
+      Total  : 1.13857
+      Propagation: 0.22099
+      Check  : 0.894925
+      Undo   : 0.0226559
+    Refined reason: 421436
+    Introduced reason: 43461
+    Literals introduced: 181
+
+*** Info : (clingcon): Sending shutdown signal...
+*** ERROR: (clingcon): solving stopped by signal
+*** Info : (clingcon): Shutdown completed in 0.000 seconds

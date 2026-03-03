@@ -1,0 +1,66 @@
+clingcon version 5.2.1
+Reading from encoding_alternative.lp ...
+Solving...
+Answer: 110 (Time: 30.619s)
+pack(0,p1,1,l1,l4,tr1) pack(0,p1,1,l1,l4,tr2) pack(0,p1,1,l2,l3,tr2) pack(0,p1,1,l2,l4,tr1) pack(0,p1,1,l2,l4,tr2) pack(0,p1,1,l2,l6,tr1) pack(0,p1,1,l3,l5,tr2) pack(0,p1,1,l3,l6,tr1) pack(0,p1,1,l3,l6,tr2) pack(0,p1,1,l4,l5,tr1) pack(0,p1,1,l4,l5,tr2) pack(0,p1,1,l4,l6,tr1) pack(0,p1,1,l4,l6,tr2) pack(0,p1,2,l1,l3,tr1) pack(0,p1,2,l1,l3,tr2) pack(0,p1,2,l1,l4,tr1) pack(0,p1,2,l1,l4,tr2) pack(0,p1,2,l2,l3,tr2) pack(0,p1,2,l2,l4,tr1) pack(0,p1,2,l2,l6,tr1) pack(0,p1,2,l3,l5,tr2) pack(0,p1,2,l3,l6,tr2) pack(0,p1,2,l4,l5,tr1) pack(0,p1,2,l4,l5,tr2) pack(0,p1,2,l4,l6,tr1) pack(0,p1,2,l4,l6,tr2) pack(2,p1,1,l1,l2,tr1) pack(2,p1,1,l1,l3,tr1) pack(2,p1,1,l2,l3,tr1) pack(2,p1,1,l3,l5,tr1) pack(2,p1,2,l1,l2,tr1) pack(2,p1,2,l2,l3,tr1) pack(2,p1,2,l3,l5,tr1) pack(2,p1,2,l3,l6,tr1) pack(3,p1,1,l1,l2,tr2) pack(3,p1,1,l1,l3,tr2) pack(3,p1,2,l1,l2,tr2) pack(3,p1,2,l2,l4,tr2)
+Assignment:
+flow(l1,l2,p1)=0 flow(l1,l3,p1)=10 flow(l1,l4,p1)=0 flow(l2,l3,p1)=20 flow(l2,l4,p1)=0 flow(l2,l6,p1)=0 flow(l3,l5,p1)=10 flow(l3,l6,p1)=20 flow(l4,l5,p1)=0 flow(l4,l6,p1)=0
+Cost: 3752
+SATISFIABLE
+
+Models       : 110
+Calls        : 1
+Time         : 55.483s (Solving: 55.48s 1st Model: 0.00s Unsat: 24.86s)
+CPU Time     : 55.367s
+
+Choices      : 3910274 
+Conflicts    : 2559216  (Analyzed: 2555496)
+Restarts     : 22       (Average: 116158.91 Last: 616382 Blocked: 0)
+Model-Level  : 89.3    
+Problems     : 1        (Average Length: 1.00 Splits: 0)
+Lemmas       : 21632074 (Deleted: 21622460)
+  Binary     : 2028     (Ratio:   0.01%)
+  Ternary    : 369904   (Ratio:   1.71%)
+  Conflict   : 2555496  (Average Length:   22.0 Ratio:  11.81%) 
+  Loop       : 0        (Average Length:    0.0 Ratio:   0.00%) 
+  Other      : 19076578 (Average Length:    9.8 Ratio:  88.19%) 
+Backjumps    : 2555496  (Average:  1.53 Max:  68 Sum: 3906677)
+  Executed   : 2555437  (Average:  1.53 Max:  68 Sum: 3906271 Ratio:  99.99%)
+  Bounded    : 59       (Average:  6.88 Max:  63 Sum:    406 Ratio:   0.01%)
+
+Rules        : 585     
+  Choice     : 38      
+Atoms        : 641     
+Bodies       : 247     
+  Count      : 76      
+Equivalences : 548      (Atom=Atom: 170 Body=Body: 0 Other: 378)
+Tight        : Yes
+Variables    : 1412     (Eliminated:    0 Frozen: 1412)
+Constraints  : 6186     (Binary:   5.2% Ternary:  47.5% Other:  47.3%)
+
+Clingcon
+  Cost       : 3752
+  Init time in seconds
+    Total    : 0.00146638
+    Simplify : 4.2084e-05
+    Translate: 0.000449625
+  Problem
+    Constraints: 17
+    Variables: 86
+    Clauses  : 6374
+    Literals : 1242
+  Translate
+    Constraints removed: 204
+    Constraints added: 0
+    Clauses  : 6066
+    Weight constraints: 10
+    Literals : 1166
+  [Thread 0]
+    Time in seconds
+      Total  : 27.9259
+      Propagation: 5.10819
+      Check  : 22.2551
+      Undo   : 0.562686
+    Refined reason: 6.79518e+06
+    Introduced reason: 851564
+    Literals introduced: 181

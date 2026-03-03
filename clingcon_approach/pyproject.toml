@@ -1,0 +1,9 @@
+[project]
+name = "clingcon-approach"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "clingcon>=5.2.1.post2",
+]

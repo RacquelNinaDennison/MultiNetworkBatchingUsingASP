@@ -1,0 +1,66 @@
+clingcon version 5.2.1
+Reading from encoding_alternative.lp ...
+Solving...
+Answer: 75 (Time: 0.158s)
+pack(0,p1,1,l1,l2,tr2) pack(0,p1,1,l1,l4,tr1) pack(0,p1,1,l2,l3,tr2) pack(0,p1,1,l2,l4,tr1) pack(0,p1,1,l2,l4,tr2) pack(0,p1,1,l3,l5,tr2) pack(0,p1,1,l3,l6,tr2) pack(0,p1,1,l4,l5,tr1) pack(0,p1,1,l4,l5,tr2) pack(0,p1,1,l4,l6,tr1) pack(0,p1,1,l4,l6,tr2) pack(1,p1,1,l1,l4,tr2) pack(1,p1,1,l2,l6,tr1) pack(2,p1,1,l1,l2,tr1) pack(2,p1,1,l1,l3,tr1) pack(2,p1,1,l2,l3,tr1) pack(2,p1,1,l3,l5,tr1) pack(2,p1,1,l3,l6,tr1) pack(3,p1,1,l1,l3,tr2)
+Assignment:
+flow(l1,l2,p1)=0 flow(l1,l3,p1)=10 flow(l1,l4,p1)=0 flow(l2,l3,p1)=20 flow(l2,l4,p1)=0 flow(l2,l6,p1)=0 flow(l3,l5,p1)=10 flow(l3,l6,p1)=20 flow(l4,l5,p1)=0 flow(l4,l6,p1)=0
+Cost: 3752
+SATISFIABLE
+
+Models       : 75
+Calls        : 1
+Time         : 0.191s (Solving: 0.19s 1st Model: 0.00s Unsat: 0.03s)
+CPU Time     : 0.190s
+
+Choices      : 12966   
+Conflicts    : 9945     (Analyzed: 8138)
+Restarts     : 348      (Average: 23.39 Last: 1 Blocked: 0)
+Model-Level  : 91.3    
+Problems     : 1        (Average Length: 1.00 Splits: 0)
+Lemmas       : 57916    (Deleted: 0)
+  Binary     : 582      (Ratio:   1.00%)
+  Ternary    : 1029     (Ratio:   1.78%)
+  Conflict   : 8138     (Average Length:   19.9 Ratio:  14.05%) 
+  Loop       : 0        (Average Length:    0.0 Ratio:   0.00%) 
+  Other      : 49778    (Average Length:    7.1 Ratio:  85.95%) 
+Backjumps    : 8138     (Average:  1.37 Max:  31 Sum:  11144)
+  Executed   : 8121     (Average:  1.36 Max:  31 Sum:  11054 Ratio:  99.19%)
+  Bounded    : 17       (Average:  5.29 Max:  27 Sum:     90 Ratio:   0.81%)
+
+Rules        : 478      (Original: 366)
+  Choice     : 19      
+Atoms        : 394     
+Bodies       : 170      (Original: 124)
+  Count      : 0        (Original: 38)
+Equivalences : 255      (Atom=Atom: 85 Body=Body: 0 Other: 170)
+Tight        : Yes
+Variables    : 776      (Eliminated:    0 Frozen:  776)
+Constraints  : 4378     (Binary:  15.9% Ternary:  83.8% Other:   0.3%)
+
+Clingcon
+  Cost       : 3752
+  Init time in seconds
+    Total    : 0.000731
+    Simplify : 2.4083e-05
+    Translate: 0.000212959
+  Problem
+    Constraints: 5
+    Variables: 48
+    Clauses  : 4420
+    Literals : 691
+  Translate
+    Constraints removed: 122
+    Constraints added: 0
+    Clauses  : 4253
+    Weight constraints: 5
+    Literals : 653
+  [Thread 0]
+    Time in seconds
+      Total  : 0.0712953
+      Propagation: 0.0161004
+      Check  : 0.0540065
+      Undo   : 0.00118835
+    Refined reason: 21287
+    Introduced reason: 5211
+    Literals introduced: 78

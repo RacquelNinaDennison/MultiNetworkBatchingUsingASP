@@ -1,0 +1,12 @@
+[project]
+name = "logistics-network-optimization-including-asp-pricer"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "clingcon>=5.2.1.post2",
+    "clingo>=5.8.0",
+    "pyscipopt>=6.1.0",
+    "ruff>=0.15.0",
+]

@@ -1,0 +1,66 @@
+clingcon version 5.2.1
+Reading from ...ings/encodings/encoding_alternative.lp ...
+Solving...
+Answer: 93 (Time: 0.227s)
+pack(0,p1,1,l1,l2,tr2) pack(0,p1,1,l1,l4,tr1) pack(0,p1,1,l1,l4,tr2) pack(0,p1,1,l2,l3,tr2) pack(0,p1,1,l2,l4,tr1) pack(0,p1,1,l2,l4,tr2) pack(0,p1,1,l3,l5,tr2) pack(0,p1,1,l3,l6,tr2) pack(0,p1,1,l4,l5,tr1) pack(0,p1,1,l4,l5,tr2) pack(0,p1,1,l4,l6,tr1) pack(0,p1,1,l4,l6,tr2) pack(1,p1,1,l2,l6,tr1) pack(2,p1,1,l1,l2,tr1) pack(2,p1,1,l1,l3,tr1) pack(2,p1,1,l2,l3,tr1) pack(2,p1,1,l3,l5,tr1) pack(2,p1,1,l3,l6,tr1) pack(3,p1,1,l1,l3,tr2)
+Assignment:
+flow(l1,l2,p1)=0 flow(l1,l3,p1)=10 flow(l1,l4,p1)=0 flow(l2,l3,p1)=20 flow(l2,l4,p1)=0 flow(l2,l6,p1)=0 flow(l3,l5,p1)=10 flow(l3,l6,p1)=20 flow(l4,l5,p1)=0 flow(l4,l6,p1)=0
+Cost: 3752
+SATISFIABLE
+
+Models       : 93
+Calls        : 1
+Time         : 0.254s (Solving: 0.25s 1st Model: 0.00s Unsat: 0.03s)
+CPU Time     : 0.251s
+
+Choices      : 11912   
+Conflicts    : 9209     (Analyzed: 7432)
+Restarts     : 0       
+Model-Level  : 83.9    
+Problems     : 1        (Average Length: 1.00 Splits: 0)
+Lemmas       : 85452    (Deleted: 83168)
+  Binary     : 581      (Ratio:   0.68%)
+  Ternary    : 12593    (Ratio:  14.74%)
+  Conflict   : 7432     (Average Length:   16.4 Ratio:   8.70%) 
+  Loop       : 0        (Average Length:    0.0 Ratio:   0.00%) 
+  Other      : 78020    (Average Length:    6.5 Ratio:  91.30%) 
+Backjumps    : 7432     (Average:  1.36 Max:  18 Sum:  10093)
+  Executed   : 7409     (Average:  1.35 Max:  18 Sum:  10043 Ratio:  99.50%)
+  Bounded    : 23       (Average:  2.17 Max:  13 Sum:     50 Ratio:   0.50%)
+
+Rules        : 478      (Original: 366)
+  Choice     : 19      
+Atoms        : 394     
+Bodies       : 170      (Original: 124)
+  Count      : 0        (Original: 38)
+Equivalences : 255      (Atom=Atom: 85 Body=Body: 0 Other: 170)
+Tight        : Yes
+Variables    : 776      (Eliminated:    0 Frozen:  776)
+Constraints  : 4378     (Binary:  16.0% Ternary:  83.6% Other:   0.3%)
+
+Clingcon
+  Cost       : 3752
+  Init time in seconds
+    Total    : 0.00150458
+    Simplify : 5.2625e-05
+    Translate: 0.000432458
+  Problem
+    Constraints: 5
+    Variables: 48
+    Clauses  : 4420
+    Literals : 691
+  Translate
+    Constraints removed: 122
+    Constraints added: 0
+    Clauses  : 4253
+    Weight constraints: 5
+    Literals : 653
+  [Thread 0]
+    Time in seconds
+      Total  : 0.133431
+      Propagation: 0.0340754
+      Check  : 0.0971779
+      Undo   : 0.0021777
+    Refined reason: 26727
+    Introduced reason: 5683
+    Literals introduced: 76

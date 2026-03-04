@@ -1,0 +1,193 @@
+{
+  "settings": {
+    "co2Costs": 90,
+    "capitalCosts": 0.1
+  },
+  "locations": {
+    "L1": {
+      "name": "L1"
+    },
+    "L2": {
+      "name": "L2"
+    },
+    "L3": {
+      "name": "L3"
+    },
+    "L4": {
+      "name": "L4"
+    },
+    "L5": {
+      "name": "L5"
+    },
+    "L6": {
+      "name": "L6"
+    }
+  },
+  "transportResources": {
+    "TR1": {
+      "name": "TR1",
+      "capacity": 10,
+      "co2Emissions": 60,
+      "cost": 56,
+      "speed": 0.3
+    },
+    "TR2": {
+      "name": "TR2",
+      "capacity": 15,
+      "co2Emissions": 45,
+      "cost": 42.5,
+      "speed": 0.2
+    }
+  },
+  "products": {
+    "P1": {
+      "name": "P1",
+      "validTR": [
+        "TR1",
+        "TR2"
+      ],
+      "size": 4,
+      "value": 1000,
+      "netSupplyDemand": {
+        "L1": 15,
+        "L2": 20,
+        "L5": -15,
+        "L6": -20
+      }
+    },
+    "P2": {
+      "name": "P2",
+      "validTR": [
+        "TR1",
+        "TR2"
+      ],
+      "size": 3,
+      "value": 600,
+      "netSupplyDemand": {
+        "L1": 40,
+        "L2": -10,
+        "L5": -20,
+        "L6": -10
+      }
+    }
+  },
+  "routes": {
+    "L1-L2": {
+      "from": "L1",
+      "to": "L2",
+      "transportResources": {
+        "TR1": {
+          "distance": 1
+        },
+        "TR2": {
+          "distance": 2
+        }
+      }
+    },
+    "L1-L3": {
+      "from": "L1",
+      "to": "L3",
+      "transportResources": {
+        "TR1": {
+          "distance": 3
+        },
+        "TR2": {
+          "distance": 4
+        } 
+      }
+    },
+    "L1-L4": {
+      "from": "L1",
+      "to": "L4",
+      "transportResources": {
+        "TR1": {
+          "distance": 4
+        },
+        "TR2": {
+          "distance": 8
+        }
+      }
+    },
+    "L2-L3": {
+      "from": "L2",
+      "to": "L3",
+      "transportResources": {
+        "TR1": {
+          "distance": 1
+        },
+        "TR2": {
+          "distance": 2
+        }
+      }
+    },
+    "L2-L4": {
+      "from": "L2",
+      "to": "L4",
+      "transportResources": {
+        "TR1": {
+          "distance": 2
+        },
+        "TR2": {
+          "distance": 6
+        }
+      }
+    },
+    "L2-L6": {
+      "from": "L2",
+      "to": "L6",
+      "transportResources": {
+        "TR1": {
+          "distance": 1.5
+        }
+      }
+    },
+    "L3-L5": {
+      "from": "L3",
+      "to": "L5",
+      "transportResources": {
+        "TR1": {
+          "distance": 1
+        },
+        "TR2": {
+          "distance": 3
+        }
+      }
+    },
+    "L3-L6": {
+      "from": "L3",
+      "to": "L6",
+      "transportResources": {
+        "TR1": {
+          "distance": 1
+        },
+        "TR2": {
+          "distance": 2
+        }
+      }
+    },
+    "L4-L5": {
+      "from": "L4",
+      "to": "L5",
+      "transportResources": {
+        "TR1": {
+          "distance": 2
+        },
+        "TR2": {
+          "distance": 4
+        }
+      }
+    },
+    "L4-L6": {
+      "from": "L4",
+      "to": "L6",
+      "transportResources": {
+        "TR1": {
+          "distance": 3
+        },
+        "TR2": {
+          "distance": 5
+        }
+      }
+    }
+  }
+}

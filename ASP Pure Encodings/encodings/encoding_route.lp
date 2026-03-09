@@ -1,5 +1,3 @@
-bins(1..numBins).
-
 netdemandSupply(P,L,0) :- not demandOffer(P,L,_), part(P), location(L).
 netdemandSupply(P,L,D) :- demandOffer(P,L,D).
 

@@ -20,12 +20,12 @@ validFromNode(L) :- demandOffer(_, L, M), M>0.
 validToNode(L) :- demandOffer(_, L, M), M<0.
 validToNode(L) :- harbor(L).
 validFromNode(L) :- harbor(L).
+
 noShipBetweenHarbors(From, To, TR) :- harbor(From), harbor(To), not ship(TR), transportResource(TR).
 
 possibleFlow(From, To, TR, P) :- route(From, To, TR, _,Cost), 
 validFromNode(From), validToNode(To),  
-not noShipBetweenHarbors(From, To, TR), 
-productTR(P,TR), tRCapSmall(TR, Cap), productSizeSmall(P,S), S<Cap. 
+not noShipBetweenHarbors(From, To, TR).
 
 tRCapSmall(TR,Cap) :- transportCapacity(TR,CapB), Cap=CapB/cap_size_divide.
 productSizeSmall(P,S) :- productSize(P,SB), S = SB/cap_size_divide.

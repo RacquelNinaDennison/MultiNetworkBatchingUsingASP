@@ -25,7 +25,8 @@ noShipBetweenHarbors(From, To, TR) :- harbor(From), harbor(To), not ship(TR), tr
 
 possibleFlow(From, To, TR, P) :- route(From, To, TR, _,Cost), 
 validFromNode(From), validToNode(To),  
-not noShipBetweenHarbors(From, To, TR).
+not noShipBetweenHarbors(From, To, TR), 
+partTR(TR,P), tRCapSmall(TR,Cap), productSizeSmall(P,S), S<Cap.
 
 tRCapSmall(TR,Cap) :- transportCapacity(TR,CapB), Cap=CapB/cap_size_divide.
 productSizeSmall(P,S) :- productSize(P,SB), S = SB/cap_size_divide.
@@ -59,9 +60,8 @@ routeFreq(F, T, TR, Freq, TotalCap), tRCapSmall(TR,C), Minus1=TotalCap-C, Freq>1
 
 
 % scale_co2 = 1/1000000
-#minimize{D*Freq*E,From,To,TR: routeFreq(From, To, TR, Freq, _),route(From, To, TR,D, _),transportCO2(TR,E);C*Freq,From,To,TR: routeFreq(From, To, TR, Freq, TotalCap),route(From, To, TR, _, C)}.
-
-
+#minimize{D*Freq*E,From,To,TR: routeFreq(From, To, TR, Freq, _),route(From, To, TR,D, _),transportCO2(TR,E);
+C*Freq,From,To,TR: routeFreq(From, To, TR, Freq, TotalCap),route(From, To, TR, _, C)}.
 
 %&dom { 0..TotalCap } = used_space(F,T,TR) :- routeFreq(F,T,TR,_,TotalCap).
 %:- &sum{used_space(F,T,TR)} != 0, not routeFreq(F,T,TR,_,_), possibleFlow(F,T,TR,_).

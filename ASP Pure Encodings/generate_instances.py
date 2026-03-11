@@ -329,6 +329,36 @@ def gen_series_E() -> None:
             )
 
 
+def gen_series_F() -> None:
+    """Location scaling (larger range): L ∈ {4,6,8,10,12,15}, P=2, TR=2.
+    Designed for bins=2 three-encoding comparison."""
+    print("\nSeries F — Location scaling  (P=2, TR=2, bins=2 at solve time)")
+    for L in [4, 6, 8, 10, 12, 15]:
+        for seed in SEEDS:
+            generate_and_save(
+                series="F", label=f"L={L}, P=2, TR=2", seed=seed,
+                num_locations=L, num_products=2, num_transport_types=2,
+                cap_params=DEFAULT_CAP,
+                out_dir=DATA_DIR / "series_F",
+                out_name=f"L{L:02d}_P02_TR2_s{seed}.lp",
+            )
+
+
+def gen_series_G() -> None:
+    """Product scaling: L=8, P ∈ {1,2,3,4,5}, TR=2.
+    Designed for bins=2 three-encoding comparison."""
+    print("\nSeries G — Product scaling  (L=8, TR=2, bins=2 at solve time)")
+    for P in [1, 2, 3, 4, 5]:
+        for seed in SEEDS:
+            generate_and_save(
+                series="G", label=f"L=8, P={P}, TR=2", seed=seed,
+                num_locations=8, num_products=P, num_transport_types=2,
+                cap_params=DEFAULT_CAP,
+                out_dir=DATA_DIR / "series_G",
+                out_name=f"L08_P{P:02d}_TR2_s{seed}.lp",
+            )
+
+
 # ── entry point ───────────────────────────────────────────────────────────────
 
 def main() -> None:
@@ -338,7 +368,9 @@ def main() -> None:
     gen_series_C()
     gen_series_D()
     gen_series_E()
-    print(f"\nAll instances written to {DATA_DIR}/series_[A-E]/")
+    gen_series_F()
+    gen_series_G()
+    print(f"\nAll instances written to {DATA_DIR}/series_[A-G]/")
 
 
 if __name__ == "__main__":

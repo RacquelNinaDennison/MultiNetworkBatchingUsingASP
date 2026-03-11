@@ -1,12 +1,8 @@
 bins(1..numBins).
-numParts(0..10).
 
-#const maxItems = 20. % maximum number of items that can be packed in a single transport resource
-#const maxFreq = 20. % maximum frequency of dispatching a packing pattern on a
-
-netdemandSupply(Part,Location, Value) :- demandSupply(Part,Location,N), N >= 0, Value = N.
-netdemandSupply(Part,Location, Value) :- demandSupply(Part,Location,N), N < 0, Value = N.
-netdemandSupply(Part,Location, 0) :- not demandSupply(Part,Location,_), location(Location), part(Part). 
+netdemandSupply(Part,Location, Value) :- demandOffer(Part,Location,N), N >= 0, Value = N.
+netdemandSupply(Part,Location, Value) :- demandOffer(Part,Location,N), N < 0, Value = N.
+netdemandSupply(Part,Location, 0) :- not demandOffer(Part,Location,_), location(Location), part(Part). 
 
 customer(Location,Part) :- netdemandSupply(Part,Location, N), N < 0. 
 supplier(Location,Part) :- netdemandSupply(Part,Location, N), N > 0. 

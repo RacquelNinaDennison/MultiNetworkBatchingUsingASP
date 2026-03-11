@@ -1,0 +1,15 @@
+.claude
+.venv
+.DS_Store
+.env
+.python-version
+*.pyc
+*.pyo
+*.pyd
+*.pyw
+*.pyz
+*.pywz
+
+multibatching-ex-generator/
+
+documentation/

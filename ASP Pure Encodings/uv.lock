@@ -88,6 +88,7 @@ dependencies = [
     { name = "flingo" },
     { name = "matplotlib" },
     { name = "networkx" },
+    { name = "numpy" },
     { name = "openpyxl" },
 ]
 
@@ -98,6 +99,7 @@ requires-dist = [
     { name = "flingo", specifier = ">=1.0.0" },
     { name = "matplotlib", specifier = ">=3.8" },
     { name = "networkx", specifier = ">=3.0" },
+    { name = "numpy", specifier = ">=2.4.3" },
     { name = "openpyxl", specifier = ">=3.1" },
 ]
 

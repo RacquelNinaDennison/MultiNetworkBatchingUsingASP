@@ -24,14 +24,8 @@ validFromNode(L) :- harbor(L).
 noShipBetweenHarbors(From, To, TR) :- harbor(From), harbor(To), not ship(TR), transportResource(TR).
 
 possibleFlow(From, To, TR, P) :- route(From, To, TR, _,Cost), 
-<<<<<<< HEAD
-validFromNode(From), validToNode(To),  
-not noShipBetweenHarbors(From, To, TR), 
-partTR(TR,P), tRCapSmall(TR,Cap), productSizeSmall(P,S), S<Cap.
-=======
 validFromNode(From), validToNode(To),  part(P), 
 not noShipBetweenHarbors(From, To, TR).
->>>>>>> refs/remotes/origin/main
 
 tRCapSmall(TR,Cap) :- transportCapacity(TR,CapB), Cap=CapB/cap_size_divide.
 partSizeSmall(P,S) :- partSize(P,SB), S = SB/cap_size_divide.
@@ -39,18 +33,7 @@ partSizeSmall(P,S) :- partSize(P,SB), S = SB/cap_size_divide.
 &dom { 0..Max } = load(From, To, TR, P) :- possibleFlow(From, To, TR,P), totalSupply(P, Max).
 &sum { load(From, L, TR, P): possibleFlow(From, L, TR, P)} = flow_in(P, L) :-  location(L), part(P).
 &sum { load(L, To, TR, P): possibleFlow(L, To, TR, P)} = flow_out(P, L) :-  location(L), part(P).
-
 &sum { flow_in(P,L); -1 * flow_out(P,L)} = Net :- requiredNet(P, L, Net).
-
-%:- &sum{flow_in(P,L)}=0, demandOffer(P,L,N), N<0.
-%:- &sum{flow_out(P,L)}=0, demandOffer(P,L,N), N>0.
-
-%:- &sum{flow_out(P,From)} > Max, totalSupply(P, Max), possibleFlow(From, _, _,P).
-%:- &sum{flow_in(P,To)} > Max, totalSupply(P, Max), possibleFlow(_, To, _,P).
-
-%:- &sum{flow_in(P,L)}<N * -1, demandOffer(P,L,N), N<0.
-%:- &sum{flow_out(P,L)}>N, demandOffer(P,L,N), N>0.
-
 activeFlow(From,To,TR,P) :-  &sum { load(From, To, TR, P):possibleFlow(From, To, TR, P)} > 0,possibleFlow(From, To, TR, P).
 
 freq(1..max_freq).
@@ -65,18 +48,47 @@ routeFreq(F, T, TR, Freq, TotalCap), tRCapSmall(TR,C), Minus1=TotalCap-C, Freq>1
 
 
 % scale_co2 = 1/1000000
+
+
+
+% minimsed objective on the co2 emisiions and the distance, this also minimises the costs 
 #minimize{D*Freq*E,From,To,TR: routeFreq(From, To, TR, Freq, _),route(From, To, TR,D, _),transportCO2(TR,E);
 C*Freq,From,To,TR: routeFreq(From, To, TR, Freq, TotalCap),route(From, To, TR, _, C)}.
 
-%&dom { 0..TotalCap } = used_space(F,T,TR) :- routeFreq(F,T,TR,_,TotalCap).
-%:- &sum{used_space(F,T,TR)} != 0, not routeFreq(F,T,TR,_,_), possibleFlow(F,T,TR,_).
-%:- &sum{empty_space(F,T,TR)} != 0, not routeFreq(F,T,TR,_,_), possibleFlow(F,T,TR,_).
-%:- &sum{used_space(F,T,TR);empty_space(F,T,TR)} != TotalCap, routeFreq(F,T,TR,_,TotalCap).
 
-%&sum { S*load(F,T,TR,P) : possibleFlow(F,T,TR,P), partSizeSmall(P,S) } >= used_space(F,T,TR)
-%    :- routeFreq(F,T,TR,Freq,TotalCap).
+% minimise the tied-up capital: opportunity cost of bounded capital during transportation
+% compoundInterest(value, time) = value * ((1 + interestRate)^time - 1)
+% capitalCost(r) = Σ_B λ_B * compoundInterest(Σ_p α^B_p * value(p), distance(r)/speed(tr(r)))
+%
+% Since compoundInterest is linear in value, we factor out the compound interest rate per route:
+%   CI_factor(r) = ((1 + interestRate)^(distance(r)/speed(tr(r))) - 1)
+% and the capital cost becomes:
+%   capitalCost(r) = Σ_B λ_B * CI_factor(r) * Σ_p α^B_p * value(p)
+%            = Σ_B Σ_p λ_B * CI_factor(r) * α^B_p * value(p)
+%
+% Since load (α^B_p) is a clingcon constraint variable, we use &minimize
 
-%&sum {TotalCap; -1 * used_space(F,T,TR)} = empty_space(F,T,TR) 
-%    :- routeFreq(F,T,TR,Freq,TotalCap).
+#const interest_rate_percent = 5.
+#const interest_scale = 100.
 
-%&minimize{empty_space(F,T,TR) :possibleFlow(F,T,TR,_)}.
+% transit duration for each route: distance / speed (scaled by interest_scale for integer precision)
+routeDuration(From, To, TR, D*interest_scale/Speed) :-
+    route(From, To, TR, D, _), transportSpeed(TR, Speed), Speed > 0.
+
+% compound interest factor per route, approximated as r * t for integer arithmetic
+% CI_factor ≈ interestRate * duration = interest_rate_percent * Dur / interest_scale
+% to provide exact compound interest values, override with compoundInterestFactor/3 input facts
+% we use taylor expansion to approximate the compound interest factor, as this allows us to maintain linearity in the optimization objective
+compoundInterestFactor(From, To, TR, interest_rate_percent * Dur / interest_scale) :-
+    routeDuration(From, To, TR, Dur).
+
+% total value loaded per route (clingcon variable): Σ_p load(F,T,TR,P) * value(P)
+&sum { V*load(F,T,TR,P) : possibleFlow(F,T,TR,P), partVal(P,V) } = totalLoadValue(F,T,TR) :-
+    activeFlow(F,T,TR,_).
+
+% capital cost per route = frequency * CI_factor * totalLoadValue
+&sum { CI*Freq*totalLoadValue(F,T,TR) } = capitalCostRoute(F,T,TR) :-
+    routeFreq(F,T,TR,Freq,_), compoundInterestFactor(F,T,TR,CI).
+
+% minimise total tied-up capital across all active routes
+&minimize { capitalCostRoute(F,T,TR) : activeFlow(F,T,TR,_) }.

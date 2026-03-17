@@ -35,10 +35,10 @@ partSize(p1,4).
 % partSize(p2,3).
 partTR(p1,tr1).
 partTR(p1,tr2).
-partTR(p2,tr1).
-partTR(p2,tr2).
+%partTR(p2,tr1).
+%partTR(p2,tr2).
 partVal(p1,1000).
-partVal(p2,600).
+%partVal(p2,600).
 
 
 % netSupplyDemand: part name, location, offer/ produced/able

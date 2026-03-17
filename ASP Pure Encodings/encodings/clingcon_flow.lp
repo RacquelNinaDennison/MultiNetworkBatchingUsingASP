@@ -14,27 +14,29 @@ offer(P, L, 0)   :- part(P), location(L), not hasOffer(P, L).
 
 requiredNet(P, L, Net) :- demand(P,L,D), offer(P,L,O), Net = D - O.
 requiredNet(P, L, 0) :- not demand(P,L,_), not offer(P,L,_), location(L), part(P).
-&dom { N..N } = req(P,L) :- requiredNet(P, L, N).
+
 
 validFromNode(L) :- demandOffer(_, L, M), M>0.
 validToNode(L) :- demandOffer(_, L, M), M<0.
-validToNode(L) :- harbor(L).
-validFromNode(L) :- harbor(L).
+%validToNode(L) :- harbor(L).
+%validFromNode(L) :- harbor(L).
 
-noShipBetweenHarbors(From, To, TR) :- harbor(From), harbor(To), not ship(TR), transportResource(TR).
+%noShipBetweenHarbors(From, To, TR) :- harbor(From), harbor(To), not ship(TR), transportResource(TR).
 
 possibleFlow(From, To, TR, P) :- route(From, To, TR, _,Cost), 
-validFromNode(From), validToNode(To),  part(P), 
-not noShipBetweenHarbors(From, To, TR).
+validFromNode(From), validToNode(To),  part(P).
 
 tRCapSmall(TR,Cap) :- transportCapacity(TR,CapB), Cap=CapB/cap_size_divide.
 partSizeSmall(P,S) :- partSize(P,SB), S = SB/cap_size_divide.
+
 
 &dom { 0..Max } = load(From, To, TR, P) :- possibleFlow(From, To, TR,P), totalSupply(P, Max).
 &sum { load(From, L, TR, P): possibleFlow(From, L, TR, P)} = flow_in(P, L) :-  location(L), part(P).
 &sum { load(L, To, TR, P): possibleFlow(L, To, TR, P)} = flow_out(P, L) :-  location(L), part(P).
 &sum { flow_in(P,L); -1 * flow_out(P,L)} = Net :- requiredNet(P, L, Net).
 activeFlow(From,To,TR,P) :-  &sum { load(From, To, TR, P):possibleFlow(From, To, TR, P)} > 0,possibleFlow(From, To, TR, P).
+
+% this can be based on the number of items within the network which can be transported 
 
 freq(1..max_freq).
 1{routeFreq(From, To, TR, Freq, C*Freq) : freq(Freq), tRCapSmall(TR,C) }1 :- activeFlow(From,To,TR,_).
@@ -55,4 +57,7 @@ routeFreq(F, T, TR, Freq, TotalCap), tRCapSmall(TR,C), Minus1=TotalCap-C, Freq>1
 #minimize{D*Freq*E,From,To,TR: routeFreq(From, To, TR, Freq, _),route(From, To, TR,D, _),transportCO2(TR,E);
 C*Freq,From,To,TR: routeFreq(From, To, TR, Freq, TotalCap),route(From, To, TR, _, C)}.
 
-
+#show. 
+&show{requiredNet/3}.
+&show{hasDemand/2}.
+&show{hasOffer/2}.

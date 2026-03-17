@@ -1,0 +1,6 @@
+variant,active_route_count,total_frequency,avg_parts_per_route,min_parts_per_route,mono_sku_routes,avg_fill_rate,min_fill_rate,avg_max_part_share
+E1_baseline,10,47,1.8,1,2,0.972,0.833,0.785
+E2_cost_co2,11,50,1.55,1,5,0.972,0.7,0.637
+E3_full,8,48,1.62,1,3,0.986,0.889,0.67
+E4_hold_first,11,42,1,1,11,0.984,0.889,1.0
+E5_co2_first,8,51,1.62,1,3,0.98,0.895,0.595

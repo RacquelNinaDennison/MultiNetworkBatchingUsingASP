@@ -1,0 +1,2 @@
+variant,active_route_count,total_frequency,avg_parts_per_route,min_parts_per_route,mono_sku_routes,avg_fill_rate,min_fill_rate,avg_max_part_share
+E1_baseline,0,0,0.0,0,0,0.0,0.0,1.0

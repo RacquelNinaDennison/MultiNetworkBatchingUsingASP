@@ -1,7 +1,7 @@
-- [ ] Run propagator benchmark on airbus data
 - [ ] Compare Clingo vs Clingcon runtime
 - [ ] Update NMR results table
 - [ ] Add a visualisation of the entire network 
-- [ ] Multi shot approach for the solver 
+- [x] Multi shot approach for the solver 
 - [ ] Column generation pricer testing 
 - [ ] Port over the checking.py from the other encodings 
+

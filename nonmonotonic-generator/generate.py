@@ -79,6 +79,10 @@ def parse_instances(path: Path) -> dict:
     for m in re.finditer(r'\bpartSize\((\w+),(\d+)\)', text):
         part_id, size = m.group(1), int(m.group(2))
         parts.setdefault(part_id, {'size': size, 'valid_trs': []})['size'] = size
+    for m in re.finditer(r'\bpartVal\((\w+),(\d+)\)', text):
+        part_id, val = m.group(1), int(m.group(2))
+        if part_id in parts:
+            parts[part_id]['value'] = val
     for m in re.finditer(r'\bpartTR\((\w+),(\w+)\)', text):
         part_id, tr_id = m.group(1), m.group(2)
         entry = parts.setdefault(part_id, {'size': 1, 'valid_trs': []})
@@ -160,6 +164,30 @@ def assign_demand(
 
     return facts
 
+
+
+def assign_part_values(pool: dict, rng: random.Random) -> None:
+    """
+    Assign monetary values to parts that lack a 'value' key in the pool.
+
+    Uses an inverse-size heuristic reflecting real logistics:
+      - Small parts (size 1-5): high value (2000-8000) — sensors, electronics
+      - Medium parts (size 6-50): medium value (500-3000) — housings, assemblies
+      - Large parts (size 50+): lower value (100-1000) — frames, panels
+
+    Values are jittered by the seeded RNG for variation across instances.
+    """
+    for part_id, p in pool['parts'].items():
+        if 'value' in p:
+            continue
+        size = p['size']
+        if size <= 5:
+            base, spread = 5000, 3000
+        elif size <= 50:
+            base, spread = 1750, 1250
+        else:
+            base, spread = 550, 450
+        p['value'] = max(50, base + rng.randint(-spread, spread))
 
 
 def generate_route_attrs(
@@ -266,6 +294,7 @@ def build_fixed_facts(pool: dict, demand_facts: list[str]) -> list[str]:
     for part_id, p in sorted(pool['parts'].items()):
         lines.append(f"part({part_id}).")
         lines.append(f"partSize({part_id},{p['size']}).")
+        lines.append(f"partVal({part_id},{p['value']}).")
         for tr in p['valid_trs']:
             lines.append(f"valid_transport({part_id},{tr}).")
 
@@ -379,6 +408,9 @@ def main():
 
     # --- Assign demand patterns to new locations ---
     demand_facts = assign_demand(pool['demand_patterns'], prodloc_names, rng)
+
+    # --- Assign part values (if not already in source data) ---
+    assign_part_values(pool, rng)
 
     # --- Generate route candidates ---
     route_attr_facts = generate_route_attrs(harbor_names, prodloc_names, pool, rng)

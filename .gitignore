@@ -9,7 +9,7 @@
 *.pyw
 *.pyz
 *.pywz
-
+Docs/
 multibatching-ex-generator/
 
 documentation/

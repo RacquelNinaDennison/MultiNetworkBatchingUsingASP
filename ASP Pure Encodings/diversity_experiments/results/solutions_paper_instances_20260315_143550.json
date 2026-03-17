@@ -1,0 +1,71 @@
+{
+  "E1_baseline": {
+    "route_freqs": {
+      "l1,l2,tr1": {
+        "freq": 1,
+        "cap": 10
+      },
+      "l1,l2,tr2": {
+        "freq": 9,
+        "cap": 135
+      },
+      "l1,l3,tr2": {
+        "freq": 1,
+        "cap": 15
+      },
+      "l2,l3,tr1": {
+        "freq": 12,
+        "cap": 120
+      },
+      "l2,l3,tr2": {
+        "freq": 2,
+        "cap": 30
+      },
+      "l2,l4,tr1": {
+        "freq": 1,
+        "cap": 10
+      },
+      "l2,l6,tr1": {
+        "freq": 4,
+        "cap": 40
+      },
+      "l3,l5,tr1": {
+        "freq": 10,
+        "cap": 100
+      },
+      "l3,l6,tr1": {
+        "freq": 6,
+        "cap": 60
+      },
+      "l4,l6,tr2": {
+        "freq": 1,
+        "cap": 15
+      }
+    },
+    "loads": {
+      "l1,l2,tr1,p1": 1,
+      "l1,l2,tr1,p2": 2,
+      "l1,l2,tr2,p1": 9,
+      "l1,l2,tr2,p2": 33,
+      "l1,l3,tr2,p2": 5,
+      "l2,l3,tr1,p1": 19,
+      "l2,l3,tr1,p2": 13,
+      "l2,l3,tr2,p1": 6,
+      "l2,l3,tr2,p2": 2,
+      "l2,l4,tr1,p1": 1,
+      "l2,l4,tr1,p2": 2,
+      "l2,l6,tr1,p1": 4,
+      "l2,l6,tr1,p2": 8,
+      "l3,l5,tr1,p1": 10,
+      "l3,l5,tr1,p2": 20,
+      "l3,l6,tr1,p1": 15,
+      "l4,l6,tr2,p1": 1,
+      "l4,l6,tr2,p2": 2
+    },
+    "optimization": [
+      3486
+    ],
+    "solve_time": 15.027,
+    "models_found": 20
+  }
+}

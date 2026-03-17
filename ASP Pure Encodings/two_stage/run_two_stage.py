@@ -36,7 +36,7 @@ from clingcon import ClingconTheory
 
 HERE   = Path(__file__).parent
 STAGE1 = HERE / "stage1_flow.lp"
-STAGE2 = HERE / "stage2_packing.lp"
+STAGE2 = HERE / "stage2_base.lp"
 
 
 # ─────────────────────────────────────────────────────────────────────────
@@ -99,8 +99,7 @@ def solve_stage1(
     theory = ClingconTheory()
     ctl = clingo.Control([
         "-c", f"cap_size_divide={cap_divide}",
-        "-c", f"max_freq={max_freq}",
-        "--configuration=jumpy",
+        "-c", f"max_freq={max_freq}"
     ])
     theory.register(ctl)
 
@@ -276,9 +275,7 @@ def solve_stage2(facts_str: str, time_limit: int, round_timeout: int = 30) -> di
     """
 
     theory = ClingconTheory()
-    ctl = clingo.Control([
-        "--configuration=jumpy",
-    ])
+    ctl = clingo.Control()
     theory.register(ctl)
 
     with clingo.ast.ProgramBuilder(ctl) as builder:
@@ -518,10 +515,10 @@ def build_parser() -> argparse.ArgumentParser:
                         help="Capacity scaling divisor (default: 1 = exact)")
     parser.add_argument("--max-freq", type=int, default=30,
                         help="Maximum transport frequency (default: 30)")
-    parser.add_argument("--time-limit", type=int, default=300,
-                        help="Overall time limit per stage in seconds (default: 300)")
-    parser.add_argument("--round-timeout", type=int, default=30,
-                        help="Per-round timeout for multi-shot solving (default: 30)")
+    parser.add_argument("--time-limit", type=int, default=120,
+                        help="Overall time limit per stage in seconds (default: 60)")
+    parser.add_argument("--round-timeout", type=int, default=1200,
+                        help="Per-round timeout for multi-shot solving (default: 120)")
     parser.add_argument("--show-facts", action="store_true",
                         help="Print the Stage 2 input facts")
     return parser
@@ -537,10 +534,10 @@ def main() -> int:
 
     # ── Load instance data ───────────────────────────────────────────
     instance_data = load_instance_data(str(instance_path))
-    print(f"Instance: {instance_path}")
-    print(f"  Locations: {len(instance_data['locations'])}  "
-          f"Parts: {len(instance_data['parts'])}")
-    print()
+    # print(f"Instance: {instance_path}")
+    # print(f"Locations: {len(instance_data['locations'])}  "
+    #       f"Parts: {len(instance_data['parts'])}")
+    # print()
 
     # ── Stage 1 ──────────────────────────────────────────────────────
     print("═" * 65)

@@ -12,7 +12,7 @@
 %   cap_size_divide — scaling divisor for capacity/size (set to 1 for exact)
 %   max_freq        — upper bound on trips per route
 
-#const cap_size_divide = 10.
+#const cap_size_divide = 1.
 #const max_freq = 30.
 
 

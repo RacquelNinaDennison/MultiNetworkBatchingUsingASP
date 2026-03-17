@@ -38,7 +38,7 @@ trip(F, T, TR, 1..Freq) :- activeRoute(F, T, TR, Freq, _).
     trip(F, T, TR, K), activeRoute(F, T, TR, _, C).
 
 
-% ── Detection atoms (used by objectives injected on top) ────────────────
+% ── Predicates for diversifying
 
 tripHasPart(F, T, TR, K, P) :-
     &sum { tripLoad(F, T, TR, P, K) :
@@ -54,7 +54,6 @@ routePartTypes(F, T, TR, Count) :-
     Count = #count { P : totalLoad(F, T, TR, P, _) }.
 
 
-% ── Output ───────────────────────────────────────────────────────────────
 
 #show.
 &show { tripLoad/5 }.

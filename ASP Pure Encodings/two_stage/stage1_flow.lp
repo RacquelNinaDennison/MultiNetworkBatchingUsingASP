@@ -1,18 +1,4 @@
-% This initial stage works on the topology of the network, 
-% the main aim is to determine the flow of material and what the overall load within the system looks like
-% Determines:
-%   - Aggregate material flows: how many units of each part traverse each arc
-%   - Transport frequencies:    how many trips each transport makes per arc
-%
-% Output (consumed by Stage 2):
-%   load/4      (CSP)  — total units of part P shipped on arc (From,To,TR)
-%   routeFreq/5 (ASP)  — (From, To, TR, Freq, TotalCap)
-%
-% Constants:
-%   cap_size_divide — scaling divisor for capacity/size (set to 1 for exact)
-%   max_freq        — upper bound on trips per route
-
-#const cap_size_divide = 1.
+#const cap_size_divide = 100.
 #const max_freq = 30.
 
 
@@ -71,9 +57,6 @@ activeFlow(From, To, TR, P) :-
     possibleFlow(From, To, TR, P).
 
 
-% ── Frequency assignment ─────────────────────────────────────────────────
-% For each active arc, choose how many trips to make.
-% TotalCap = single-trip capacity × frequency.
 
 freq(1..max_freq).
 
@@ -81,18 +64,11 @@ freq(1..max_freq).
         freq(Freq), tRCapSmall(TR, C) } 1 :-
     activeFlow(From, To, TR, _).
 
-% Upper bound: total loaded volume ≤ 80% of total capacity.
-% The 20% headroom ensures per-trip bin packing in Stage 2 remains feasible
-% (aggregate 100% utilisation can be combinatorially infeasible per trip
-%  due to item granularity — e.g. sizes 3,4 in capacity 10).
-&sum { 5*S*load(F, T, TR, P) :
-        possibleFlow(F, T, TR, P), partSizeSmall(P, S) } <= TotalCap*4 :-
+&sum { S*load(F, T, TR, P) :
+        possibleFlow(F, T, TR, P), partSizeSmall(P, S) } <= TotalCap :-
     routeFreq(F, T, TR, Freq, TotalCap).
 
-% Per-item feasibility: each part's total load must be distributable
-% across individual trips. Without this, the aggregate model allows
-% loads that cannot physically be packed (e.g. 15 items of size 4
-% in 4 trips of capacity 15 — only 3 fit per trip, so max 12).
+
 maxItemsPerTrip(TR, P, Cap/S) :-
     transportCapacity(TR, Cap), partSize(P, S), S > 0, Cap >= S.
 
@@ -100,24 +76,43 @@ maxItemsPerTrip(TR, P, Cap/S) :-
     routeFreq(F,T,TR,Freq,_), possibleFlow(F,T,TR,P),
     maxItemsPerTrip(TR, P, Max).
 
-% Lower bound: if Freq > 1, total load must justify the extra trips
-% (at least Freq−1 full trips worth of material)
 :- &sum { S*load(F, T, TR, P) :
         possibleFlow(F, T, TR, P), partSizeSmall(P, S) } < Minus1,
     routeFreq(F, T, TR, Freq, TotalCap),
     tRCapSmall(TR, C), Minus1 = TotalCap - C, Freq > 1.
 
 
-% Cost components (also used by multi-shot bound constraints in the runner)
-_co2Cost(From,To,TR, D*Freq*E) :-
-    routeFreq(From,To,TR,Freq,_), route(From,To,TR,D,_), transportCO2(TR,E).
+
 _transCost(From,To,TR, C*Freq) :-
     routeFreq(From,To,TR,Freq,_), route(From,To,TR,_,C).
 
-#minimize { V,1,F,T,TR : _co2Cost(F,T,TR,V) ;
-            V,2,F,T,TR : _transCost(F,T,TR,V) }.
+
+% back up features for the load 
+arcHasLoad(F, T, TR, P) :-
+    &sum { load(F, T, TR, P) } > 0,
+    possibleFlow(F, T, TR, P).
+
+
+transportResourcesAvaliable(F, T, P, N) :-
+    activeFlow(F, T, _, P),
+    N = #count { TR : possibleFlow(F, T, TR, P) }.
+
+transportResourcesUsed(F, T, P, N) :-
+    activeFlow(F, T, _, P),
+    N = #count { TR : arcHasLoad(F, T, TR, P) }.
+
+
+underDiversified(F, T, P) :-
+    transportResourcesUsed(F, T, P, U),
+    transportResourcesAvaliable(F, T, P, A),
+    A > 1, U < A.
+
+:~ underDiversified(F, T, P). [5@1, F, T, P]
+:~ _transCost(F,T,TR,V). [V@1, F, T, TR, V]
 
 
 #show.
 &show { load/4 }.
 #show routeFreq/5.
+
+

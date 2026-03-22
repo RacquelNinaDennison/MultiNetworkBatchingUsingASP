@@ -21,7 +21,8 @@ Clingo's role (--seed controls combinatorial choices):
 
 Usage:
   python generate.py --seed 42 --harbors 5 --prodlocs 15 --hubs 3 \\
-                     --disruptions 2 --output instances/instance_42.lp
+                     --parts 10 --min-trs 2 --disruptions 2 \\
+                     --output instances/instance_42.lp
 """
 
 import argparse
@@ -157,10 +158,17 @@ def assign_demand(
         supply_locs = locs[:len(supply)]
         demand_locs = locs[len(supply):]
 
+        # Aggregate amounts per location to avoid duplicate ground atoms in ASP
+        # (ASP set semantics collapse identical facts, breaking supply/demand balance)
+        loc_totals: dict[str, int] = defaultdict(int)
         for loc, amt in zip(supply_locs, supply):
-            facts.append(f"demandOffer({part_id},{loc},{amt}).")
+            loc_totals[loc] += amt
         for loc, amt in zip(demand_locs, demand):
-            facts.append(f"demandOffer({part_id},{loc},{amt}).")
+            loc_totals[loc] += amt
+
+        for loc, total in sorted(loc_totals.items()):
+            if total != 0:
+                facts.append(f"demandOffer({part_id},{loc},{total}).")
 
     return facts
 
@@ -195,6 +203,7 @@ def generate_route_attrs(
     prodloc_names: list[str],
     pool: dict,
     rng: random.Random,
+    min_trs: int = 1,
 ) -> list[str]:
     """
     Generate route_attr candidates for all directed location pairs.
@@ -226,6 +235,14 @@ def generate_route_attrs(
             is_hh = (l1 in harbor_set and l2 in harbor_set)
             trs       = hh_trs    if is_hh else non_hh_trs
             dist_range = hh_range if is_hh else non_hh_range
+
+            # Ensure at least min_trs transport resources per route
+            if len(trs) < min_trs:
+                # Pad with additional TRs from the full pool
+                all_trs = sorted(pool['tr_profiles'].keys())
+                extra = [t for t in all_trs if t not in trs]
+                rng.shuffle(extra)
+                trs = list(trs) + extra[:min_trs - len(trs)]
 
             # One distance per arc (geography), cost varies by TR
             dist = rng.randint(*dist_range)
@@ -306,13 +323,13 @@ def build_fixed_facts(pool: dict, demand_facts: list[str]) -> list[str]:
 
 
 
-def run_generator(facts: list[str], seed: int, n_solutions: int = 1) -> list[str] | None:
+def run_generator(facts: list[str], seed: int, n_solutions: int = 1, min_transport_resources: int = 1) -> list[str] | None:
     """Use the clingo API to solve generator.lp with the given facts.
 
     Returns the symbols of the last answer set as a list of strings, or None
     if the problem is UNSATISFIABLE.
     """
-    ctl = clingo.Control([str(n_solutions), f"--seed={seed}"])
+    ctl = clingo.Control([str(n_solutions), f"--seed={seed}", f"-c min_transport_resources={min_transport_resources}"])
     ctl.load(str(GENERATOR_LP))
     ctl.add("base", [], "\n".join(facts))
     ctl.ground([("base", [])])
@@ -367,6 +384,12 @@ def main():
     parser.add_argument('--hubs',     type=int, default=3,
                         help="Number of hub locations ASP designates (≤ total locations)")
 
+    # Parts and transport resources
+    parser.add_argument('--parts', type=int, default=None,
+                        help="Number of parts to include (default: all from source data)")
+    parser.add_argument('--min-trs', type=int, default=1, dest='min_trs',
+                        help="Minimum number of transport resources per route (default: 1)")
+
     # Difficulty
     parser.add_argument('--disruptions', type=int, default=0,
                         help="Number of directed arcs to disrupt (nonmonotonic)")
@@ -390,6 +413,10 @@ def main():
         print("Error: --hubs must be at least 1.", file=sys.stderr)
         sys.exit(1)
 
+    if args.min_trs < 1:
+        print("Error: --min-trs must be at least 1.", file=sys.stderr)
+        sys.exit(1)
+
     # --- Parse real instance ---
     print(f"Parsing {args.instances_file.name}...", file=sys.stderr)
     pool = parse_instances(args.instances_file)
@@ -399,6 +426,26 @@ def main():
         f"{len(pool['demand_patterns'])} parts with demand patterns",
         file=sys.stderr,
     )
+
+    # --- Subset parts if --parts is specified ---
+    if args.parts is not None:
+        all_part_ids = sorted(pool['parts'].keys())
+        if args.parts > len(all_part_ids):
+            print(
+                f"Error: --parts {args.parts} exceeds available parts ({len(all_part_ids)}).",
+                file=sys.stderr,
+            )
+            sys.exit(1)
+        if args.parts < 1:
+            print("Error: --parts must be at least 1.", file=sys.stderr)
+            sys.exit(1)
+        rng_parts = random.Random(args.seed)
+        selected = set(rng_parts.sample(all_part_ids, args.parts))
+        pool['parts'] = {k: v for k, v in pool['parts'].items() if k in selected}
+        pool['demand_patterns'] = {
+            k: v for k, v in pool['demand_patterns'].items() if k in selected
+        }
+        print(f"  Subsetted to {args.parts} parts.", file=sys.stderr)
 
     # Seeded RNG (Python owns: demand assignment and route distances)
     rng = random.Random(args.seed)
@@ -413,7 +460,7 @@ def main():
     assign_part_values(pool, rng)
 
     # --- Generate route candidates ---
-    route_attr_facts = generate_route_attrs(harbor_names, prodloc_names, pool, rng)
+    route_attr_facts = generate_route_attrs(harbor_names, prodloc_names, pool, rng, min_trs=args.min_trs)
 
     # --- Build clingo input ---
     clingo_facts = build_clingo_facts(
@@ -425,7 +472,7 @@ def main():
 
     # --- Run clingo for structural decisions ---
     print(f"Generating topology (seed={args.seed})...", file=sys.stderr)
-    clingo_output = run_generator(clingo_facts, seed=args.seed, n_solutions=args.solutions)
+    clingo_output = run_generator(clingo_facts, seed=args.seed, n_solutions=args.solutions, min_transport_resources=args.min_trs)
     if clingo_output is None:
         sys.exit(1)
 
@@ -440,7 +487,8 @@ def main():
         f"% Multibatching benchmark instance\n"
         f"% Source: {args.instances_file.name}\n"
         f"% seed={args.seed}  harbors={args.harbors}  prodlocs={args.prodlocs}"
-        f"  hubs={args.hubs}  disruptions={args.disruptions}\n"
+        f"  hubs={args.hubs}  parts={args.parts or 'all'}  min_trs={args.min_trs}"
+        f"  disruptions={args.disruptions}\n"
     )
 
     loc_facts = "\n% ---- locations ----\n"

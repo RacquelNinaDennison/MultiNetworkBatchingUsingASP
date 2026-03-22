@@ -1,4 +1,5 @@
 % determine number of hubs within the network 
+
 { hub(L) : location(L) } = K :- num_hubs(K).
 
 
@@ -9,7 +10,7 @@
 
 % At most 2 transport types per directed pair. - this i need to change 
 :- location(L1), location(L2), L1 != L2,
-   #count{ TR : route(L1, L2, TR) } > 2.
+   #count{ TR : route(L1, L2, TR) } > min_transport_resources.
 
 
 

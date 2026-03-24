@@ -1,0 +1,21 @@
+{
+  "s1_name": "S1-DIV",
+  "s2_name": "S2-BASE",
+  "s1_cost": 6848343,
+  "s1_time": 119.118,
+  "s1_optimal": false,
+  "s2_cost": [],
+  "s2_time": 0.005,
+  "s2_optimal": false,
+  "trips_used": 12,
+  "total_trips": 12,
+  "R_1": 0.0,
+  "R_TR": 0.0,
+  "R_arc": 0.0,
+  "A_1": 0.0,
+  "instance": "test_scaled",
+  "class": "test",
+  "experiment": "ablation",
+  "sweep_param": "",
+  "sweep_weight": ""
+}

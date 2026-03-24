@@ -44,11 +44,7 @@ trip(F, T, TR, 1..Freq) :- activeRoute(F, T, TR, Freq, _).
     trip(F, T, TR, K), activeRoute(F, T, TR, _, C).
 
 
-% ═══════════════════════════════════════════════════════════════════════════
-% Detection Atoms
-% ═══════════════════════════════════════════════════════════════════════════
 
-% Which parts are present on each trip (non-zero assignment)
 tripHasPart(F, T, TR, K, P) :-
     &sum { tripLoad(F, T, TR, P, K) :
             totalLoad(F, T, TR, P, _), trip(F, T, TR, K) } > 0,
@@ -66,7 +62,7 @@ routePartTypes(F, T, TR, Count) :-
 
 
 % ═══════════════════════════════════════════════════════════════════════════
-% Soft Constraint @3: Worst-Case Exposure (concentration avoidance)
+% Soft Constraint @3: Worst-Case Exposure 
 % ═══════════════════════════════════════════════════════════════════════════
 %
 % No single trip should carry more than half the total allocation of any
@@ -136,17 +132,22 @@ overloaded(F, T, TR, P, K) :-
 
 
 % ═══════════════════════════════════════════════════════════════════════════
-% Soft Constraint @1: Empty Trip Penalty
+% Soft Constraint @1: Dispatch Cost
 % ═══════════════════════════════════════════════════════════════════════════
 %
-% Penalise trips that carry nothing. Stage 1's frequency is an upper
-% bound — if Stage 2 can pack everything into fewer trips, the unused
-% trips are wasted dispatches. However this is at @1, so it is secondary
-% to resilience objectives: the solver will prefer using more trips for
-% diversification over saving dispatch costs.
+% Stage 1's frequency is an upper bound. Stage 2 may use fewer trips.
+% Each used trip incurs the route's per-trip dispatch cost. This gives
+% the solver an incentive to consolidate into fewer trips — but at @1,
+% it is secondary to the resilience objectives at @2 and @3.
+%
+% Input: routeCost(From, To, TR, C) — per-trip cost (passed from bridge)
 
-:~ trip(F, T, TR, K), tripPartCount(F, T, TR, K, 0).
-   [1@1, F, T, TR, K, empty]
+% A trip is used if it carries any part
+usedTrip(F, T, TR, K) :- tripHasPart(F, T, TR, K, _).
+
+% Penalise each used trip by its dispatch cost
+:~ usedTrip(F, T, TR, K), routeCost(F, T, TR, C).
+   [C@1, F, T, TR, K]
 
 
 #show.
@@ -157,3 +158,4 @@ overloaded(F, T, TR, P, K) :-
 #show concentrated/5.
 #show monoTrip/4.
 #show overloaded/5.
+#show usedTrip/4.

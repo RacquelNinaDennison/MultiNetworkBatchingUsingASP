@@ -1,0 +1,157 @@
+instance,class,experiment,s1_name,s2_name,sweep_param,sweep_weight,s1_cost,s1_time,s1_optimal,s2_cost,s2_time,s2_optimal,total_trips,total_used_trips,R_1,R_TR,R_arc,A_1,concentrated_trips,mono_trips,overloaded_trips,empty_trips,max_concentration,s1_transport_cost,s1_underdiversified
+large_seed1,large,ablation,S1-COST,S2-BASE,,,0,11.731,True,[],0.121,False,581,561,0.0,0.0,1.0,1.0,324,259,447,20,1.0,177854,167
+large_seed1,large,ablation,S1-COST,S2-EVEN,,,0,11.731,True,[160839],60.048,False,581,519,0.0,0.0,1.0,2.0,201,61,318,62,1.0,177854,167
+large_seed1,large,ablation,S1-COST,S2-FULL,,,0,11.731,True,"[2840, 800, 170196]",60.048,False,581,553,0.0,0.0,1.0,1.0,244,160,387,28,1.0,177854,167
+large_seed1,large,ablation,S1-COST,S2-HET,,,0,11.731,True,"[165, 160120]",60.031,False,581,520,0.0,0.0,1.0,1.0,255,33,404,61,1.0,177854,167
+large_seed1,large,ablation,S1-COST,S2-VALW,,,0,11.731,True,"[103173, 875, 172483]",60.057,False,581,556,0.0,0.0,1.0,1.0,227,175,387,25,1.0,177854,167
+large_seed1,large,ablation,S1-COST,S2-WC,,,0,11.731,True,"[2220, 163946]",60.051,False,581,532,0.0,0.0,1.0,2.0,194,121,409,49,1.0,177854,167
+large_seed1,large,ablation,S1-DIV,S2-BASE,,,800,119.486,False,[],0.124,False,657,618,0.0,0.0,1.0,1.0,329,321,534,39,1.0,208422,160
+large_seed1,large,ablation,S1-DIV,S2-EVEN,,,800,119.486,False,[187607],60.053,False,657,582,0.0,0.0,1.0,1.0,242,142,441,75,1.0,208422,160
+large_seed1,large,ablation,S1-DIV,S2-FULL,,,800,119.486,False,"[2810, 1170, 201414]",60.063,False,657,627,0.0,0.0,1.0,1.0,254,234,471,30,1.0,208422,160
+large_seed1,large,ablation,S1-DIV,S2-HET,,,800,119.486,False,"[340, 184924]",60.041,False,657,576,0.0,0.0,1.0,1.0,264,68,486,81,1.0,208422,160
+large_seed1,large,ablation,S1-DIV,S2-VALW,,,800,119.486,False,"[109164, 1215, 201666]",60.058,False,657,630,0.0,0.0,1.0,1.0,257,243,461,27,1.0,208422,160
+large_seed1,large,ablation,S1-DIV,S2-WC,,,800,119.486,False,"[2410, 185284]",60.051,False,657,577,0.0,0.0,1.0,1.0,216,124,490,80,1.0,208422,160
+large_seed2,large,ablation,S1-COST,S2-BASE,,,0,45.351,True,[],0.084,False,592,589,0.0,0.0,1.0,1.6667,258,297,375,3,1.0,108576,189
+large_seed2,large,ablation,S1-COST,S2-EVEN,,,0,45.351,True,[99965],60.082,False,592,550,0.0,0.0,1.0,1.6667,107,75,180,42,1.0,108576,189
+large_seed2,large,ablation,S1-COST,S2-FULL,,,0,45.351,True,"[1510, 610, 105835]",60.044,False,592,578,0.0,0.0,1.0,1.6667,139,122,234,14,1.0,108576,189
+large_seed2,large,ablation,S1-COST,S2-HET,,,0,45.351,True,"[215, 100742]",60.058,False,592,552,0.0,0.0,1.0,1.6667,174,43,283,40,1.0,108576,189
+large_seed2,large,ablation,S1-COST,S2-VALW,,,0,45.351,True,"[109019, 830, 106571]",60.047,False,592,580,0.0,0.0,1.0,1.6667,150,166,267,12,1.0,108576,189
+large_seed2,large,ablation,S1-COST,S2-WC,,,0,45.351,True,"[650, 102746]",60.056,False,592,560,0.0,0.0,1.0,1.6667,59,104,239,32,1.0,108576,189
+large_seed2,large,ablation,S1-DIV,S2-BASE,,,805,119.344,False,[],0.077,False,561,555,0.0,0.0,0.8636,1.3333,267,293,378,6,1.0,100670,161
+large_seed2,large,ablation,S1-DIV,S2-EVEN,,,805,119.344,False,[92670],60.034,False,561,513,0.0,0.0,0.8636,1.3333,117,75,174,48,1.0,100670,161
+large_seed2,large,ablation,S1-DIV,S2-FULL,,,805,119.344,False,"[1350, 615, 98040]",60.038,False,561,545,0.0,0.0,0.8636,1.3333,124,123,217,16,1.0,100670,161
+large_seed2,large,ablation,S1-DIV,S2-HET,,,805,119.344,False,"[170, 91590]",60.037,False,561,510,0.0,0.0,0.8636,1.3333,176,34,276,51,1.0,100670,161
+large_seed2,large,ablation,S1-DIV,S2-VALW,,,805,119.344,False,"[109737, 650, 97493]",60.046,False,561,545,0.0,0.0,0.8636,1.3333,139,130,226,16,1.0,100670,161
+large_seed2,large,ablation,S1-DIV,S2-WC,,,805,119.344,False,"[950, 95510]",60.041,False,561,530,0.0,0.0,0.8636,1.3333,88,108,253,31,1.0,100670,161
+large_seed3,large,ablation,S1-COST,S2-BASE,,,0,27.11,True,[],0.069,False,613,603,0.0,0.0,1.0,1.0,347,384,503,10,1.0,155642,157
+large_seed3,large,ablation,S1-COST,S2-EVEN,,,0,27.11,True,[143089],60.037,False,613,561,0.0,0.0,1.0,1.0,139,72,247,52,1.0,155642,157
+large_seed3,large,ablation,S1-COST,S2-FULL,,,0,27.11,True,"[2010, 840, 150175]",60.044,False,613,590,0.0,0.0,1.0,1.0,187,168,332,23,1.0,155642,157
+large_seed3,large,ablation,S1-COST,S2-HET,,,0,27.11,True,"[175, 143261]",60.034,False,613,565,0.0,0.0,1.0,1.0,224,35,384,48,1.0,155642,157
+large_seed3,large,ablation,S1-COST,S2-VALW,,,0,27.11,True,"[168839, 890, 153391]",60.074,False,613,603,0.0,0.0,1.0,1.0,198,178,337,10,1.0,155642,157
+large_seed3,large,ablation,S1-COST,S2-WC,,,0,27.11,True,"[1140, 145809]",60.038,False,613,573,0.0,0.0,1.0,1.0,108,104,358,40,1.0,155642,157
+large_seed3,large,ablation,S1-DIV,S2-BASE,,,835,119.358,False,[],0.075,False,620,600,0.0,0.0,0.6341,1.0,344,365,525,20,1.0,156715,167
+large_seed3,large,ablation,S1-DIV,S2-EVEN,,,835,119.358,False,[144003],60.04,False,620,566,0.0,0.0,0.6341,1.0,176,89,305,54,1.0,156715,167
+large_seed3,large,ablation,S1-DIV,S2-FULL,,,835,119.358,False,"[2370, 995, 154109]",60.043,False,620,603,0.0,0.0,0.6341,1.0,216,199,382,17,1.0,156715,167
+large_seed3,large,ablation,S1-DIV,S2-HET,,,835,119.358,False,"[175, 144412]",60.041,False,620,568,0.0,0.0,0.6341,1.0,242,35,418,52,1.0,156715,167
+large_seed3,large,ablation,S1-DIV,S2-VALW,,,835,119.358,False,"[206960, 950, 155283]",60.051,False,620,611,0.0,0.0,0.6341,1.0,235,190,378,9,1.0,156715,167
+large_seed3,large,ablation,S1-DIV,S2-WC,,,835,119.358,False,"[1210, 148126]",60.038,False,620,582,0.0,0.0,0.6341,1.0,114,123,386,38,1.0,156715,167
+large_seed4,large,ablation,S1-COST,S2-BASE,,,0,9.312,True,[],0.051,False,544,514,0.0,0.0,1.0,1.0,270,274,413,30,1.0,147740,171
+large_seed4,large,ablation,S1-COST,S2-EVEN,,,0,9.312,True,[134875],60.03,False,544,492,0.0,0.0,1.0,1.0,132,81,238,52,1.0,147740,171
+large_seed4,large,ablation,S1-COST,S2-FULL,,,0,9.312,True,"[1600, 715, 141518]",60.038,False,544,521,0.0,0.0,1.0,1.0,141,143,274,23,1.0,147740,171
+large_seed4,large,ablation,S1-COST,S2-HET,,,0,9.312,True,"[175, 135417]",60.029,False,544,494,0.0,0.0,1.0,1.0,179,35,360,50,1.0,147740,171
+large_seed4,large,ablation,S1-COST,S2-VALW,,,0,9.312,True,"[81972, 715, 142406]",60.037,False,544,521,0.0,0.0,1.0,1.0,141,143,282,23,1.0,147740,171
+large_seed4,large,ablation,S1-COST,S2-WC,,,0,9.312,True,"[970, 135711]",60.03,False,544,498,0.0,0.0,1.0,1.0,85,91,326,46,1.0,147740,171
+large_seed4,large,ablation,S1-DIV,S2-BASE,,,705,119.369,False,[],0.07,False,607,583,0.0,0.0,1.0,2.0,329,299,491,24,1.0,161479,141
+large_seed4,large,ablation,S1-DIV,S2-EVEN,,,705,119.369,False,[150891],60.037,False,607,561,0.0,0.0,1.0,2.0,149,71,259,46,1.0,161479,141
+large_seed4,large,ablation,S1-DIV,S2-FULL,,,705,119.369,False,"[2140, 800, 157794]",60.056,False,607,592,0.0,0.0,1.0,2.0,192,160,353,15,1.0,161479,141
+large_seed4,large,ablation,S1-DIV,S2-HET,,,705,119.369,False,"[130, 151295]",60.032,False,607,564,0.0,0.0,1.0,2.0,219,26,413,43,1.0,161479,141
+large_seed4,large,ablation,S1-DIV,S2-VALW,,,705,119.369,False,"[132512, 920, 158397]",60.049,False,607,592,0.0,0.0,1.0,2.0,218,184,374,15,1.0,161479,141
+large_seed4,large,ablation,S1-DIV,S2-WC,,,705,119.369,False,"[1290, 151739]",60.035,False,607,571,0.0,0.0,1.0,2.0,122,100,379,36,1.0,161479,141
+large_seed5,large,ablation,S1-COST,S2-BASE,,,0,14.01,True,[],0.055,False,545,544,0.0,0.0,1.0,2.0,262,289,379,1,1.0,165400,192
+large_seed5,large,ablation,S1-COST,S2-EVEN,,,0,14.01,True,[150857],60.037,False,545,499,0.0,0.0,1.0,2.0,112,70,146,46,1.0,165400,192
+large_seed5,large,ablation,S1-COST,S2-FULL,,,0,14.01,True,"[1360, 540, 158837]",60.041,False,545,525,0.0,0.0,1.0,2.0,122,108,216,20,1.0,165400,192
+large_seed5,large,ablation,S1-COST,S2-HET,,,0,14.01,True,"[210, 151740]",60.032,False,545,502,0.0,0.0,1.0,2.0,201,42,308,43,1.0,165400,192
+large_seed5,large,ablation,S1-COST,S2-VALW,,,0,14.01,True,"[39122, 555, 161862]",60.042,False,545,533,0.0,0.0,1.0,2.0,118,111,197,12,1.0,165400,192
+large_seed5,large,ablation,S1-COST,S2-WC,,,0,14.01,True,"[650, 156660]",60.035,False,545,516,0.0,0.0,1.0,2.0,56,96,257,29,1.0,165400,192
+large_seed5,large,ablation,S1-DIV,S2-BASE,,,690,119.374,False,[],0.064,False,611,596,0.0,0.0,1.0,2.0,318,354,449,15,1.0,183320,138
+large_seed5,large,ablation,S1-DIV,S2-EVEN,,,690,119.374,False,[162261],60.049,False,611,546,0.0,0.0,1.0,2.0,158,69,258,65,1.0,183320,138
+large_seed5,large,ablation,S1-DIV,S2-FULL,,,690,119.374,False,"[1900, 815, 175631]",60.045,False,611,591,0.0,0.0,1.0,2.0,171,163,312,20,1.0,183320,138
+large_seed5,large,ablation,S1-DIV,S2-HET,,,690,119.374,False,"[145, 162924]",60.036,False,611,548,0.0,0.0,1.0,2.0,219,29,361,63,1.0,183320,138
+large_seed5,large,ablation,S1-DIV,S2-VALW,,,690,119.374,False,"[58927, 895, 177519]",60.046,False,611,592,0.0,0.0,1.0,2.0,185,179,315,19,1.0,183320,138
+large_seed5,large,ablation,S1-DIV,S2-WC,,,690,119.374,False,"[1330, 165380]",60.039,False,611,558,0.0,0.0,1.0,2.0,121,96,338,53,1.0,183320,138
+medium_seed1,medium,ablation,S1-COST,S2-BASE,,,0,28.494,True,[],0.039,False,380,361,0.0,0.0,0.7879,1.0,216,218,280,19,1.0,112046,103
+medium_seed1,medium,ablation,S1-COST,S2-EVEN,,,0,28.494,True,[98603],60.022,False,380,340,0.0,0.0,0.7879,1.0,68,39,117,40,1.0,112046,103
+medium_seed1,medium,ablation,S1-COST,S2-FULL,,,0,28.494,True,"[760, 290, 104565]",60.025,False,380,357,0.0,0.0,0.7879,1.0,69,58,150,23,1.0,112046,103
+medium_seed1,medium,ablation,S1-COST,S2-HET,,,0,28.494,True,"[105, 98468]",60.019,False,380,340,0.0,0.0,0.7879,1.0,143,21,228,40,1.0,112046,103
+medium_seed1,medium,ablation,S1-COST,S2-VALW,,,0,28.494,True,"[46505, 375, 106940]",60.025,False,380,360,0.0,0.0,0.7879,1.0,69,75,164,20,1.0,112046,103
+medium_seed1,medium,ablation,S1-COST,S2-WC,,,0,28.494,True,"[430, 102170]",60.021,False,380,349,0.0,0.0,0.7879,1.0,37,59,191,31,1.0,112046,103
+medium_seed1,medium,ablation,S1-DIV,S2-BASE,,,255,119.218,False,[],0.041,False,380,366,0.0,0.0,0.7273,1.0,203,215,282,14,1.0,105522,51
+medium_seed1,medium,ablation,S1-DIV,S2-EVEN,,,255,119.218,False,[98144],60.024,False,380,347,0.0,0.0,0.7273,1.0,69,49,132,33,1.0,105522,51
+medium_seed1,medium,ablation,S1-DIV,S2-FULL,,,255,119.218,False,"[780, 260, 101851]",60.029,False,380,361,0.0,0.0,0.7273,1.0,72,52,157,19,1.0,105522,51
+medium_seed1,medium,ablation,S1-DIV,S2-HET,,,255,119.218,False,"[85, 97990]",60.021,False,380,347,0.0,0.0,0.7273,1.0,136,17,217,33,1.0,105522,51
+medium_seed1,medium,ablation,S1-DIV,S2-VALW,,,255,119.218,False,"[43231, 270, 101058]",60.028,False,380,360,0.0,0.0,0.7273,1.0,71,54,160,20,1.0,105522,51
+medium_seed1,medium,ablation,S1-DIV,S2-WC,,,255,119.218,False,"[350, 98842]",60.023,False,380,352,0.0,0.0,0.7273,1.0,30,60,195,28,1.0,105522,51
+medium_seed3,medium,ablation,S1-COST,S2-BASE,,,0,29.997,True,[],0.034,False,398,389,0.0,0.0,0.9412,1.0,149,217,246,9,1.0,90977,115
+medium_seed3,medium,ablation,S1-COST,S2-EVEN,,,0,29.997,True,[84512],60.022,False,398,371,0.0,0.0,0.9412,1.0,35,65,74,27,1.0,90977,115
+medium_seed3,medium,ablation,S1-COST,S2-FULL,,,0,29.997,True,"[220, 215, 88550]",60.026,False,398,388,0.0,0.0,0.9412,1.0,21,43,49,10,1.0,90977,115
+medium_seed3,medium,ablation,S1-COST,S2-HET,,,0,29.997,True,"[160, 88128]",60.02,False,398,385,0.0,0.0,0.9412,1.0,59,32,134,13,1.0,90977,115
+medium_seed3,medium,ablation,S1-COST,S2-VALW,,,0,29.997,True,"[14401, 280, 88439]",60.026,False,398,387,0.0,0.0,0.9412,1.0,19,56,64,11,1.0,90977,115
+medium_seed3,medium,ablation,S1-COST,S2-WC,,,0,29.997,True,"[110, 88169]",60.024,False,398,386,0.0,0.0,0.9412,1.0,11,96,137,12,1.0,90977,115
+medium_seed3,medium,ablation,S1-DIV,S2-BASE,,,305,119.298,False,[],0.034,False,335,330,0.0,0.0,0.85,1.0,151,188,210,5,1.0,75992,61
+medium_seed3,medium,ablation,S1-DIV,S2-EVEN,,,305,119.298,False,[72369],60.022,False,335,317,0.0,0.0,0.85,1.0,32,58,42,18,1.0,75992,61
+medium_seed3,medium,ablation,S1-DIV,S2-FULL,,,305,119.298,False,"[230, 220, 74374]",60.027,False,335,326,0.0,0.0,0.85,1.0,23,44,35,9,1.0,75992,61
+medium_seed3,medium,ablation,S1-DIV,S2-HET,,,305,119.298,False,"[170, 73741]",60.021,False,335,322,0.0,0.0,0.85,1.0,87,34,123,13,1.0,75992,61
+medium_seed3,medium,ablation,S1-DIV,S2-VALW,,,305,119.298,False,"[27333, 280, 74559]",60.027,False,335,328,0.0,0.0,0.85,1.0,36,56,56,7,1.0,75992,61
+medium_seed3,medium,ablation,S1-DIV,S2-WC,,,305,119.298,False,"[180, 74503]",60.026,False,335,327,0.0,0.0,0.85,1.0,18,88,97,8,1.0,75992,61
+medium_seed4,medium,ablation,S1-COST,S2-BASE,,,0,10.335,True,[],0.059,False,439,428,0.0,0.0,0.9231,1.0,236,200,361,11,1.0,207742,98
+medium_seed4,medium,ablation,S1-COST,S2-EVEN,,,0,10.335,True,[177543],60.024,False,439,376,0.0,0.0,0.9231,1.0,118,26,262,63,1.0,207742,98
+medium_seed4,medium,ablation,S1-COST,S2-FULL,,,0,10.335,True,"[1240, 400, 191897]",60.037,False,439,407,0.0,0.0,0.9231,1.0,113,80,287,32,1.0,207742,98
+medium_seed4,medium,ablation,S1-COST,S2-HET,,,0,10.335,True,"[10, 177212]",60.024,False,439,376,0.0,0.0,0.9231,1.0,185,2,335,63,1.0,207742,98
+medium_seed4,medium,ablation,S1-COST,S2-VALW,,,0,10.335,True,"[82415, 355, 190419]",60.039,False,439,403,0.0,0.0,0.9231,1.0,116,71,283,36,1.0,207742,98
+medium_seed4,medium,ablation,S1-COST,S2-WC,,,0,10.335,True,"[630, 182226]",60.024,False,439,385,0.0,0.0,0.9231,1.0,54,36,306,54,1.0,207742,98
+medium_seed4,medium,ablation,S1-DIV,S2-BASE,,,0,35.604,True,[],0.045,False,333,320,0.0,0.0213,0.6923,1.0,196,144,261,13,1.0,150732,0
+medium_seed4,medium,ablation,S1-DIV,S2-EVEN,,,0,35.604,True,[134489],60.023,False,333,299,0.0,0.0213,0.6923,1.0,86,10,130,34,1.0,150732,0
+medium_seed4,medium,ablation,S1-DIV,S2-FULL,,,0,35.604,True,"[910, 120, 141882]",60.027,False,333,313,0.0,0.0213,0.6923,1.0,76,24,136,20,1.0,150732,0
+medium_seed4,medium,ablation,S1-DIV,S2-HET,,,0,35.604,True,"[0, 134328]",60.023,False,333,299,0.0,0.0213,0.6923,1.0,157,0,237,34,1.0,150732,0
+medium_seed4,medium,ablation,S1-DIV,S2-VALW,,,0,35.604,True,"[56576, 115, 140775]",60.027,False,333,309,0.0,0.0213,0.6923,1.0,70,23,146,24,1.0,150732,0
+medium_seed4,medium,ablation,S1-DIV,S2-WC,,,0,35.604,True,"[570, 139504]",60.024,False,333,306,0.0,0.0213,0.6923,1.0,43,30,197,27,1.0,150732,0
+medium_seed5,medium,ablation,S1-COST,S2-BASE,,,0,16.359,True,[],0.032,False,400,387,0.0,0.0,0.6977,1.0,168,239,280,13,1.0,124065,114
+medium_seed5,medium,ablation,S1-COST,S2-EVEN,,,0,16.359,True,[115717],60.021,False,400,366,0.0,0.0,0.6977,1.0,46,63,92,34,1.0,124065,114
+medium_seed5,medium,ablation,S1-COST,S2-FULL,,,0,16.359,True,"[370, 370, 120412]",60.025,False,400,386,0.0,0.0,0.6977,1.0,35,74,97,14,1.0,124065,114
+medium_seed5,medium,ablation,S1-COST,S2-HET,,,0,16.359,True,"[170, 116968]",60.019,False,400,372,0.0,0.0,0.6977,1.0,70,34,152,28,1.0,124065,114
+medium_seed5,medium,ablation,S1-COST,S2-VALW,,,0,16.359,True,"[17318, 320, 119002]",60.028,False,400,383,0.0,0.0,0.6977,1.0,31,64,103,17,1.0,124065,114
+medium_seed5,medium,ablation,S1-COST,S2-WC,,,0,16.359,True,"[150, 117879]",60.022,False,400,379,0.0,0.0,0.6977,1.0,15,96,162,21,1.0,124065,114
+medium_seed5,medium,ablation,S1-DIV,S2-BASE,,,415,119.26,False,[],0.031,False,378,368,0.0,0.0,0.7568,1.0,182,251,261,10,1.0,115546,83
+medium_seed5,medium,ablation,S1-DIV,S2-EVEN,,,415,119.26,False,[106417],60.022,False,378,342,0.0,0.0,0.7568,1.0,67,62,85,36,1.0,115546,83
+medium_seed5,medium,ablation,S1-DIV,S2-FULL,,,415,119.26,False,"[410, 205, 110037]",60.025,False,378,360,0.0,0.0,0.7568,1.0,40,41,76,18,1.0,115546,83
+medium_seed5,medium,ablation,S1-DIV,S2-HET,,,415,119.26,False,"[130, 107583]",60.02,False,378,349,0.0,0.0,0.7568,1.0,95,26,139,29,1.0,115546,83
+medium_seed5,medium,ablation,S1-DIV,S2-VALW,,,415,119.26,False,"[20025, 245, 108415]",60.023,False,378,356,0.0,0.0,0.7568,1.0,36,49,76,22,1.0,115546,83
+medium_seed5,medium,ablation,S1-DIV,S2-WC,,,415,119.26,False,"[230, 108446]",60.021,False,378,355,0.0,0.0,0.7568,1.0,21,85,116,23,1.0,115546,83
+small_seed1,small,ablation,S1-COST,S2-BASE,,,0,3.989,True,[],0.012,False,211,198,0.0,0.0,0.5,1.0,60,136,119,13,1.0,54194,32
+small_seed1,small,ablation,S1-COST,S2-EVEN,,,0,3.989,True,[48845],60.013,False,211,190,0.0,0.0,0.5,1.0,14,48,47,21,1.0,54194,32
+small_seed1,small,ablation,S1-COST,S2-FULL,,,0,3.989,True,"[80, 170, 49963]",60.013,False,211,194,0.0,0.0,0.5,1.0,7,34,41,17,1.0,54194,32
+small_seed1,small,ablation,S1-COST,S2-HET,,,0,3.989,True,"[165, 49162]",60.011,False,211,192,0.0,0.0,0.5,1.0,22,33,80,19,1.0,54194,32
+small_seed1,small,ablation,S1-COST,S2-VALW,,,0,3.989,True,"[3416, 170, 49964]",60.013,False,211,194,0.0,0.0,0.5,1.0,7,34,42,17,1.0,54194,32
+small_seed1,small,ablation,S1-COST,S2-WC,,,0,3.989,True,"[80, 49766]",60.012,False,211,193,0.0,0.0,0.5,1.0,7,53,88,18,1.0,54194,32
+small_seed1,small,ablation,S1-DIV,S2-BASE,,,0,10.076,True,[],0.032,False,204,196,0.0,0.0345,0.7917,1.0,67,128,113,8,1.0,51056,0
+small_seed1,small,ablation,S1-DIV,S2-EVEN,,,0,10.076,True,[46541],60.016,False,204,184,0.0,0.0345,0.7917,1.0,25,44,43,20,1.0,51056,0
+small_seed1,small,ablation,S1-DIV,S2-FULL,,,0,10.076,True,"[120, 130, 48474]",60.013,False,204,192,0.0,0.0345,0.7917,1.0,12,26,33,12,1.0,51056,0
+small_seed1,small,ablation,S1-DIV,S2-HET,,,0,10.076,True,"[110, 46992]",60.011,False,204,187,0.0,0.0345,0.7917,1.0,36,22,82,17,1.0,51056,0
+small_seed1,small,ablation,S1-DIV,S2-VALW,,,0,10.076,True,"[4233, 120, 48470]",60.019,False,204,192,0.0,0.0345,0.7917,1.0,10,24,30,12,1.0,51056,0
+small_seed1,small,ablation,S1-DIV,S2-WC,,,0,10.076,True,"[90, 48440]",60.013,False,204,192,0.0,0.0345,0.7917,1.0,9,54,82,12,1.0,51056,0
+small_seed3,small,ablation,S1-COST,S2-BASE,,,0,0.302,True,[],0.01,False,200,197,0.0,0.0,1.0,2.0,46,94,89,3,1.0,52781,38
+small_seed3,small,ablation,S1-COST,S2-EVEN,,,0,0.302,True,[49676],60.01,False,200,189,0.0,0.0,1.0,2.0,14,41,30,11,1.0,52781,38
+small_seed3,small,ablation,S1-COST,S2-FULL,,,0,0.302,True,"[100, 120, 50444]",60.012,False,200,192,0.0,0.0,1.0,2.0,10,24,19,8,1.0,52781,38
+small_seed3,small,ablation,S1-COST,S2-HET,,,0,0.302,True,"[120, 50425]",60.01,False,200,192,0.0,0.0,1.0,2.0,20,24,57,8,1.0,52781,38
+small_seed3,small,ablation,S1-COST,S2-VALW,,,0,0.302,True,"[8353, 120, 50444]",60.013,False,200,192,0.0,0.0,1.0,2.0,10,24,19,8,1.0,52781,38
+small_seed3,small,ablation,S1-COST,S2-WC,,,0,0.302,True,"[100, 50056]",60.011,False,200,191,0.0,0.0,1.0,2.0,10,49,65,9,1.0,52781,38
+small_seed3,small,ablation,S1-DIV,S2-BASE,,,0,1.056,True,[],0.01,False,199,198,0.0,0.0526,0.5,2.0,21,86,73,1,1.0,52242,0
+small_seed3,small,ablation,S1-DIV,S2-EVEN,,,0,1.056,True,[49471],60.012,False,199,189,0.0,0.0526,0.5,2.0,6,57,24,10,1.0,52242,0
+small_seed3,small,ablation,S1-DIV,S2-FULL,,,0,1.056,True,"[60, 240, 49472]",60.012,False,199,189,0.0,0.0526,0.5,2.0,6,48,25,10,1.0,52242,0
+small_seed3,small,ablation,S1-DIV,S2-HET,,,0,1.056,True,"[240, 49447]",60.011,False,199,189,0.0,0.0526,0.5,2.0,10,48,49,10,1.0,52242,0
+small_seed3,small,ablation,S1-DIV,S2-VALW,,,0,1.056,True,"[4177, 240, 49472]",60.013,False,199,189,0.0,0.0526,0.5,2.0,6,48,25,10,1.0,52242,0
+small_seed3,small,ablation,S1-DIV,S2-WC,,,0,1.056,True,"[60, 49447]",60.015,False,199,189,0.0,0.0526,0.5,2.0,6,64,59,10,1.0,52242,0
+small_seed4,small,ablation,S1-COST,S2-BASE,,,0,3.047,True,[],0.015,False,237,220,0.0,0.0,0.6304,3.0,67,137,144,17,1.0,97578,32
+small_seed4,small,ablation,S1-COST,S2-EVEN,,,0,3.047,True,[85774],60.013,False,237,211,0.0,0.0,0.6304,3.0,22,44,76,26,1.0,97578,32
+small_seed4,small,ablation,S1-COST,S2-FULL,,,0,3.047,True,"[120, 155, 86435]",60.016,False,237,212,0.0,0.0,0.6304,3.0,11,31,82,25,1.0,97578,32
+small_seed4,small,ablation,S1-COST,S2-HET,,,0,3.047,True,"[145, 85698]",60.012,False,237,211,0.0,0.0,0.6304,3.0,38,29,121,26,1.0,97578,32
+small_seed4,small,ablation,S1-COST,S2-VALW,,,0,3.047,True,"[7803, 160, 85786]",60.015,False,237,211,0.0,0.0,0.6304,3.0,12,32,81,26,1.0,97578,32
+small_seed4,small,ablation,S1-COST,S2-WC,,,0,3.047,True,"[110, 85698]",60.013,False,237,211,0.0,0.0,0.6304,3.0,8,49,120,26,1.0,97578,32
+small_seed4,small,ablation,S1-DIV,S2-BASE,,,0,3.932,True,[],0.016,False,223,208,0.0,0.0278,0.0,1.0,70,132,138,15,1.0,90567,0
+small_seed4,small,ablation,S1-DIV,S2-EVEN,,,0,3.932,True,[81418],60.013,False,223,201,0.0,0.0278,0.0,1.0,30,43,58,22,1.0,90567,0
+small_seed4,small,ablation,S1-DIV,S2-FULL,,,0,3.932,True,"[150, 135, 81996]",60.016,False,223,203,0.0,0.0278,0.0,1.0,11,27,58,20,1.0,90567,0
+small_seed4,small,ablation,S1-DIV,S2-HET,,,0,3.932,True,"[130, 81360]",60.013,False,223,201,0.0,0.0278,0.0,1.0,51,26,124,22,1.0,90567,0
+small_seed4,small,ablation,S1-DIV,S2-VALW,,,0,3.932,True,"[7876, 135, 81997]",60.015,False,223,203,0.0,0.0278,0.0,1.0,12,27,60,20,1.0,90567,0
+small_seed4,small,ablation,S1-DIV,S2-WC,,,0,3.932,True,"[150, 81936]",60.014,False,223,203,0.0,0.0278,0.0,1.0,13,55,118,20,1.0,90567,0
+small_seed5,small,ablation,S1-COST,S2-BASE,,,0,3.62,True,[],0.014,False,234,234,0.0,0.0,0.8276,2.0,32,100,84,0,1.0,106536,25
+small_seed5,small,ablation,S1-COST,S2-EVEN,,,0,3.62,True,[103306],1.675,False,234,228,0.0,0.0,0.8276,2.0,4,37,0,6,1.0,106536,25
+small_seed5,small,ablation,S1-COST,S2-FULL,,,0,3.62,True,"[40, 160, 103306]",60.014,False,234,228,0.0,0.0,0.8276,2.0,4,32,0,6,1.0,106536,25
+small_seed5,small,ablation,S1-COST,S2-HET,,,0,3.62,True,"[160, 103306]",60.011,False,234,228,0.0,0.0,0.8276,2.0,11,32,34,6,1.0,106536,25
+small_seed5,small,ablation,S1-COST,S2-VALW,,,0,3.62,True,"[2836, 160, 103306]",60.014,False,234,228,0.0,0.0,0.8276,2.0,4,32,0,6,1.0,106536,25
+small_seed5,small,ablation,S1-COST,S2-WC,,,0,3.62,True,"[40, 103306]",1.455,False,234,228,0.0,0.0,0.8276,2.0,4,60,60,6,1.0,106536,25
+small_seed5,small,ablation,S1-DIV,S2-BASE,,,0,4.504,True,[],0.012,False,193,191,0.0,0.0667,0.6757,1.0,45,122,74,2,1.0,86970,0
+small_seed5,small,ablation,S1-DIV,S2-EVEN,,,0,4.504,True,[83891],3.021,False,193,185,0.0,0.0667,0.6757,1.0,10,42,1,8,1.0,86970,0
+small_seed5,small,ablation,S1-DIV,S2-FULL,,,0,4.504,True,"[100, 170, 83891]",60.014,False,193,185,0.0,0.0667,0.6757,1.0,10,34,1,8,1.0,86970,0
+small_seed5,small,ablation,S1-DIV,S2-HET,,,0,4.504,True,"[170, 83890]",60.009,False,193,185,0.0,0.0667,0.6757,1.0,18,34,25,8,1.0,86970,0
+small_seed5,small,ablation,S1-DIV,S2-VALW,,,0,4.504,True,"[7092, 170, 83891]",60.013,False,193,185,0.0,0.0667,0.6757,1.0,10,34,1,8,1.0,86970,0
+small_seed5,small,ablation,S1-DIV,S2-WC,,,0,4.504,True,"[100, 83890]",60.011,False,193,185,0.0,0.0667,0.6757,1.0,9,43,19,8,1.0,86970,0

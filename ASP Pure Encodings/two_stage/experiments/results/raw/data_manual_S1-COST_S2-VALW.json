@@ -1,0 +1,25 @@
+{
+  "s1_name": "S1-COST",
+  "s2_name": "S2-VALW",
+  "s1_cost": 4760,
+  "s1_time": 59.033,
+  "s1_optimal": false,
+  "s2_cost": [
+    1220,
+    55,
+    4598
+  ],
+  "s2_time": 30.009,
+  "s2_optimal": false,
+  "trips_used": 46,
+  "total_trips": 47,
+  "R_1": 0.0,
+  "R_TR": 0.0,
+  "R_arc": 0.0,
+  "A_1": 0.8,
+  "instance": "data_manual",
+  "class": "data",
+  "experiment": "ablation",
+  "sweep_param": "",
+  "sweep_weight": ""
+}

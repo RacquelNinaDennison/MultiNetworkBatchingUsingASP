@@ -1,0 +1,299 @@
+Found 16 instances
+
+=================================================================
+  ABLATION EXPERIMENTS
+=================================================================
+
+=================================================================
+  Instance: large_seed1 (large)
+=================================================================
+    Solving Stage 1 (S1-COST)... cost=0, time=8.92s
+    Solving Stage 2 (S2-BASE)... cost=[], time=0.091s
+    Solving Stage 2 (S2-EVEN)... cost=[159925], time=150.037s
+    Solving Stage 2 (S2-HET)... cost=[100, 160442], time=150.029s
+    Solving Stage 2 (S2-WC)... cost=[920, 162626], time=150.037s
+    Solving Stage 2 (S2-FULL)... cost=[1520, 315, 167923], time=150.037s
+    Solving Stage 2 (S2-VALW)... cost=[59632, 425, 167882], time=150.04s
+    Solving Stage 1 (S1-DIV)... cost=605, time=299.415s
+    Solving Stage 2 (S2-BASE)... cost=[], time=0.095s
+    Solving Stage 2 (S2-EVEN)... cost=[175237], time=150.04s
+    Solving Stage 2 (S2-HET)... cost=[25, 175156], time=150.035s
+    Solving Stage 2 (S2-WC)... cost=[1600, 179622], time=150.046s
+    Solving Stage 2 (S2-FULL)... cost=[2390, 620, 193589], time=150.048s
+    Solving Stage 2 (S2-VALW)... cost=[86380, 610, 193645], time=150.047s
+    Solving Stage 1 (S1-MINF)... cost=0, time=42.428s
+    Solving Stage 2 (S2-BASE)... cost=[], time=0.089s
+    Solving Stage 2 (S2-EVEN)... cost=[183426], time=150.037s
+    Solving Stage 2 (S2-HET)... cost=[115, 185112], time=150.034s
+    Solving Stage 2 (S2-WC)... cost=[1290, 185924], time=150.036s
+    Solving Stage 2 (S2-FULL)... cost=[2020, 760, 202352], time=150.043s
+    Solving Stage 2 (S2-VALW)... cost=[73492, 770, 203703], time=150.045s
+    Solving Stage 1 (S1-DIV-MINF)... cost=510, time=299.527s
+    Solving Stage 2 (S2-BASE)... cost=[], time=0.079s
+    Solving Stage 2 (S2-EVEN)... cost=[177879], time=150.036s
+    Solving Stage 2 (S2-HET)... cost=[20, 177814], time=150.033s
+    Solving Stage 2 (S2-WC)... cost=[1490, 180686], time=150.037s
+    Solving Stage 2 (S2-FULL)... cost=[1870, 415, 184330], time=150.069s
+    Solving Stage 2 (S2-VALW)... cost=[80508, 425, 187734], time=150.048s
+
+=================================================================
+  Instance: large_seed2 (large)
+=================================================================
+    Solving Stage 1 (S1-COST)... cost=0, time=25.689s
+    Solving Stage 2 (S2-BASE)... cost=[], time=0.055s
+    Solving Stage 2 (S2-EVEN)... cost=[99419], time=150.032s
+    Solving Stage 2 (S2-HET)... cost=[170, 100214], time=150.042s
+    Solving Stage 2 (S2-WC)... cost=[400, 102526], time=150.06s
+    Solving Stage 2 (S2-FULL)... cost=[520, 250, 104664], time=150.04s
+    Solving Stage 2 (S2-VALW)... cost=[39854, 270, 104465], time=150.038s
+    Solving Stage 1 (S1-DIV)... cost=825, time=299.433s
+    Solving Stage 2 (S2-BASE)... cost=[], time=0.068s
+    Solving Stage 2 (S2-EVEN)... cost=[103777], time=150.036s
+    Solving Stage 2 (S2-HET)... cost=[160, 104210], time=150.031s
+    Solving Stage 2 (S2-WC)... cost=[530, 106328], time=150.035s
+    Solving Stage 2 (S2-FULL)... cost=[950, 450, 109647], time=150.046s
+    Solving Stage 2 (S2-VALW)... cost=[74210, 475, 110333], time=150.047s
+    Solving Stage 1 (S1-MINF)... UNSAT
+    Solving Stage 1 (S1-DIV-MINF)... cost=845, time=299.505s
+    Solving Stage 2 (S2-BASE)... cost=[], time=0.064s
+    Solving Stage 2 (S2-EVEN)... cost=[105265], time=150.042s
+    Solving Stage 2 (S2-HET)... cost=[150, 105082], time=150.038s
+    Solving Stage 2 (S2-WC)... cost=[480, 107962], time=150.043s
+    Solving Stage 2 (S2-FULL)... cost=[1060, 390, 109836], time=150.049s
+    Solving Stage 2 (S2-VALW)... cost=[83651, 495, 109809], time=150.051s
+
+=================================================================
+  Instance: large_seed3 (large)
+=================================================================
+    Solving Stage 1 (S1-COST)... cost=0, time=26.126s
+    Solving Stage 2 (S2-BASE)... cost=[], time=0.071s
+    Solving Stage 2 (S2-EVEN)... cost=[142724], time=150.043s
+    Solving Stage 2 (S2-HET)... cost=[135, 142561], time=150.037s
+    Solving Stage 2 (S2-WC)... cost=[510, 145232], time=150.04s
+    Solving Stage 2 (S2-FULL)... cost=[1000, 390, 150282], time=150.046s
+    Solving Stage 2 (S2-VALW)... cost=[104517, 485, 149878], time=150.05s
+    Solving Stage 1 (S1-DIV)... cost=685, time=299.465s
+    Solving Stage 2 (S2-BASE)... cost=[], time=0.068s
+    Solving Stage 2 (S2-EVEN)... cost=[133976], time=150.04s
+    Solving Stage 2 (S2-HET)... cost=[80, 134128], time=150.036s
+    Solving Stage 2 (S2-WC)... cost=[720, 138510], time=150.041s
+    Solving Stage 2 (S2-FULL)... cost=[1270, 380, 141207], time=150.05s
+    Solving Stage 2 (S2-VALW)... cost=[108575, 405, 140909], time=150.05s
+    Solving Stage 1 (S1-MINF)... cost=0, time=24.412s
+    Solving Stage 2 (S2-BASE)... cost=[], time=0.075s
+    Solving Stage 2 (S2-EVEN)... cost=[147231], time=150.043s
+    Solving Stage 2 (S2-HET)... cost=[195, 147440], time=150.038s
+    Solving Stage 2 (S2-WC)... cost=[640, 149402], time=150.041s
+    Solving Stage 2 (S2-FULL)... cost=[1400, 505, 156620], time=150.048s
+    Solving Stage 2 (S2-VALW)... cost=[110358, 525, 156466], time=150.049s
+    Solving Stage 1 (S1-DIV-MINF)... cost=645, time=299.437s
+    Solving Stage 2 (S2-BASE)... cost=[], time=0.066s
+    Solving Stage 2 (S2-EVEN)... cost=[140106], time=150.041s
+    Solving Stage 2 (S2-HET)... cost=[115, 140352], time=150.037s
+    Solving Stage 2 (S2-WC)... cost=[570, 143588], time=150.042s
+    Solving Stage 2 (S2-FULL)... cost=[1120, 330, 146387], time=150.059s
+    Solving Stage 2 (S2-VALW)... cost=[104384, 415, 147357], time=150.05s
+
+=================================================================
+  Instance: large_seed4 (large)
+=================================================================
+    Solving Stage 1 (S1-COST)... cost=0, time=8.897s
+    Solving Stage 2 (S2-BASE)... cost=[], time=0.051s
+    Solving Stage 2 (S2-EVEN)... cost=[134869], time=150.036s
+    Solving Stage 2 (S2-HET)... cost=[155, 134710], time=150.031s
+    Solving Stage 2 (S2-WC)... cost=[650, 136753], time=150.034s
+    Solving Stage 2 (S2-FULL)... cost=[820, 345, 139989], time=150.04s
+    Solving Stage 2 (S2-VALW)... cost=[44456, 330, 138161], time=150.039s
+    Solving Stage 1 (S1-DIV)... cost=365, time=299.35s
+    Solving Stage 2 (S2-BASE)... cost=[], time=0.071s
+    Solving Stage 2 (S2-EVEN)... cost=[136741], time=150.041s
+    Solving Stage 2 (S2-HET)... cost=[95, 136540], time=150.036s
+    Solving Stage 2 (S2-WC)... cost=[660, 140249], time=150.034s
+    Solving Stage 2 (S2-FULL)... cost=[1050, 290, 142225], time=150.049s
+    Solving Stage 2 (S2-VALW)... cost=[63891, 310, 144384], time=150.048s
+    Solving Stage 1 (S1-MINF)... cost=0, time=32.6s
+    Solving Stage 2 (S2-BASE)... cost=[], time=0.072s
+    Solving Stage 2 (S2-EVEN)... cost=[147204], time=150.044s
+    Solving Stage 2 (S2-HET)... cost=[135, 147504], time=150.038s
+    Solving Stage 2 (S2-WC)... cost=[890, 149902], time=150.043s
+    Solving Stage 2 (S2-FULL)... cost=[1410, 570, 154320], time=150.05s
+    Solving Stage 2 (S2-VALW)... cost=[80174, 655, 153130], time=150.051s
+    Solving Stage 1 (S1-DIV-MINF)... cost=665, time=299.382s
+    Solving Stage 2 (S2-BASE)... cost=[], time=0.076s
+    Solving Stage 2 (S2-EVEN)... cost=[152417], time=150.044s
+    Solving Stage 2 (S2-HET)... cost=[80, 153013], time=150.038s
+    Solving Stage 2 (S2-WC)... cost=[1140, 155291], time=150.042s
+    Solving Stage 2 (S2-FULL)... cost=[1590, 605, 160918], time=150.049s
+    Solving Stage 2 (S2-VALW)... cost=[81286, 560, 162180], time=150.05s
+
+=================================================================
+  Instance: large_seed5 (large)
+=================================================================
+    Solving Stage 1 (S1-COST)... cost=0, time=14.432s
+    Solving Stage 2 (S2-BASE)... cost=[], time=0.055s
+    Solving Stage 2 (S2-EVEN)... cost=[150836], time=150.036s
+    Solving Stage 2 (S2-HET)... cost=[195, 151740], time=150.032s
+    Solving Stage 2 (S2-WC)... cost=[620, 155120], time=150.036s
+    Solving Stage 2 (S2-FULL)... cost=[760, 265, 157207], time=150.043s
+    Solving Stage 2 (S2-VALW)... cost=[21443, 320, 156307], time=150.044s
+    Solving Stage 1 (S1-DIV)... cost=715, time=299.438s
+    Solving Stage 2 (S2-BASE)... cost=[], time=0.066s
+    Solving Stage 2 (S2-EVEN)... cost=[150889], time=150.039s
+    Solving Stage 2 (S2-HET)... cost=[70, 151500], time=150.037s
+    Solving Stage 2 (S2-WC)... cost=[600, 154644], time=150.039s
+    Solving Stage 2 (S2-FULL)... cost=[1050, 300, 157399], time=150.045s
+    Solving Stage 2 (S2-VALW)... cost=[41262, 415, 160507], time=150.052s
+    Solving Stage 1 (S1-MINF)... cost=0, time=15.192s
+    Solving Stage 2 (S2-BASE)... cost=[], time=0.059s
+    Solving Stage 2 (S2-EVEN)... cost=[157124], time=150.039s
+    Solving Stage 2 (S2-HET)... cost=[260, 157928], time=150.034s
+    Solving Stage 2 (S2-WC)... cost=[620, 164152], time=150.038s
+    Solving Stage 2 (S2-FULL)... cost=[1220, 560, 166396], time=150.046s
+    Solving Stage 2 (S2-VALW)... cost=[30929, 450, 169620], time=150.045s
+    Solving Stage 1 (S1-DIV-MINF)... cost=750, time=299.375s
+    Solving Stage 2 (S2-BASE)... cost=[], time=0.068s
+    Solving Stage 2 (S2-EVEN)... cost=[161046], time=150.041s
+    Solving Stage 2 (S2-HET)... cost=[95, 161344], time=150.036s
+    Solving Stage 2 (S2-WC)... cost=[730, 166392], time=150.04s
+    Solving Stage 2 (S2-FULL)... cost=[1450, 490, 169481], time=150.049s
+    Solving Stage 2 (S2-VALW)... cost=[43419, 525, 174781], time=150.049s
+
+=================================================================
+  Instance: medium_seed1 (medium)
+=================================================================
+    Solving Stage 1 (S1-COST)... cost=0, time=29.132s
+    Solving Stage 2 (S2-BASE)... cost=[], time=0.039s
+    Solving Stage 2 (S2-EVEN)... cost=[98577], time=150.028s
+    Solving Stage 2 (S2-HET)... cost=[100, 98468], time=150.026s
+    Solving Stage 2 (S2-WC)... cost=[340, 102522], time=150.028s
+    Solving Stage 2 (S2-FULL)... cost=[470, 145, 102753], time=150.031s
+    Solving Stage 2 (S2-VALW)... cost=[26418, 175, 103479], time=150.032s
+    Solving Stage 1 (S1-DIV)... cost=0, time=121.264s
+    Solving Stage 2 (S2-BASE)... cost=[], time=0.042s
+    Solving Stage 2 (S2-EVEN)... cost=[97509], time=150.03s
+    Solving Stage 2 (S2-HET)... cost=[40, 97974], time=150.025s
+    Solving Stage 2 (S2-WC)... cost=[330, 98884], time=150.029s
+    Solving Stage 2 (S2-FULL)... cost=[340, 40, 99408], time=150.034s
+    Solving Stage 2 (S2-VALW)... cost=[21877, 50, 100609], time=150.033s
+    Solving Stage 1 (S1-MINF)... cost=0, time=26.611s
+    Solving Stage 2 (S2-BASE)... cost=[], time=0.043s
+    Solving Stage 2 (S2-EVEN)... cost=[96761], time=150.03s
+    Solving Stage 2 (S2-HET)... cost=[30, 96704], time=150.025s
+    Solving Stage 2 (S2-WC)... cost=[230, 99856], time=150.028s
+    Solving Stage 2 (S2-FULL)... cost=[270, 60, 100032], time=150.034s
+    Solving Stage 2 (S2-VALW)... cost=[14000, 75, 99930], time=150.034s
+    Solving Stage 1 (S1-DIV-MINF)... cost=125, time=299.36s
+    Solving Stage 2 (S2-BASE)... cost=[], time=0.043s
+    Solving Stage 2 (S2-EVEN)... cost=[95331], time=150.031s
+    Solving Stage 2 (S2-HET)... cost=[35, 95552], time=150.027s
+    Solving Stage 2 (S2-WC)... cost=[290, 99062], time=150.028s
+    Solving Stage 2 (S2-FULL)... cost=[380, 60, 99324], time=150.033s
+    Solving Stage 2 (S2-VALW)... cost=[22105, 60, 99320], time=150.035s
+
+=================================================================
+  Instance: medium_seed2 (medium)
+=================================================================
+    Solving Stage 1 (S1-COST)... cost=0, time=30.929s
+    Solving Stage 2 (S2-BASE)... UNSAT
+    Solving Stage 2 (S2-EVEN)... UNSAT
+    Solving Stage 2 (S2-HET)... UNSAT
+    Solving Stage 2 (S2-WC)... UNSAT
+    Solving Stage 2 (S2-FULL)... UNSAT
+    Solving Stage 2 (S2-VALW)... UNSAT
+    Solving Stage 1 (S1-DIV)... cost=220, time=299.287s
+    Solving Stage 2 (S2-BASE)... UNSAT
+    Solving Stage 2 (S2-EVEN)... UNSAT
+    Solving Stage 2 (S2-HET)... UNSAT
+    Solving Stage 2 (S2-WC)... UNSAT
+    Solving Stage 2 (S2-FULL)... UNSAT
+    Solving Stage 2 (S2-VALW)... UNSAT
+    Solving Stage 1 (S1-MINF)... cost=0, time=69.135s
+    Solving Stage 2 (S2-BASE)... UNSAT
+    Solving Stage 2 (S2-EVEN)... UNSAT
+    Solving Stage 2 (S2-HET)... UNSAT
+    Solving Stage 2 (S2-WC)... UNSAT
+    Solving Stage 2 (S2-FULL)... UNSAT
+    Solving Stage 2 (S2-VALW)... UNSAT
+    Solving Stage 1 (S1-DIV-MINF)... cost=455, time=299.28s
+    Solving Stage 2 (S2-BASE)... UNSAT
+    Solving Stage 2 (S2-EVEN)... UNSAT
+    Solving Stage 2 (S2-HET)... UNSAT
+    Solving Stage 2 (S2-WC)... UNSAT
+    Solving Stage 2 (S2-FULL)... UNSAT
+    Solving Stage 2 (S2-VALW)... UNSAT
+
+=================================================================
+  Instance: medium_seed3 (medium)
+=================================================================
+    Solving Stage 1 (S1-COST)... cost=0, time=29.988s
+    Solving Stage 2 (S2-BASE)... cost=[], time=0.036s
+    Solving Stage 2 (S2-EVEN)... cost=[84507], time=150.03s
+    Solving Stage 2 (S2-HET)... cost=[160, 88128], time=150.026s
+    Solving Stage 2 (S2-WC)... cost=[110, 88169], time=150.027s
+    Solving Stage 2 (S2-FULL)... cost=[110, 165, 88197], time=150.03s
+    Solving Stage 2 (S2-VALW)... cost=[8313, 165, 88196], time=150.031s
+    Solving Stage 1 (S1-DIV)... cost=0, time=285.332s
+    Solving Stage 2 (S2-BASE)... cost=[], time=0.033s
+    Solving Stage 2 (S2-EVEN)... cost=[76463], time=150.027s
+    Solving Stage 2 (S2-HET)... cost=[115, 78319], time=150.024s
+    Solving Stage 2 (S2-WC)... cost=[170, 78260], time=150.027s
+    Solving Stage 2 (S2-FULL)... cost=[170, 120, 78700], time=150.031s
+    Solving Stage 2 (S2-VALW)... cost=[15475, 125, 78702], time=150.031s
+    Solving Stage 1 (S1-MINF)... cost=0, time=13.128s
+    Solving Stage 2 (S2-BASE)... cost=[], time=0.034s
+    Solving Stage 2 (S2-EVEN)... cost=[85473], time=150.028s
+    Solving Stage 2 (S2-HET)... cost=[180, 87257], time=150.025s
+    Solving Stage 2 (S2-WC)... cost=[150, 87720], time=150.027s
+    Solving Stage 2 (S2-FULL)... cost=[150, 180, 87789], time=150.031s
+    Solving Stage 2 (S2-VALW)... cost=[12023, 205, 87747], time=150.03s
+    Solving Stage 1 (S1-DIV-MINF)... cost=0, time=268.799s
+    Solving Stage 2 (S2-BASE)... cost=[], time=0.039s
+    Solving Stage 2 (S2-EVEN)... cost=[85815], time=150.029s
+    Solving Stage 2 (S2-HET)... cost=[95, 91443], time=150.026s
+    Solving Stage 2 (S2-WC)... cost=[120, 91706], time=150.029s
+    Solving Stage 2 (S2-FULL)... cost=[120, 100, 92300], time=150.033s
+    Solving Stage 2 (S2-VALW)... cost=[8911, 105, 92293], time=150.033s
+
+=================================================================
+  Instance: medium_seed4 (medium)
+=================================================================
+    Solving Stage 1 (S1-COST)... cost=0, time=9.33s
+    Solving Stage 2 (S2-BASE)... cost=[], time=0.058s
+    Solving Stage 2 (S2-EVEN)... cost=[177537], time=150.032s
+    Solving Stage 2 (S2-HET)... cost=[10, 177212], time=150.029s
+    Solving Stage 2 (S2-WC)... cost=[240, 184220], time=150.033s
+    Solving Stage 2 (S2-FULL)... cost=[520, 145, 185943], time=150.037s
+    Solving Stage 2 (S2-VALW)... cost=[40088, 140, 186562], time=150.042s
+    Solving Stage 1 (S1-DIV)... cost=0, time=32.415s
+    Solving Stage 2 (S2-BASE)... cost=[], time=0.046s
+    Solving Stage 2 (S2-EVEN)... cost=[134477], time=150.029s
+    Solving Stage 2 (S2-HET)... cost=[0, 134328], time=150.016s
+    Solving Stage 2 (S2-WC)... cost=[530, 139504], time=150.028s
+    Solving Stage 2 (S2-FULL)... cost=[560, 20, 139730], time=150.032s
+    Solving Stage 2 (S2-VALW)... cost=[38766, 5, 139627], time=150.034s
+    Solving Stage 1 (S1-MINF)... cost=0, time=8.07s
+    Solving Stage 2 (S2-BASE)... cost=[], time=0.058s
+    Solving Stage 2 (S2-EVEN)... cost=[167153], time=150.031s
+    Solving Stage 2 (S2-HET)... cost=[50, 166913], time=150.027s
+    Solving Stage 2 (S2-WC)... cost=[310, 173240], time=150.03s
+    Solving Stage 2 (S2-FULL)... cost=[310, 85, 174721], time=150.035s
+    Solving Stage 2 (S2-VALW)... cost=[21386, 80, 177405], time=150.035s
+    Solving Stage 1 (S1-DIV-MINF)... cost=0, time=57.312s
+    Solving Stage 2 (S2-BASE)... cost=[], time=0.051s
+    Solving Stage 2 (S2-EVEN)... cost=[157920], time=150.031s
+    Solving Stage 2 (S2-HET)... cost=[5, 157690], time=150.03s
+    Solving Stage 2 (S2-WC)... cost=[370, 163330], time=150.031s
+    Solving Stage 2 (S2-FULL)... cost=[470, 35, 165096], time=150.031s
+    Solving Stage 2 (S2-VALW)... cost=[29608, 60, 164830], time=150.031s
+
+=================================================================
+  Instance: medium_seed5 (medium)
+=================================================================
+    Solving Stage 1 (S1-COST)... cost=0, time=16.701s
+    Solving Stage 2 (S2-BASE)... cost=[], time=0.033s
+    Solving Stage 2 (S2-EVEN)... cost=[115701], time=150.022s
+    Solving Stage 2 (S2-HET)... cost=[165, 116192], time=150.021s
+    Solving Stage 2 (S2-WC)... cost=[130, 117879], time=150.022s
+    Solving Stage 2 (S2-FULL)... cost=[130, 185, 118150], time=150.025s
+    Solving Stage 2 (S2-VALW)... cost=[7504, 175, 118510], time=150.031s
+    Solving Stage 1 (S1-DIV)...

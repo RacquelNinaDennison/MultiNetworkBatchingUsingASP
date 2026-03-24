@@ -38,21 +38,21 @@ trip(F, T, TR, 1..Freq) :- activeRoute(F, T, TR, Freq, _).
     trip(F, T, TR, K), activeRoute(F, T, TR, _, C).
 
 
-% ── Predicates for diversifying
 
 tripHasPart(F, T, TR, K, P) :-
     &sum { tripLoad(F, T, TR, P, K) :
             totalLoad(F, T, TR, P, _), trip(F, T, TR, K) } > 0,
     totalLoad(F, T, TR, P, _), trip(F, T, TR, K).
 
+% Count distinct parts per trip
 tripPartCount(F, T, TR, K, Count) :-
     trip(F, T, TR, K),
     Count = #count { P : tripHasPart(F, T, TR, K, P) }.
 
+% Count distinct part types available on this route
 routePartTypes(F, T, TR, Count) :-
     activeRoute(F, T, TR, _, _),
     Count = #count { P : totalLoad(F, T, TR, P, _) }.
-
 
 
 #show.
@@ -60,3 +60,4 @@ routePartTypes(F, T, TR, Count) :-
 #show tripHasPart/5.
 #show tripPartCount/5.
 #show routePartTypes/4.
+

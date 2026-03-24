@@ -1,0 +1,32 @@
+{
+  "s1_name": "S1-div-w500",
+  "s2_name": "S2-FULL",
+  "s1_cost": 4578,
+  "s1_time": 119.035,
+  "s1_optimal": false,
+  "s2_cost": [
+    0,
+    60,
+    4581
+  ],
+  "s2_time": 60.007,
+  "s2_optimal": false,
+  "total_trips": 48,
+  "R_1": 0.0,
+  "R_TR": 0.0,
+  "R_arc": 0.0,
+  "A_1": 0.8,
+  "concentrated_trips": 0,
+  "mono_trips": 12,
+  "overloaded_trips": 3,
+  "empty_trips": 0,
+  "max_concentration": 1.0,
+  "total_used_trips": 48,
+  "s1_transport_cost": 4578,
+  "s1_underdiversified": 0,
+  "instance": "paper_data",
+  "class": "paper",
+  "experiment": "sweep-s1-diversification",
+  "sweep_param": "div_weight",
+  "sweep_weight": 500
+}

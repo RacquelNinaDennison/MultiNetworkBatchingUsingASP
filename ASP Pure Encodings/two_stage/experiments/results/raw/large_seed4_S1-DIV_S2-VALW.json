@@ -1,0 +1,32 @@
+{
+  "s1_name": "S1-DIV",
+  "s2_name": "S2-VALW",
+  "s1_cost": 705,
+  "s1_time": 119.369,
+  "s1_optimal": false,
+  "s2_cost": [
+    132512,
+    920,
+    158397
+  ],
+  "s2_time": 60.049,
+  "s2_optimal": false,
+  "total_trips": 607,
+  "R_1": 0.0,
+  "R_TR": 0.0,
+  "R_arc": 1.0,
+  "A_1": 2.0,
+  "concentrated_trips": 218,
+  "mono_trips": 184,
+  "overloaded_trips": 374,
+  "empty_trips": 15,
+  "max_concentration": 1.0,
+  "total_used_trips": 592,
+  "s1_transport_cost": 161479,
+  "s1_underdiversified": 141,
+  "instance": "large_seed4",
+  "class": "large",
+  "experiment": "ablation",
+  "sweep_param": "",
+  "sweep_weight": ""
+}

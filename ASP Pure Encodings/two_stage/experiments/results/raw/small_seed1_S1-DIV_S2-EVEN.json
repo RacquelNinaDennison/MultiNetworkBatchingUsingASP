@@ -1,0 +1,30 @@
+{
+  "s1_name": "S1-DIV",
+  "s2_name": "S2-EVEN",
+  "s1_cost": 0,
+  "s1_time": 10.076,
+  "s1_optimal": true,
+  "s2_cost": [
+    46541
+  ],
+  "s2_time": 60.016,
+  "s2_optimal": false,
+  "total_trips": 204,
+  "R_1": 0.0,
+  "R_TR": 0.0345,
+  "R_arc": 0.7917,
+  "A_1": 1.0,
+  "concentrated_trips": 25,
+  "mono_trips": 44,
+  "overloaded_trips": 43,
+  "empty_trips": 20,
+  "max_concentration": 1.0,
+  "total_used_trips": 184,
+  "s1_transport_cost": 51056,
+  "s1_underdiversified": 0,
+  "instance": "small_seed1",
+  "class": "small",
+  "experiment": "ablation",
+  "sweep_param": "",
+  "sweep_weight": ""
+}

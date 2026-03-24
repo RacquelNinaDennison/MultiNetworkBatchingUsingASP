@@ -1,0 +1,28 @@
+{
+  "s1_name": "S1-DIV",
+  "s2_name": "S2-EVEN",
+  "s1_cost": 4621,
+  "s1_time": 119.031,
+  "s1_optimal": false,
+  "s2_cost": [
+    4323
+  ],
+  "s2_time": 0.045,
+  "s2_optimal": false,
+  "total_trips": 47,
+  "R_1": 0.0,
+  "R_TR": 0.0,
+  "R_arc": 0.0,
+  "A_1": 0.7,
+  "concentrated_trips": 4,
+  "mono_trips": 17,
+  "overloaded_trips": 11,
+  "empty_trips": 2,
+  "max_concentration": 1.0,
+  "total_used_trips": 45,
+  "instance": "paper_data",
+  "class": "paper",
+  "experiment": "ablation",
+  "sweep_param": "",
+  "sweep_weight": ""
+}

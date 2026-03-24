@@ -1,0 +1,37 @@
+Found 1 instances
+
+=================================================================
+  ε-CONSTRAINT PARETO FRONT
+=================================================================
+
+=================================================================
+  Instance: paper_data — ε-constraint Pareto
+=================================================================
+    Solving Stage 1 (S1-eps0)... cost=4466, time=1483.21s
+    Solving Stage 2 (S2-FULL)... cost=[0, 65, 4410], time=0.682s
+    Solving Stage 1 (S1-eps1)... cost=4466, time=1799.043s
+    Solving Stage 2 (S2-FULL)... cost=[0, 70, 4410], time=0.172s
+    Solving Stage 1 (S1-eps2)... cost=4466, time=1799.05s
+    Solving Stage 2 (S2-FULL)... cost=[0, 95, 4355], time=105.241s
+    Solving Stage 1 (S1-eps3)... cost=4466, time=1799.056s
+    Solving Stage 2 (S2-FULL)... cost=[0, 60, 4346], time=23.79s
+    Solving Stage 1 (S1-eps4)... cost=4466, time=1799.075s
+    Solving Stage 2 (S2-FULL)... cost=[0, 30, 4247], time=0.202s
+    Solving Stage 1 (S1-eps5)... cost=4466, time=1799.045s
+    Solving Stage 2 (S2-FULL)... cost=[0, 50, 4275], time=17.824s
+    Solving Stage 1 (S1-eps6)... cost=4466, time=1799.037s
+    Solving Stage 2 (S2-FULL)... cost=[0, 35, 4265], time=0.193s
+    Solving Stage 1 (S1-eps7)... cost=4522, time=1799.049s
+    Solving Stage 2 (S2-FULL)... cost=[10, 90, 4523], time=25.477s
+    Solving Stage 1 (S1-eps8)... cost=4494, time=1799.058s
+    Solving Stage 2 (S2-FULL)... cost=[0, 15, 4274], time=0.011s
+    Solving Stage 1 (S1-eps9)... cost=4522, time=1799.047s
+    Solving Stage 2 (S2-FULL)... cost=[0, 35, 4151], time=78.977s
+    Solving Stage 1 (S1-eps10)... cost=4466, time=1799.039s
+    Solving Stage 2 (S2-FULL)... cost=[0, 30, 4248], time=3.798s
+
+Results written to /Users/racqueldennison/Desktop/realdeal_masters/combined_encodings/ASP Pure Encodings/two_stage/experiments/results/epsilon_pareto.csv (11 rows)
+
+Results written to /Users/racqueldennison/Desktop/realdeal_masters/combined_encodings/ASP Pure Encodings/two_stage/experiments/results/all_results.csv (11 rows)
+
+Total experiments completed: 11

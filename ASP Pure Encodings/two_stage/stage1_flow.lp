@@ -1,5 +1,5 @@
-#const cap_size_divide = 100.
-#const max_freq = 30.
+#const cap_size_divide = 1.
+#const max_freq = 20.
 
 
 % ── Supply / Demand ──────────────────────────────────────────────────────
@@ -64,8 +64,10 @@ freq(1..max_freq).
         freq(Freq), tRCapSmall(TR, C) } 1 :-
     activeFlow(From, To, TR, _).
 
-&sum { S*load(F, T, TR, P) :
-        possibleFlow(F, T, TR, P), partSizeSmall(P, S) } <= TotalCap :-
+% Aggregate capacity with 80% headroom to ensure Stage 2 bin-packing feasibility.
+% Without headroom, aggregate-feasible loads may not distribute into integer trips.
+&sum { 5 * S*load(F, T, TR, P) :
+        possibleFlow(F, T, TR, P), partSizeSmall(P, S) } <= 4 * TotalCap :-
     routeFreq(F, T, TR, Freq, TotalCap).
 
 
@@ -83,33 +85,11 @@ maxItemsPerTrip(TR, P, Cap/S) :-
 
 
 
-_transCost(From,To,TR, C*Freq) :-
+% Scale cost by 1/1000 to avoid integer overflow in #sum aggregates
+_transCost(From,To,TR, (C/1000)*Freq) :-
     routeFreq(From,To,TR,Freq,_), route(From,To,TR,_,C).
 
-
-% back up features for the load 
-arcHasLoad(F, T, TR, P) :-
-    &sum { load(F, T, TR, P) } > 0,
-    possibleFlow(F, T, TR, P).
-
-
-transportResourcesAvaliable(F, T, P, N) :-
-    activeFlow(F, T, _, P),
-    N = #count { TR : possibleFlow(F, T, TR, P) }.
-
-transportResourcesUsed(F, T, P, N) :-
-    activeFlow(F, T, _, P),
-    N = #count { TR : arcHasLoad(F, T, TR, P) }.
-
-
-underDiversified(F, T, P) :-
-    transportResourcesUsed(F, T, P, U),
-    transportResourcesAvaliable(F, T, P, A),
-    A > 1, U < A.
-
-:~ underDiversified(F, T, P). [5@1, F, T, P]
-:~ _transCost(F,T,TR,V). [V@1, F, T, TR, V]
-
+#minimize { V,F,T,TR : _transCost(F,T,TR,V) }.
 
 #show.
 &show { load/4 }.

@@ -36,7 +36,7 @@ from clingcon import ClingconTheory
 
 HERE   = Path(__file__).parent
 STAGE1 = HERE / "stage1_flow.lp"
-STAGE2 = HERE / "stage2_base.lp"
+STAGE2 = HERE / "stage2_packing.lp"
 
 
 # ─────────────────────────────────────────────────────────────────────────
@@ -53,6 +53,7 @@ def load_instance_data(path: str) -> dict:
         "transport_cap": {},   # tr -> int (raw capacity)
         "part_size":     {},   # part -> int (raw size)
         "part_val":      {},   # part -> int (monetary value)
+        "route_cost":    {},   # (from, to, tr) -> int (cost per trip)
         "parts":         set(),
         "locations":     set(),
     }
@@ -72,6 +73,9 @@ def load_instance_data(path: str) -> dict:
             data["parts"].add(str(args[0]))
         elif name == "location" and len(args) == 1:
             data["locations"].add(str(args[0]))
+        elif name == "route" and len(args) == 5:
+            key = (str(args[0]), str(args[1]), str(args[2]))
+            data["route_cost"][key] = args[4].number
 
     return data
 
@@ -120,8 +124,7 @@ def solve_stage1(
     # The bound constraint uses the cost helper atoms from stage1_flow.lp:
     #   _co2Cost(F,T,TR,V) and _transCost(F,T,TR,V)
     BOUND_TEMPLATE = (
-        ":- #sum {{ V,1,F,T,TR : _co2Cost(F,T,TR,V) ; "
-        "V,2,F,T,TR : _transCost(F,T,TR,V) }} >= {bound}."
+        ":- #sum {{ V,F,T,TR : _transCost(F,T,TR,V) }} >= {bound}."
     )
 
     for round_num in range(1, max_rounds + 1):
@@ -244,6 +247,17 @@ def build_stage2_facts(stage1: dict, instance_data: dict) -> str:
     # partSize(P, S).  (raw, unscaled)
     for p, s in sorted(instance_data["part_size"].items()):
         lines.append(f"partSize({p},{s}).")
+
+    # partVal(P, V).
+    for p, v in sorted(instance_data["part_val"].items()):
+        lines.append(f"partVal({p},{v}).")
+
+    # routeCost(From, To, TR, C).  — per-trip dispatch cost for Stage 2
+    for rf in stage1["route_freqs"]:
+        key = (rf["from"], rf["to"], rf["tr"])
+        cost = instance_data["route_cost"].get(key, 0)
+        if cost > 0:
+            lines.append(f"routeCost({rf['from']},{rf['to']},{rf['tr']},{cost}).")
 
     return "\n".join(lines)
 
@@ -511,13 +525,13 @@ def build_parser() -> argparse.ArgumentParser:
     )
     parser.add_argument("--instance", "-i", required=True,
                         help="Path to the instance .lp file")
-    parser.add_argument("--cap-divide", type=int, default=1,
+    parser.add_argument("--cap-divide", type=int, default=1000,
                         help="Capacity scaling divisor (default: 1 = exact)")
     parser.add_argument("--max-freq", type=int, default=30,
                         help="Maximum transport frequency (default: 30)")
-    parser.add_argument("--time-limit", type=int, default=120,
-                        help="Overall time limit per stage in seconds (default: 60)")
-    parser.add_argument("--round-timeout", type=int, default=1200,
+    parser.add_argument("--time-limit", type=int, default=30,
+                        help="Overall time limit per stage in seconds (default: 30)")
+    parser.add_argument("--round-timeout", type=int, default=30,
                         help="Per-round timeout for multi-shot solving (default: 120)")
     parser.add_argument("--show-facts", action="store_true",
                         help="Print the Stage 2 input facts")

@@ -1,0 +1,30 @@
+{
+  "s1_name": "S1-COST",
+  "s2_name": "sweep-heterogeneity-w1",
+  "s1_cost": 2835,
+  "s1_time": 119.105,
+  "s1_optimal": false,
+  "s2_cost": [
+    180,
+    8,
+    2843283
+  ],
+  "s2_time": 60.008,
+  "s2_optimal": false,
+  "total_trips": 32,
+  "R_1": 0.0,
+  "R_TR": 0.0,
+  "R_arc": 0.0,
+  "A_1": 0.0,
+  "concentrated_trips": 9,
+  "mono_trips": 8,
+  "overloaded_trips": 4,
+  "empty_trips": 0,
+  "max_concentration": 1.0,
+  "total_used_trips": 32,
+  "instance": "small_seed4",
+  "class": "small",
+  "experiment": "sweep-heterogeneity",
+  "sweep_param": "heterogeneity",
+  "sweep_weight": 1
+}

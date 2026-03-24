@@ -1,0 +1,31 @@
+{
+  "s1_name": "S1-DIV",
+  "s2_name": "S2-HET",
+  "s1_cost": 835,
+  "s1_time": 119.358,
+  "s1_optimal": false,
+  "s2_cost": [
+    175,
+    144412
+  ],
+  "s2_time": 60.041,
+  "s2_optimal": false,
+  "total_trips": 620,
+  "R_1": 0.0,
+  "R_TR": 0.0,
+  "R_arc": 0.6341,
+  "A_1": 1.0,
+  "concentrated_trips": 242,
+  "mono_trips": 35,
+  "overloaded_trips": 418,
+  "empty_trips": 52,
+  "max_concentration": 1.0,
+  "total_used_trips": 568,
+  "s1_transport_cost": 156715,
+  "s1_underdiversified": 167,
+  "instance": "large_seed3",
+  "class": "large",
+  "experiment": "ablation",
+  "sweep_param": "",
+  "sweep_weight": ""
+}

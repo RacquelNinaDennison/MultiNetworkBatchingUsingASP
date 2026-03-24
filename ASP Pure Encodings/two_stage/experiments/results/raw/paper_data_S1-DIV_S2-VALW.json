@@ -1,0 +1,30 @@
+{
+  "s1_name": "S1-DIV",
+  "s2_name": "S2-VALW",
+  "s1_cost": 4621,
+  "s1_time": 119.031,
+  "s1_optimal": false,
+  "s2_cost": [
+    3030,
+    80,
+    4445
+  ],
+  "s2_time": 60.01,
+  "s2_optimal": false,
+  "total_trips": 47,
+  "R_1": 0.0,
+  "R_TR": 0.0,
+  "R_arc": 0.0,
+  "A_1": 0.8,
+  "concentrated_trips": 3,
+  "mono_trips": 16,
+  "overloaded_trips": 7,
+  "empty_trips": 1,
+  "max_concentration": 1.0,
+  "total_used_trips": 46,
+  "instance": "paper_data",
+  "class": "paper",
+  "experiment": "ablation",
+  "sweep_param": "",
+  "sweep_weight": ""
+}

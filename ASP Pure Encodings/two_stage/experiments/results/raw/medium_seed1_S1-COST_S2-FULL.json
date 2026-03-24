@@ -1,0 +1,32 @@
+{
+  "s1_name": "S1-COST",
+  "s2_name": "S2-FULL",
+  "s1_cost": 0,
+  "s1_time": 28.494,
+  "s1_optimal": true,
+  "s2_cost": [
+    760,
+    290,
+    104565
+  ],
+  "s2_time": 60.025,
+  "s2_optimal": false,
+  "total_trips": 380,
+  "R_1": 0.0,
+  "R_TR": 0.0,
+  "R_arc": 0.7879,
+  "A_1": 1.0,
+  "concentrated_trips": 69,
+  "mono_trips": 58,
+  "overloaded_trips": 150,
+  "empty_trips": 23,
+  "max_concentration": 1.0,
+  "total_used_trips": 357,
+  "s1_transport_cost": 112046,
+  "s1_underdiversified": 103,
+  "instance": "medium_seed1",
+  "class": "medium",
+  "experiment": "ablation",
+  "sweep_param": "",
+  "sweep_weight": ""
+}

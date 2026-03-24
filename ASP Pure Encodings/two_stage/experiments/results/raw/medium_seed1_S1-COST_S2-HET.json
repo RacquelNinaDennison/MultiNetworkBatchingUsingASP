@@ -1,0 +1,31 @@
+{
+  "s1_name": "S1-COST",
+  "s2_name": "S2-HET",
+  "s1_cost": 0,
+  "s1_time": 28.494,
+  "s1_optimal": true,
+  "s2_cost": [
+    105,
+    98468
+  ],
+  "s2_time": 60.019,
+  "s2_optimal": false,
+  "total_trips": 380,
+  "R_1": 0.0,
+  "R_TR": 0.0,
+  "R_arc": 0.7879,
+  "A_1": 1.0,
+  "concentrated_trips": 143,
+  "mono_trips": 21,
+  "overloaded_trips": 228,
+  "empty_trips": 40,
+  "max_concentration": 1.0,
+  "total_used_trips": 340,
+  "s1_transport_cost": 112046,
+  "s1_underdiversified": 103,
+  "instance": "medium_seed1",
+  "class": "medium",
+  "experiment": "ablation",
+  "sweep_param": "",
+  "sweep_weight": ""
+}

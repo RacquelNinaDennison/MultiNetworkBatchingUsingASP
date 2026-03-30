@@ -30,7 +30,7 @@ from clingcon import ClingconTheory
 
 # ── File paths ──────────────────────────────────────────────────────────────
 BASE   = Path(__file__).parent
-STAGE1 = BASE / "encodings" / "stage_1.lp"
+STAGE1 = BASE / "encodings" / "stage_1_flow.lp"
 MINMAX = BASE / "encodings" / "min_max.lp"
 
 
@@ -504,7 +504,7 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--instances", "-i", required=True,
                    help="Path to instance .lp file")
     p.add_argument("--weights", type=int, nargs="+",
-                   default=[0, 50, 100, 200, 500, 1000],
+                   default=[10],
                    help="div_weight values to sweep (default: 0 50 100 200 500 1000)")
     p.add_argument("--time-limit", type=int, default=30,
                    help="Seconds per solve stage (default: 30)")

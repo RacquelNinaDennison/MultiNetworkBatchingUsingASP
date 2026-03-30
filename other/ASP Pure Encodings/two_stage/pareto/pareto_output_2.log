@@ -1,0 +1,67 @@
+Instance:       2 parts, 19 routes
+Weights:        [0, 10, 50, 100, 200, 300]
+Total timeout:  600s per weight
+Stall timeout:  1200s per round
+
+════════════════════════════════════════════════════════════
+  div_weight = 0
+════════════════════════════════════════════════════════════
+    round  1  budget=599s  best_so_far=None ...  → improved to 4690
+    [bound added: combined_obj < 4690, starting round 2]
+    [total timeout after 1 rounds]
+
+  ✓ cost=4690  dominant=11  solver_obj=4690  time=599.043s  optimal=False  rounds=1
+
+════════════════════════════════════════════════════════════
+  div_weight = 10
+════════════════════════════════════════════════════════════
+    round  1  budget=599s  best_so_far=None ...  → improved to 4536
+    [bound added: combined_obj < 4536, starting round 2]
+    [total timeout after 1 rounds]
+
+  ✓ cost=4466  dominant=7  solver_obj=4536  time=599.092s  optimal=False  rounds=1
+
+════════════════════════════════════════════════════════════
+  div_weight = 50
+════════════════════════════════════════════════════════════
+    round  1  budget=599s  best_so_far=None ...  → improved to 4844
+    [bound added: combined_obj < 4844, starting round 2]
+    [total timeout after 1 rounds]
+
+  ✓ cost=4494  dominant=7  solver_obj=4844  time=599.048s  optimal=False  rounds=1
+
+════════════════════════════════════════════════════════════
+  div_weight = 100
+════════════════════════════════════════════════════════════
+    round  1  budget=599s  best_so_far=None ...  → improved to 5346
+    [bound added: combined_obj < 5346, starting round 2]
+    [total timeout after 1 rounds]
+
+  ✓ cost=4746  dominant=6  solver_obj=5346  time=599.082s  optimal=False  rounds=1
+
+════════════════════════════════════════════════════════════
+  div_weight = 200
+════════════════════════════════════════════════════════════
+    round  1  budget=599s  best_so_far=None ...  → improved to 5778
+    [bound added: combined_obj < 5778, starting round 2]
+    [total timeout after 1 rounds]
+
+  ✓ cost=4578  dominant=6  solver_obj=5778  time=599.057s  optimal=False  rounds=1
+
+════════════════════════════════════════════════════════════
+  div_weight = 300
+════════════════════════════════════════════════════════════
+    round  1  budget=599s  best_so_far=None ...  → improved to 6130
+    [bound added: combined_obj < 6130, starting round 2]
+    [total timeout after 1 rounds]
+
+  ✓ cost=5530  dominant=2  solver_obj=6130  time=599.034s  optimal=False  rounds=1
+
+CSV → /Users/racqueldennison/Desktop/realdeal_masters/combined_encodings/ASP Pure Encodings/two_stage/pareto/results/pareto_sweep.csv
+
+Pareto-optimal: 3 / 6 points
+    weight      cost    dominant   rounds  optimal
+       300      5530           2        1  False
+       200      4578           6        1  False
+        10      4466           7        1  False
+Plot saved → /Users/racqueldennison/Desktop/realdeal_masters/combined_encodings/ASP Pure Encodings/two_stage/pareto/results/pareto_sweep.png

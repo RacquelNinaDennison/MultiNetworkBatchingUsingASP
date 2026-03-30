@@ -1,0 +1,35 @@
+Instance:       2 parts, 19 routes
+Weights:        [0, 10, 50, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+Total timeout:  1800s per weight
+Round timeout:  500s per round
+
+
+════════════════════════════════════════════════════════════
+  div_weight = 0
+════════════════════════════════════════════════════════════
+    round  1  budget=500s  best=None ...
+      ↓ 6748  (dominant=15)
+      ↓ 6692  (dominant=14)
+      ↓ 6678  (dominant=15)
+      ↓ 6664  (dominant=15)
+      ↓ 6342  (dominant=16)
+      ↓ 6300  (dominant=16)
+      ↓ 6286  (dominant=15)
+      ↓ 6244  (dominant=15)
+      ↓ 6230  (dominant=14)
+      ↓ 6160  (dominant=14)
+      ↓ 6076  (dominant=15)
+      ↓ 5908  (dominant=15)
+      ↓ 5866  (dominant=16)
+      ↓ 5838  (dominant=16)
+      ↓ 5600  (dominant=15)
+      ↓ 5432  (dominant=14)
+      ↓ 5180  (dominant=13)
+      ↓ 5124  (dominant=16)
+      ↓ 5096  (dominant=15)
+      ↓ 5012  (dominant=14)
+      ↓ 4998  (dominant=13)
+      ↓ 4970  (dominant=13)
+      ↓ 4942  (dominant=13)
+      ↓ 4914  (dominant=15)
+      ↓ 4788  (dominant=15)

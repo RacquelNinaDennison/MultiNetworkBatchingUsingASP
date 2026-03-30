@@ -1,0 +1,10 @@
+usage: run_pareto.py [-h] [--weights WEIGHTS [WEIGHTS ...]]
+                     [--total-timeout TOTAL_TIMEOUT]
+                     [--stall-timeout STALL_TIMEOUT] [--cap-divide CAP_DIVIDE]
+                     [--max-freq MAX_FREQ] [--no-plot] [--output OUTPUT]
+run_pareto.py: error: unrecognized arguments:  
+usage: run_pareto.py [-h] [--weights WEIGHTS [WEIGHTS ...]]
+                     [--total-timeout TOTAL_TIMEOUT]
+                     [--stall-timeout STALL_TIMEOUT] [--cap-divide CAP_DIVIDE]
+                     [--max-freq MAX_FREQ] [--no-plot] [--output OUTPUT]
+run_pareto.py: error: unrecognized arguments:  

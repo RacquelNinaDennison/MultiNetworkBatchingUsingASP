@@ -1,0 +1,160 @@
+warning: `VIRTUAL_ENV=/Users/racqueldennison/Documents/side-projects/cold-outreach-scrapper/.venv` does not match the project environment path `.venv` and will be ignored; use `--active` to target the active environment instead
+Instances: 1  Weights: [0, 10, 15, 20, 25, 30, 40, 50, 75, 100, 125, 150, 200, 300, 500, 600, 750, 1000]
+Total runs: 18  Output: two_stage/final/results/paper_pareto_600s.csv
+Time limits: {'small': 600, 'medium': 60, 'large': 120, 'custom': 600}
+
+═════════════════════════════════════════════════════════════════
+  Instance: paper (custom, seed=0)
+═════════════════════════════════════════════════════════════════
+  Parsed: 2 parts, 19 routes
+
+  --- Run 1/18 (17 remaining) ---
+
+  [paper w=0] Solving Stage 1 (limit=600s)...
+  [S1 w=0 round 1] budget=599s best=None ↓6510 ↓6468 ↓6426 ↓6286 ↓6272 ↓6216 ↓6202 ↓6160 ↓6104 ↓6076 ↓6020 ↓5950 ↓5810 ↓5754 ↓5698 ↓5670 ↓5306 ↓5278 ↓5250 ↓5208 ↓5180 ↓5152 ↓5124 ↓5096 ↓5068 ↓5040
+  Stage 1 done: cost=5040  dominant=8  optimal=False  time=599.027s
+  [paper w=0] Computing R_TR...
+  Checkpointed → two_stage/final/results/paper_pareto_600s.csv
+
+  --- Run 2/18 (16 remaining) ---
+
+  [paper w=10] Solving Stage 1 (limit=600s)...
+  [S1 w=10 round 1] budget=599s best=None ↓6680 ↓6656 ↓6586 ↓6530 ↓6490 ↓6440 ↓6196 ↓6186 ↓6168 ↓6158 ↓6056 ↓6046 ↓6042 ↓6032 ↓6030 ↓5684 ↓5656 ↓5572 ↓5564 ↓5554 ↓5544 ↓5498 ↓5488 ↓5376 ↓5358 ↓5354 ↓5348 ↓5144 ↓5098 ↓5088 ↓5030 ↓5012 ↓5008 ↓4998 ↓4630 ↓4620 ↓4574 ↓4564 ↓4556 ↓4536
+  Stage 1 done: cost=4536  dominant=7  optimal=False  time=599.03s
+  [paper w=10] Computing R_TR...
+  Checkpointed → two_stage/final/results/paper_pareto_600s.csv
+
+  --- Run 3/18 (15 remaining) ---
+
+  [paper w=15] Solving Stage 1 (limit=600s)...
+  [S1 w=15 round 1] budget=599s best=None ↓6765 ↓5976 ↓5961 ↓5946 ↓5891 ↓5834 ↓5819 ↓5806 ↓5791 ↓5750 ↓5735 ↓5653 ↓5638 ↓5623 ↓5608 ↓5526 ↓5511 ↓5496 ↓5356 ↓5328 ↓5313 ↓5188 ↓4713 ↓4698 ↓4655 ↓4640 ↓4601 ↓4586 ↓4571
+  Stage 1 done: cost=4571  dominant=7  optimal=False  time=599.017s
+  [paper w=15] Computing R_TR...
+  Checkpointed → two_stage/final/results/paper_pareto_600s.csv
+
+  --- Run 4/18 (14 remaining) ---
+
+  [paper w=20] Solving Stage 1 (limit=600s)...
+  [S1 w=20 round 1] budget=599s best=None ↓6850 ↓6478 ↓6366 ↓6346 ↓5984 ↓5948 ↓5606 ↓5586 ↓5566 ↓5546 ↓5522 ↓5466 ↓5410 ↓5338 ↓5318 ↓5214 ↓5194 ↓5166 ↓5098 ↓4738 ↓4718 ↓4710 ↓4690 ↓4670 ↓4662 ↓4634 ↓4606
+  Stage 1 done: cost=4606  dominant=7  optimal=False  time=599.021s
+  [paper w=20] Computing R_TR...
+  Checkpointed → two_stage/final/results/paper_pareto_600s.csv
+
+  --- Run 5/18 (13 remaining) ---
+
+  [paper w=25] Solving Stage 1 (limit=600s)...
+  [S1 w=25 round 1] budget=599s best=None ↓6935 ↓6097 ↓6072 ↓6047 ↓5987 ↓5962 ↓5853 ↓5791 ↓5766 ↓5657 ↓5483 ↓5371 ↓5352 ↓5324 ↓5254 ↓4781 ↓4728 ↓4722 ↓4697 ↓4694 ↓4669 ↓4641
+  Stage 1 done: cost=4641  dominant=7  optimal=False  time=599.019s
+  [paper w=25] Computing R_TR...
+  Checkpointed → two_stage/final/results/paper_pareto_600s.csv
+
+  --- Run 6/18 (12 remaining) ---
+
+  [paper w=30] Solving Stage 1 (limit=600s)...
+  [S1 w=30 round 1] budget=599s best=None ↓7020 ↓7004 ↓6986 ↓6932 ↓6902 ↓6858 ↓6830 ↓6780 ↓6698 ↓6672 ↓6640 ↓6584 ↓6472 ↓6460 ↓6334 ↓6276 ↓6220 ↓5566 ↓5536 ↓5534 ↓5506 ↓5504 ↓5476 ↓5474 ↓5436 ↓5408 ↓5378 ↓5286 ↓5258 ↓5228 ↓5206 ↓5192 ↓4814 ↓4762 ↓4758 ↓4730 ↓4704 ↓4676
+  Stage 1 done: cost=4676  dominant=7  optimal=False  time=599.03s
+  [paper w=30] Computing R_TR...
+  Checkpointed → two_stage/final/results/paper_pareto_600s.csv
+
+  --- Run 7/18 (11 remaining) ---
+
+  [paper w=40] Solving Stage 1 (limit=600s)...
+  [S1 w=40 round 1] budget=599s best=None ↓7190 ↓7170 ↓7142 ↓6390 ↓6350 ↓6334 ↓6294 ↓6254 ↓6152 ↓5988 ↓5904 ↓5864 ↓5824 ↓5822 ↓5710 ↓5654 ↓5638 ↓5470 ↓5392 ↓5352 ↓5322 ↓4774 ↓4746
+  Stage 1 done: cost=4746  dominant=7  optimal=False  time=599.018s
+  [paper w=40] Computing R_TR...
+  Checkpointed → two_stage/final/results/paper_pareto_600s.csv
+
+  --- Run 8/18 (10 remaining) ---
+
+  [paper w=50] Solving Stage 1 (limit=600s)...
+  [S1 w=50 round 1] budget=599s best=None ↓7360 ↓7348 ↓7298 ↓6536 ↓6466 ↓6410 ↓6396 ↓6346 ↓6296 ↓6246 ↓6174 ↓6146 ↓6118 ↓6100 ↓6076 ↓6032 ↓6020 ↓5908 ↓5886 ↓5884 ↓5808 ↓5806 ↓5782 ↓5760 ↓5752 ↓5690 ↓5662 ↓5618 ↓4990 ↓4962 ↓4934 ↓4906 ↓4878 ↓4872 ↓4844 ↓4816
+  Stage 1 done: cost=4816  dominant=7  optimal=False  time=599.025s
+  [paper w=50] Computing R_TR...
+  Checkpointed → two_stage/final/results/paper_pareto_600s.csv
+
+  --- Run 9/18 (9 remaining) ---
+
+  [paper w=75] Solving Stage 1 (limit=600s)...
+  [S1 w=75 round 1] budget=599s best=None ↓7785 ↓7756 ↓7546 ↓7539 ↓7464 ↓7408 ↓6640 ↓6584 ↓6509 ↓6434 ↓6271 ↓6196 ↓5869 ↓5794 ↓5719 ↓5691 ↓5644 ↓5616 ↓5471 ↓5420 ↓5345 ↓5298 ↓5262 ↓5234 ↓5206 ↓5131 ↓5103 ↓5094 ↓4991
+  Stage 1 done: cost=4991  dominant=7  optimal=False  time=599.027s
+  [paper w=75] Computing R_TR...
+  Checkpointed → two_stage/final/results/paper_pareto_600s.csv
+
+  --- Run 10/18 (8 remaining) ---
+
+  [paper w=100] Solving Stage 1 (limit=600s)...
+  [S1 w=100 round 1] budget=599s best=None ↓8210 ↓8206 ↓8128 ↓8028 ↓7928 ↓7916 ↓7778 ↓7678 ↓7670 ↓7612 ↓7570 ↓7512 ↓7482 ↓7066 ↓6954 ↓6842 ↓6814 ↓6794 ↓6768 ↓6756 ↓6724 ↓6626 ↓6526 ↓6470 ↓6422 ↓6358 ↓6284 ↓6256 ↓6144 ↓6044 ↓6016 ↓5306 ↓5234 ↓5194 ↓5166 ↓5150
+  Stage 1 done: cost=5150  dominant=6  optimal=False  time=599.023s
+  [paper w=100] Computing R_TR...
+  Checkpointed → two_stage/final/results/paper_pareto_600s.csv
+
+  --- Run 11/18 (7 remaining) ---
+
+  [paper w=125] Solving Stage 1 (limit=600s)...
+  [S1 w=125 round 1] budget=599s best=None ↓8635 ↓8581 ↓8512 ↓8387 ↓8262 ↓8179 ↓7051 ↓6796 ↓6782 ↓6657 ↓6587 ↓6531 ↓5634 ↓5481 ↓5453 ↓5328 ↓5300
+  Stage 1 done: cost=5300  dominant=6  optimal=False  time=599.035s
+  [paper w=125] Computing R_TR...
+  Checkpointed → two_stage/final/results/paper_pareto_600s.csv
+
+  --- Run 12/18 (6 remaining) ---
+
+  [paper w=150] Solving Stage 1 (limit=600s)...
+  [S1 w=150 round 1] budget=599s best=None ↓9060 ↓8956 ↓8226 ↓8076 ↓7992 ↓7948 ↓7892 ↓7470 ↓7320 ↓7170 ↓7020 ↓6870 ↓6856 ↓6706 ↓6584 ↓6478 ↓6370 ↓6244 ↓6174 ↓6052 ↓6024 ↓5902 ↓5874 ↓5818 ↓5790 ↓5696 ↓5640
+  Stage 1 done: cost=5640  dominant=4  optimal=False  time=599.032s
+  [paper w=150] Computing R_TR...
+  Checkpointed → two_stage/final/results/paper_pareto_600s.csv
+
+  --- Run 13/18 (5 remaining) ---
+
+  [paper w=200] Solving Stage 1 (limit=600s)...
+  [S1 w=200 round 1] budget=599s best=None ↓9910 ↓9706 ↓9690 ↓8934 ↓8734 ↓8590 ↓8390 ↓7918 ↓7848 ↓7704 ↓7248 ↓7048 ↓6918 ↓6848 ↓6834 ↓6748 ↓6534 ↓6390 ↓6362 ↓6334 ↓6218 ↓6190 ↓6062 ↓6054 ↓6034 ↓5890 ↓5862 ↓5834 ↓5750
+  Stage 1 done: cost=5750  dominant=6  optimal=False  time=599.019s
+  [paper w=200] Computing R_TR...
+  Checkpointed → two_stage/final/results/paper_pareto_600s.csv
+
+  --- Run 14/18 (4 remaining) ---
+
+  [paper w=300] Solving Stage 1 (limit=600s)...
+  [S1 w=300 round 1] budget=599s best=None ↓11610 ↓11206 ↓11056 ↓10756 ↓10236 ↓9804 ↓9538 ↓9238 ↓9078 ↓8778 ↓8768 ↓8678 ↓8468 ↓8276 ↓8218 ↓8002 ↓7946 ↓7918 ↓7750 ↓7638 ↓7548 ↓6686 ↓6680 ↓6624 ↓6408 ↓6378 ↓6350 ↓6136
+  Stage 1 done: cost=6136  dominant=3  optimal=False  time=599.023s
+  [paper w=300] Computing R_TR...
+  Checkpointed → two_stage/final/results/paper_pareto_600s.csv
+
+  --- Run 15/18 (3 remaining) ---
+
+  [paper w=500] Solving Stage 1 (limit=600s)...
+  [S1 w=500 round 1] budget=599s best=None ↓15010 ↓14206 ↓14186 ↓13686 ↓13682 ↓13490 ↓13462 ↓13378 ↓13350 ↓13322 ↓13238 ↓13210 ↓12836 ↓12336 ↓12322 ↓12154 ↓11016 ↓10740 ↓10516 ↓10408 ↓10184 ↓9904 ↓9572 ↓9296 ↓9262 ↓9164 ↓8692 ↓8462 ↓8388 ↓7216 ↓7170 ↓6982 ↓6548 ↓6426 ↓6380 ↓6216
+  Stage 1 done: cost=6216  dominant=0  optimal=False  time=599.018s
+  [paper w=500] Computing R_TR...
+  Checkpointed → two_stage/final/results/paper_pareto_600s.csv
+
+  --- Run 16/18 (2 remaining) ---
+
+  [paper w=600] Solving Stage 1 (limit=600s)...
+  [S1 w=600 round 1] budget=599s best=None ↓16710 ↓15706 ↓15458 ↓14858 ↓14298 ↓14130 ↓13698 ↓13530 ↓13126 ↓13098 ↓12410 ↓11558 ↓11548 ↓11436 ↓11392 ↓10554 ↓10414 ↓10010 ↓9982 ↓9692 ↓9244 ↓8856 ↓8800 ↓8688 ↓8660 ↓8632 ↓8042 ↓8028 ↓7888 ↓7860 ↓7472 ↓7418 ↓7404 ↓7390 ↓7094 ↓6886 ↓6844 ↓6830
+  Stage 1 done: cost=6830  dominant=1  optimal=False  time=599.031s
+  [paper w=600] Computing R_TR...
+  Checkpointed → two_stage/final/results/paper_pareto_600s.csv
+
+  --- Run 17/18 (1 remaining) ---
+
+  [paper w=750] Solving Stage 1 (limit=600s)...
+  [S1 w=750 round 1] budget=599s best=None ↓19260 ↓17956 ↓17436 ↓17408 ↓17296 ↓16988 ↓16512 ↓15762 ↓15012 ↓14760 ↓14704 ↓13582 ↓13448 ↓13406 ↓12636 ↓12552 ↓12362 ↓10156 ↓9392 ↓8894 ↓8754 ↓8614 ↓8474 ↓8004 ↓7864 ↓7814 ↓7506 ↓7394 ↓7338 ↓7302 ↓6580 ↓6412 ↓6272 ↓6216
+  [S1 w=750 round 2] budget=334s best=6216
+  Stage 1 done: cost=6216  dominant=0  optimal=True  time=456.181s
+  [paper w=750] Computing R_TR...
+  Checkpointed → two_stage/final/results/paper_pareto_600s.csv
+
+  --- Run 18/18 (0 remaining) ---
+
+  [paper w=1000] Solving Stage 1 (limit=600s)...
+  [S1 w=1000 round 1] budget=599s best=None ↓23510 ↓21706 ↓21630 ↓21434 ↓21378 ↓20658 ↓20490 ↓19490 ↓18518 ↓16608 ↓16580 ↓15580 ↓14664 ↓13664 ↓12874 ↓12392 ↓12322 ↓11322 ↓10586 ↓9944 ↓9930 ↓9874 ↓9070 ↓8846 ↓8832 ↓8776 ↓8762 ↓8608 ↓8594 ↓7846 ↓7804 ↓7558 ↓7530 ↓7510 ↓7504 ↓7448 ↓7244 ↓7084 ↓7056 ↓6734 ↓6622 ↓6426 ↓6216
+  [S1 w=1000 round 2] budget=539s best=6216
+  Stage 1 done: cost=6216  dominant=0  optimal=True  time=86.873s
+  [paper w=1000] Computing R_TR...
+  Checkpointed → two_stage/final/results/paper_pareto_600s.csv
+
+═════════════════════════════════════════════════════════════════
+  COMPLETE: 18 runs in 10127.9s
+  Results → two_stage/final/results/paper_pareto_600s.csv
+═════════════════════════════════════════════════════════════════

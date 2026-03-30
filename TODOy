@@ -1,8 +1,0 @@
-- [ ] Compare Clingo vs Clingcon runtime
-- [ ] Update NMR results table
-- [ ] Add a visualisation of the entire network 
-- [x] Multi shot approach for the solver 
-- [ ] Column generation pricer testing 
-- [ ] Port over the checking.py from the other encodings 
-- 5ae99e48-1bac-447a-9155-f2ac81ad58b3
-python -u run_pareto.py --timeout 300 --weights 0 10 50 100 200 > pareto_output.log 2>&1 &

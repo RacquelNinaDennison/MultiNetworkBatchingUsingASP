@@ -29,7 +29,8 @@ from clingcon import ClingconTheory
 
 # ── File paths ──────────────────────────────────────────────────────────────
 BASE   = Path(__file__).parent
-STAGE1 = BASE / "encodings" / "stage_1.lp"
+STAGE1 = BASE / "encodings" / "stage_1_flow.lp"
+STAGE2 = BASE / "encodings" / "stage2_packing.lp"
 MINMAX = BASE / "encodings" / "min_max.lp"
 
 
@@ -47,6 +48,7 @@ def parse_instance(path: str) -> dict:
         "offers":        {},
         "transport_cap": {},
         "part_size":     {},
+        "part_val":      {},
         "routes":        {},
         "parts":         set(),
         "locations":     set(),
@@ -67,6 +69,8 @@ def parse_instance(path: str) -> dict:
             data["transport_cap"][str(args[0])] = args[1].number
         elif name == "partSize" and len(args) == 2:
             data["part_size"][str(args[0])] = args[1].number
+        elif name == "partVal" and len(args) == 2:
+            data["part_val"][str(args[0])] = args[1].number
         elif name == "route" and len(args) == 5:
             f, t, tr = str(args[0]), str(args[1]), str(args[2])
             data["routes"][(f, t, tr)] = (args[3].number, args[4].number)
@@ -167,6 +171,7 @@ def solve_stage1(
     best      = None
     best_cost = None
     optimum   = False
+    trajectory = []   # [(elapsed_seconds, cost)]
 
     # Bound the combined objective: transCost + div_weight * dominantTR count
     BOUND_TEMPLATE = (
@@ -192,6 +197,8 @@ def solve_stage1(
                     theory.on_model(model)
                     best      = _extract_s1(model, theory)
                     best_cost = model.cost[0] if model.cost else None
+                    elapsed_now = round(time.perf_counter() - t0, 3)
+                    trajectory.append((elapsed_now, best_cost))
                     print(f" ↓{best_cost}", end="", flush=True)
                     if model.optimality_proven:
                         optimum = True
@@ -218,9 +225,10 @@ def solve_stage1(
 
     total = time.perf_counter() - t0
     if best:
-        best["cost"]    = best_cost
-        best["optimum"] = optimum
-        best["time"]    = round(total, 3)
+        best["cost"]       = best_cost
+        best["optimum"]    = optimum
+        best["time"]       = round(total, 3)
+        best["trajectory"] = trajectory
     return best
 
 
@@ -296,6 +304,234 @@ def compute_r_tr(loads: dict, instance_data: dict) -> tuple[float, list[dict]]:
 
     r_tr = round(min(all_coverages), 4) if all_coverages else 1.0
     return r_tr, details
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# Stage 2 solver
+# ═══════════════════════════════════════════════════════════════════════════
+
+def build_stage2_facts(stage1: dict, instance_data: dict) -> str:
+    """Convert Stage 1 results into Stage 2 input facts."""
+    lines = []
+
+    for (f, t, tr, p), n in sorted(stage1["loads"].items()):
+        lines.append(f"totalLoad({f},{t},{tr},{p},{n}).")
+
+    for rf in stage1["route_freqs"]:
+        cap = instance_data["transport_cap"].get(rf["tr"], 0)
+        lines.append(
+            f"activeRoute({rf['from']},{rf['to']},{rf['tr']},"
+            f"{rf['freq']},{cap})."
+        )
+
+    for p, s in sorted(instance_data["part_size"].items()):
+        lines.append(f"partSize({p},{s}).")
+
+    for p, v in sorted(instance_data.get("part_val", {}).items()):
+        lines.append(f"partVal({p},{v}).")
+
+    return "\n".join(lines)
+
+
+def _extract_stage2(model: clingo.Model, theory: ClingconTheory) -> dict:
+    """Extract trip packings and metric atoms from Stage 2 model."""
+
+    trip_loads:       dict[tuple, int] = {}
+    trip_part_counts: dict[tuple, int] = {}
+    route_part_types: dict[tuple, int] = {}
+    mono_trips:       list = []
+    concentrated_atoms: list = []
+
+    for sym, value in theory.assignment(model.thread_id):
+        val = int(value)
+        if sym.name == "tripLoad" and len(sym.arguments) == 5 and val > 0:
+            a = sym.arguments
+            key = (str(a[0]), str(a[1]), str(a[2]), str(a[3]), a[4].number)
+            trip_loads[key] = val
+
+    for sym in model.symbols(shown=True):
+        a = sym.arguments
+        if sym.name == "tripPartCount" and len(a) == 5:
+            key = (str(a[0]), str(a[1]), str(a[2]), a[3].number)
+            trip_part_counts[key] = a[4].number
+        elif sym.name == "routePartTypes" and len(a) == 4:
+            key = (str(a[0]), str(a[1]), str(a[2]))
+            route_part_types[key] = a[3].number
+        elif sym.name == "monoTrip" and len(a) == 4:
+            mono_trips.append(
+                (str(a[0]), str(a[1]), str(a[2]), a[3].number)
+            )
+        elif sym.name == "concentrated" and len(a) == 5:
+            concentrated_atoms.append(
+                (str(a[0]), str(a[1]), str(a[2]), str(a[3]), a[4].number)
+            )
+
+    return {
+        "trip_loads":         trip_loads,
+        "trip_part_counts":   trip_part_counts,
+        "route_part_types":   route_part_types,
+        "mono_count":         len(mono_trips),
+        "concentrated_count": len(concentrated_atoms),
+    }
+
+
+def solve_stage2(
+    facts_str:       str,
+    hetero_on:       int = 1,
+    concentrated_on: int = 1,
+    time_limit:      int = 30,
+) -> dict | None:
+    """Solve Stage 2 bin-packing with configurable constraints."""
+
+    theory = ClingconTheory()
+    ctl    = clingo.Control([
+        "-c", f"hetero_on={hetero_on}",
+        "-c", f"concentrated_on={concentrated_on}",
+    ])
+    theory.register(ctl)
+
+    with clingo.ast.ProgramBuilder(ctl) as builder:
+        def on_rule(stm):
+            theory.rewrite_ast(stm, builder.add)
+        clingo.ast.parse_string(facts_str, on_rule)
+        clingo.ast.parse_files([str(STAGE2)], on_rule)
+
+    t0 = time.perf_counter()
+    ctl.ground([("base", [])])
+    theory.prepare(ctl)
+
+    best       = None
+    optimum    = False
+    trajectory = []   # [(elapsed_seconds, cost_vector)]
+
+    timer = threading.Timer(time_limit, ctl.interrupt)
+    timer.start()
+
+    try:
+        with ctl.solve(yield_=True) as handle:
+            for model in handle:
+                theory.on_model(model)
+                best = _extract_stage2(model, theory)
+                cost = list(model.cost) if model.cost else []
+                elapsed_now = round(time.perf_counter() - t0, 3)
+                trajectory.append((elapsed_now, cost))
+                print(f" ↓{cost}", end="", flush=True)
+                if model.optimality_proven:
+                    optimum = True
+                    break
+    except RuntimeError:
+        pass
+    finally:
+        timer.cancel()
+
+    total_time = time.perf_counter() - t0
+    if best:
+        best["optimum"]    = optimum
+        best["time"]       = round(total_time, 3)
+        best["trajectory"] = trajectory
+    print(flush=True)
+
+    return best
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# R_1 via max-flow (trip-level resilience)
+# ═══════════════════════════════════════════════════════════════════════════
+
+def compute_r1(
+    trip_loads:    dict,
+    loads:         dict,
+    instance_data: dict,
+) -> tuple[float, list[dict]]:
+    """Compute R_1: worst-case coverage under any single trip loss.
+
+    Unlike R_TR (which removes an entire arc-TR), R_1 reduces the arc
+    capacity by only the contents of the lost trip.
+    """
+    from scipy.sparse.csgraph import maximum_flow
+    from scipy.sparse import csr_matrix
+
+    demands = instance_data["demands"]
+    offers  = instance_data["offers"]
+    parts   = sorted(set(p for (f, t, tr, p) in loads))
+
+    all_locs = sorted(
+        set(f for (f, t, tr, p) in loads) |
+        set(t for (f, t, tr, p) in loads)
+    )
+    loc_idx = {loc: i for i, loc in enumerate(all_locs)}
+    N       = len(all_locs)
+    S_NODE  = N
+    T_NODE  = N + 1
+    N_NODES = N + 2
+    SCALE   = 1000
+
+    total_demand = {
+        p: sum(q for (part, loc), q in demands.items() if part == p)
+        for p in parts
+    }
+
+    # Group trip_loads by trip key: (f, t, tr, k) -> {p: qty}
+    trips: dict[tuple, dict[str, int]] = {}
+    for (f, t, tr, p, k), qty in trip_loads.items():
+        trip_key = (f, t, tr, k)
+        if trip_key not in trips:
+            trips[trip_key] = {}
+        trips[trip_key][p] = qty
+
+    details       = []
+    all_coverages = []
+
+    for trip_key, trip_contents in trips.items():
+        lost_f, lost_t, lost_tr, lost_k = trip_key
+
+        for p in parts:
+            td = total_demand.get(p, 0)
+            if td == 0:
+                continue
+
+            lost_qty = trip_contents.get(p, 0)
+
+            cap = [[0] * N_NODES for _ in range(N_NODES)]
+
+            # Supply arcs: S -> supply locations
+            for (part, loc), qty in offers.items():
+                if part == p and loc in loc_idx:
+                    cap[S_NODE][loc_idx[loc]] += int(qty * SCALE)
+
+            # Demand arcs: demand locations -> T
+            for (part, loc), qty in demands.items():
+                if part == p and loc in loc_idx:
+                    cap[loc_idx[loc]][T_NODE] += int(qty * SCALE)
+
+            # Internal arcs: aggregate loads, reduce disrupted arc by trip contents
+            for (f, t, tr, part), qty in loads.items():
+                if part != p or f not in loc_idx or t not in loc_idx:
+                    continue
+
+                if (f, t, tr) == (lost_f, lost_t, lost_tr):
+                    arc_cap = int((qty - lost_qty) * SCALE)
+                else:
+                    arc_cap = int(qty * SCALE)
+
+                cap[loc_idx[f]][loc_idx[t]] += max(0, arc_cap)
+
+            flow_val   = maximum_flow(csr_matrix(cap), S_NODE, T_NODE).flow_value
+            max_supply = flow_val / SCALE
+            coverage   = round(min(max_supply / td, 1.0), 4)
+
+            details.append({
+                "lost_trip":     f"({lost_f},{lost_t},{lost_tr},k{lost_k})",
+                "lost_contents": dict(trip_contents),
+                "part":          p,
+                "max_flow":      round(max_supply, 3),
+                "demand":        td,
+                "coverage":      coverage,
+            })
+            all_coverages.append(coverage)
+
+    r_1 = round(min(all_coverages), 4) if all_coverages else 1.0
+    return r_1, details
 
 
 # ═══════════════════════════════════════════════════════════════════════════

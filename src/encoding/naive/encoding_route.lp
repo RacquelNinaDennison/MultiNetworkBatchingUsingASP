@@ -1,3 +1,8 @@
+bins(1..2).
+numFlow(0..15).
+numFreq(0..15).
+numParts(0..2).
+
 netdemandSupply(P,L,0) :- not demandOffer(P,L,_), part(P), location(L).
 netdemandSupply(P,L,D) :- demandOffer(P,L,D).
 
@@ -25,7 +30,7 @@ is_producer(P, L) :- demandOffer(P, L, D), D > 0.
     route(From,To,TR,_,_), bins(ID).
 
 
-:- #sum{N*F, ID, TR : pack(N,P,ID,From,To,TR), freq(ID,From,To,TR,F)} < Value,
+:- #sum{N*F, ID, TR : pack(N,P,ID,From,To,TR), N >0 , freq(ID,From,To,TR,F), F > 0} < Value,
     flow(From,To,P,Value), Value > 0.
 
 % #maximize{N*Size@0 : pack(N,P,ID,From,To,TR), partSize(P,Size)}.

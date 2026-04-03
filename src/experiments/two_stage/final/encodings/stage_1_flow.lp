@@ -1,6 +1,6 @@
 #const cap_size_divide = 1.
-#const max_freq = 20.
-#const weight = 50.
+#const max_freq = 50.
+#const weight = 1.
 
 
 % ── Supply / Demand ──────────────────────────────────────────────────────
@@ -71,10 +71,11 @@ freq(1..max_freq).
     activeFlow(From, To, TR, _).
 
 
-% Aggregate capacity with 80% headroom to ensure Stage 2 bin-packing feasibility.
+% Aggregate capacity with 70% headroom to ensure Stage 2 bin-packing feasibility.
 % Without headroom, aggregate-feasible loads may not distribute into integer trips.
-&sum { 5 * S*load(F, T, TR, P) :
-        possibleFlow(F, T, TR, P), partSizeSmall(P, S) } <= 4 * TotalCap :-
+% 10 * volume <= 7 * totalCap  ↔  volume <= 0.7 * totalCap
+&sum { 10 * S*load(F, T, TR, P) :
+        possibleFlow(F, T, TR, P), partSizeSmall(P, S) } <= 7 * TotalCap :-
     routeFreq(F, T, TR, Freq, TotalCap).
 
 
@@ -104,13 +105,12 @@ transportResourcesAvailable(F, T, P, N) :-
     transportResourcesAvailable(F, T, P, N), N > 1,
     totalSupply(P, Max).
 
-% must be atleast that of what is loaded onto an arc 
+% maxTRLoad must be at least the load on each individual TR
 &sum { maxTRLoad(F, T, P); -load(F, T, TR, P) } >= 0 :-
     possibleFlow(F, T, TR, P),
     transportResourcesAvailable(F, T, P, N), N > 1.
 
-% some TRs are dominant if they carry 
-% should be evenly distributed 
+% A TR is dominant if it carries more than the fair share
 dominantTR(F, T, P) :-
     transportResourcesAvailable(F, T, P, N), N > 1,
     &sum { N*maxTRLoad(F, T, P); -arcLoad(F, T, P) } > 0.
@@ -118,14 +118,6 @@ dominantTR(F, T, P) :-
 _transCost(From, To, TR, C*Freq) :-
     routeFreq(From, To, TR, Freq, _),
     route(From, To, TR, _, C).
-
-
-% Hard: if multiple TRs are available, no single TR carries all the load
-:- transportResourcesAvailable(F, T, P, N), N > 1,
-   possibleFlow(F, T, TR, P),
-   &sum { arcLoad(F, T, P) } > 0,
-   &sum { load(F, T, TR, P); -arcLoad(F, T, P) } = 0.
-
 
 :~ dominantTR(F, T, P). [weight@1, div, F, T, P]
 :~ _transCost(F, T, TR, V). [V@1, trans, F, T, TR]
@@ -141,3 +133,4 @@ _transCost(From, To, TR, C*Freq) :-
 #show partSizeSmall/2.
 #show totalSupply/2.
 
+#show activeFlow/4.

@@ -34,9 +34,10 @@ import clingo.ast
 from clingcon import ClingconTheory
 
 
-HERE   = Path(__file__).parent
-STAGE1 = HERE / "stage1_flow.lp"
-STAGE2 = HERE / "stage2_packing.lp"
+HERE   = Path(__file__).parent.parent
+print(HERE)
+STAGE1 = HERE / "encoding" /"twostage" / "stage_1_flow.lp"
+STAGE2 = HERE / "encoding" /"twostage" / "stage_2_packing.lp"
 
 
 # ─────────────────────────────────────────────────────────────────────────
@@ -100,10 +101,12 @@ def solve_stage1(
     finds no new model, the previous best is accepted as optimal.
     """
 
+    weight = 1
     theory = ClingconTheory()
     ctl = clingo.Control([
         "-c", f"cap_size_divide={cap_divide}",
-        "-c", f"max_freq={max_freq}"
+        "-c", f"max_freq={max_freq}",
+        "-c", f"weight={weight}"
     ])
     theory.register(ctl)
 
@@ -123,8 +126,9 @@ def solve_stage1(
 
     # The bound constraint uses the cost helper atoms from stage1_flow.lp:
     #   _co2Cost(F,T,TR,V) and _transCost(F,T,TR,V)
-    BOUND_TEMPLATE = (
-        ":- #sum {{ V,F,T,TR : _transCost(F,T,TR,V) }} >= {bound}."
+    BOUND = (
+        ":- #sum {{ V,F,T,TR : _transCost(F,T,TR,V); "
+        "{weight},F,T,P : dominantTR(F,T,P) }} >= {bound}."
     )
 
     for round_num in range(1, max_rounds + 1):
@@ -186,7 +190,7 @@ def solve_stage1(
         print(f" → model found (cost={best_cost})", flush=True)
 
         # Add nogood: next solution must have cost strictly less than best
-        bound_rule = BOUND_TEMPLATE.format(bound=best_cost)
+        bound_rule = BOUND.format(weight=weight, bound=best_cost)
         section = f"bound_{round_num}"
         ctl.add(section, [], bound_rule)
         ctl.ground([(section, [])])
@@ -258,7 +262,7 @@ def build_stage2_facts(stage1: dict, instance_data: dict) -> str:
         cost = instance_data["route_cost"].get(key, 0)
         if cost > 0:
             lines.append(f"routeCost({rf['from']},{rf['to']},{rf['tr']},{cost}).")
-
+    print(lines)
     return "\n".join(lines)
 
 
@@ -525,9 +529,9 @@ def build_parser() -> argparse.ArgumentParser:
     )
     parser.add_argument("--instance", "-i", required=True,
                         help="Path to the instance .lp file")
-    parser.add_argument("--cap-divide", type=int, default=1000,
+    parser.add_argument("--cap-divide", type=int, default=1,
                         help="Capacity scaling divisor (default: 1 = exact)")
-    parser.add_argument("--max-freq", type=int, default=30,
+    parser.add_argument("--max-freq", type=int, default=5,
                         help="Maximum transport frequency (default: 30)")
     parser.add_argument("--time-limit", type=int, default=30,
                         help="Overall time limit per stage in seconds (default: 30)")

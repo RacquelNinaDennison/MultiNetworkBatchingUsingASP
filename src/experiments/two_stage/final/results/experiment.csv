@@ -1,2 +1,0 @@
-div_weight,nominal_cost,dominant_count,s1_optimal,s1_time,r_tr,worst_arc,worst_arc_coverage,recovery_cost,regret,load_deviation,robust_optimal,robust_time
-10,568,0,True,0.023,0.0,"(l1,l3,tr1)",0.0,568,0,,False,3.27

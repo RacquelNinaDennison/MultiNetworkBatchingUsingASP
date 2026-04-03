@@ -1,4 +1,7 @@
-bins(1..numBins).
+bins(1..2).
+numFlow(0..15).
+numFreq(0..15).
+numParts(0..2).
 #const maxItems = 20. % maximum number of items that can be packed in a single transport resource
 #const maxFreq = 20. % maximum frequency of dispatching a packing pattern on a
 

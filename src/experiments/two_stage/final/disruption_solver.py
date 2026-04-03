@@ -142,7 +142,7 @@ def _extract_s1(model: clingo.Model, theory: ClingconTheory) -> dict:
 
 def solve_stage1(
     instance_path: str,
-    div_weight:    int  = 0,
+    div_weight:    int  = 1,
     time_limit:    int  = 30,
     cap_divide:    int  = 1,
     max_freq:      int  = 20,
@@ -152,7 +152,7 @@ def solve_stage1(
     ctl    = clingo.Control([
         "-c", f"cap_size_divide={cap_divide}",
         "-c", f"max_freq={max_freq}",
-        "-c", f"weight={div_weight}",
+        "-c", f"weight=1",
     ])
     theory.register(ctl)
 
@@ -564,8 +564,8 @@ def main() -> None:
         row["dominant_count"] = dominant_count
         row["s1_optimal"]     = stage1["optimum"]
         row["s1_time"]        = stage1["time"]
-
-        print(f"  Done. cost={nominal_cost}  dominant={dominant_count}  "
+        print(stage1["loads"])
+        print(f"Done. cost={nominal_cost}  dominant={dominant_count}  "
               f"optimal={stage1['optimum']}")
 
         # ── Step 2: R_TR ─────────────────────────────────────────────

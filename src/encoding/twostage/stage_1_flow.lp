@@ -1,5 +1,5 @@
 #const cap_size_divide = 1.
-#const max_freq = 10.
+#const max_freq = 50.
 #const weight = 1.
 
 
@@ -73,10 +73,9 @@ freq(1..max_freq).
 
 % Aggregate capacity: total loaded volume must not exceed total capacity across all trips.
 % Trips don't have to be full — this just prevents overflow.
-&sum { S*load(F, T, TR, P) :
-        possibleFlow(F, T, TR, P), partSizeSmall(P, S) } <= TotalCap :-
+&sum { 10 * S*load(F, T, TR, P) :
+        possibleFlow(F, T, TR, P), partSizeSmall(P, S) } <= 7 * TotalCap :-
     routeFreq(F, T, TR, Freq, TotalCap).
-
 
 maxItemsPerTrip(TR, P, Cap/S) :-
     transportCapacity(TR, Cap), partSize(P, S), S > 0, Cap >= S.
@@ -85,40 +84,49 @@ maxItemsPerTrip(TR, P, Cap/S) :-
     routeFreq(F,T,TR,Freq,_), possibleFlow(F,T,TR,P),
     maxItemsPerTrip(TR, P, Max).
 
-:- &sum { S*load(F, T, TR, P) :
-        possibleFlow(F, T, TR, P), partSizeSmall(P, S) } < Minus1,
-    routeFreq(F, T, TR, Freq, TotalCap),
-    tRCapSmall(TR, C), Minus1 = TotalCap - C, Freq > 1.
+% :- &sum { S*load(F, T, TR, P) :
+%         possibleFlow(F, T, TR, P), partSizeSmall(P, S) } < Minus1,
+%     routeFreq(F, T, TR, Freq, TotalCap),
+%     tRCapSmall(TR, C), Minus1 = TotalCap - C, Freq > 1.
 
 
-% &sum { load(F, T, TR, P) : possibleFlow(F, T, TR, P) } = arcLoad(F, T, P) :-
-%     activeFlow(F, T, _, P), part(P).
+&sum { load(F, T, TR, P) : possibleFlow(F, T, TR, P) } = arcLoad(F, T, P) :-
+    activeFlow(F, T, _, P), part(P).
 
 
-% transportResourcesAvailable(F, T, P, N) :-
-%     activeFlow(F, T, _, P),
-%     N = #count { TR : possibleFlow(F, T, TR, P) }.
+transportResourcesAvailable(F, T, P, N) :-
+    activeFlow(F, T, _, P),
+    N = #count { TR : possibleFlow(F, T, TR, P) }.
 
 
-% &dom { 0..Max } = maxTRLoad(F, T, P) :-
-%     transportResourcesAvailable(F, T, P, N), N > 1,
-%     totalSupply(P, Max).
+&dom { 0..Max } = maxTRLoad(F, T, P) :-
+    transportResourcesAvailable(F, T, P, N), N > 1,
+    totalSupply(P, Max).
 
-% % must be atleast that of what is loaded onto an arc 
-% &sum { maxTRLoad(F, T, P); -load(F, T, TR, P) } >= 0 :-
-%     possibleFlow(F, T, TR, P),
-%     transportResourcesAvailable(F, T, P, N), N > 1.
+% must be atleast that of what is loaded onto an arc 
+&sum { maxTRLoad(F, T, P); -load(F, T, TR, P) } >= 0 :-
+    possibleFlow(F, T, TR, P),
+    transportResourcesAvailable(F, T, P, N), N > 1.
 
-% % some TRs are dominant if they carry 
-% % should be evenly distributed 
-% dominantTR(F, T, P) :-
-%     transportResourcesAvailable(F, T, P, N), N > 1,
-%     &sum { N*maxTRLoad(F, T, P); -arcLoad(F, T, P) } > 0.
+% some TRs are dominant if they carry 
+% should be evenly distributed 
+dominantTR(F, T, P) :-
+    transportResourcesAvailable(F, T, P, N), N > 1,
+    &sum { N*maxTRLoad(F, T, P); -arcLoad(F, T, P) } > 0.
 
 _transCost(From, To, TR, C*Freq) :-
     routeFreq(From, To, TR, Freq, _),
     route(From, To, TR, _, C).
 
+
+
+% mono check 
+
+  monoPartTR(F, T, P) :-
+      transportResourcesAvailable(F, T, P, N), N > 1,
+      possibleFlow(F, T, TR, P),
+      &sum { arcLoad(F, T, P) } > 0,
+      &sum { load(F, T, TR, P); -arcLoad(F, T, P) } = 0.
 
 % % Hard: if multiple TRs are available, no single TR carries all the load
 % :- transportResourcesAvailable(F, T, P, N), N > 1,
@@ -127,20 +135,20 @@ _transCost(From, To, TR, C*Freq) :-
 %    &sum { load(F, T, TR, P); -arcLoad(F, T, P) } = 0.
 
 
-% :~ dominantTR(F, T, P). [weight@1, div, F, T, P]
-% :~ _transCost(F, T, TR, V). [V@1, trans, F, T, TR]
+:~ dominantTR(F, T, P). [weight@1, div, F, T, P]
+:~ _transCost(F, T, TR, V). [V@1, trans, F, T, TR]
+:~ monoPartTR(F, T, P). [weight@1, monopart, F, T, P]
 
-#minimize { V, F, T, TR : _transCost(F, T, TR, V) }.
+% #minimize { V, F, T, TR : _transCost(F, T, TR, V) }.
 
-% #show.
-% % &show { load/4 }.
-% % #show dominantTR/3.
-% % #show routeFreq/5.
-% % #show maxItemsPerTrip/3.
-% % #show requiredNet/3.
-% % #show tRCapSmall/2.
-% % #show partSizeSmall/2.
-% % #show totalSupply/2.
+#show.
+&show { load/4 }.
+#show dominantTR/3.
+#show routeFreq/5.
+#show maxItemsPerTrip/3.
+#show requiredNet/3.
+#show tRCapSmall/2.
+#show partSizeSmall/2.
+#show totalSupply/2.
 
 
-% #show. 

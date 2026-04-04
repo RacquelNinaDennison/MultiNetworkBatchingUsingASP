@@ -48,6 +48,7 @@ from main import (
     build_stage2_facts,
     solve_stage2,
     compute_r1,
+    compute_dispatch_costs,
 )
 
 
@@ -84,6 +85,9 @@ COLUMNS = [
     "s1_optimal",
     "s1_time",
     "s1_trajectory",
+    "s1_dispatch_cost",
+    "s2_dispatch_cost",
+    "cost_saving",
     "s2_optimal",
     "s2_time",
     "s2_trajectory",
@@ -272,6 +276,16 @@ def run_stage1_group(
             row["status"]      = f"R1_ERROR: {e}"
 
         print(f"  R_1={row.get('r_1')}  worst_trip={row.get('worst_trip')}")
+
+        # ── Dispatch costs ───────────────────────────────────────────
+        costs = compute_dispatch_costs(stage1, stage2, instance_data)
+        row["s1_dispatch_cost"] = costs["s1_dispatch_cost"]
+        row["s2_dispatch_cost"] = costs["s2_dispatch_cost"]
+        row["cost_saving"]      = costs["cost_saving"]
+
+        print(f"  Dispatch: s1={costs['s1_dispatch_cost']}  "
+              f"s2={costs['s2_dispatch_cost']}  "
+              f"saving={costs['cost_saving']}")
 
         append_row(csv_path, row)
         rows_written += 1

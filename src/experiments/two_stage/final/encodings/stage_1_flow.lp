@@ -86,10 +86,8 @@ maxItemsPerTrip(TR, P, Cap/S) :-
     routeFreq(F,T,TR,Freq,_), possibleFlow(F,T,TR,P),
     maxItemsPerTrip(TR, P, Max).
 
-:- &sum { S*load(F, T, TR, P) :
-        possibleFlow(F, T, TR, P), partSizeSmall(P, S) } < Minus1,
-    routeFreq(F, T, TR, Freq, TotalCap),
-    tRCapSmall(TR, C), Minus1 = TotalCap - C, Freq > 1.
+% Underpacking constraint removed: conflicts with 70% headroom at freq >= 4.
+% The headroom constraint already prevents wasteful overloading.
 
 
 &sum { load(F, T, TR, P) : possibleFlow(F, T, TR, P) } = arcLoad(F, T, P) :-

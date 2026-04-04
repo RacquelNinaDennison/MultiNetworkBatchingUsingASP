@@ -317,6 +317,9 @@ def build_stage2_facts(stage1: dict, instance_data: dict) -> str:
     for (f, t, tr, p), n in sorted(stage1["loads"].items()):
         lines.append(f"totalLoad({f},{t},{tr},{p},{n}).")
 
+    for tr, cap in sorted(instance_data["transport_cap"].items()):
+        lines.append(f"transportCapacity({tr},{cap}).")
+
     for rf in stage1["route_freqs"]:
         cap = instance_data["transport_cap"].get(rf["tr"], 0)
         lines.append(
@@ -330,7 +333,54 @@ def build_stage2_facts(stage1: dict, instance_data: dict) -> str:
     for p, v in sorted(instance_data.get("part_val", {}).items()):
         lines.append(f"partVal({p},{v}).")
 
+    # routeCost for dispatch cost minimisation in Stage 2
+    for rf in stage1["route_freqs"]:
+        key = (rf["from"], rf["to"], rf["tr"])
+        route_info = instance_data["routes"].get(key)
+        if route_info:
+            _, cost = route_info
+            lines.append(f"routeCost({rf['from']},{rf['to']},{rf['tr']},{cost}).")
+
     return "\n".join(lines)
+
+
+def compute_dispatch_costs(
+    stage1: dict,
+    stage2: dict | None,
+    instance_data: dict,
+) -> dict:
+    """Compute Stage 1 planned cost and Stage 2 actual dispatch cost."""
+
+    # Stage 1 cost: freq × cost_per_trip for each active route
+    s1_cost = 0
+    for rf in stage1["route_freqs"]:
+        key = (rf["from"], rf["to"], rf["tr"])
+        route_info = instance_data["routes"].get(key)
+        if route_info:
+            _, cost = route_info
+            s1_cost += rf["freq"] * cost
+
+    if stage2 is None:
+        return {"s1_dispatch_cost": s1_cost, "s2_dispatch_cost": None, "cost_saving": None}
+
+    # Stage 2 cost: count distinct used trips per route
+    from collections import defaultdict
+    trips_per_route: dict[tuple, set] = defaultdict(set)
+    for (f, t, tr, p, k), n in stage2["trip_loads"].items():
+        trips_per_route[(f, t, tr)].add(k)
+
+    s2_cost = 0
+    for (f, t, tr), trip_ids in trips_per_route.items():
+        route_info = instance_data["routes"].get((f, t, tr))
+        if route_info:
+            _, cost = route_info
+            s2_cost += len(trip_ids) * cost
+
+    return {
+        "s1_dispatch_cost": s1_cost,
+        "s2_dispatch_cost": s2_cost,
+        "cost_saving": s1_cost - s2_cost,
+    }
 
 
 def _extract_stage2(model: clingo.Model, theory: ClingconTheory) -> dict:

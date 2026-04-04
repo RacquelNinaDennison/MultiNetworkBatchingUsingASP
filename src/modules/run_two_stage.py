@@ -128,7 +128,8 @@ def solve_stage1(
     #   _co2Cost(F,T,TR,V) and _transCost(F,T,TR,V)
     BOUND = (
         ":- #sum {{ V,F,T,TR : _transCost(F,T,TR,V); "
-        "{weight},F,T,P : dominantTR(F,T,P) }} >= {bound}."
+        "{weight},F,T,P : dominantTR(F,T,P); "
+        "{weight},F,T,P : monoPartTR(F,T,P) }} >= {bound}."
     )
 
     for round_num in range(1, max_rounds + 1):
@@ -239,6 +240,9 @@ def build_stage2_facts(stage1: dict, instance_data: dict) -> str:
     # totalLoad(From, To, TR, Part, N).
     for (f, t, tr, p), n in sorted(stage1["loads"].items()):
         lines.append(f"totalLoad({f},{t},{tr},{p},{n}).")
+    
+    for tr, cap in sorted(instance_data["transport_cap"].items()):
+        lines.append(f"transportCapacity({tr},{cap}).")
 
     # activeRoute(From, To, TR, Freq, PerTripCap).
     for rf in stage1["route_freqs"]:
@@ -420,6 +424,41 @@ def compute_metrics(stage2: dict, instance_data: dict, route_freqs: list) -> dic
         if total > 0 and len(part_vols) > 1:
             max_shares.append(max(part_vols.values()) / total)
 
+    # ── Cost metrics ─────────────────────────────────────────────────
+    # Stage 1 cost: freq × route_cost for each active route
+    s1_dispatch_cost = 0
+    for rf in route_freqs:
+        key = (rf["from"], rf["to"], rf["tr"])
+        cost_per_trip = instance_data["route_cost"].get(key, 0)
+        s1_dispatch_cost += rf["freq"] * cost_per_trip
+
+    # Stage 2 actual cost: only count used trips
+    trips_per_route: dict[tuple, set] = defaultdict(set)
+    for (f, t, tr, p, k), n in stage2["trip_loads"].items():
+        trips_per_route[(f, t, tr)].add(k)
+
+    s2_dispatch_cost = 0
+    for (f, t, tr), trip_ids in trips_per_route.items():
+        cost_per_trip = instance_data["route_cost"].get((f, t, tr), 0)
+        s2_dispatch_cost += len(trip_ids) * cost_per_trip
+
+    # Per-route breakdown
+    route_freq_savings: list[dict] = []
+    for rf in route_freqs:
+        key = (rf["from"], rf["to"], rf["tr"])
+        s1_freq = rf["freq"]
+        s2_freq = len(trips_per_route.get(key, set()))
+        cost_per_trip = instance_data["route_cost"].get(key, 0)
+        route_freq_savings.append({
+            "route": f"{rf['from']}→{rf['to']} via {rf['tr']}",
+            "s1_freq": s1_freq,
+            "s2_freq": s2_freq,
+            "saved_trips": s1_freq - s2_freq,
+            "cost_per_trip": cost_per_trip,
+            "s1_cost": s1_freq * cost_per_trip,
+            "s2_cost": s2_freq * cost_per_trip,
+        })
+
     return {
         "total_trips":       len(counts),
         "non_empty_trips":   len(non_empty_counts),
@@ -432,6 +471,10 @@ def compute_metrics(stage2: dict, instance_data: dict, route_freqs: list) -> dic
         "min_fill_rate":      round(min(fill_rates), 3) if fill_rates else 0,
         "max_fill_rate":      round(max(fill_rates), 3) if fill_rates else 0,
         "avg_max_part_share": round(mean(max_shares), 3) if max_shares else 0,
+        "s1_dispatch_cost":   s1_dispatch_cost,
+        "s2_dispatch_cost":   s2_dispatch_cost,
+        "cost_saving":        s1_dispatch_cost - s2_dispatch_cost,
+        "route_details":      route_freq_savings,
     }
 
 
@@ -514,6 +557,19 @@ def print_metrics(metrics: dict) -> None:
         print(f"  Max part share:      "
               f"avg={metrics['avg_max_part_share']}  (lower = more balanced)")
 
+    print()
+    print(f"  Stage 1 dispatch cost:  {metrics['s1_dispatch_cost']}")
+    print(f"  Stage 2 actual cost:    {metrics['s2_dispatch_cost']}")
+    print(f"  Cost saving:            {metrics['cost_saving']}  "
+          f"({round(metrics['cost_saving'] / max(1, metrics['s1_dispatch_cost']) * 100, 1)}%)")
+    print()
+    print("  Per-route frequency comparison:")
+    for rd in metrics["route_details"]:
+        saved = f"  (-{rd['saved_trips']})" if rd["saved_trips"] > 0 else ""
+        print(f"    {rd['route']:>20}  "
+              f"S1: {rd['s1_freq']} trips → S2: {rd['s2_freq']} trips{saved}  "
+              f"cost: {rd['s1_cost']} → {rd['s2_cost']}")
+
 
 # ─────────────────────────────────────────────────────────────────────────
 # CLI
@@ -531,7 +587,7 @@ def build_parser() -> argparse.ArgumentParser:
                         help="Path to the instance .lp file")
     parser.add_argument("--cap-divide", type=int, default=1,
                         help="Capacity scaling divisor (default: 1 = exact)")
-    parser.add_argument("--max-freq", type=int, default=5,
+    parser.add_argument("--max-freq", type=int, default=6,
                         help="Maximum transport frequency (default: 30)")
     parser.add_argument("--time-limit", type=int, default=30,
                         help="Overall time limit per stage in seconds (default: 30)")

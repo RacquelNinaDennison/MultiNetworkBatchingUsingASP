@@ -46,7 +46,7 @@ actualFrequency(F, T, TR, Count) :-
     activeRoute(F, T, TR, _, _),
     Count = #count { K : usedTrip(F, T, TR, K) }.
 
-% Correct way to compare two trip loads in clingcon
+
 :- trip(F, T, TR, K), trip(F, T, TR, K+1),
    &sum { tripLoad(F, T, TR, P, K) : totalLoad(F, T, TR, P, _) ;
          -tripLoad(F, T, TR, P, K+1) : totalLoad(F, T, TR, P, _) } = 0.
@@ -59,8 +59,10 @@ actualFrequency(F, T, TR, Count) :-
     totalLoad(F, T, TR, P, N).
 
 % Per-trip capacity: each trip must not exceed transport capacity
-&sum { S * tripLoad(F, T, TR, P, K) : partSize(P, S) } <= C :-
-    trip(F, T, TR, K), activeRoute(F, T, TR, _, C).
+% Uses transportCapacity for per-trip cap (activeRoute's C is total = cap*freq)
+&sum { S * tripLoad(F, T, TR, P, K) :
+        totalLoad(F, T, TR, P, _), partSize(P, S) } <= Cap :-
+    trip(F, T, TR, K), transportCapacity(TR, Cap), activeRoute(F, T, TR, _, _).
 
 
 
@@ -96,20 +98,20 @@ routePartTypes(F, T, TR, Count) :-
 % % %
 % % % Metric targeted: R_1
 
-% Half-load threshold
-halfLoad(F, T, TR, P, N/2) :- totalLoad(F, T, TR, P, N), N > 1.
+% % Half-load threshold
+% halfLoad(F, T, TR, P, N/2) :- totalLoad(F, T, TR, P, N), N > 1.
 
-% % Detect trips exceeding the concentration threshold
-concentrated(F, T, TR, P, K) :-
-    &sum { tripLoad(F, T, TR, P, K) } >= H,
-    halfLoad(F, T, TR, P, H), trip(F, T, TR, K).
+% % % Detect trips exceeding the concentration threshold
+% concentrated(F, T, TR, P, K) :-
+%     &sum { tripLoad(F, T, TR, P, K) } >= H,
+%     halfLoad(F, T, TR, P, H), trip(F, T, TR, K).
 
-% % Penalise concentrated packings (highest priority)
-% :~ concentrated(F, T, TR, P, K). [10@3, F, T, TR, P, K]
+% % % Penalise concentrated packings (highest priority)
+% % :~ concentrated(F, T, TR, P, K). [10@3, F, T, TR, P, K]
 
-% % Value-weighted variant: expensive parts penalised more heavily
-:~ concentrated(F, T, TR, P, K), partVal(P, V).
-   [V@1, F, T, TR, P, K, val]
+% % % Value-weighted variant: expensive parts penalised more heavily
+% :~ concentrated(F, T, TR, P, K), partVal(P, V).
+%    [V@1, F, T, TR, P, K, val]
 
 
 % % % ═══════════════════════════════════════════════════════════════════════════
@@ -124,11 +126,11 @@ concentrated(F, T, TR, P, K) :-
 % % %
 % % % Metric targeted: A_1
 
-monoTrip(F, T, TR, K) :-
-    tripPartCount(F, T, TR, K, 1),
-    routePartTypes(F, T, TR, Total), Total > 1.
+% monoTrip(F, T, TR, K) :-
+%     tripPartCount(F, T, TR, K, 1),
+%     routePartTypes(F, T, TR, Total), Total > 1.
 
-:~ monoTrip(F, T, TR, K). [10@2, F, T, TR, K]
+% :~ monoTrip(F, T, TR, K). [100000@2, F, T, TR, K]
 
 
 % % % ═══════════════════════════════════════════════════════════════════════════
@@ -165,12 +167,8 @@ monoTrip(F, T, TR, K) :-
 % % %
 % % % Input: routeCost(From, To, TR, C) — per-trip cost (passed from bridge)
 
-% % A trip is used if it carries any part
-% usedTrip(F, T, TR, K) :- tripHasPart(F, T, TR, K, _).
-
-% % Penalise each used trip by its dispatch cost
-% :~ usedTrip(F, T, TR, K), routeCost(F, T, TR, C).
-%    [C@1, F, T, TR, K]
+% Minimise number of used trips (lowest priority — secondary to all resilience objectives)
+:~ usedTrip(F, T, TR, K). [100000@1, F, T, TR, K]
 
 
 % #show.

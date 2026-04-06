@@ -87,8 +87,9 @@ def parse_instance(path: str) -> dict:
 # ═══════════════════════════════════════════════════════════════════════════
 
 def _extract_s1(model: clingo.Model, theory: ClingconTheory) -> dict:
-    route_freqs = []
-    dominant    = []
+    route_freqs   = []
+    dominant      = []
+    high_exposure = []
     static_facts  = {         
         "maxItemsPerTrip": [],
         "requiredNet":     [],
@@ -103,10 +104,13 @@ def _extract_s1(model: clingo.Model, theory: ClingconTheory) -> dict:
                 "from": str(a[0]), "to": str(a[1]), "tr": str(a[2]),
                 "freq": a[3].number, "total_cap": a[4].number,
             })
-        # Collect dominantTR atoms to count load imbalance
+        # Collect dominantTR and highExposure atoms
         if sym.name == "dominantTR" and len(sym.arguments) == 3:
             a = sym.arguments
             dominant.append((str(a[0]), str(a[1]), str(a[2])))
+        elif sym.name == "highExposure" and len(sym.arguments) == 4:
+            a = sym.arguments
+            high_exposure.append((str(a[0]), str(a[1]), str(a[2]), str(a[3])))
         elif sym.name == "maxItemsPerTrip" and len(sym.arguments) == 3:
             static_facts["maxItemsPerTrip"].append(
                 (str(sym.arguments[0]), str(sym.arguments[1]), sym.arguments[2].number)
@@ -136,10 +140,11 @@ def _extract_s1(model: clingo.Model, theory: ClingconTheory) -> dict:
             loads[key] = val
 
     return {
-        "route_freqs": route_freqs,
-        "loads":       loads,
-        "dominant":    dominant,
-        "static_facts": static_facts,
+        "route_freqs":   route_freqs,
+        "loads":         loads,
+        "dominant":      dominant,
+        "high_exposure": high_exposure,
+        "static_facts":  static_facts,
     }
 
 
@@ -149,6 +154,9 @@ def solve_stage1(
     time_limit:    int  = 30,
     cap_divide:    int  = 1,
     max_freq:      int  = 20,
+    use_dominant:  int  = 1,
+    use_exposure:  int  = 0,
+    exposure_n:    int  = 2,
 ) -> dict | None:
 
     theory = ClingconTheory()
@@ -156,6 +164,9 @@ def solve_stage1(
         "-c", f"cap_size_divide={cap_divide}",
         "-c", f"max_freq={max_freq}",
         "-c", f"weight={div_weight}",
+        "-c", f"use_dominant={use_dominant}",
+        "-c", f"use_exposure={use_exposure}",
+        "-c", f"exposure_n={exposure_n}",
     ])
     theory.register(ctl)
 

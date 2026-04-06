@@ -1,6 +1,9 @@
 #const cap_size_divide = 1.
 #const max_freq = 50.
 #const weight = 1.
+#const use_dominant = 0.
+#const use_exposure = 1.
+#const exposure_n = 2.  % threshold: N * load > Total  →  max fraction = 1/N
 
 
 % ── Supply / Demand ──────────────────────────────────────────────────────
@@ -117,18 +120,31 @@ _transCost(From, To, TR, C*Freq) :-
     routeFreq(From, To, TR, Freq, _),
     route(From, To, TR, _, C).
 
-:~ dominantTR(F, T, P). [weight@1, div, F, T, P]
+
+% ── High Exposure proxy ──────────────────────────────────────────────
+% Flags when a single arc-TR carries > 1/N of a part's total supply.
+% N=2: max 50%, R_TR >= 0.5    N=3: max 33%, R_TR >= 0.667
+% N=4: max 25%, R_TR >= 0.75   N=5: max 20%, R_TR >= 0.8
+highExposure(F, T, TR, P) :-
+    possibleFlow(F, T, TR, P),
+    totalSupply(P, Total), Total > 0,
+    &sum { exposure_n * load(F, T, TR, P) } > Total.
+
+
+% ── Soft constraints (gated by proxy selection) ──────────────────────
+:~ dominantTR(F, T, P), use_dominant = 1. [weight@1, div, F, T, P]
+:~ highExposure(F, T, TR, P), use_exposure = 1. [weight@1, exposure, F, T, TR, P]
 :~ _transCost(F, T, TR, V). [V@1, trans, F, T, TR]
 
 
 #show.
 &show { load/4 }.
 #show dominantTR/3.
+#show highExposure/4.
 #show routeFreq/5.
 #show maxItemsPerTrip/3.
 #show requiredNet/3.
 #show tRCapSmall/2.
 #show partSizeSmall/2.
 #show totalSupply/2.
-
 #show activeFlow/4.

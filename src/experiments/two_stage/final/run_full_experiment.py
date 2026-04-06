@@ -64,6 +64,12 @@ S2_CONFIGS = {
 DEFAULT_WEIGHTS = [0, 50, 100, 200, 500, 1000]
 DEFAULT_S2      = ["off_off", "hetero", "conc", "both"]
 
+PROXY_CONFIGS = {
+    "dominant": {"use_dominant": 1, "use_exposure": 0},
+    "exposure": {"use_dominant": 0, "use_exposure": 1},
+    "both_proxy": {"use_dominant": 1, "use_exposure": 1},
+}
+
 SIZE_TIME_DEFAULTS = {"small": 30, "medium": 60}
 
 COLUMNS = [
@@ -71,11 +77,14 @@ COLUMNS = [
     "instance_size",
     "seed",
     "div_weight",
+    "proxy",
+    "exposure_n",
     "s2_config",
     "hetero_on",
     "concentrated_on",
     "nominal_cost",
     "dominant_count",
+    "exposure_count",
     "r_tr",
     "worst_arc",
     "r_1",
@@ -111,8 +120,8 @@ def discover_instances(instances_dir: Path) -> list[Path]:
     return files
 
 
-def load_completed(csv_path: Path) -> set[tuple[str, int, str]]:
-    """Return set of (instance_name, div_weight, s2_config) already done."""
+def load_completed(csv_path: Path) -> set[tuple[str, int, str, str]]:
+    """Return set of (instance_name, div_weight, proxy, s2_config) already done."""
     completed = set()
     if not csv_path.exists():
         return completed
@@ -121,6 +130,7 @@ def load_completed(csv_path: Path) -> set[tuple[str, int, str]]:
             completed.add((
                 row["instance_name"],
                 int(row["div_weight"]),
+                row.get("proxy", "dominant"),
                 row["s2_config"],
             ))
     return completed
@@ -144,6 +154,8 @@ def run_stage1_group(
     instance_size:  str,
     seed:           int,
     div_weight:     int,
+    proxy:          str,
+    exposure_n:     int,
     s2_configs:     list[str],
     s1_time_limit:  int,
     s2_time_limit:  int,
@@ -155,12 +167,14 @@ def run_stage1_group(
     """Run Stage 1 once, then Stage 2 for each config. Returns rows written."""
 
     configs_todo = [c for c in s2_configs
-                    if (instance_name, div_weight, c) not in completed]
+                    if (instance_name, div_weight, proxy, c) not in completed]
     if not configs_todo:
         return 0
 
+    proxy_params = PROXY_CONFIGS[proxy]
+
     # ── Stage 1 ──────────────────────────────────────────────────────
-    print(f"\n  [{instance_name} w={div_weight}] Solving Stage 1 "
+    print(f"\n  [{instance_name} w={div_weight} proxy={proxy}] Solving Stage 1 "
           f"(limit={s1_time_limit}s)...")
 
     try:
@@ -170,6 +184,9 @@ def run_stage1_group(
             time_limit=s1_time_limit,
             cap_divide=cap_divide,
             max_freq=max_freq,
+            use_dominant=proxy_params["use_dominant"],
+            use_exposure=proxy_params["use_exposure"],
+            exposure_n=exposure_n,
         )
     except Exception as e:
         print(f"  Stage 1 exception: {e}")
@@ -178,15 +195,17 @@ def run_stage1_group(
     if stage1 is None:
         for cfg in configs_todo:
             row = _make_row(instance_name, instance_size, seed,
-                            div_weight, cfg, status="S1_UNSAT")
+                            div_weight, proxy, cfg, status="S1_UNSAT",
+                            exposure_n=exposure_n)
             append_row(csv_path, row)
         return len(configs_todo)
 
-    nominal_cost   = stage1["cost"]
-    dominant_count = len(stage1["dominant"])
+    nominal_cost    = stage1["cost"]
+    dominant_count  = len(stage1["dominant"])
+    exposure_count  = len(stage1.get("high_exposure", []))
 
     print(f"Stage 1: cost={nominal_cost}  dominant={dominant_count}  "
-          f"optimal={stage1['optimum']}")
+          f"exposure={exposure_count}  optimal={stage1['optimum']}")
 
     # ── R_TR ─────────────────────────────────────────────────────────
     try:
@@ -216,11 +235,14 @@ def run_stage1_group(
             "instance_size":  instance_size,
             "seed":           seed,
             "div_weight":     div_weight,
+            "proxy":          proxy,
+            "exposure_n":     exposure_n,
             "s2_config":      cfg,
             "hetero_on":      cfg_params["hetero_on"],
             "concentrated_on": cfg_params["concentrated_on"],
             "nominal_cost":   nominal_cost,
             "dominant_count": dominant_count,
+            "exposure_count": exposure_count,
             "r_tr":           r_tr,
             "worst_arc":      worst_arc_str,
             "s1_optimal":     stage1["optimum"],
@@ -293,11 +315,12 @@ def run_stage1_group(
     return rows_written
 
 
-def _make_row(name, size, seed, weight, cfg, status):
+def _make_row(name, size, seed, weight, proxy, cfg, status, exposure_n=2):
     cfg_params = S2_CONFIGS[cfg]
     return {
         "instance_name": name, "instance_size": size, "seed": seed,
-        "div_weight": weight, "s2_config": cfg,
+        "div_weight": weight, "proxy": proxy, "exposure_n": exposure_n,
+        "s2_config": cfg,
         "hetero_on": cfg_params["hetero_on"],
         "concentrated_on": cfg_params["concentrated_on"],
         "status": status,
@@ -316,6 +339,11 @@ def parse_args() -> argparse.Namespace:
                    help="Only instances whose name contains this string")
     p.add_argument("--div-weights", type=int, nargs="+",
                    default=DEFAULT_WEIGHTS)
+    p.add_argument("--proxy", default="exposure",
+                   choices=list(PROXY_CONFIGS.keys()),
+                   help="Stage 1 proxy: dominant, exposure, or both_proxy")
+    p.add_argument("--exposure-n", type=int, default=2,
+                   help="Exposure threshold: N*load > Total (2=50%%, 3=33%%, 4=25%%)")
     p.add_argument("--s2-configs", nargs="+", default=DEFAULT_S2,
                    choices=list(S2_CONFIGS.keys()),
                    help="Stage 2 configs to sweep")
@@ -346,6 +374,9 @@ def _auto_output_name(args: argparse.Namespace) -> Path:
         parts.append("w" + "_".join(str(x) for x in w))
     else:
         parts.append(f"w{w[0]}-{w[-1]}x{len(w)}")
+
+    # Proxy and threshold
+    parts.append(f"proxy_{args.proxy}_n{args.exposure_n}")
 
     # S2 configs summary
     parts.append("s2_" + "_".join(args.s2_configs))
@@ -382,10 +413,15 @@ def main() -> None:
     if completed:
         print(f"Resuming: {len(completed)} rows already completed")
 
-    print(f"Instances:  {len(instances)}")
-    print(f"Weights:    {weights}")
-    print(f"S2 configs: {s2_configs}")
-    print(f"Total runs: {total_runs}  Output: {args.output}")
+    proxy      = args.proxy
+    exposure_n = args.exposure_n
+
+    print(f"Instances:    {len(instances)}")
+    print(f"Weights:      {weights}")
+    print(f"Proxy:        {proxy}")
+    print(f"Exposure N:   {exposure_n} (max {round(100/exposure_n)}% per arc-TR)")
+    print(f"S2 configs:   {s2_configs}")
+    print(f"Total runs:   {total_runs}  Output: {args.output}")
 
     t_start    = time.perf_counter()
     rows_total = 0
@@ -406,6 +442,8 @@ def main() -> None:
             n = run_stage1_group(
                 inst_path, instance_data, inst_name, inst_size, seed,
                 div_weight=w,
+                proxy=proxy,
+                exposure_n=exposure_n,
                 s2_configs=s2_configs,
                 s1_time_limit=s1_time[inst_size],
                 s2_time_limit=args.time_s2,

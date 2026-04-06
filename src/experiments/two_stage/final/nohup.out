@@ -1,0 +1,15 @@
+Using CPython 3.13.12
+Creating virtual environment at: /home/racquelnina/MultiNetworkBatchingUsingASP/.venv
+Downloading matplotlib (8.3MiB)
+Downloading fonttools (4.7MiB)
+Downloading kiwisolver (1.4MiB)
+ Downloaded kiwisolver
+Downloading pandas (10.4MiB)
+ Downloaded fonttools
+ Downloaded matplotlib
+ Downloaded pandas
+Installed 18 packages in 94ms
+error: Failed to spawn: `run_full_experiment.py`
+  Caused by: No such file or directory (os error 2)
+error: Failed to spawn: `run_full_experiment.p--instances-dir`
+  Caused by: No such file or directory (os error 2)

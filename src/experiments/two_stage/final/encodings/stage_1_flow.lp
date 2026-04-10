@@ -47,29 +47,6 @@ _transCost(From, To, TR, C*Freq) :-
     routeFreq(From, To, TR, Freq, _),
     route(From, To, TR, _, C).
 
-
-
-
-% &sum { load(F, T, TR, P) : possibleFlow(F, T, TR, P) } = arcLoad(F, T, P) :-
-%     activeFlow(F, T, _, P), part(P).
-
-
-% transportResourcesAvailable(F, T, P, N) :-
-%     activeFlow(F, T, _, P),
-%     N = #count { TR : possibleFlow(F, T, TR, P) }.
-
-% % mono check 
-
-%   monoPartTR(F, T, P) :-
-%       transportResourcesAvailable(F, T, P, N), N > 1,
-%       possibleFlow(F, T, TR, P),
-%       &sum { arcLoad(F, T, P) } > 0,
-%       &sum { load(F, T, TR, P); -arcLoad(F, T, P) } = 0.
-
-%── High Exposure proxy ──────────────────────────────────────────────
-% Flags when a single arc-TR carries > 1/N of a part's total supply.
-% N=2: max 50%, R_TR >= 0.5    N=3: max 33%, R_TR >= 0.667
-% N=4: max 25%, R_TR >= 0.75   N=5: max 20%, R_TR >= 0.8
 highExposure(F, T, TR, P) :-
     possibleFlow(F, T, TR, P),
     totalSupply(P, Total), Total > 0,
@@ -79,7 +56,7 @@ highExposure(F, T, TR, P) :-
 
 :~ highExposure(F, T, TR, P), use_exposure = 1. [weight@1, exposure, F, T, TR, P]
 :~ _transCost(F, T, TR, V). [V@1, trans, F, T, TR]
-% :~ monoPartTR(F, T, P). [weight@1, monopart, F, T, P]
+
 
 #show.
 &show { load/4 }.

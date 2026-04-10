@@ -1,0 +1,15 @@
+instance_name,instance_type,instance_size,seed,weight,exposure_n,s2_config,hetero_on,concentrated_on,nominal_cost,exposure_count,r_tr,worst_arc,r_1,worst_trip,k_1,kit_bottleneck_trip,kit_bottleneck_part,mono_count,concentrated_count,s1_optimal,s1_time,s1_trajectory,s1_dispatch_cost,s2_dispatch_cost,cost_saving,s2_optimal,s2_time,s2_trajectory,status
+layered_small_seed1,layered,small,1,0,3,off_off,0,0,3456,6,0.3333,"(l1,l3,tr2)",0.8,"(l3,l5,tr1,k3)",0.8,"(l3,l5,tr1,k3)",p2,10,1,True,16.505,[],3456,2498,958,False,60.028,[],OK
+layered_small_seed1,layered,small,1,0,3,hetero,1,0,3456,6,0.3333,"(l1,l3,tr2)",0.8,"(l3,l5,tr1,k5)",0.8,"(l3,l5,tr1,k5)",p2,10,1,True,16.505,[],3456,2498,958,False,60.02,[],OK
+layered_small_seed1,layered,small,1,0,3,conc,0,1,3456,6,0.3333,"(l1,l3,tr2)",0.8,"(l3,l5,tr1,k5)",0.8,"(l3,l5,tr1,k5)",p2,10,1,True,16.505,[],3456,2498,958,False,60.017,[],OK
+layered_small_seed1,layered,small,1,0,3,both,1,1,3456,6,0.3333,"(l1,l3,tr2)",0.8,"(l3,l5,tr1,k5)",0.8,"(l3,l5,tr1,k5)",p2,10,1,True,16.505,[],3456,2498,958,False,60.022,[],OK
+layered_small_seed1,layered,small,1,300,3,off_off,0,0,4614,1,0.5,"(l2,l4,tr1)",0.8,"(l2,l4,tr1,k5)",0.8,"(l2,l4,tr1,k5)",p2,3,10,False,60.031,[],4314,3494,820,True,2.016,[],OK
+layered_small_seed1,layered,small,1,300,3,hetero,1,0,4614,1,0.5,"(l2,l4,tr1)",0.8333,"(l4,l6,tr1,k5)",0.8333,"(l4,l6,tr1,k5)",p2,1,12,False,60.031,[],4314,3494,820,True,3.99,[],OK
+layered_small_seed1,layered,small,1,0,3,off_off,0,0,3456,6,0.3333,"(l1,l3,tr2)",0.8,"(l3,l5,tr1,k5)",0.8,"(l3,l5,tr1,k5)",p2,10,1,True,19.666,[],3456,2498,958,False,60.026,[],OK
+layered_small_seed1,layered,small,1,0,3,hetero,1,0,3456,6,0.3333,"(l1,l3,tr2)",0.8,"(l3,l5,tr1,k3)",0.8,"(l3,l5,tr1,k3)",p2,10,1,True,19.666,[],3456,2498,958,False,60.023,[],OK
+layered_small_seed1,layered,small,1,0,3,conc,0,1,3456,6,0.3333,"(l1,l3,tr2)",0.8,"(l3,l5,tr1,k5)",0.8,"(l3,l5,tr1,k5)",p2,10,1,True,19.666,[],3456,2498,958,False,60.022,[],OK
+layered_small_seed1,layered,small,1,0,3,both,1,1,3456,6,0.3333,"(l1,l3,tr2)",0.8,"(l3,l5,tr1,k2)",0.8,"(l3,l5,tr1,k2)",p2,10,1,True,19.666,[],3456,2498,958,False,60.039,[],OK
+layered_small_seed1,layered,small,1,300,3,off_off,0,0,4614,1,0.5,"(l2,l4,tr1)",0.8,"(l2,l4,tr1,k5)",0.8,"(l2,l4,tr1,k5)",p2,3,10,False,60.025,[],4314,3494,820,True,1.712,[],OK
+layered_small_seed1,layered,small,1,300,3,hetero,1,0,4614,1,0.5,"(l2,l4,tr1)",0.8333,"(l4,l6,tr1,k5)",0.8333,"(l4,l6,tr1,k5)",p2,1,12,False,60.025,[],4314,3494,820,True,4.451,[],OK
+layered_small_seed1,layered,small,1,300,3,conc,0,1,4614,1,0.5,"(l2,l4,tr1)",0.8,"(l2,l4,tr1,k7)",0.8,"(l2,l4,tr1,k7)",p2,5,7,False,60.025,[],4314,3494,820,True,41.988,[],OK
+layered_small_seed1,layered,small,1,300,3,both,1,1,4614,1,0.5,"(l2,l4,tr1)",0.8333,"(l4,l5,tr1,k3)",0.8333,"(l4,l5,tr1,k3)",p2,2,7,False,60.025,[],4314,3494,820,False,60.018,[],OK

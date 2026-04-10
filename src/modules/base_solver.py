@@ -46,7 +46,7 @@ class BaseSolver(ABC):
         data: dict = {
             "parts":         set(),
             "locations":     set(),
-            "demand_offer":  {},   # (part, loc) -> int  (signed)
+            "demand_offer":  {},   # (part, loc) -> [int, ...]  (signed; list to handle co-located supply+demand)
             "transport_cap": {},   # tr -> int
             "part_size":     {},   # part -> int
             "part_val":      {},   # part -> int
@@ -67,7 +67,7 @@ class BaseSolver(ABC):
 
             elif name == "demandOffer" and len(args) == 3:
                 p, loc, d = str(args[0]), str(args[1]), args[2].number
-                data["demand_offer"][(p, loc)] = d
+                data["demand_offer"].setdefault((p, loc), []).append(d)
 
             elif name == "transportCapacity" and len(args) == 2:
                 data["transport_cap"][str(args[0])] = args[1].number

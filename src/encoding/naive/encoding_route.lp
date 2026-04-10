@@ -1,7 +1,7 @@
 bins(1..2).
 numFlow(0..15).
 numFreq(0..15).
-numParts(0..2).
+numParts(0..3).
 
 netdemandSupply(P,L,0) :- not demandOffer(P,L,_), part(P), location(L).
 netdemandSupply(P,L,D) :- demandOffer(P,L,D).

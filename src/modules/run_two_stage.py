@@ -36,7 +36,7 @@ from clingcon import ClingconTheory
 
 HERE   = Path(__file__).parent.parent
 print(HERE)
-STAGE1 = HERE / "encoding" /"twostage" / "stage_1_flow.lp"
+STAGE1 = HERE / "encoding" /"twostage" / "clingcon" / "stage_1_clingcon_flow.lp"
 STAGE2 = HERE / "encoding" /"twostage" / "stage_2_packing.lp"
 
 

@@ -2,30 +2,28 @@
 """
 run_full_experiment.py
 =====================
-Full two-stage experiment sweep: Stage 1 (div_weight) × Stage 2 (config).
+Full naive two-stage experiment sweep: Stage 1 (weight) × Stage 2 (config).
 
-Supports three experiment modes:
-  A) Stage 1 sweep:  vary div_weight, fix Stage 2 config
-  B) Stage 2 sweep:  fix div_weight, vary Stage 2 config
-  C) Combined sweep:  vary both
+Uses the final encodings under experiments/two_stage/final/encodings/.
+
+Runs on:
+  - Layered instances:  instances/generated/layered_*.lp
+  - Industry instances: instances/industry/industry_test_*.lp
+
+Metrics captured per run:
+  R_TR, R_1, S1 cost, S2 cost, S1/S2 dispatch costs, cost_saving,
+  mono_count, concentrated_count, optimality flags, solve times.
 
 Usage
 -----
-    # Experiment A: Stage 1 weight sweep, Stage 2 = both constraints on
-    python run_full_experiment.py \\
-        --instances-dir ../../../instances/generated \\
-        --div-weights 0 50 100 200 500 1000 \\
-        --s2-configs both
+    # Full grid: layered + industry, all S2 configs
+    python run_full_experiment.py
 
-    # Experiment B: Fix Stage 1, sweep Stage 2 configs
-    python run_full_experiment.py \\
-        --div-weights 100 \\
-        --s2-configs off_off hetero conc both
+    # Only layered instances
+    python run_full_experiment.py --skip-industry
 
-    # Experiment C: Full grid
-    python run_full_experiment.py \\
-        --div-weights 0 50 100 200 500 1000 \\
-        --s2-configs off_off hetero conc both
+    # Only industry instances
+    python run_full_experiment.py --skip-layered
 
     # Resume after crash
     python run_full_experiment.py --resume
@@ -36,21 +34,39 @@ from __future__ import annotations
 import argparse
 import csv
 import json
+import os
 import re
 import sys
 import time
 from pathlib import Path
 
+SCRIPT_DIR = Path(__file__).resolve().parent
+SRC_DIR = SCRIPT_DIR.parent.parent.parent  # src/
+
+sys.path.insert(0, str(SRC_DIR))
+
 from main import (
     parse_instance,
     solve_stage1,
+    solve_stage2_from_stage1,
     compute_r_tr,
-    build_stage2_facts,
-    solve_stage2,
     compute_r1,
+    compute_kit_ratio,
     compute_dispatch_costs,
 )
 
+# ── Encoding paths (final versions) ──────────────────────────────────────
+
+FINAL_ENCODINGS = SCRIPT_DIR / "encodings"
+STAGE1_ENCODING = FINAL_ENCODINGS / "stage_1_flow.lp"
+STAGE1_LIGHT    = SRC_DIR / "encoding" / "twostage" / "clingcon" / "stage_1_clingcon_flow.lp"
+STAGE2_ENCODING = FINAL_ENCODINGS / "stage2_packing.lp"
+STAGE2_LIGHT    = SRC_DIR / "encoding" / "twostage" / "clingcon" / "stage_2_packing.lp"
+
+# ── Instance directories ─────────────────────────────────────────────────
+
+LAYERED_DIR  = SRC_DIR / "instances" / "generated"
+INDUSTRY_DIR = SRC_DIR / "instances" / "industry"
 
 # ── Stage 2 configurations ───────────────────────────────────────────────
 
@@ -61,34 +77,28 @@ S2_CONFIGS = {
     "both":    {"hetero_on": 1, "concentrated_on": 1},
 }
 
-DEFAULT_WEIGHTS = [0, 50, 100, 200, 500, 1000]
+DEFAULT_WEIGHTS = [0, 300]
 DEFAULT_S2      = ["off_off", "hetero", "conc", "both"]
-
-PROXY_CONFIGS = {
-    "dominant": {"use_dominant": 1, "use_exposure": 0},
-    "exposure": {"use_dominant": 0, "use_exposure": 1},
-    "both_proxy": {"use_dominant": 1, "use_exposure": 1},
-}
-
-SIZE_TIME_DEFAULTS = {"small": 30, "medium": 60}
 
 COLUMNS = [
     "instance_name",
+    "instance_type",
     "instance_size",
     "seed",
-    "div_weight",
-    "proxy",
+    "weight",
     "exposure_n",
     "s2_config",
     "hetero_on",
     "concentrated_on",
     "nominal_cost",
-    "dominant_count",
     "exposure_count",
     "r_tr",
     "worst_arc",
     "r_1",
     "worst_trip",
+    "k_1",
+    "kit_bottleneck_trip",
+    "kit_bottleneck_part",
     "mono_count",
     "concentrated_count",
     "s1_optimal",
@@ -106,22 +116,61 @@ COLUMNS = [
 
 # ── Helpers ──────────────────────────────────────────────────────────────
 
-def classify_instance(filename: str) -> tuple[str, int]:
-    m = re.match(r"(small|medium)_seed(\d+)", filename)
-    if not m:
-        return "custom", 0
-    return m.group(1), int(m.group(2))
+_RE_LAYERED = re.compile(r"layered_(small|medium|large|xlarge|industrylite)_seed(\d+)")
+_RE_INDUSTRY = re.compile(r"industry_test_(\d+)")
 
 
-def discover_instances(instances_dir: Path) -> list[Path]:
-    files = sorted(instances_dir.glob("*.lp"))
-    if not files:
-        sys.exit(f"No instance files found in {instances_dir}")
-    return files
+def classify_instance(filename: str) -> dict:
+    """Classify an instance file into type/size/seed metadata."""
+    m = _RE_LAYERED.match(filename)
+    if m:
+        return {
+            "instance_type": "layered",
+            "instance_size": m.group(1),
+            "seed": int(m.group(2)),
+        }
+
+    if filename == "layered_paper":
+        return {
+            "instance_type": "layered",
+            "instance_size": "paper",
+            "seed": 0,
+        }
+
+    m = _RE_INDUSTRY.match(filename)
+    if m:
+        return {
+            "instance_type": "industry",
+            "instance_size": "industry",
+            "seed": int(m.group(1)),
+        }
+
+    if filename.startswith("industry"):
+        return {
+            "instance_type": "industry",
+            "instance_size": "industry",
+            "seed": 0,
+        }
+
+    return {
+        "instance_type": "custom",
+        "instance_size": "custom",
+        "seed": 0,
+    }
 
 
-def load_completed(csv_path: Path) -> set[tuple[str, int, str, str]]:
-    """Return set of (instance_name, div_weight, proxy, s2_config) already done."""
+def discover_layered_instances(inst_dir: Path) -> list[Path]:
+    """Find layered_*.lp instances."""
+    return sorted(inst_dir.glob("layered_*.lp"))
+
+
+def discover_industry_instances(inst_dir: Path) -> list[Path]:
+    """Find industry_*.lp instances."""
+    return sorted(inst_dir.glob("industry_*.lp"))
+
+
+def load_completed(csv_path: Path) -> set[tuple[str, int, str]]:
+    """Return set of (instance_name, weight, s2_config) already done."""
     completed = set()
     if not csv_path.exists():
         return completed
@@ -129,8 +178,7 @@ def load_completed(csv_path: Path) -> set[tuple[str, int, str, str]]:
         for row in csv.DictReader(f):
             completed.add((
                 row["instance_name"],
-                int(row["div_weight"]),
-                row.get("proxy", "dominant"),
+                int(row["weight"]),
                 row["s2_config"],
             ))
     return completed
@@ -145,267 +193,294 @@ def append_row(csv_path: Path, row: dict) -> None:
         writer.writerow({col: row.get(col, "") for col in COLUMNS})
 
 
+# ── Time limit selection ─────────────────────────────────────────────────
+
+def get_time_limit(instance_size: str, time_map: dict[str, int]) -> int:
+    return time_map.get(instance_size, time_map.get("default", 120))
+
+
 # ── Core experiment ──────────────────────────────────────────────────────
 
-def run_stage1_group(
+def run_weight_group(
     instance_path:  Path,
     instance_data:  dict,
     instance_name:  str,
-    instance_size:  str,
-    seed:           int,
-    div_weight:     int,
-    proxy:          str,
+    meta:           dict,
+    weight:         int,
     exposure_n:     int,
     s2_configs:     list[str],
-    s1_time_limit:  int,
-    s2_time_limit:  int,
-    cap_divide:     int,
+    time_limit:     int,
     max_freq:       int,
     csv_path:       Path,
     completed:      set,
+    s1_encoding:    Path | None = None,
+    s2_encoding:    Path | None = None,
+    threads:        int = 1,
+    configuration:  str | None = None,
 ) -> int:
-    """Run Stage 1 once, then Stage 2 for each config. Returns rows written."""
+    """Solve Stage 1 once, compute R_TR once, then loop Stage 2 configs."""
 
     configs_todo = [c for c in s2_configs
-                    if (instance_name, div_weight, proxy, c) not in completed]
+                    if (instance_name, weight, c) not in completed]
     if not configs_todo:
         return 0
 
-    proxy_params = PROXY_CONFIGS[proxy]
+    s1_enc = str(s1_encoding) if s1_encoding else str(STAGE1_ENCODING)
+    s2_enc = str(s2_encoding) if s2_encoding else str(STAGE2_ENCODING)
 
-    # ── Stage 1 ──────────────────────────────────────────────────────
-    print(f"\n  [{instance_name} w={div_weight} proxy={proxy}] Solving Stage 1 "
-          f"(limit={s1_time_limit}s)...")
+    # ── Solve Stage 1 once ────────────────────────────────────────────
+    print(f"\n  [{instance_name} w={weight}] Stage 1 solve "
+          f"(limit={time_limit}s, enc={Path(s1_enc).name})...")
 
     try:
-        stage1 = solve_stage1(
+        solver, stage1 = solve_stage1(
             str(instance_path),
-            div_weight=div_weight,
-            time_limit=s1_time_limit,
-            cap_divide=cap_divide,
+            weight=weight,
+            time_limit=time_limit,
             max_freq=max_freq,
-            use_dominant=proxy_params["use_dominant"],
-            use_exposure=proxy_params["use_exposure"],
             exposure_n=exposure_n,
+            stage1_encoding=s1_enc,
+            threads=threads,
+            configuration=configuration,
         )
     except Exception as e:
         print(f"  Stage 1 exception: {e}")
         stage1 = None
+        solver = None
 
     if stage1 is None:
+        print("  Stage 1: UNSAT — no feasible flow")
         for cfg in configs_todo:
-            row = _make_row(instance_name, instance_size, seed,
-                            div_weight, proxy, cfg, status="S1_UNSAT",
-                            exposure_n=exposure_n)
+            cfg_params = S2_CONFIGS[cfg]
+            row = {
+                "instance_name":   instance_name,
+                "instance_type":   meta["instance_type"],
+                "instance_size":   meta["instance_size"],
+                "seed":            meta["seed"],
+                "weight":          weight,
+                "exposure_n":      exposure_n,
+                "s2_config":       cfg,
+                "hetero_on":       cfg_params["hetero_on"],
+                "concentrated_on": cfg_params["concentrated_on"],
+                "status":          "S1_UNSAT",
+            }
             append_row(csv_path, row)
         return len(configs_todo)
 
-    nominal_cost    = stage1["cost"]
-    dominant_count  = len(stage1["dominant"])
-    exposure_count  = len(stage1.get("high_exposure", []))
+    print(f"  Stage 1: cost={stage1['cost']}  "
+          f"routes={len(stage1['route_freqs'])}  "
+          f"loads={len(stage1['loads'])}  "
+          f"optimal={stage1['optimum']}")
 
-    print(f"Stage 1: cost={nominal_cost}  dominant={dominant_count}  "
-          f"exposure={exposure_count}  optimal={stage1['optimum']}")
-
-    # ── R_TR ─────────────────────────────────────────────────────────
+    # ── Compute R_TR once (depends only on Stage 1 loads) ─────────────
+    r_tr_val      = None
+    worst_arc_str = None
     try:
-        r_tr, rtr_details = compute_r_tr(stage1["loads"], instance_data)
+        r_tr_val, rtr_details = compute_r_tr(stage1["loads"], instance_data)
         worst_rtr = min(rtr_details, key=lambda d: d["coverage"])
         worst_arc_str = (f"({worst_rtr['lost_f']},"
                          f"{worst_rtr['lost_t']},"
                          f"{worst_rtr['lost_tr']})")
     except Exception as e:
         print(f"  R_TR exception: {e}")
-        r_tr, worst_arc_str = None, None
 
-    print(f"  R_TR={r_tr}  worst_arc={worst_arc_str}")
+    print(f"  R_TR={r_tr_val}  worst_arc={worst_arc_str}")
 
-    # ── Stage 2 facts (shared across configs) ────────────────────────
-    s2_facts = build_stage2_facts(stage1, instance_data)
+    s1_fields = {
+        "nominal_cost":    stage1["cost"],
+        "exposure_count":  len(stage1.get("high_exposure", [])),
+        "s1_optimal":      stage1["optimum"],
+        "s1_time":         stage1.get("time"),
+        "s1_trajectory":   json.dumps(stage1.get("trajectory", [])),
+        "r_tr":            r_tr_val,
+        "worst_arc":       worst_arc_str,
+    }
 
-    # ── Stage 2 per config ───────────────────────────────────────────
+    # ── Stage 2 per config ────────────────────────────────────────────
     rows_written = 0
     for cfg in configs_todo:
         cfg_params = S2_CONFIGS[cfg]
-        print(f"\n  [{instance_name} w={div_weight} s2={cfg}] "
-              f"Solving Stage 2 (limit={s2_time_limit}s)...", end="")
+        print(f"\n  [{instance_name} w={weight} s2={cfg}] "
+              f"Stage 2 solve (enc={Path(s2_enc).name})...")
 
         row = {
-            "instance_name":  instance_name,
-            "instance_size":  instance_size,
-            "seed":           seed,
-            "div_weight":     div_weight,
-            "proxy":          proxy,
-            "exposure_n":     exposure_n,
-            "s2_config":      cfg,
-            "hetero_on":      cfg_params["hetero_on"],
+            "instance_name":   instance_name,
+            "instance_type":   meta["instance_type"],
+            "instance_size":   meta["instance_size"],
+            "seed":            meta["seed"],
+            "weight":          weight,
+            "exposure_n":      exposure_n,
+            "s2_config":       cfg,
+            "hetero_on":       cfg_params["hetero_on"],
             "concentrated_on": cfg_params["concentrated_on"],
-            "nominal_cost":   nominal_cost,
-            "dominant_count": dominant_count,
-            "exposure_count": exposure_count,
-            "r_tr":           r_tr,
-            "worst_arc":      worst_arc_str,
-            "s1_optimal":     stage1["optimum"],
-            "s1_time":        stage1["time"],
-            "s1_trajectory":  json.dumps(stage1.get("trajectory", [])),
         }
+        row.update(s1_fields)
 
         try:
-            stage2 = solve_stage2(
-                s2_facts,
+            result = solve_stage2_from_stage1(
+                solver,
+                stage1,
                 hetero_on=cfg_params["hetero_on"],
                 concentrated_on=cfg_params["concentrated_on"],
-                time_limit=s2_time_limit,
+                stage2_encoding=s2_enc,
             )
         except Exception as e:
             print(f"  Stage 2 exception: {e}")
-            stage2 = None
+            result = None
 
-        if stage2 is None:
-            row.update({
-                "r_1": None, "worst_trip": None,
-                "mono_count": None, "concentrated_count": None,
-                "s2_optimal": False, "s2_time": None,
-                "status": "S2_UNSAT",
-            })
+        if result is None:
+            row["status"] = "S2_UNSAT"
             append_row(csv_path, row)
             rows_written += 1
             continue
 
-        row["mono_count"]         = stage2["mono_count"]
-        row["concentrated_count"] = stage2["concentrated_count"]
-        row["s2_optimal"]         = stage2["optimum"]
-        row["s2_trajectory"]      = json.dumps(stage2.get("trajectory", []))
-        row["s2_time"]            = stage2["time"]
+        row["mono_count"]         = result.get("mono_count", 0)
+        row["concentrated_count"] = result.get("concentrated_count", 0)
+        row["s2_optimal"]         = result.get("optimum", False)
+        row["s2_time"]            = result.get("time")
+        row["s2_trajectory"]      = json.dumps(result.get("trajectory", []))
 
-        print(f"  Stage 2: mono={stage2['mono_count']}  "
-              f"conc={stage2['concentrated_count']}  "
-              f"optimal={stage2['optimum']}")
+        print(f"  mono={row['mono_count']}  conc={row['concentrated_count']}  "
+              f"optimal={row['s2_optimal']}")
 
-        # ── R_1 ──────────────────────────────────────────────────────
+        # ── R_1 ───────────────────────────────────────────────────────
+        r1_details = []
         try:
             r_1, r1_details = compute_r1(
-                stage2["trip_loads"], stage1["loads"], instance_data,
+                result["trip_loads"], stage1["loads"], instance_data,
             )
             worst_r1 = min(r1_details, key=lambda d: d["coverage"])
             row["r_1"]        = r_1
-            row["worst_trip"]  = worst_r1["lost_trip"]
-            row["status"]      = "OK"
+            row["worst_trip"] = worst_r1["lost_trip"]
         except Exception as e:
             print(f"  R_1 exception: {e}")
             row["r_1"]        = None
-            row["worst_trip"]  = None
-            row["status"]      = f"R1_ERROR: {e}"
+            row["worst_trip"] = None
 
         print(f"  R_1={row.get('r_1')}  worst_trip={row.get('worst_trip')}")
 
-        # ── Dispatch costs ───────────────────────────────────────────
-        costs = compute_dispatch_costs(stage1, stage2, instance_data)
-        row["s1_dispatch_cost"] = costs["s1_dispatch_cost"]
-        row["s2_dispatch_cost"] = costs["s2_dispatch_cost"]
-        row["cost_saving"]      = costs["cost_saving"]
+        # ── K_1 (Kit completion ratio) ────────────────────────────────
+        try:
+            if r1_details:
+                k_1, kit_details = compute_kit_ratio(r1_details)
+                worst_kit = kit_details[0]
+                row["k_1"]                  = k_1
+                row["kit_bottleneck_trip"]  = worst_kit["lost_trip"]
+                row["kit_bottleneck_part"]  = worst_kit["bottleneck_part"]
+            else:
+                row["k_1"] = None
+        except Exception as e:
+            print(f"  K_1 exception: {e}")
+            row["k_1"]                 = None
+            row["kit_bottleneck_trip"] = None
+            row["kit_bottleneck_part"] = None
 
-        print(f"  Dispatch: s1={costs['s1_dispatch_cost']}  "
-              f"s2={costs['s2_dispatch_cost']}  "
-              f"saving={costs['cost_saving']}")
+        print(f"  K_1={row.get('k_1')}")
 
+        # ── Dispatch costs ────────────────────────────────────────────
+        try:
+            costs = compute_dispatch_costs(stage1, result, instance_data)
+            row["s1_dispatch_cost"] = costs["s1_dispatch_cost"]
+            row["s2_dispatch_cost"] = costs["s2_dispatch_cost"]
+            row["cost_saving"]      = costs["cost_saving"]
+        except Exception as e:
+            print(f"  Dispatch cost exception: {e}")
+
+        row["status"] = "OK"
         append_row(csv_path, row)
         rows_written += 1
 
     return rows_written
 
 
-def _make_row(name, size, seed, weight, proxy, cfg, status, exposure_n=2):
-    cfg_params = S2_CONFIGS[cfg]
-    return {
-        "instance_name": name, "instance_size": size, "seed": seed,
-        "div_weight": weight, "proxy": proxy, "exposure_n": exposure_n,
-        "s2_config": cfg,
-        "hetero_on": cfg_params["hetero_on"],
-        "concentrated_on": cfg_params["concentrated_on"],
-        "status": status,
-    }
-
-
 # ── CLI ──────────────────────────────────────────────────────────────────
 
 def parse_args() -> argparse.Namespace:
     p = argparse.ArgumentParser(
-        description="Full two-stage experiment: div_weight × Stage 2 config")
-    p.add_argument("--instances-dir", type=Path,
-                   default=Path("../../../instances/generated"),
-                   help="Directory with instance .lp files")
+        description="Full two-stage experiment: weight × Stage 2 config "
+                    "on layered + industry instances")
+    p.add_argument("--layered-dir", type=Path, default=LAYERED_DIR,
+                   help="Directory with layered instance .lp files")
+    p.add_argument("--industry-dir", type=Path, default=INDUSTRY_DIR,
+                   help="Directory with industry instance .lp files")
+    p.add_argument("--skip-layered", action="store_true",
+                   help="Skip layered instances")
+    p.add_argument("--skip-industry", action="store_true",
+                   help="Skip industry instances")
     p.add_argument("--instance-filter", type=str, default=None,
                    help="Only instances whose name contains this string")
-    p.add_argument("--div-weights", type=int, nargs="+",
+    p.add_argument("--weights", type=int, nargs="+",
                    default=DEFAULT_WEIGHTS)
-    p.add_argument("--proxy", default="exposure",
-                   choices=list(PROXY_CONFIGS.keys()),
-                   help="Stage 1 proxy: dominant, exposure, or both_proxy")
-    p.add_argument("--exposure-n", type=int, default=2,
-                   help="Exposure threshold: N*load > Total (2=50%%, 3=33%%, 4=25%%)")
+    p.add_argument("--exposure-n", type=int, default=3,
+                   help="Exposure threshold (2=50%%, 3=33%%, 4=25%%)")
     p.add_argument("--s2-configs", nargs="+", default=DEFAULT_S2,
                    choices=list(S2_CONFIGS.keys()),
                    help="Stage 2 configs to sweep")
-    p.add_argument("--time-s1-small",  type=int, default=30)
-    p.add_argument("--time-s1-medium", type=int, default=60)
-    p.add_argument("--time-s1-large",  type=int, default=120)
-    p.add_argument("--time-s2",        type=int, default=30,
-                   help="Stage 2 time limit per config (seconds)")
-    p.add_argument("--cap-divide", type=int, default=1)
-    p.add_argument("--max-freq",   type=int, default=20)
+    p.add_argument("--time-small",    type=int, default=30)
+    p.add_argument("--time-medium",   type=int, default=60)
+    p.add_argument("--time-large",    type=int, default=120)
+    p.add_argument("--time-xlarge",   type=int, default=300)
+    p.add_argument("--time-industrylite", type=int, default=600)
+    p.add_argument("--time-paper",    type=int, default=30)
+    p.add_argument("--time-industry", type=int, default=600)
+    p.add_argument("--max-freq",      type=int, default=20)
+    p.add_argument("-t", "--threads", type=int, default=1,
+                   help="Solver threads. NOTE: clingcon CSP propagator does "
+                        "NOT support -t > 1; keep at 1 (default)")
+    p.add_argument("--configuration", type=str, default="many",
+                   choices=["many", "frumpy", "crafty", "trendy", "jumpy",
+                            "handy", "auto"],
+                   help="Clingo solver configuration (default: 'many')")
+    p.add_argument("--light-industry", action="store_true",
+                   help="Use light encodings (no resilience optimisation) "
+                        "for industry instances instead of heavy encodings")
     p.add_argument("--output", "-o", type=Path, default=None,
-                   help="Output CSV path (auto-generated from params if omitted)")
+                   help="Output CSV path (auto-generated if omitted)")
     p.add_argument("--resume", action="store_true",
                    help="Skip already-completed (instance, weight, config)")
     return p.parse_args()
 
 
-def _auto_output_name(args: argparse.Namespace) -> Path:
-    """Build a descriptive filename from the run parameters."""
-    parts = []
-
-    # Instance filter or "all"
-    parts.append(args.instance_filter if args.instance_filter else "all")
-
-    # Weights summary
-    w = sorted(args.div_weights)
-    if len(w) <= 3:
-        parts.append("w" + "_".join(str(x) for x in w))
-    else:
-        parts.append(f"w{w[0]}-{w[-1]}x{len(w)}")
-
-    # Proxy and threshold
-    parts.append(f"proxy_{args.proxy}_n{args.exposure_n}")
-
-    # S2 configs summary
-    parts.append("s2_" + "_".join(args.s2_configs))
-
-    name = "__".join(parts) + ".csv"
-    return Path("results") / name
-
-
 def main() -> None:
     args = parse_args()
 
+    # ── Discover instances ────────────────────────────────────────────
+    instances: list[Path] = []
+    if not args.skip_layered:
+        instances.extend(discover_layered_instances(args.layered_dir))
+    if not args.skip_industry:
+        instances.extend(discover_industry_instances(args.industry_dir))
+
+    if args.instance_filter:
+        instances = [f for f in instances if args.instance_filter in f.stem]
+
+    if not instances:
+        sys.exit("No instance files found — check directories and filters.")
+
+    # ── Output path ───────────────────────────────────────────────────
     if args.output is None:
-        args.output = _auto_output_name(args)
+        w = sorted(args.weights)
+        wstr = f"w{w[0]}_{w[-1]}" if len(w) > 1 else f"w{w[0]}"
+        args.output = (SCRIPT_DIR / "results" /
+                       f"final_experiment__{wstr}__n{args.exposure_n}"
+                       f"__s2_{'_'.join(args.s2_configs)}.csv")
 
     args.output.parent.mkdir(parents=True, exist_ok=True)
 
-    s1_time = {
-        "small":  args.time_s1_small,
-        "medium": args.time_s1_medium,
-        "custom": args.time_s1_small,
+    # ── Time limits by size ───────────────────────────────────────────
+    time_map = {
+        "small":         args.time_small,
+        "medium":        args.time_medium,
+        "large":         args.time_large,
+        "xlarge":        args.time_xlarge,
+        "industrylite":  args.time_industrylite,
+        "paper":         args.time_paper,
+        "industry":      args.time_industry,
+        "custom":        args.time_small,
+        "default":       120,
     }
 
-    instances = discover_instances(args.instances_dir)
-    if args.instance_filter:
-        instances = [f for f in instances if args.instance_filter in f.stem]
-        if not instances:
-            sys.exit(f"No instances match filter '{args.instance_filter}'")
-
-    weights    = sorted(args.div_weights)
+    weights    = sorted(args.weights)
     s2_configs = args.s2_configs
     total_runs = len(instances) * len(weights) * len(s2_configs)
 
@@ -413,44 +488,60 @@ def main() -> None:
     if completed:
         print(f"Resuming: {len(completed)} rows already completed")
 
-    proxy      = args.proxy
     exposure_n = args.exposure_n
 
-    print(f"Instances:    {len(instances)}")
-    print(f"Weights:      {weights}")
-    print(f"Proxy:        {proxy}")
-    print(f"Exposure N:   {exposure_n} (max {round(100/exposure_n)}% per arc-TR)")
-    print(f"S2 configs:   {s2_configs}")
-    print(f"Total runs:   {total_runs}  Output: {args.output}")
+    print(f"{'═' * 70}")
+    print(f"  FINAL TWO-STAGE EXPERIMENT")
+    print(f"{'═' * 70}")
+    print(f"  Stage 1 encoding: {STAGE1_ENCODING.name}")
+    print(f"  Stage 2 encoding: {STAGE2_ENCODING.name}")
+    print(f"  Instances:        {len(instances)}")
+    print(f"  Weights:          {weights}")
+    print(f"  Exposure N:       {exposure_n}")
+    print(f"  S2 configs:       {s2_configs}")
+    print(f"  Total runs:       {total_runs}")
+    print(f"  Output:           {args.output}")
+    print(f"{'═' * 70}")
 
     t_start    = time.perf_counter()
     rows_total = 0
 
     for inst_path in instances:
         inst_name = inst_path.stem
-        inst_size, seed = classify_instance(inst_name)
+        meta = classify_instance(inst_name)
+        tl = get_time_limit(meta["instance_size"], time_map)
 
         print(f"\n{'═' * 70}")
-        print(f"  Instance: {inst_name} ({inst_size}, seed={seed})")
+        print(f"  Instance: {inst_name}  "
+              f"(type={meta['instance_type']}, "
+              f"size={meta['instance_size']}, "
+              f"seed={meta['seed']}, "
+              f"time_limit={tl}s", )
         print(f"{'═' * 70}")
 
         instance_data = parse_instance(str(inst_path))
         print(f"  Parsed: {len(instance_data['parts'])} parts, "
               f"{len(instance_data['routes'])} routes")
 
+        is_industry = meta["instance_type"] == "industry"
+        use_light = is_industry and args.light_industry
+        s1 = STAGE1_LIGHT if use_light else STAGE1_ENCODING
+        s2 = STAGE2_LIGHT if use_light else STAGE2_ENCODING
+
         for w in weights:
-            n = run_stage1_group(
-                inst_path, instance_data, inst_name, inst_size, seed,
-                div_weight=w,
-                proxy=proxy,
+            n = run_weight_group(
+                inst_path, instance_data, inst_name, meta,
+                weight=w,
                 exposure_n=exposure_n,
                 s2_configs=s2_configs,
-                s1_time_limit=s1_time[inst_size],
-                s2_time_limit=args.time_s2,
-                cap_divide=args.cap_divide,
+                time_limit=tl,
                 max_freq=args.max_freq,
                 csv_path=args.output,
                 completed=completed,
+                s1_encoding=s1,
+                s2_encoding=s2,
+                threads=args.threads,
+                configuration=args.configuration,
             )
             rows_total += n
 

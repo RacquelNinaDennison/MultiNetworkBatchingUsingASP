@@ -1,0 +1,9 @@
+instance_name,instance_type,instance_size,seed,weight,exposure_n,s2_config,hetero_on,concentrated_on,nominal_cost,exposure_count,r_tr,worst_arc,r_1,worst_trip,k_1,kit_bottleneck_trip,kit_bottleneck_part,mono_count,concentrated_count,s1_optimal,s1_time,s1_trajectory,s1_dispatch_cost,s2_dispatch_cost,cost_saving,s2_optimal,s2_time,s2_trajectory,status
+layered_paper,layered,paper,0,0,3,off_off,0,0,3458,4,0.5,"(l1,l4,tr2)",0.75,"(l1,l4,tr2,k1)",0.75,"(l1,l4,tr2,k1)",p2,10,13,True,5.867,[],3458,2744,714,True,0.011,[],OK
+layered_paper,layered,paper,0,0,3,hetero,1,0,3458,4,0.5,"(l1,l4,tr2)",0.85,"(l1,l4,tr2,k7)",0.85,"(l1,l4,tr2,k7)",p2,2,16,True,5.867,[],3458,2744,714,True,0.014,[],OK
+layered_paper,layered,paper,0,0,3,conc,0,1,3458,4,0.5,"(l1,l4,tr2)",0.8,"(l1,l4,tr2,k6)",0.8,"(l1,l4,tr2,k6)",p2,9,9,True,5.867,[],3458,2954,504,True,0.045,[],OK
+layered_paper,layered,paper,0,0,3,both,1,1,3458,4,0.5,"(l1,l4,tr2)",0.85,"(l1,l4,tr2,k5)",0.85,"(l1,l4,tr2,k5)",p2,8,9,True,5.867,[],3458,2954,504,True,0.059,[],OK
+layered_paper,layered,paper,0,300,3,off_off,0,0,3654,0,0.7,"(l1,l3,tr2)",0.75,"(l1,l4,tr2,k3)",0.75,"(l1,l4,tr2,k3)",p2,11,18,True,13.915,[],3654,2940,714,True,0.014,[],OK
+layered_paper,layered,paper,0,300,3,hetero,1,0,3654,0,0.7,"(l1,l3,tr2)",0.85,"(l1,l4,tr2,k2)",0.85,"(l1,l4,tr2,k2)",p1,1,18,True,13.915,[],3654,3276,378,True,0.116,[],OK
+layered_paper,layered,paper,0,300,3,conc,0,1,3654,0,0.7,"(l1,l3,tr2)",0.75,"(l1,l3,tr2,k2)",0.75,"(l1,l3,tr2,k2)",p2,7,9,True,13.915,[],3654,3178,476,True,0.198,[],OK
+layered_paper,layered,paper,0,300,3,both,1,1,3654,0,0.7,"(l1,l3,tr2)",0.75,"(l1,l3,tr2,k3)",0.75,"(l1,l3,tr2,k3)",p2,6,9,True,13.915,[],3654,3234,420,True,0.102,[],OK

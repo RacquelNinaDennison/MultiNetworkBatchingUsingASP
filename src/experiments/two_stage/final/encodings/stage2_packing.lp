@@ -37,11 +37,6 @@ actualFrequency(F, T, TR, Count) :-
     activeRoute(F, T, TR, _, _),
     Count = #count { K : usedTrip(F, T, TR, K) }.
 
-% Symmetry breaking: prevent adjacent trips with identical total volume
-:- trip(F, T, TR, K), trip(F, T, TR, K+1),
-   &sum { tripLoad(F, T, TR, P, K) : totalLoad(F, T, TR, P, _) ;
-         -tripLoad(F, T, TR, P, K+1) : totalLoad(F, T, TR, P, _) } = 0.
-
 
 % ═══════════════════════════════════════════════════════════════════════════
 % Hard Constraints
@@ -57,9 +52,9 @@ actualFrequency(F, T, TR, Count) :-
     trip(F, T, TR, K), activeRoute(F, T, TR, _, C).
 
 
-% ═══════════════════════════════════════════════════════════════════════════
-% Detection Rules (always active — needed for metrics regardless of config)
-% ═══════════════════════════════════════════════════════════════════════════
+% % ═══════════════════════════════════════════════════════════════════════════
+% % Detection Rules (always active — needed for metrics regardless of config)
+% % ═══════════════════════════════════════════════════════════════════════════
 
 tripHasPart(F, T, TR, K, P) :-
     &sum { tripLoad(F, T, TR, P, K) :
@@ -76,10 +71,17 @@ routePartTypes(F, T, TR, Count) :-
     activeRoute(F, T, TR, _, _),
     Count = #count { P : totalLoad(F, T, TR, P, _) }.
 
-% Half-load threshold for concentration detection
-halfLoad(F, T, TR, P, N/2) :- totalLoad(F, T, TR, P, N), N > 1.
+% Fair-share threshold: each trip's "fair share" of a part = total / freq
+fairShare(F, T, TR, P, N/Freq) :-
+    totalLoad(F, T, TR, P, N), activeRoute(F, T, TR, Freq, _), Freq > 0.
 
-% Trips exceeding the concentration threshold
+% Trip is overloaded for part P if it carries more than the fair share
+overloaded(F, T, TR, P, K) :-
+    &sum { tripLoad(F, T, TR, P, K) } > Fair,
+    fairShare(F, T, TR, P, Fair), trip(F, T, TR, K).
+
+% Half-load threshold (kept for concentrated count metric)
+halfLoad(F, T, TR, P, N/2) :- totalLoad(F, T, TR, P, N), N > 1.
 concentrated(F, T, TR, P, K) :-
     &sum { tripLoad(F, T, TR, P, K) } >= H,
     halfLoad(F, T, TR, P, H), trip(F, T, TR, K).
@@ -94,17 +96,15 @@ monoTrip(F, T, TR, K) :-
 % Soft Constraints (gated by experiment constants)
 % ═══════════════════════════════════════════════════════════════════════════
 
-% @2: Heterogeneity — penalise mono-part trips
-:~ monoTrip(F, T, TR, K), hetero_on = 1. [1000@2, F, T, TR, K]
+% @2 (primary resilience): both objectives work together
+%   Overloaded: penalise trips carrying more than fair share of any part
+%   Mono: penalise trips carrying only one part type
+:~ overloaded(F, T, TR, P, K), partVal(P, V), concentrated_on = 1.
+   [V@2, F, T, TR, P, K, overload]
+:~ monoTrip(F, T, TR, K), hetero_on = 1. [1@2, F, T, TR, K]
 
-% @1: Worst-case exposure — penalise concentrated trips, weighted by part value
-:~ concentrated(F, T, TR, P, K), partVal(P, V), concentrated_on = 1.
-   [V@1, F, T, TR, P, K, val]
-
-
-% ═══════════════════════════════════════════════════════════════════════════
-% Show directives
-% ═══════════════════════════════════════════════════════════════════════════
+% @1 (tiebreaker): minimise dispatch cost
+:~ usedTrip(F, T, TR, K). [1@1, F, T, TR, K]
 
 #show.
 &show { tripLoad/5 }.
@@ -112,6 +112,7 @@ monoTrip(F, T, TR, K) :-
 #show tripPartCount/5.
 #show routePartTypes/4.
 #show concentrated/5.
+#show overloaded/5.
 #show monoTrip/4.
 #show usedTrip/4.
 #show actualFrequency/4.

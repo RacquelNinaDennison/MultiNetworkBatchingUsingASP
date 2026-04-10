@@ -65,9 +65,10 @@ class RunClingcon(BaseSolver):
 
         # max total supply for any single part
         supply_by_part: dict[str, int] = defaultdict(int)
-        for (part, _loc), d in data["demand_offer"].items():
-            if d > 0:
-                supply_by_part[part] += d
+        for (part, _loc), vals in data["demand_offer"].items():
+            for d in vals:
+                if d > 0:
+                    supply_by_part[part] += d
         max_supply = max(supply_by_part.values()) if supply_by_part else 0
 
         return {

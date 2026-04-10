@@ -35,18 +35,18 @@ partVal(p3,490).
 partTR(p3,tr1).
 
 % ---- demand and supply ----
-demandOffer(p1,l1,-10).
-demandOffer(p2,l1,-11).
-demandOffer(p3,l1,-16).
-demandOffer(p1,l2,20).
-demandOffer(p2,l2,15).
-demandOffer(p3,l2,17).
-demandOffer(p1,l4,10).
-demandOffer(p2,l4,15).
-demandOffer(p3,l4,13).
-demandOffer(p1,l5,-20).
-demandOffer(p2,l5,-19).
-demandOffer(p3,l5,-14).
+demandOffer(p1,l1,-6).
+demandOffer(p2,l1,-6).
+demandOffer(p3,l1,-20).
+demandOffer(p1,l2,12).
+demandOffer(p2,l2,1).
+demandOffer(p3,l2,7).
+demandOffer(p1,l4,18).
+demandOffer(p2,l4,29).
+demandOffer(p3,l4,23).
+demandOffer(p1,l5,-24).
+demandOffer(p2,l5,-24).
+demandOffer(p3,l5,-10).
 
 % ---- routes ----
 route(l1,l6,tr1,9,531).

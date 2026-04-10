@@ -1,4 +1,7 @@
-bins(1..numBins).
+bins(1..2).
+numParts(0..20).
+#const maxFreq = 20.
+#const maxItems = 20.
 
 netdemandSupply(Part,Location, Value) :- demandOffer(Part,Location,N), N >= 0, Value = N.
 netdemandSupply(Part,Location, Value) :- demandOffer(Part,Location,N), N < 0, Value = N.
@@ -64,7 +67,7 @@ feasiblePackN(P,TR,N) :-
 
 
 &sum{
-    auxilary(To,From,TR,ID,Part) : bins(ID), transportResource(TR), route(To,From,TR,_,_);
+    auxilary(To,From,TR,ID,Part) : bins(ID), transportCapacity(TR,_), route(To,From,TR,_,_);
     -flow(To,From,Part)
 } = 0 :- route(To,From,_,_,_), part(Part).
 

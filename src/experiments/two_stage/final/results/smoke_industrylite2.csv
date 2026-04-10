@@ -1,0 +1,2 @@
+instance_name,instance_type,instance_size,seed,weight,exposure_n,s2_config,hetero_on,concentrated_on,nominal_cost,exposure_count,r_tr,worst_arc,r_1,worst_trip,k_1,kit_bottleneck_trip,kit_bottleneck_part,mono_count,concentrated_count,s1_optimal,s1_time,s1_trajectory,s1_dispatch_cost,s2_dispatch_cost,cost_saving,s2_optimal,s2_time,s2_trajectory,status
+layered_industrylite_seed1,layered,industrylite,1,0,3,off_off,0,0,46240,0,0.7,"(l4,l7,tr1)",0.7667,"(l1,l7,tr4,k2)",0.7667,"(l1,l7,tr4,k2)",p4,46,156,False,900.709,[],46240,39672,6568,False,900.038,[],OK

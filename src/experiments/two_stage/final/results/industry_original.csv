@@ -1,0 +1,3 @@
+instance_name,instance_type,instance_size,seed,weight,exposure_n,s2_config,hetero_on,concentrated_on,nominal_cost,exposure_count,r_tr,worst_arc,r_1,worst_trip,k_1,kit_bottleneck_trip,kit_bottleneck_part,mono_count,concentrated_count,s1_optimal,s1_time,s1_trajectory,s1_dispatch_cost,s2_dispatch_cost,cost_saving,s2_optimal,s2_time,s2_trajectory,status
+industry_instances,industry,industry,0,0,3,both,1,1,,,,,,,,,,,,,,,,,,,,,S1_UNSAT
+industry_instances,industry,industry,0,300,3,both,1,1,,,,,,,,,,,,,,,,,,,,,S1_UNSAT

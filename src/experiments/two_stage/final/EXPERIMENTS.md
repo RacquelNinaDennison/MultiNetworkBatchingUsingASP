@@ -97,7 +97,7 @@ All commands assume you are in the `src/` directory.
 ### 1. Paper (~8 min)
 
 ```bash
-nohup python experiments/two_stage/final/run_full_experiment.py \
+nohup uv run experiments/two_stage/final/run_full_experiment.py \
     --skip-industry \
     --instance-filter layered_paper \
     --weights 0 300 \
@@ -105,35 +105,36 @@ nohup python experiments/two_stage/final/run_full_experiment.py \
     -o experiments/two_stage/final/results/sweep_paper.csv \
     > experiments/two_stage/final/results/sweep_paper.log 2>&1 &
 ```
-
+11876
 ### 2. Small (~1.3 hr)
 
 ```bash
-nohup python experiments/two_stage/final/run_full_experiment.py \
+nohup uv run experiments/two_stage/final/run_full_experiment.py \
     --skip-industry \
     --instance-filter layered_small \
-    --weights 0 300 \
+    --weights 0 300 500 750 1000 \
     --time-small 60 \
     -o experiments/two_stage/final/results/sweep_small.csv \
     > experiments/two_stage/final/results/sweep_small.log 2>&1 &
 ```
+ 11856
 
 ### 3. Medium (~2.7 hr)
 
 ```bash
-nohup python experiments/two_stage/final/run_full_experiment.py \
+nohup uv run experiments/two_stage/final/run_full_experiment.py \
     --skip-industry \
     --instance-filter layered_medium \
-    --weights 0 300 \
+    --weights 0 300 500 750 1000 \
     --time-medium 120 \
-    -o experiments/two_stage/final/results/sweep_medium.csv \
-    > experiments/two_stage/final/results/sweep_medium.log 2>&1 &
+    -o experiments/two_stage/final/results/sweep_medium_moreweights.csv \
+    > experiments/two_stage/final/results/sweep_medium_moreweights.log 2>&1 &
 ```
-
+11897
 ### 4. Large (~6.7 hr)
 
 ```bash
-nohup python experiments/two_stage/final/run_full_experiment.py \
+nohup uv run experiments/two_stage/final/run_full_experiment.py \
     --skip-industry \
     --instance-filter layered_large \
     --weights 0 300 \
@@ -141,30 +142,31 @@ nohup python experiments/two_stage/final/run_full_experiment.py \
     -o experiments/two_stage/final/results/sweep_large.csv \
     > experiments/two_stage/final/results/sweep_large.log 2>&1 &
 ```
-
+11910
 ### 5. XLarge (~13 hr)
 
 ```bash
-nohup python experiments/two_stage/final/run_full_experiment.py \
+nohup uv run experiments/two_stage/final/run_full_experiment.py \
     --skip-industry \
     --instance-filter layered_xlarge \
-    --weights 0 300 \
+    --weights 0 1000 \
     --time-xlarge 600 \
     -o experiments/two_stage/final/results/sweep_xlarge.csv \
     > experiments/two_stage/final/results/sweep_xlarge.log 2>&1 &
 ```
-
+11948
 ### 6. Industry-Lite (~20 hr)
 
 ```bash
-nohup python experiments/two_stage/final/run_full_experiment.py \
+nohup uv run experiments/two_stage/final/run_full_experiment.py \
     --skip-industry \
     --instance-filter layered_industrylite \
-    --weights 0 300 \
+    --weights 0 1000 \
     --time-industrylite 900 \
     -o experiments/two_stage/final/results/sweep_industrylite.csv \
     > experiments/two_stage/final/results/sweep_industrylite.log 2>&1 &
 ```
+11960
 
 ### 7. Industry — light encoding (no resilience penalties, ~8 hr)
 
@@ -172,7 +174,7 @@ nohup python experiments/two_stage/final/run_full_experiment.py \
 nohup python experiments/two_stage/final/run_full_experiment.py \
     --skip-layered \
     --light-industry \
-    --weights 0 300 \
+    --weights 0 1000 \
     --time-industry 600 \
     -o experiments/two_stage/final/results/sweep_industry_light.csv \
     > experiments/two_stage/final/results/sweep_industry_light.log 2>&1 &
@@ -185,7 +187,7 @@ Uses the same resilience encodings as the layered instances (`stage_1_flow.lp` +
 ```bash
 nohup python experiments/two_stage/final/run_full_experiment.py \
     --skip-layered \
-    --weights 0 300 \
+    --weights 0 1000 \
     --time-industry 1800 \
     -o experiments/two_stage/final/results/sweep_industry_heavy.csv \
     > experiments/two_stage/final/results/sweep_industry_heavy.log 2>&1 &
@@ -194,15 +196,15 @@ nohup python experiments/two_stage/final/run_full_experiment.py \
 To test on just the original industry instance:
 
 ```bash
-nohup python experiments/two_stage/final/run_full_experiment.py \
+nohup uv run experiments/two_stage/final/run_full_experiment.py \
     --skip-layered \
     --instance-filter industry_instances \
-    --weights 0 300 \
+    --weights 0 1000 \
     --time-industry 1800 \
     -o experiments/two_stage/final/results/sweep_industry_original_heavy.csv \
     > experiments/two_stage/final/results/sweep_industry_original_heavy.log 2>&1 &
 ```
-
+11973
 To test on just the generated industry test cases:
 
 ```bash

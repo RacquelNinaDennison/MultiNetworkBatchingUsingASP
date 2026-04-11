@@ -53,7 +53,7 @@ actualFrequency(F, T, TR, Count) :-
 
 
 
-% %#minimize { C, F, T, TR, K : usedTrip(F, T, TR, K), routeCost(F, T, TR, C) }.
+#minimize { C, F, T, TR, K : usedTrip(F, T, TR, K), routeCost(F, T, TR, C) }.
 
 
 
@@ -155,7 +155,7 @@ actualFrequency(F, T, TR, Count) :-
 % % % % Input: routeCost(From, To, TR, C) — per-trip cost (passed from bridge)
 
 % % Minimise number of used trips (lowest priority — secondary to all resilience objectives)
-:~ usedTrip(F, T, TR, K). [100000@1, F, T, TR, K]
+% :~ usedTrip(F, T, TR, K). [@1, F, T, TR, K]
 
 
 % % #show.

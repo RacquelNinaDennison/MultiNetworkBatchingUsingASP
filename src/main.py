@@ -6,18 +6,18 @@ Experiment API
 --------------
     from main import (
         parse_instance, solve_combined,
-        compute_r_tr, compute_r1, compute_dispatch_costs,
+        compute_r_tr, compute_r1, compute_r_alpha, compute_dispatch_costs,
     )
 
 CLI
 ---
-    python main.py --solver naive    -i instances/data_small.lp --bins 2
-    python main.py --solver clingcon -i instances/data_small.lp --bins 2
-    python main.py --solver twostage -i instances/data_small.lp --weight 100
+    python main.py --solver naive           -i instances/data_small.lp --bins 2
+    python main.py --solver clingcon        -i instances/data_small.lp --bins 2
+    python main.py --solver twostage-naive  -i instances/data_small.lp --weight 100
+    python main.py --solver twostage-clingcon -i instances/data_small.lp
 """
 
 from __future__ import annotations
-import os
 import argparse
 import sys
 from collections import defaultdict
@@ -381,6 +381,187 @@ def compute_r1(
 
 
 
+def compute_r_alpha(
+    trip_loads:    dict,
+    loads:         dict,
+    instance_data: dict,
+    alpha:    float = 0.2,
+    mode:     str   = "single",
+    strategy: str   = "heaviest",
+) -> tuple[float, list[dict]]:
+    """Worst-case coverage under partial arc disruption.
+
+    Only ``alpha`` fraction of trips survive on the disrupted arc(s).
+
+    Parameters
+    ----------
+    trip_loads : dict  ``(F, T, TR, P, K) -> qty``
+    loads      : dict  ``(F, T, TR, P) -> qty``
+    instance_data : dict with ``demands`` and ``offers``
+    alpha    : survival fraction (0.0 – 1.0)
+    mode     : ``"single"`` disrupts one arc at a time (worst case);
+               ``"global"`` disrupts all arcs simultaneously.
+    strategy : how to choose surviving trips –
+               ``"heaviest"`` removes the most-loaded trips first,
+               ``"first"`` keeps the first k trips (smallest indices),
+               ``"last"``  keeps the last k trips (largest indices).
+    """
+    import math
+    from scipy.sparse.csgraph import maximum_flow
+    from scipy.sparse import csr_matrix
+
+    demands = instance_data["demands"]
+    offers  = instance_data["offers"]
+    parts   = sorted(set(p for (f, t, tr, p) in loads))
+
+    all_locs = sorted(
+        set(f for (f, t, tr, p) in loads) |
+        set(t for (f, t, tr, p) in loads)
+    )
+    loc_idx = {loc: i for i, loc in enumerate(all_locs)}
+    N       = len(all_locs)
+    S_NODE  = N
+    T_NODE  = N + 1
+    N_NODES = N + 2
+    SCALE   = 1000
+
+    total_demand = {
+        p: sum(q for (part, loc), q in demands.items() if part == p)
+        for p in parts
+    }
+
+    arc_trips: dict[tuple, dict[int, dict[str, int]]] = {}
+    for (f, t, tr, p, k), qty in trip_loads.items():
+        arc = (f, t, tr)
+        arc_trips.setdefault(arc, {}).setdefault(k, {})[p] = qty
+
+    def _select_survivors(trips_dict: dict[int, dict[str, int]], alpha: float) -> set[int]:
+        """Return the set of trip indices that survive."""
+        trip_ids = sorted(trips_dict.keys())
+        freq = len(trip_ids)
+        k = max(math.floor(alpha * freq), 0)
+        if k >= freq:
+            return set(trip_ids)
+        if k == 0:
+            return set()
+
+        if strategy == "first":
+            return set(trip_ids[:k])
+        elif strategy == "last":
+            return set(trip_ids[-k:])
+        else:  # heaviest: remove the most-loaded trips first
+            by_load = sorted(
+                trip_ids,
+                key=lambda tid: sum(trips_dict[tid].values()),
+                reverse=True,
+            )
+            removed = set(by_load[: freq - k])
+            return set(trip_ids) - removed
+
+    def _surviving_loads(arc: tuple, survivors: set[int]) -> dict[str, int]:
+        """Sum load per part across surviving trips for an arc."""
+        result: dict[str, int] = {}
+        for kid, parts_dict in arc_trips.get(arc, {}).items():
+            if kid in survivors:
+                for p, qty in parts_dict.items():
+                    result[p] = result.get(p, 0) + qty
+        return result
+
+    active_arcs = sorted(arc_trips.keys())
+
+    if mode == "global":
+        survivors_per_arc = {
+            arc: _select_survivors(arc_trips[arc], alpha)
+            for arc in active_arcs
+        }
+        reduced_loads: dict[tuple, int] = {}
+        for arc in active_arcs:
+            sl = _surviving_loads(arc, survivors_per_arc[arc])
+            for p, qty in sl.items():
+                reduced_loads[(*arc, p)] = qty
+        for key in loads:
+            if key not in reduced_loads:
+                reduced_loads[key] = 0
+
+        details: list[dict] = []
+        all_coverages: list[float] = []
+        for p in parts:
+            td = total_demand.get(p, 0)
+            if td == 0:
+                continue
+
+            cap = [[0] * N_NODES for _ in range(N_NODES)]
+            for (part, loc), qty in offers.items():
+                if part == p and loc in loc_idx:
+                    cap[S_NODE][loc_idx[loc]] += int(qty * SCALE)
+            for (part, loc), qty in demands.items():
+                if part == p and loc in loc_idx:
+                    cap[loc_idx[loc]][T_NODE] += int(qty * SCALE)
+            for (f, t, tr, part), qty in reduced_loads.items():
+                if part != p or f not in loc_idx or t not in loc_idx:
+                    continue
+                cap[loc_idx[f]][loc_idx[t]] += int(qty * SCALE)
+
+            flow_val   = maximum_flow(csr_matrix(cap), S_NODE, T_NODE).flow_value
+            max_supply = flow_val / SCALE
+            coverage   = round(min(max_supply / td, 1.0), 4)
+
+            details.append({
+                "mode": "global", "strategy": strategy, "alpha": alpha,
+                "part": p, "max_flow": round(max_supply, 3),
+                "demand": td, "coverage": coverage,
+            })
+            all_coverages.append(coverage)
+
+        r_alpha = round(min(all_coverages), 4) if all_coverages else 1.0
+        return r_alpha, details
+
+    # mode == "single": disrupt one arc at a time
+    details = []
+    all_coverages = []
+
+    for disrupted_arc in active_arcs:
+        survivors = _select_survivors(arc_trips[disrupted_arc], alpha)
+        surviving = _surviving_loads(disrupted_arc, survivors)
+
+        for p in parts:
+            td = total_demand.get(p, 0)
+            if td == 0:
+                continue
+
+            cap = [[0] * N_NODES for _ in range(N_NODES)]
+            for (part, loc), qty in offers.items():
+                if part == p and loc in loc_idx:
+                    cap[S_NODE][loc_idx[loc]] += int(qty * SCALE)
+            for (part, loc), qty in demands.items():
+                if part == p and loc in loc_idx:
+                    cap[loc_idx[loc]][T_NODE] += int(qty * SCALE)
+
+            for (f, t, tr, part), qty in loads.items():
+                if part != p or f not in loc_idx or t not in loc_idx:
+                    continue
+                if (f, t, tr) == disrupted_arc:
+                    arc_cap = int(surviving.get(p, 0) * SCALE)
+                else:
+                    arc_cap = int(qty * SCALE)
+                cap[loc_idx[f]][loc_idx[t]] += arc_cap
+
+            flow_val   = maximum_flow(csr_matrix(cap), S_NODE, T_NODE).flow_value
+            max_supply = flow_val / SCALE
+            coverage   = round(min(max_supply / td, 1.0), 4)
+
+            details.append({
+                "mode": "single", "strategy": strategy, "alpha": alpha,
+                "lost_arc": f"({disrupted_arc[0]},{disrupted_arc[1]},{disrupted_arc[2]})",
+                "part": p, "max_flow": round(max_supply, 3),
+                "demand": td, "coverage": coverage,
+            })
+            all_coverages.append(coverage)
+
+    r_alpha = round(min(all_coverages), 4) if all_coverages else 1.0
+    return r_alpha, details
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         description="Multi-commodity network batching solver"
@@ -458,12 +639,23 @@ def main() -> int:
             time_limit=args.time_limit,
             max_freq=args.max_freq,
         )
-    elif args.solver == "twostage":
+    elif args.solver == "twostage-naive":
         solver = RunNaiveTwoStage(
             str(instance),
             time_limit=args.time_limit,
             max_freq=args.max_freq,
             weight=args.weight,
+        )
+    elif args.solver == "twostage-clingcon":
+        from modules.run_two_stage import run_pipeline
+
+        return run_pipeline(
+            instance,
+            cap_divide=args.cap_divide,
+            max_freq=args.max_freq,
+            time_limit=args.time_limit,
+            round_timeout=args.round_timeout,
+            show_facts=False,
         )
     elif args.solver == "twostage-subprocess":
         solver = SubprocessTwoStage(
@@ -473,6 +665,7 @@ def main() -> int:
             weight=args.weight,
         )
     else:
+        print(f"Error: unknown solver {args.solver!r}", file=sys.stderr)
         return 1
 
     return solver.run()

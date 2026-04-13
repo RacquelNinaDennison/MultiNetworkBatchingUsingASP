@@ -14,3 +14,7 @@ multibatching-ex-generator/
 
 documentation/
 src/visualisation/*
+
+# Ad-hoc benchmark output (keep under experiments/ or regenerate)
+src/results/
+src/runs/

@@ -14,8 +14,22 @@ The experiment runner (`run_full_experiment.py`) evaluates how weighted soft con
 | **R_TR** | Arc-level resilience: worst-case demand coverage if an entire arc is lost |
 | **R_1** | Trip-level resilience: worst-case demand coverage if a single trip is lost |
 | **K_1** | Kit completion ratio: worst-case complete-kit fulfillment if a trip is lost |
+| **R_alpha** | Partial disruption resilience: worst-case demand coverage when only α% of trips survive on disrupted arc(s). Computed for α ∈ {0.2, 0.4, 0.6, 0.8} with three trip-selection strategies (`heaviest`, `first`, `last`) and two disruption scopes (`single`, `global`). See below. |
 | **S1 cost** | Nominal transport cost from Stage 1 |
 | **S2 dispatch cost** | Actual dispatch cost based on used trips in Stage 2 |
+
+### R_alpha Details
+
+R_alpha simulates partial arc disruption: only α fraction of trips survive on the disrupted arc(s).
+
+**Trip selection strategies:**
+- `heaviest`: Remove the most-loaded trips first (worst-case / pessimistic bound)
+- `first`: Keep the first k trip indices (tests whether solver front-loads capacity)
+- `last`: Keep the last k trip indices (mirror of first)
+
+**Disruption scopes:**
+- `single`: Disrupt one arc at a time, report worst-case across all arcs
+- `global`: Disrupt all arcs simultaneously to α%
 
 ### Stage 2 Configurations
 
@@ -199,7 +213,7 @@ To test on just the original industry instance:
 nohup uv run experiments/two_stage/final/run_full_experiment.py \
     --skip-layered \
     --instance-filter industry_instances \
-    --weights 0 1000 \
+    --weights 0 10000000 \
     --time-industry 1800 \
     -o experiments/two_stage/final/results/sweep_industry_original_heavy.csv \
     > experiments/two_stage/final/results/sweep_industry_original_heavy.log 2>&1 &
@@ -215,6 +229,64 @@ nohup python experiments/two_stage/final/run_full_experiment.py \
     --time-industry 1800 \
     -o experiments/two_stage/final/results/sweep_industry_test_heavy.csv \
     > experiments/two_stage/final/results/sweep_industry_test_heavy.log 2>&1 &
+```
+
+### 9. R_alpha experiments (re-run with partial disruption metric)
+
+The R_alpha metric is computed automatically in the experiment runner. To generate results with R_alpha columns, run to **new** output CSVs (existing CSVs don't have R_alpha columns).
+
+**Small (with R_alpha, ~2 hr):**
+```bash
+nohup uv run experiments/two_stage/final/run_full_experiment.py \
+    --skip-industry \
+    --instance-filter layered_small \
+    --weights 0 300 500 750 1000 \
+    --time-small 60 --configuration many \
+    -o experiments/two_stage/final/results/sweep_small_ralpha.csv \
+    > experiments/two_stage/final/results/sweep_small_ralpha.log 2>&1 &
+```
+
+**Medium (with R_alpha, ~3 hr):**
+```bash
+nohup uv run experiments/two_stage/final/run_full_experiment.py \
+    --skip-industry \
+    --instance-filter layered_medium \
+    --weights 0 300 500 750 1000 \
+    --time-medium 120 --configuration many \
+    -o experiments/two_stage/final/results/sweep_medium_ralpha.csv \
+    > experiments/two_stage/final/results/sweep_medium_ralpha.log 2>&1 &
+```
+
+**XLarge (with R_alpha, ~14 hr):**
+```bash
+nohup uv run experiments/two_stage/final/run_full_experiment.py \
+    --skip-industry \
+    --instance-filter layered_xlarge \
+    --weights 0 1000 \
+    --time-xlarge 600 --configuration many \
+    -o experiments/two_stage/final/results/sweep_xlarge_ralpha.csv \
+    > experiments/two_stage/final/results/sweep_xlarge_ralpha.log 2>&1 &
+```
+
+**IndustryLite (with R_alpha, ~22 hr):**
+```bash
+nohup uv run experiments/two_stage/final/run_full_experiment.py \
+    --skip-industry \
+    --instance-filter layered_industrylite \
+    --weights 0 1000 \
+    --time-industrylite 900 --configuration many \
+    -o experiments/two_stage/final/results/sweep_industrylite_ralpha.csv \
+    > experiments/two_stage/final/results/sweep_industrylite_ralpha.log 2>&1 &
+```
+
+**Industry — heavy encoding with R_alpha (~40+ hr):**
+```bash
+nohup uv run experiments/two_stage/final/run_full_experiment.py \
+    --skip-layered \
+    --weights 0 \
+    --time-industry 2500 --configuration many \
+    -o experiments/two_stage/final/results/sweep_industry_ralpha.csv \
+    > experiments/two_stage/final/results/sweep_industry_ralpha.log 2>&1 &
 ```
 
 ### Run ALL sizes in one go (~44 hr)
@@ -284,6 +356,7 @@ This regenerates all layered instances (5 seeds × 6 sizes) and industry-derived
 | `r_1` | Trip-level resilience (0–1, higher is better) |
 | `worst_trip` | The trip whose loss causes worst coverage |
 | `k_1` | Kit completion ratio (0–1, higher is better) |
+| `r_{strat}_{mode}_{alpha}` | R_alpha value for given strategy/mode/alpha (e.g. `r_heaviest_single_0.2`) |
 | `mono_count` | Number of mono-part trips |
 | `concentrated_count` | Number of concentrated trips |
 | `s1_optimal` | Whether Stage 1 reached optimality |

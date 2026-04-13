@@ -10,13 +10,11 @@ Stage 2 (Operational): Distribute the aggregate loads into per-trip
 
 Usage
 -----
-    # From the "ASP Pure Encodings" directory:
-    uv run two_stage/run_two_stage.py \\
-        --instance data/paper_instances.lp
+    From the ``src`` directory (see project README for PYTHONPATH)::
 
-    uv run two_stage/run_two_stage.py \\
-        --instance data/benchmark_quality/medium_instance.lp \\
-        --cap-divide 1 --max-freq 30 --time-limit 120
+        python modules/run_two_stage.py -i path/to/instance.lp
+        python modules/run_two_stage.py -i path/to/instance.lp --cap-divide 1 \\
+            --max-freq 30 --time-limit 120
 """
 
 from __future__ import annotations
@@ -34,10 +32,9 @@ import clingo.ast
 from clingcon import ClingconTheory
 
 
-HERE   = Path(__file__).parent.parent
-print(HERE)
-STAGE1 = HERE / "encoding" /"twostage" / "clingcon" / "stage_1_clingcon_flow.lp"
-STAGE2 = HERE / "encoding" /"twostage" / "stage_2_packing.lp"
+_SRC_ROOT = Path(__file__).resolve().parent.parent
+STAGE1 = _SRC_ROOT / "encoding" / "twostage" / "clingcon" / "stage_1_clingcon_flow.lp"
+STAGE2 = _SRC_ROOT / "encoding" / "twostage" / "clingcon" / "stage_2_packing.lp"
 
 
 # ─────────────────────────────────────────────────────────────────────────
@@ -572,6 +569,88 @@ def print_metrics(metrics: dict) -> None:
 
 
 # ─────────────────────────────────────────────────────────────────────────
+# Full pipeline (callable from ``src.main`` and this module's CLI)
+# ─────────────────────────────────────────────────────────────────────────
+
+def run_pipeline(
+    instance_path: str | Path,
+    *,
+    cap_divide: int = 1,
+    max_freq: int = 6,
+    time_limit: int = 30,
+    round_timeout: int = 30,
+    show_facts: bool = False,
+) -> int:
+    """Run in-process clingcon Stage 1 + Stage 2.  Returns exit code (0 = ok)."""
+    instance_path = Path(instance_path)
+    if not instance_path.exists():
+        print(f"Error: instance not found: {instance_path}", file=sys.stderr)
+        return 1
+
+    instance_data = load_instance_data(str(instance_path))
+
+    print("═" * 65)
+    print("  STAGE 1: Network Flow + Frequency Assignment")
+    print("═" * 65)
+
+    stage1 = solve_stage1(
+        str(instance_path),
+        cap_divide,
+        max_freq,
+        time_limit,
+        round_timeout=round_timeout,
+    )
+
+    if stage1 is None:
+        print("  UNSATISFIABLE — no feasible flow exists.")
+        return 1
+
+    print_stage1(stage1)
+
+    warnings = check_feasibility(stage1, instance_data)
+    if warnings:
+        print()
+        print("─" * 65)
+        print("  FEASIBILITY WARNINGS")
+        print("─" * 65)
+        for w in warnings:
+            print(w)
+        print()
+
+    facts = build_stage2_facts(stage1, instance_data)
+
+    if show_facts:
+        print()
+        print("─" * 65)
+        print("  STAGE 2 INPUT FACTS")
+        print("─" * 65)
+        print(facts)
+        print()
+
+    print("═" * 65)
+    print("  STAGE 2: Per-Trip Bin Packing")
+    print("═" * 65)
+
+    stage2 = solve_stage2(facts, time_limit, round_timeout)
+
+    if stage2 is None:
+        print("  UNSATISFIABLE — cannot pack loads into individual trips.")
+        print("  Check feasibility warnings above, or adjust cap-divide.")
+        return 1
+
+    print_stage2(stage2, instance_data)
+
+    print("═" * 65)
+    print("  QUALITY METRICS")
+    print("═" * 65)
+
+    metrics = compute_metrics(stage2, instance_data, stage1["route_freqs"])
+    print_metrics(metrics)
+
+    return 0
+
+
+# ─────────────────────────────────────────────────────────────────────────
 # CLI
 # ─────────────────────────────────────────────────────────────────────────
 
@@ -600,80 +679,14 @@ def build_parser() -> argparse.ArgumentParser:
 
 def main() -> int:
     args = build_parser().parse_args()
-
-    instance_path = Path(args.instance)
-    if not instance_path.exists():
-        print(f"Error: instance not found: {instance_path}", file=sys.stderr)
-        return 1
-
-    # ── Load instance data ───────────────────────────────────────────
-    instance_data = load_instance_data(str(instance_path))
-    # print(f"Instance: {instance_path}")
-    # print(f"Locations: {len(instance_data['locations'])}  "
-    #       f"Parts: {len(instance_data['parts'])}")
-    # print()
-
-    # ── Stage 1 ──────────────────────────────────────────────────────
-    print("═" * 65)
-    print("  STAGE 1: Network Flow + Frequency Assignment")
-    print("═" * 65)
-
-    stage1 = solve_stage1(
-        str(instance_path), args.cap_divide, args.max_freq, args.time_limit,
+    return run_pipeline(
+        args.instance,
+        cap_divide=args.cap_divide,
+        max_freq=args.max_freq,
+        time_limit=args.time_limit,
         round_timeout=args.round_timeout,
+        show_facts=args.show_facts,
     )
-
-    if stage1 is None:
-        print("  UNSATISFIABLE — no feasible flow exists.")
-        return 1
-
-    print_stage1(stage1)
-
-    # ── Feasibility check ────────────────────────────────────────────
-    warnings = check_feasibility(stage1, instance_data)
-    if warnings:
-        print()
-        print("─" * 65)
-        print("  FEASIBILITY WARNINGS")
-        print("─" * 65)
-        for w in warnings:
-            print(w)
-        print()
-
-    # ── Build Stage 2 facts ──────────────────────────────────────────
-    facts = build_stage2_facts(stage1, instance_data)
-
-    if args.show_facts:
-        print()
-        print("─" * 65)
-        print("  STAGE 2 INPUT FACTS")
-        print("─" * 65)
-        print(facts)
-        print()
-
-    # ── Stage 2 ──────────────────────────────────────────────────────
-    print("═" * 65)
-    print("  STAGE 2: Per-Trip Bin Packing")
-    print("═" * 65)
-
-    stage2 = solve_stage2(facts, args.time_limit, args.round_timeout)
-
-    if stage2 is None:
-        print("  UNSATISFIABLE — cannot pack loads into individual trips.")
-        print("  Check feasibility warnings above, or adjust cap-divide.")
-        return 1
-
-    print_stage2(stage2, instance_data)
-
-    # ── Quality metrics ──────────────────────────────────────────────
-    print("═" * 65)
-    print("  QUALITY METRICS")
-    print("═" * 65)
-
-    metrics = compute_metrics(stage2, instance_data, stage1["route_freqs"])
-    print_metrics(metrics)
-
-    return 0
 
 
 if __name__ == "__main__":

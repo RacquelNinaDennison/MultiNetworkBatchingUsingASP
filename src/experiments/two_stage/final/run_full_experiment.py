@@ -51,6 +51,7 @@ from main import (
     solve_stage2_from_stage1,
     compute_r_tr,
     compute_r1,
+    compute_r_alpha,
     compute_kit_ratio,
     compute_dispatch_costs,
 )
@@ -80,6 +81,22 @@ S2_CONFIGS = {
 DEFAULT_WEIGHTS = [0, 300]
 DEFAULT_S2      = ["off_off", "hetero", "conc", "both"]
 
+ALPHA_VALUES = [0.2, 0.4, 0.6, 0.8]
+R_ALPHA_STRATEGIES = ["heaviest", "first", "last"]
+R_ALPHA_MODES = ["single", "global"]
+
+def _r_alpha_col(strategy: str, mode: str, alpha: float) -> str:
+    return f"r_{strategy}_{mode}_{alpha}"
+
+_R_ALPHA_COLUMNS = [
+    _r_alpha_col(s, m, a)
+    for s in R_ALPHA_STRATEGIES
+    for m in R_ALPHA_MODES
+    for a in ALPHA_VALUES
+]
+
+_FIRST_R_ALPHA_COLUMNS = [f"first_{c}" for c in _R_ALPHA_COLUMNS]
+
 COLUMNS = [
     "instance_name",
     "instance_type",
@@ -101,6 +118,7 @@ COLUMNS = [
     "kit_bottleneck_part",
     "mono_count",
     "concentrated_count",
+    *_R_ALPHA_COLUMNS,
     "s1_optimal",
     "s1_time",
     "s1_trajectory",
@@ -110,6 +128,19 @@ COLUMNS = [
     "s2_optimal",
     "s2_time",
     "s2_trajectory",
+    # ── first-solution metrics ──
+    "first_s1_time",
+    "first_s1_cost",
+    "first_r_tr",
+    "first_s2_time",
+    "first_s2_cost",
+    "first_r_1",
+    "first_k_1",
+    "first_mono_count",
+    "first_concentrated_count",
+    "first_s1_dispatch_cost",
+    "first_s2_dispatch_cost",
+    *_FIRST_R_ALPHA_COLUMNS,
     "status",
 ]
 
@@ -286,6 +317,15 @@ def run_weight_group(
 
     print(f"  R_TR={r_tr_val}  worst_arc={worst_arc_str}")
 
+    # ── First-solution R_TR (Stage 1) ─────────────────────────────────
+    first_s1 = stage1.get("first_solution", {})
+    first_r_tr_val = None
+    try:
+        if first_s1.get("loads"):
+            first_r_tr_val, _ = compute_r_tr(first_s1["loads"], instance_data)
+    except Exception as e:
+        print(f"  First-solution R_TR exception: {e}")
+
     s1_fields = {
         "nominal_cost":    stage1["cost"],
         "exposure_count":  len(stage1.get("high_exposure", [])),
@@ -294,6 +334,9 @@ def run_weight_group(
         "s1_trajectory":   json.dumps(stage1.get("trajectory", [])),
         "r_tr":            r_tr_val,
         "worst_arc":       worst_arc_str,
+        "first_s1_time":   first_s1.get("time"),
+        "first_s1_cost":   first_s1.get("cost"),
+        "first_r_tr":      first_r_tr_val,
     }
 
     # ── Stage 2 per config ────────────────────────────────────────────
@@ -377,6 +420,23 @@ def run_weight_group(
 
         print(f"  K_1={row.get('k_1')}")
 
+        # ── R_alpha (partial disruption) ─────────────────────────────
+        try:
+            for strat in R_ALPHA_STRATEGIES:
+                for md in R_ALPHA_MODES:
+                    for alph in ALPHA_VALUES:
+                        col = _r_alpha_col(strat, md, alph)
+                        val, _ = compute_r_alpha(
+                            result["trip_loads"], stage1["loads"],
+                            instance_data,
+                            alpha=alph, mode=md, strategy=strat,
+                        )
+                        row[col] = val
+            print(f"  R_alpha: heaviest_single_0.2={row.get('r_heaviest_single_0.2')}"
+                  f"  heaviest_global_0.2={row.get('r_heaviest_global_0.2')}")
+        except Exception as e:
+            print(f"  R_alpha exception: {e}")
+
         # ── Dispatch costs ────────────────────────────────────────────
         try:
             costs = compute_dispatch_costs(stage1, result, instance_data)
@@ -385,6 +445,65 @@ def run_weight_group(
             row["cost_saving"]      = costs["cost_saving"]
         except Exception as e:
             print(f"  Dispatch cost exception: {e}")
+
+        # ── First-solution Stage 2 metrics ─────────────────────────────
+        first_s2 = result.get("first_solution", {})
+        first_s1_loads = first_s1.get("loads", stage1["loads"])
+        first_trip_loads = first_s2.get("trip_loads", {})
+
+        row["first_s2_time"]            = first_s2.get("time")
+        row["first_s2_cost"]            = first_s2.get("cost")
+        row["first_mono_count"]         = first_s2.get("mono_count")
+        row["first_concentrated_count"] = first_s2.get("concentrated_count")
+
+        if first_trip_loads:
+            fr1_details = []
+            try:
+                fr1, fr1_details = compute_r1(
+                    first_trip_loads, first_s1_loads, instance_data,
+                )
+                row["first_r_1"] = fr1
+            except Exception as e:
+                print(f"  First-solution R_1 exception: {e}")
+
+            try:
+                if fr1_details:
+                    fk1, _ = compute_kit_ratio(fr1_details)
+                    row["first_k_1"] = fk1
+            except Exception as e:
+                print(f"  First-solution K_1 exception: {e}")
+
+            try:
+                for strat in R_ALPHA_STRATEGIES:
+                    for md in R_ALPHA_MODES:
+                        for alph in ALPHA_VALUES:
+                            col = f"first_{_r_alpha_col(strat, md, alph)}"
+                            val, _ = compute_r_alpha(
+                                first_trip_loads, first_s1_loads,
+                                instance_data,
+                                alpha=alph, mode=md, strategy=strat,
+                            )
+                            row[col] = val
+            except Exception as e:
+                print(f"  First-solution R_alpha exception: {e}")
+
+            try:
+                fcosts = compute_dispatch_costs(
+                    {"loads": first_s1_loads,
+                     "route_freqs": first_s1.get("route_freqs", stage1["route_freqs"])},
+                    {"trip_loads": first_trip_loads,
+                     "used_trips": first_s2.get("used_trips", set())},
+                    instance_data,
+                )
+                row["first_s1_dispatch_cost"] = fcosts["s1_dispatch_cost"]
+                row["first_s2_dispatch_cost"] = fcosts["s2_dispatch_cost"]
+            except Exception as e:
+                print(f"  First-solution dispatch cost exception: {e}")
+
+            print(f"  First solution: R_1={row.get('first_r_1')}  "
+                  f"R_TR={row.get('first_r_tr')}  "
+                  f"s1_time={row.get('first_s1_time')}  "
+                  f"s2_time={row.get('first_s2_time')}")
 
         row["status"] = "OK"
         append_row(csv_path, row)

@@ -147,30 +147,8 @@ class SubprocessTwoStage(BaseSolver):
         return result, wall_time, proc.stdout
 
     @staticmethod
-    def _parse_stage1_json(stdout: str) -> dict | None:
-        """Parse clingcon JSON output (--outf=2) for Stage 1."""
-        try:
-            data = json.loads(stdout)
-        except json.JSONDecodeError:
-            print("  ERROR: could not parse JSON output")
-            return None
-
-        result_str = data.get("Result", "")
-        if "UNSATISFIABLE" in result_str:
-            return None
-
-        calls = data.get("Call", [])
-        if not calls:
-            return None
-
-        witnesses = calls[0].get("Witnesses", [])
-        if not witnesses:
-            return None
-
-        last_witness = witnesses[-1]
-        atoms = last_witness.get("Value", [])
-        costs = last_witness.get("Costs", [])
-
+    def _extract_stage1_atoms(atoms: list[str]) -> tuple[dict, list, list]:
+        """Extract loads, route_freqs, high_exposure from Stage 1 atom strings."""
         loads: dict[tuple, int] = {}
         route_freqs: list[dict] = []
         high_exposure: list[tuple] = []
@@ -200,12 +178,43 @@ class SubprocessTwoStage(BaseSolver):
                     (m.group(1), m.group(2), m.group(3), m.group(4))
                 )
 
+        return loads, route_freqs, high_exposure
+
+    @staticmethod
+    def _parse_stage1_json(stdout: str) -> dict | None:
+        """Parse clingcon JSON output (--outf=2) for Stage 1."""
+        try:
+            data = json.loads(stdout)
+        except json.JSONDecodeError:
+            print("  ERROR: could not parse JSON output")
+            return None
+
+        result_str = data.get("Result", "")
+        if "UNSATISFIABLE" in result_str:
+            return None
+
+        calls = data.get("Call", [])
+        if not calls:
+            return None
+
+        witnesses = calls[0].get("Witnesses", [])
+        if not witnesses:
+            return None
+
+        last_witness = witnesses[-1]
+        atoms = last_witness.get("Value", [])
+        costs = last_witness.get("Costs", [])
+
+        loads, route_freqs, high_exposure = (
+            SubprocessTwoStage._extract_stage1_atoms(atoms)
+        )
+
         cost = costs[0] if costs else None
         optimum = "OPTIMUM FOUND" in result_str
 
         solver_time = data.get("Time", {})
 
-        return {
+        result = {
             "loads":          loads,
             "route_freqs":    route_freqs,
             "high_exposure":  high_exposure,
@@ -217,6 +226,22 @@ class SubprocessTwoStage(BaseSolver):
             "solver_solve":   solver_time.get("Solve"),
             "solver_cpu":     solver_time.get("CPU"),
         }
+
+        first_witness = witnesses[0]
+        first_atoms = first_witness.get("Value", [])
+        first_costs = first_witness.get("Costs", [])
+        first_loads, first_route_freqs, first_high_exposure = (
+            SubprocessTwoStage._extract_stage1_atoms(first_atoms)
+        )
+        result["first_solution"] = {
+            "loads":          first_loads,
+            "route_freqs":    first_route_freqs,
+            "high_exposure":  first_high_exposure,
+            "cost":           first_costs[0] if first_costs else None,
+            "time":           first_witness.get("Time"),
+        }
+
+        return result
 
     # ═════════════════════════════════════════════════════════════════════
     # Bridge — Stage 1 output → Stage 2 input facts (temp .lp file)
@@ -313,30 +338,8 @@ class SubprocessTwoStage(BaseSolver):
         return result, wall_time, proc.stdout
 
     @staticmethod
-    def _parse_stage2_json(stdout: str) -> dict | None:
-        """Parse clingcon JSON output (--outf=2) for Stage 2."""
-        try:
-            data = json.loads(stdout)
-        except json.JSONDecodeError:
-            print("  ERROR: could not parse JSON output")
-            return None
-
-        result_str = data.get("Result", "")
-        if "UNSATISFIABLE" in result_str:
-            return None
-
-        calls = data.get("Call", [])
-        if not calls:
-            return None
-
-        witnesses = calls[0].get("Witnesses", [])
-        if not witnesses:
-            return None
-
-        last_witness = witnesses[-1]
-        atoms = last_witness.get("Value", [])
-        costs = last_witness.get("Costs", [])
-
+    def _extract_stage2_atoms(atoms: list[str]) -> tuple[dict, set, dict, set, set]:
+        """Extract trip_loads, used_trips, actual_freqs, mono_trips, concentrated from Stage 2 atoms."""
         trip_loads: dict[tuple, int] = {}
         used_trips: set[tuple] = set()
         actual_freqs: dict[tuple, int] = {}
@@ -378,12 +381,43 @@ class SubprocessTwoStage(BaseSolver):
                      m.group(4), int(m.group(5)))
                 )
 
+        return trip_loads, used_trips, actual_freqs, mono_trips, concentrated_set
+
+    @staticmethod
+    def _parse_stage2_json(stdout: str) -> dict | None:
+        """Parse clingcon JSON output (--outf=2) for Stage 2."""
+        try:
+            data = json.loads(stdout)
+        except json.JSONDecodeError:
+            print("  ERROR: could not parse JSON output")
+            return None
+
+        result_str = data.get("Result", "")
+        if "UNSATISFIABLE" in result_str:
+            return None
+
+        calls = data.get("Call", [])
+        if not calls:
+            return None
+
+        witnesses = calls[0].get("Witnesses", [])
+        if not witnesses:
+            return None
+
+        last_witness = witnesses[-1]
+        atoms = last_witness.get("Value", [])
+        costs = last_witness.get("Costs", [])
+
+        trip_loads, used_trips, actual_freqs, mono_trips, concentrated_set = (
+            SubprocessTwoStage._extract_stage2_atoms(atoms)
+        )
+
         cost = costs[0] if costs else None
         optimum = "OPTIMUM FOUND" in result_str
 
         solver_time = data.get("Time", {})
 
-        return {
+        result = {
             "trip_loads":         trip_loads,
             "used_trips":         used_trips,
             "actual_freqs":       actual_freqs,
@@ -397,6 +431,24 @@ class SubprocessTwoStage(BaseSolver):
             "solver_solve":       solver_time.get("Solve"),
             "solver_cpu":         solver_time.get("CPU"),
         }
+
+        first_witness = witnesses[0]
+        first_atoms = first_witness.get("Value", [])
+        first_costs = first_witness.get("Costs", [])
+        ft_loads, ft_used, ft_freqs, ft_mono, ft_conc = (
+            SubprocessTwoStage._extract_stage2_atoms(first_atoms)
+        )
+        result["first_solution"] = {
+            "trip_loads":         ft_loads,
+            "used_trips":         ft_used,
+            "actual_freqs":       ft_freqs,
+            "mono_count":         len(ft_mono),
+            "concentrated_count": len(ft_conc),
+            "cost":               first_costs[0] if first_costs else None,
+            "time":               first_witness.get("Time"),
+        }
+
+        return result
 
     # ═════════════════════════════════════════════════════════════════════
     # Quality metrics  (computed in Python from parsed Stage 2 output)

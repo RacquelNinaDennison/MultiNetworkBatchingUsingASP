@@ -99,6 +99,7 @@ def solve_stage1(
     stage1_encoding: str | None = None,
     threads: int = 1,
     configuration: str | None = None,
+    cap_size_divide: int = 1,
 ) -> tuple[SubprocessTwoStage, dict | None]:
     """Solve Stage 1 via clingcon subprocess.
 
@@ -114,6 +115,7 @@ def solve_stage1(
         stage1_encoding=stage1_encoding,
         threads=threads,
         configuration=configuration,
+        cap_size_divide=cap_size_divide,
     )
     stage1, wall_time, _ = solver.run_stage1_subprocess()
     if stage1 is not None:

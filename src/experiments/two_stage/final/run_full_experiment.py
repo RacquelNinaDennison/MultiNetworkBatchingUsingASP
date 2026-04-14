@@ -248,6 +248,7 @@ def run_weight_group(
     s2_encoding:    Path | None = None,
     threads:        int = 1,
     configuration:  str | None = None,
+    cap_size_divide: int = 1,
 ) -> int:
     """Solve Stage 1 once, compute R_TR once, then loop Stage 2 configs."""
 
@@ -273,6 +274,7 @@ def run_weight_group(
             stage1_encoding=s1_enc,
             threads=threads,
             configuration=configuration,
+            cap_size_divide=cap_size_divide,
         )
     except Exception as e:
         print(f"  Stage 1 exception: {e}")
@@ -543,6 +545,9 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--time-paper",    type=int, default=30)
     p.add_argument("--time-industry", type=int, default=600)
     p.add_argument("--max-freq",      type=int, default=20)
+    p.add_argument("--cap-size-divide", type=int, default=1,
+                   help="Divide capacities/part sizes by this factor "
+                        "(use 10 for industry instances)")
     p.add_argument("-t", "--threads", type=int, default=1,
                    help="Solver threads. NOTE: clingcon CSP propagator does "
                         "NOT support -t > 1; keep at 1 (default)")
@@ -661,6 +666,7 @@ def main() -> None:
                 s2_encoding=s2,
                 threads=args.threads,
                 configuration=args.configuration,
+                cap_size_divide=args.cap_size_divide,
             )
             rows_total += n
 

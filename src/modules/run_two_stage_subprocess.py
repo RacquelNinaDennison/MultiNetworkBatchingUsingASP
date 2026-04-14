@@ -85,6 +85,7 @@ class SubprocessTwoStage(BaseSolver):
         stage2_encoding: str | None = None,
         threads: int = 1,
         configuration: str | None = None,
+        cap_size_divide: int = 1,
     ):
         super().__init__(instance_path, time_limit)
         self.max_freq = max_freq
@@ -94,6 +95,7 @@ class SubprocessTwoStage(BaseSolver):
         self.stage2_lp = Path(stage2_encoding) if stage2_encoding else STAGE2_LP
         self.threads = threads
         self.configuration = configuration
+        self.cap_size_divide = cap_size_divide
 
     # ═════════════════════════════════════════════════════════════════════
     # Stage 1 — clingcon subprocess
@@ -112,7 +114,7 @@ class SubprocessTwoStage(BaseSolver):
             "-c", f"max_freq={self.max_freq}",
             "-c", f"exposure_n={self.exposure_n}",
             "-c", "use_exposure=1",
-            "-c", "cap_size_divide=1",
+            "-c", f"cap_size_divide={self.cap_size_divide}",
             f"--time-limit={self.time_limit}",
             "--outf=2",
             "-t", str(self.threads),

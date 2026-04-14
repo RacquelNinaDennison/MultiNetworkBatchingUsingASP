@@ -1,4 +1,5 @@
-#const cap_size_divide = 1.
+#const cap_size_divide = 10.
+#const exposure_n = 3.
 #const max_freq = 20.
 
 totalSupply(P, Max) :- Max = #sum {V,L : demandOffer(P,L,V), V > 0}, part(P).

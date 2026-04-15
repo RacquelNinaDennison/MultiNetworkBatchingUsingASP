@@ -3,11 +3,3 @@ industry_instances,industry,industry,0,0,3,off_off,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,
 industry_instances,industry,industry,0,0,3,hetero,1,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,S1_UNSAT
 industry_instances,industry,industry,0,0,3,conc,0,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,S1_UNSAT
 industry_instances,industry,industry,0,0,3,both,1,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,S1_UNSAT
-industry_instances,industry,industry,0,1000000,3,off_off,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,S1_UNSAT
-industry_instances,industry,industry,0,1000000,3,hetero,1,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,S1_UNSAT
-industry_instances,industry,industry,0,1000000,3,conc,0,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,S1_UNSAT
-industry_instances,industry,industry,0,1000000,3,both,1,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,S1_UNSAT
-industry_test_1,industry,industry,1,0,3,off_off,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,S1_UNSAT
-industry_test_1,industry,industry,1,0,3,hetero,1,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,S1_UNSAT
-industry_test_1,industry,industry,1,0,3,conc,0,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,S1_UNSAT
-industry_test_1,industry,industry,1,0,3,both,1,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,S1_UNSAT

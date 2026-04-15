@@ -1,0 +1,97 @@
+nohup: ignoring input
+══════════════════════════════════════════════════════════════════════
+  FINAL TWO-STAGE EXPERIMENT
+══════════════════════════════════════════════════════════════════════
+  Stage 1 encoding: stage_1_flow.lp
+  Stage 2 encoding: stage2_packing.lp
+  Instances:        1
+  Weights:          [0, 600]
+  Exposure N:       3
+  S2 configs:       ['off_off', 'hetero', 'conc', 'both']
+  Total runs:       8
+  Output:           experiments/two_stage/final/results/sweep_paper_v2.csv
+══════════════════════════════════════════════════════════════════════
+
+══════════════════════════════════════════════════════════════════════
+  Instance: layered_paper  (type=layered, size=paper, seed=0, time_limit=600s
+══════════════════════════════════════════════════════════════════════
+  Parsed: 2 parts, 11 routes
+
+  [layered_paper w=0] Stage 1 solve (limit=600s, enc=stage_1_flow.lp)...
+  cmd: clingcon /home/racquelnina/MultiNetworkBatchingUsingASP/src/experiments/two_stage/final/encodings/stage_1_flow.lp /home/racquelnina/MultiNetworkBatchingUsingASP/src/instances/generated/layered_paper.lp -c weight=0 -c max_freq=20 -c exposure_n=3 -c use_exposure=1 -c cap_size_divide=1 --time-limit=600 --outf=2 -t 1 --configuration=many
+  Stage 1: cost=3458  routes=8  loads=13  optimal=True
+  R_TR=0.5  worst_arc=(l1,l4,tr2)
+
+  [layered_paper w=0 s2=off_off] Stage 2 solve (enc=stage2_packing.lp)...
+  cmd: clingcon /tmp/s2_facts_pncywyxb.lp /home/racquelnina/MultiNetworkBatchingUsingASP/src/experiments/two_stage/final/encodings/stage2_packing.lp -c weight=0 -c hetero_on=0 -c concentrated_on=0 --time-limit=600 --outf=2 -t 1 --configuration=many
+  mono=10  conc=13  optimal=True
+  R_1=0.75  worst_trip=(l1,l4,tr2,k1)
+  K_1=0.75
+  R_alpha: heaviest_single_0.2=0.5  heaviest_global_0.2=0.0
+  First solution: R_1=0.75  R_TR=0.3  s1_time=0.048  s2_time=0.018
+
+  [layered_paper w=0 s2=hetero] Stage 2 solve (enc=stage2_packing.lp)...
+  cmd: clingcon /tmp/s2_facts_nb4nps_p.lp /home/racquelnina/MultiNetworkBatchingUsingASP/src/experiments/two_stage/final/encodings/stage2_packing.lp -c weight=0 -c hetero_on=1 -c concentrated_on=0 --time-limit=600 --outf=2 -t 1 --configuration=many
+  mono=2  conc=16  optimal=True
+  R_1=0.85  worst_trip=(l3,l5,tr2,k4)
+  K_1=0.85
+  R_alpha: heaviest_single_0.2=0.55  heaviest_global_0.2=0.1
+  First solution: R_1=0.75  R_TR=0.3  s1_time=0.048  s2_time=0.019
+
+  [layered_paper w=0 s2=conc] Stage 2 solve (enc=stage2_packing.lp)...
+  cmd: clingcon /tmp/s2_facts_wz1vp52x.lp /home/racquelnina/MultiNetworkBatchingUsingASP/src/experiments/two_stage/final/encodings/stage2_packing.lp -c weight=0 -c hetero_on=0 -c concentrated_on=1 --time-limit=600 --outf=2 -t 1 --configuration=many
+  mono=6  conc=14  optimal=True
+  R_1=0.8  worst_trip=(l3,l5,tr2,k3)
+  K_1=0.8
+  R_alpha: heaviest_single_0.2=0.55  heaviest_global_0.2=0.05
+  First solution: R_1=0.75  R_TR=0.3  s1_time=0.048  s2_time=0.019
+
+  [layered_paper w=0 s2=both] Stage 2 solve (enc=stage2_packing.lp)...
+  cmd: clingcon /tmp/s2_facts_a4atumi2.lp /home/racquelnina/MultiNetworkBatchingUsingASP/src/experiments/two_stage/final/encodings/stage2_packing.lp -c weight=0 -c hetero_on=1 -c concentrated_on=1 --time-limit=600 --outf=2 -t 1 --configuration=many
+  mono=6  conc=14  optimal=True
+  R_1=0.8  worst_trip=(l3,l5,tr2,k2)
+  K_1=0.8
+  R_alpha: heaviest_single_0.2=0.55  heaviest_global_0.2=0.05
+  First solution: R_1=0.75  R_TR=0.3  s1_time=0.048  s2_time=0.018
+
+  [layered_paper w=600] Stage 1 solve (limit=600s, enc=stage_1_flow.lp)...
+  cmd: clingcon /home/racquelnina/MultiNetworkBatchingUsingASP/src/experiments/two_stage/final/encodings/stage_1_flow.lp /home/racquelnina/MultiNetworkBatchingUsingASP/src/instances/generated/layered_paper.lp -c weight=600 -c max_freq=20 -c exposure_n=3 -c use_exposure=1 -c cap_size_divide=1 --time-limit=600 --outf=2 -t 1 --configuration=many
+  Stage 1: cost=3654  routes=9  loads=17  optimal=True
+  R_TR=0.7  worst_arc=(l1,l3,tr2)
+
+  [layered_paper w=600 s2=off_off] Stage 2 solve (enc=stage2_packing.lp)...
+  cmd: clingcon /tmp/s2_facts_tu7glhth.lp /home/racquelnina/MultiNetworkBatchingUsingASP/src/experiments/two_stage/final/encodings/stage2_packing.lp -c weight=600 -c hetero_on=0 -c concentrated_on=0 --time-limit=600 --outf=2 -t 1 --configuration=many
+  mono=5  conc=19  optimal=True
+  R_1=0.75  worst_trip=(l1,l3,tr2,k1)
+  K_1=0.75
+  R_alpha: heaviest_single_0.2=0.7  heaviest_global_0.2=0.0
+  First solution: R_1=0.75  R_TR=0.3  s1_time=0.025  s2_time=0.025
+
+  [layered_paper w=600 s2=hetero] Stage 2 solve (enc=stage2_packing.lp)...
+  cmd: clingcon /tmp/s2_facts_b5qg_s7y.lp /home/racquelnina/MultiNetworkBatchingUsingASP/src/experiments/two_stage/final/encodings/stage2_packing.lp -c weight=600 -c hetero_on=1 -c concentrated_on=0 --time-limit=600 --outf=2 -t 1 --configuration=many
+  mono=1  conc=18  optimal=True
+  R_1=0.85  worst_trip=(l3,l4,tr2,k1)
+  K_1=0.85
+  R_alpha: heaviest_single_0.2=0.7  heaviest_global_0.2=0.0
+  First solution: R_1=0.75  R_TR=0.3  s1_time=0.025  s2_time=0.044
+
+  [layered_paper w=600 s2=conc] Stage 2 solve (enc=stage2_packing.lp)...
+  cmd: clingcon /tmp/s2_facts_y3vcazx1.lp /home/racquelnina/MultiNetworkBatchingUsingASP/src/experiments/two_stage/final/encodings/stage2_packing.lp -c weight=600 -c hetero_on=0 -c concentrated_on=1 --time-limit=600 --outf=2 -t 1 --configuration=many
+  mono=5  conc=16  optimal=True
+  R_1=0.85  worst_trip=(l3,l5,tr2,k3)
+  K_1=0.85
+  R_alpha: heaviest_single_0.2=0.7  heaviest_global_0.2=0.0
+  First solution: R_1=0.75  R_TR=0.3  s1_time=0.025  s2_time=0.02
+
+  [layered_paper w=600 s2=both] Stage 2 solve (enc=stage2_packing.lp)...
+  cmd: clingcon /tmp/s2_facts_vvviramo.lp /home/racquelnina/MultiNetworkBatchingUsingASP/src/experiments/two_stage/final/encodings/stage2_packing.lp -c weight=600 -c hetero_on=1 -c concentrated_on=1 --time-limit=600 --outf=2 -t 1 --configuration=many
+  mono=4  conc=17  optimal=True
+  R_1=0.85  worst_trip=(l3,l5,tr2,k4)
+  K_1=0.85
+  R_alpha: heaviest_single_0.2=0.7  heaviest_global_0.2=0.0
+  First solution: R_1=0.75  R_TR=0.3  s1_time=0.025  s2_time=0.033
+
+══════════════════════════════════════════════════════════════════════
+  COMPLETE: 8 rows in 378.1s
+  Results → experiments/two_stage/final/results/sweep_paper_v2.csv
+══════════════════════════════════════════════════════════════════════

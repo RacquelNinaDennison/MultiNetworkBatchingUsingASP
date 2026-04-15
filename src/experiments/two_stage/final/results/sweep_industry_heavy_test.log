@@ -1,0 +1,225 @@
+nohup: ignoring input
+══════════════════════════════════════════════════════════════════════
+  FINAL TWO-STAGE EXPERIMENT
+══════════════════════════════════════════════════════════════════════
+  Stage 1 encoding: stage_1_flow.lp
+  Stage 2 encoding: stage2_packing.lp
+  Instances:        11
+  Weights:          [0, 10000]
+  Exposure N:       3
+  S2 configs:       ['off_off', 'hetero', 'conc', 'both']
+  Total runs:       88
+  Output:           experiments/two_stage/final/results/sweep_industry_heavy_test.csv
+══════════════════════════════════════════════════════════════════════
+
+══════════════════════════════════════════════════════════════════════
+  Instance: industry_instances  (type=industry, size=industry, seed=0, time_limit=200s
+══════════════════════════════════════════════════════════════════════
+  Parsed: 35 parts, 5610 routes
+
+  [industry_instances w=0] Stage 1 solve (limit=200s, enc=stage_1_flow.lp)...
+  cmd: clingcon /home/racquelnina/MultiNetworkBatchingUsingASP/src/experiments/two_stage/final/encodings/stage_1_flow.lp /home/racquelnina/MultiNetworkBatchingUsingASP/src/instances/industry/industry_instances.lp -c weight=0 -c max_freq=20 -c exposure_n=3 -c use_exposure=1 -c cap_size_divide=1 --time-limit=200 --outf=2 -t 1 --configuration=many
+  [clingcon stderr] *** Info : (clingcon): Sending shutdown signal...
+  [clingcon stderr] *** ERROR: (clingcon): solving stopped by signal
+  [clingcon stderr] *** Info : (clingcon): Shutdown completed in 0.186 seconds
+  Stage 1: UNSAT — no feasible flow
+
+  [industry_instances w=10000] Stage 1 solve (limit=200s, enc=stage_1_flow.lp)...
+  cmd: clingcon /home/racquelnina/MultiNetworkBatchingUsingASP/src/experiments/two_stage/final/encodings/stage_1_flow.lp /home/racquelnina/MultiNetworkBatchingUsingASP/src/instances/industry/industry_instances.lp -c weight=10000 -c max_freq=20 -c exposure_n=3 -c use_exposure=1 -c cap_size_divide=1 --time-limit=200 --outf=2 -t 1 --configuration=many
+  ERROR: subprocess hard-timeout expired
+  Stage 1: UNSAT — no feasible flow
+
+══════════════════════════════════════════════════════════════════════
+  Instance: industry_test_1  (type=industry, size=industry, seed=1, time_limit=200s
+══════════════════════════════════════════════════════════════════════
+  Parsed: 35 parts, 5610 routes
+
+  [industry_test_1 w=0] Stage 1 solve (limit=200s, enc=stage_1_flow.lp)...
+  cmd: clingcon /home/racquelnina/MultiNetworkBatchingUsingASP/src/experiments/two_stage/final/encodings/stage_1_flow.lp /home/racquelnina/MultiNetworkBatchingUsingASP/src/instances/industry/industry_test_1.lp -c weight=0 -c max_freq=20 -c exposure_n=3 -c use_exposure=1 -c cap_size_divide=1 --time-limit=200 --outf=2 -t 1 --configuration=many
+  [clingcon stderr] *** Info : (clingcon): Sending shutdown signal...
+  [clingcon stderr] *** ERROR: (clingcon): solving stopped by signal
+  [clingcon stderr] *** Info : (clingcon): Shutdown completed in 0.961 seconds
+  Stage 1: UNSAT — no feasible flow
+
+  [industry_test_1 w=10000] Stage 1 solve (limit=200s, enc=stage_1_flow.lp)...
+  cmd: clingcon /home/racquelnina/MultiNetworkBatchingUsingASP/src/experiments/two_stage/final/encodings/stage_1_flow.lp /home/racquelnina/MultiNetworkBatchingUsingASP/src/instances/industry/industry_test_1.lp -c weight=10000 -c max_freq=20 -c exposure_n=3 -c use_exposure=1 -c cap_size_divide=1 --time-limit=200 --outf=2 -t 1 --configuration=many
+  [clingcon stderr] *** Info : (clingcon): Sending shutdown signal...
+  [clingcon stderr] *** ERROR: (clingcon): solving stopped by signal
+  [clingcon stderr] *** Info : (clingcon): Shutdown completed in 0.851 seconds
+  Stage 1: UNSAT — no feasible flow
+
+══════════════════════════════════════════════════════════════════════
+  Instance: industry_test_10  (type=industry, size=industry, seed=10, time_limit=200s
+══════════════════════════════════════════════════════════════════════
+  Parsed: 35 parts, 5610 routes
+
+  [industry_test_10 w=0] Stage 1 solve (limit=200s, enc=stage_1_flow.lp)...
+  cmd: clingcon /home/racquelnina/MultiNetworkBatchingUsingASP/src/experiments/two_stage/final/encodings/stage_1_flow.lp /home/racquelnina/MultiNetworkBatchingUsingASP/src/instances/industry/industry_test_10.lp -c weight=0 -c max_freq=20 -c exposure_n=3 -c use_exposure=1 -c cap_size_divide=1 --time-limit=200 --outf=2 -t 1 --configuration=many
+  [clingcon stderr] *** Info : (clingcon): Sending shutdown signal...
+  [clingcon stderr] *** ERROR: (clingcon): solving stopped by signal
+  [clingcon stderr] *** Info : (clingcon): Shutdown completed in 2.939 seconds
+  Stage 1: UNSAT — no feasible flow
+
+  [industry_test_10 w=10000] Stage 1 solve (limit=200s, enc=stage_1_flow.lp)...
+  cmd: clingcon /home/racquelnina/MultiNetworkBatchingUsingASP/src/experiments/two_stage/final/encodings/stage_1_flow.lp /home/racquelnina/MultiNetworkBatchingUsingASP/src/instances/industry/industry_test_10.lp -c weight=10000 -c max_freq=20 -c exposure_n=3 -c use_exposure=1 -c cap_size_divide=1 --time-limit=200 --outf=2 -t 1 --configuration=many
+  [clingcon stderr] *** Info : (clingcon): Sending shutdown signal...
+  [clingcon stderr] *** ERROR: (clingcon): solving stopped by signal
+  [clingcon stderr] *** Info : (clingcon): Shutdown completed in 3.137 seconds
+  Stage 1: UNSAT — no feasible flow
+
+══════════════════════════════════════════════════════════════════════
+  Instance: industry_test_2  (type=industry, size=industry, seed=2, time_limit=200s
+══════════════════════════════════════════════════════════════════════
+  Parsed: 35 parts, 5610 routes
+
+  [industry_test_2 w=0] Stage 1 solve (limit=200s, enc=stage_1_flow.lp)...
+  cmd: clingcon /home/racquelnina/MultiNetworkBatchingUsingASP/src/experiments/two_stage/final/encodings/stage_1_flow.lp /home/racquelnina/MultiNetworkBatchingUsingASP/src/instances/industry/industry_test_2.lp -c weight=0 -c max_freq=20 -c exposure_n=3 -c use_exposure=1 -c cap_size_divide=1 --time-limit=200 --outf=2 -t 1 --configuration=many
+  [clingcon stderr] *** Info : (clingcon): Sending shutdown signal...
+  [clingcon stderr] *** ERROR: (clingcon): solving stopped by signal
+  [clingcon stderr] *** Info : (clingcon): Shutdown completed in 1.533 seconds
+  Stage 1: UNSAT — no feasible flow
+
+  [industry_test_2 w=10000] Stage 1 solve (limit=200s, enc=stage_1_flow.lp)...
+  cmd: clingcon /home/racquelnina/MultiNetworkBatchingUsingASP/src/experiments/two_stage/final/encodings/stage_1_flow.lp /home/racquelnina/MultiNetworkBatchingUsingASP/src/instances/industry/industry_test_2.lp -c weight=10000 -c max_freq=20 -c exposure_n=3 -c use_exposure=1 -c cap_size_divide=1 --time-limit=200 --outf=2 -t 1 --configuration=many
+  [clingcon stderr] *** Info : (clingcon): Sending shutdown signal...
+  [clingcon stderr] *** ERROR: (clingcon): solving stopped by signal
+  [clingcon stderr] *** Info : (clingcon): Shutdown completed in 1.376 seconds
+  Stage 1: UNSAT — no feasible flow
+
+══════════════════════════════════════════════════════════════════════
+  Instance: industry_test_3  (type=industry, size=industry, seed=3, time_limit=200s
+══════════════════════════════════════════════════════════════════════
+  Parsed: 35 parts, 5610 routes
+
+  [industry_test_3 w=0] Stage 1 solve (limit=200s, enc=stage_1_flow.lp)...
+  cmd: clingcon /home/racquelnina/MultiNetworkBatchingUsingASP/src/experiments/two_stage/final/encodings/stage_1_flow.lp /home/racquelnina/MultiNetworkBatchingUsingASP/src/instances/industry/industry_test_3.lp -c weight=0 -c max_freq=20 -c exposure_n=3 -c use_exposure=1 -c cap_size_divide=1 --time-limit=200 --outf=2 -t 1 --configuration=many
+  [clingcon stderr] *** Info : (clingcon): Sending shutdown signal...
+  [clingcon stderr] *** ERROR: (clingcon): solving stopped by signal
+  [clingcon stderr] *** Info : (clingcon): Shutdown completed in 1.769 seconds
+  Stage 1: UNSAT — no feasible flow
+
+  [industry_test_3 w=10000] Stage 1 solve (limit=200s, enc=stage_1_flow.lp)...
+  cmd: clingcon /home/racquelnina/MultiNetworkBatchingUsingASP/src/experiments/two_stage/final/encodings/stage_1_flow.lp /home/racquelnina/MultiNetworkBatchingUsingASP/src/instances/industry/industry_test_3.lp -c weight=10000 -c max_freq=20 -c exposure_n=3 -c use_exposure=1 -c cap_size_divide=1 --time-limit=200 --outf=2 -t 1 --configuration=many
+  [clingcon stderr] *** Info : (clingcon): Sending shutdown signal...
+  [clingcon stderr] *** ERROR: (clingcon): solving stopped by signal
+  [clingcon stderr] *** Info : (clingcon): Shutdown completed in 1.081 seconds
+  Stage 1: UNSAT — no feasible flow
+
+══════════════════════════════════════════════════════════════════════
+  Instance: industry_test_4  (type=industry, size=industry, seed=4, time_limit=200s
+══════════════════════════════════════════════════════════════════════
+  Parsed: 35 parts, 5610 routes
+
+  [industry_test_4 w=0] Stage 1 solve (limit=200s, enc=stage_1_flow.lp)...
+  cmd: clingcon /home/racquelnina/MultiNetworkBatchingUsingASP/src/experiments/two_stage/final/encodings/stage_1_flow.lp /home/racquelnina/MultiNetworkBatchingUsingASP/src/instances/industry/industry_test_4.lp -c weight=0 -c max_freq=20 -c exposure_n=3 -c use_exposure=1 -c cap_size_divide=1 --time-limit=200 --outf=2 -t 1 --configuration=many
+  [clingcon stderr] *** Info : (clingcon): Sending shutdown signal...
+  [clingcon stderr] *** ERROR: (clingcon): solving stopped by signal
+  [clingcon stderr] *** Info : (clingcon): Shutdown completed in 2.063 seconds
+  Stage 1: UNSAT — no feasible flow
+
+  [industry_test_4 w=10000] Stage 1 solve (limit=200s, enc=stage_1_flow.lp)...
+  cmd: clingcon /home/racquelnina/MultiNetworkBatchingUsingASP/src/experiments/two_stage/final/encodings/stage_1_flow.lp /home/racquelnina/MultiNetworkBatchingUsingASP/src/instances/industry/industry_test_4.lp -c weight=10000 -c max_freq=20 -c exposure_n=3 -c use_exposure=1 -c cap_size_divide=1 --time-limit=200 --outf=2 -t 1 --configuration=many
+  [clingcon stderr] *** Info : (clingcon): Sending shutdown signal...
+  [clingcon stderr] *** ERROR: (clingcon): solving stopped by signal
+  [clingcon stderr] *** Info : (clingcon): Shutdown completed in 1.329 seconds
+  Stage 1: UNSAT — no feasible flow
+
+══════════════════════════════════════════════════════════════════════
+  Instance: industry_test_5  (type=industry, size=industry, seed=5, time_limit=200s
+══════════════════════════════════════════════════════════════════════
+  Parsed: 35 parts, 5610 routes
+
+  [industry_test_5 w=0] Stage 1 solve (limit=200s, enc=stage_1_flow.lp)...
+  cmd: clingcon /home/racquelnina/MultiNetworkBatchingUsingASP/src/experiments/two_stage/final/encodings/stage_1_flow.lp /home/racquelnina/MultiNetworkBatchingUsingASP/src/instances/industry/industry_test_5.lp -c weight=0 -c max_freq=20 -c exposure_n=3 -c use_exposure=1 -c cap_size_divide=1 --time-limit=200 --outf=2 -t 1 --configuration=many
+  [clingcon stderr] *** Info : (clingcon): Sending shutdown signal...
+  [clingcon stderr] *** ERROR: (clingcon): solving stopped by signal
+  [clingcon stderr] *** Info : (clingcon): Shutdown completed in 1.478 seconds
+  Stage 1: UNSAT — no feasible flow
+
+  [industry_test_5 w=10000] Stage 1 solve (limit=200s, enc=stage_1_flow.lp)...
+  cmd: clingcon /home/racquelnina/MultiNetworkBatchingUsingASP/src/experiments/two_stage/final/encodings/stage_1_flow.lp /home/racquelnina/MultiNetworkBatchingUsingASP/src/instances/industry/industry_test_5.lp -c weight=10000 -c max_freq=20 -c exposure_n=3 -c use_exposure=1 -c cap_size_divide=1 --time-limit=200 --outf=2 -t 1 --configuration=many
+  [clingcon stderr] *** Info : (clingcon): Sending shutdown signal...
+  [clingcon stderr] *** ERROR: (clingcon): solving stopped by signal
+  [clingcon stderr] *** Info : (clingcon): Shutdown completed in 1.396 seconds
+  Stage 1: UNSAT — no feasible flow
+
+══════════════════════════════════════════════════════════════════════
+  Instance: industry_test_6  (type=industry, size=industry, seed=6, time_limit=200s
+══════════════════════════════════════════════════════════════════════
+  Parsed: 35 parts, 5610 routes
+
+  [industry_test_6 w=0] Stage 1 solve (limit=200s, enc=stage_1_flow.lp)...
+  cmd: clingcon /home/racquelnina/MultiNetworkBatchingUsingASP/src/experiments/two_stage/final/encodings/stage_1_flow.lp /home/racquelnina/MultiNetworkBatchingUsingASP/src/instances/industry/industry_test_6.lp -c weight=0 -c max_freq=20 -c exposure_n=3 -c use_exposure=1 -c cap_size_divide=1 --time-limit=200 --outf=2 -t 1 --configuration=many
+  [clingcon stderr] *** Info : (clingcon): Sending shutdown signal...
+  [clingcon stderr] *** ERROR: (clingcon): solving stopped by signal
+  [clingcon stderr] *** Info : (clingcon): Shutdown completed in 2.446 seconds
+  Stage 1: UNSAT — no feasible flow
+
+  [industry_test_6 w=10000] Stage 1 solve (limit=200s, enc=stage_1_flow.lp)...
+  cmd: clingcon /home/racquelnina/MultiNetworkBatchingUsingASP/src/experiments/two_stage/final/encodings/stage_1_flow.lp /home/racquelnina/MultiNetworkBatchingUsingASP/src/instances/industry/industry_test_6.lp -c weight=10000 -c max_freq=20 -c exposure_n=3 -c use_exposure=1 -c cap_size_divide=1 --time-limit=200 --outf=2 -t 1 --configuration=many
+  [clingcon stderr] *** Info : (clingcon): Sending shutdown signal...
+  [clingcon stderr] *** ERROR: (clingcon): solving stopped by signal
+  [clingcon stderr] *** Info : (clingcon): Shutdown completed in 1.265 seconds
+  Stage 1: UNSAT — no feasible flow
+
+══════════════════════════════════════════════════════════════════════
+  Instance: industry_test_7  (type=industry, size=industry, seed=7, time_limit=200s
+══════════════════════════════════════════════════════════════════════
+  Parsed: 35 parts, 5610 routes
+
+  [industry_test_7 w=0] Stage 1 solve (limit=200s, enc=stage_1_flow.lp)...
+  cmd: clingcon /home/racquelnina/MultiNetworkBatchingUsingASP/src/experiments/two_stage/final/encodings/stage_1_flow.lp /home/racquelnina/MultiNetworkBatchingUsingASP/src/instances/industry/industry_test_7.lp -c weight=0 -c max_freq=20 -c exposure_n=3 -c use_exposure=1 -c cap_size_divide=1 --time-limit=200 --outf=2 -t 1 --configuration=many
+  [clingcon stderr] *** Info : (clingcon): Sending shutdown signal...
+  [clingcon stderr] *** ERROR: (clingcon): solving stopped by signal
+  [clingcon stderr] *** Info : (clingcon): Shutdown completed in 1.280 seconds
+  Stage 1: UNSAT — no feasible flow
+
+  [industry_test_7 w=10000] Stage 1 solve (limit=200s, enc=stage_1_flow.lp)...
+  cmd: clingcon /home/racquelnina/MultiNetworkBatchingUsingASP/src/experiments/two_stage/final/encodings/stage_1_flow.lp /home/racquelnina/MultiNetworkBatchingUsingASP/src/instances/industry/industry_test_7.lp -c weight=10000 -c max_freq=20 -c exposure_n=3 -c use_exposure=1 -c cap_size_divide=1 --time-limit=200 --outf=2 -t 1 --configuration=many
+  [clingcon stderr] *** Info : (clingcon): Sending shutdown signal...
+  [clingcon stderr] *** ERROR: (clingcon): solving stopped by signal
+  [clingcon stderr] *** Info : (clingcon): Shutdown completed in 1.231 seconds
+  Stage 1: UNSAT — no feasible flow
+
+══════════════════════════════════════════════════════════════════════
+  Instance: industry_test_8  (type=industry, size=industry, seed=8, time_limit=200s
+══════════════════════════════════════════════════════════════════════
+  Parsed: 35 parts, 5610 routes
+
+  [industry_test_8 w=0] Stage 1 solve (limit=200s, enc=stage_1_flow.lp)...
+  cmd: clingcon /home/racquelnina/MultiNetworkBatchingUsingASP/src/experiments/two_stage/final/encodings/stage_1_flow.lp /home/racquelnina/MultiNetworkBatchingUsingASP/src/instances/industry/industry_test_8.lp -c weight=0 -c max_freq=20 -c exposure_n=3 -c use_exposure=1 -c cap_size_divide=1 --time-limit=200 --outf=2 -t 1 --configuration=many
+  [clingcon stderr] *** Info : (clingcon): Sending shutdown signal...
+  [clingcon stderr] *** ERROR: (clingcon): solving stopped by signal
+  [clingcon stderr] *** Info : (clingcon): Shutdown completed in 1.336 seconds
+  Stage 1: UNSAT — no feasible flow
+
+  [industry_test_8 w=10000] Stage 1 solve (limit=200s, enc=stage_1_flow.lp)...
+  cmd: clingcon /home/racquelnina/MultiNetworkBatchingUsingASP/src/experiments/two_stage/final/encodings/stage_1_flow.lp /home/racquelnina/MultiNetworkBatchingUsingASP/src/instances/industry/industry_test_8.lp -c weight=10000 -c max_freq=20 -c exposure_n=3 -c use_exposure=1 -c cap_size_divide=1 --time-limit=200 --outf=2 -t 1 --configuration=many
+  [clingcon stderr] *** Info : (clingcon): Sending shutdown signal...
+  [clingcon stderr] *** ERROR: (clingcon): solving stopped by signal
+  [clingcon stderr] *** Info : (clingcon): Shutdown completed in 1.545 seconds
+  Stage 1: UNSAT — no feasible flow
+
+══════════════════════════════════════════════════════════════════════
+  Instance: industry_test_9  (type=industry, size=industry, seed=9, time_limit=200s
+══════════════════════════════════════════════════════════════════════
+  Parsed: 35 parts, 5610 routes
+
+  [industry_test_9 w=0] Stage 1 solve (limit=200s, enc=stage_1_flow.lp)...
+  cmd: clingcon /home/racquelnina/MultiNetworkBatchingUsingASP/src/experiments/two_stage/final/encodings/stage_1_flow.lp /home/racquelnina/MultiNetworkBatchingUsingASP/src/instances/industry/industry_test_9.lp -c weight=0 -c max_freq=20 -c exposure_n=3 -c use_exposure=1 -c cap_size_divide=1 --time-limit=200 --outf=2 -t 1 --configuration=many
+  [clingcon stderr] *** Info : (clingcon): Sending shutdown signal...
+  [clingcon stderr] *** ERROR: (clingcon): solving stopped by signal
+  [clingcon stderr] *** Info : (clingcon): Shutdown completed in 1.775 seconds
+  Stage 1: UNSAT — no feasible flow
+
+  [industry_test_9 w=10000] Stage 1 solve (limit=200s, enc=stage_1_flow.lp)...
+  cmd: clingcon /home/racquelnina/MultiNetworkBatchingUsingASP/src/experiments/two_stage/final/encodings/stage_1_flow.lp /home/racquelnina/MultiNetworkBatchingUsingASP/src/instances/industry/industry_test_9.lp -c weight=10000 -c max_freq=20 -c exposure_n=3 -c use_exposure=1 -c cap_size_divide=1 --time-limit=200 --outf=2 -t 1 --configuration=many
+  [clingcon stderr] *** Info : (clingcon): Sending shutdown signal...
+  [clingcon stderr] *** ERROR: (clingcon): solving stopped by signal
+  [clingcon stderr] *** Info : (clingcon): Shutdown completed in 1.687 seconds
+  Stage 1: UNSAT — no feasible flow
+
+══════════════════════════════════════════════════════════════════════
+  COMPLETE: 88 rows in 4549.3s
+  Results → experiments/two_stage/final/results/sweep_industry_heavy_test.csv
+══════════════════════════════════════════════════════════════════════

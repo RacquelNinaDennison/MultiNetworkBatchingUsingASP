@@ -549,3 +549,224 @@ nohup: ignoring input
 
   [layered_xlarge_seed3 w=2000] Stage 1 solve (limit=600s, enc=stage_1_flow.lp)...
   cmd: clingcon /home/racquelnina/MultiNetworkBatchingUsingASP/src/experiments/two_stage/final/encodings/stage_1_flow.lp /home/racquelnina/MultiNetworkBatchingUsingASP/src/instances/generated/layered_xlarge_seed3.lp -c weight=2000 -c max_freq=20 -c exposure_n=3 -c use_exposure=1 -c cap_size_divide=1 --time-limit=600 --outf=2 -t 1 --configuration=many
+  [clingcon stderr] *** Info : (clingcon): Sending shutdown signal...
+  [clingcon stderr] *** ERROR: (clingcon): solving stopped by signal
+  [clingcon stderr] *** Info : (clingcon): Shutdown completed in 0.006 seconds
+  Stage 1: cost=22886  routes=44  loads=132  optimal=False
+  R_TR=0.6333  worst_arc=(l1,l5,tr1)
+
+  [layered_xlarge_seed3 w=2000 s2=off_off] Stage 2 solve (enc=stage2_packing.lp)...
+  cmd: clingcon /tmp/s2_facts_szhzrcm8.lp /home/racquelnina/MultiNetworkBatchingUsingASP/src/experiments/two_stage/final/encodings/stage2_packing.lp -c weight=2000 -c hetero_on=0 -c concentrated_on=0 --time-limit=600 --outf=2 -t 1 --configuration=many
+  [clingcon stderr] *** Info : (clingcon): Sending shutdown signal...
+  [clingcon stderr] *** ERROR: (clingcon): solving stopped by signal
+  [clingcon stderr] *** Info : (clingcon): Shutdown completed in 0.001 seconds
+  mono=19  conc=90  optimal=False
+  R_1=0.8  worst_trip=(l3,l11,tr3,k2)
+  K_1=0.8
+  R_alpha: heaviest_single_0.2=0.6333  heaviest_global_0.2=0.0
+  First solution: R_1=0.8667  R_TR=0.3667  s1_time=0.718  s2_time=0.056
+
+  [layered_xlarge_seed3 w=2000 s2=hetero] Stage 2 solve (enc=stage2_packing.lp)...
+  cmd: clingcon /tmp/s2_facts_4x2xaz7c.lp /home/racquelnina/MultiNetworkBatchingUsingASP/src/experiments/two_stage/final/encodings/stage2_packing.lp -c weight=2000 -c hetero_on=1 -c concentrated_on=0 --time-limit=600 --outf=2 -t 1 --configuration=many
+  [clingcon stderr] *** Info : (clingcon): Sending shutdown signal...
+  [clingcon stderr] *** ERROR: (clingcon): solving stopped by signal
+  [clingcon stderr] *** Info : (clingcon): Shutdown completed in 0.001 seconds
+  mono=1  conc=91  optimal=False
+  R_1=0.8333  worst_trip=(l3,l11,tr3,k2)
+  K_1=0.8333
+  R_alpha: heaviest_single_0.2=0.6333  heaviest_global_0.2=0.0
+  First solution: R_1=0.8667  R_TR=0.3667  s1_time=0.718  s2_time=0.049
+
+  [layered_xlarge_seed3 w=2000 s2=conc] Stage 2 solve (enc=stage2_packing.lp)...
+  cmd: clingcon /tmp/s2_facts_a7jk_e3n.lp /home/racquelnina/MultiNetworkBatchingUsingASP/src/experiments/two_stage/final/encodings/stage2_packing.lp -c weight=2000 -c hetero_on=0 -c concentrated_on=1 --time-limit=600 --outf=2 -t 1 --configuration=many
+  [clingcon stderr] *** Info : (clingcon): Sending shutdown signal...
+  [clingcon stderr] *** ERROR: (clingcon): solving stopped by signal
+  [clingcon stderr] *** Info : (clingcon): Shutdown completed in 0.001 seconds
+  mono=27  conc=91  optimal=False
+  R_1=0.8333  worst_trip=(l9,l14,tr2,k8)
+  K_1=0.8333
+  R_alpha: heaviest_single_0.2=0.6667  heaviest_global_0.2=0.0
+  First solution: R_1=0.8667  R_TR=0.3667  s1_time=0.718  s2_time=0.052
+
+  [layered_xlarge_seed3 w=2000 s2=both] Stage 2 solve (enc=stage2_packing.lp)...
+  cmd: clingcon /tmp/s2_facts_itmingce.lp /home/racquelnina/MultiNetworkBatchingUsingASP/src/experiments/two_stage/final/encodings/stage2_packing.lp -c weight=2000 -c hetero_on=1 -c concentrated_on=1 --time-limit=600 --outf=2 -t 1 --configuration=many
+  [clingcon stderr] *** Info : (clingcon): Sending shutdown signal...
+  [clingcon stderr] *** ERROR: (clingcon): solving stopped by signal
+  [clingcon stderr] *** Info : (clingcon): Shutdown completed in 0.001 seconds
+  mono=25  conc=88  optimal=False
+  R_1=0.8  worst_trip=(l9,l14,tr2,k8)
+  K_1=0.8
+  R_alpha: heaviest_single_0.2=0.6667  heaviest_global_0.2=0.0
+  First solution: R_1=0.8667  R_TR=0.3667  s1_time=0.718  s2_time=0.049
+
+  [layered_xlarge_seed3 w=5000] Stage 1 solve (limit=600s, enc=stage_1_flow.lp)...
+  cmd: clingcon /home/racquelnina/MultiNetworkBatchingUsingASP/src/experiments/two_stage/final/encodings/stage_1_flow.lp /home/racquelnina/MultiNetworkBatchingUsingASP/src/instances/generated/layered_xlarge_seed3.lp -c weight=5000 -c max_freq=20 -c exposure_n=3 -c use_exposure=1 -c cap_size_divide=1 --time-limit=600 --outf=2 -t 1 --configuration=many
+  [clingcon stderr] *** Info : (clingcon): Sending shutdown signal...
+  [clingcon stderr] *** ERROR: (clingcon): solving stopped by signal
+  [clingcon stderr] *** Info : (clingcon): Shutdown completed in 0.006 seconds
+  Stage 1: cost=33988  routes=45  loads=121  optimal=False
+  R_TR=0.6  worst_arc=(l3,l5,tr3)
+
+  [layered_xlarge_seed3 w=5000 s2=off_off] Stage 2 solve (enc=stage2_packing.lp)...
+  cmd: clingcon /tmp/s2_facts_b7u2fzwq.lp /home/racquelnina/MultiNetworkBatchingUsingASP/src/experiments/two_stage/final/encodings/stage2_packing.lp -c weight=5000 -c hetero_on=0 -c concentrated_on=0 --time-limit=600 --outf=2 -t 1 --configuration=many
+  [clingcon stderr] *** Info : (clingcon): Sending shutdown signal...
+  [clingcon stderr] *** ERROR: (clingcon): solving stopped by signal
+  [clingcon stderr] *** Info : (clingcon): Shutdown completed in 0.001 seconds
+  mono=15  conc=93  optimal=False
+  R_1=0.7  worst_trip=(l2,l10,tr3,k3)
+  K_1=0.7
+  R_alpha: heaviest_single_0.2=0.6  heaviest_global_0.2=0.0
+  First solution: R_1=0.8667  R_TR=0.3667  s1_time=0.527  s2_time=0.049
+
+  [layered_xlarge_seed3 w=5000 s2=hetero] Stage 2 solve (enc=stage2_packing.lp)...
+  cmd: clingcon /tmp/s2_facts_df6zz6d9.lp /home/racquelnina/MultiNetworkBatchingUsingASP/src/experiments/two_stage/final/encodings/stage2_packing.lp -c weight=5000 -c hetero_on=1 -c concentrated_on=0 --time-limit=600 --outf=2 -t 1 --configuration=many
+  [clingcon stderr] *** Info : (clingcon): Sending shutdown signal...
+  [clingcon stderr] *** ERROR: (clingcon): solving stopped by signal
+  [clingcon stderr] *** Info : (clingcon): Shutdown completed in 0.001 seconds
+  mono=6  conc=97  optimal=False
+  R_1=0.8  worst_trip=(l2,l10,tr3,k3)
+  K_1=0.8
+  R_alpha: heaviest_single_0.2=0.6  heaviest_global_0.2=0.0
+  First solution: R_1=0.8667  R_TR=0.3667  s1_time=0.527  s2_time=0.047
+
+  [layered_xlarge_seed3 w=5000 s2=conc] Stage 2 solve (enc=stage2_packing.lp)...
+  cmd: clingcon /tmp/s2_facts_frmnlwqh.lp /home/racquelnina/MultiNetworkBatchingUsingASP/src/experiments/two_stage/final/encodings/stage2_packing.lp -c weight=5000 -c hetero_on=0 -c concentrated_on=1 --time-limit=600 --outf=2 -t 1 --configuration=many
+  [clingcon stderr] *** Info : (clingcon): Sending shutdown signal...
+  [clingcon stderr] *** ERROR: (clingcon): solving stopped by signal
+  [clingcon stderr] *** Info : (clingcon): Shutdown completed in 0.001 seconds
+  mono=29  conc=93  optimal=False
+  R_1=0.8333  worst_trip=(l3,l5,tr3,k1)
+  K_1=0.8333
+  R_alpha: heaviest_single_0.2=0.6333  heaviest_global_0.2=0.0
+  First solution: R_1=0.8667  R_TR=0.3667  s1_time=0.527  s2_time=0.047
+
+  [layered_xlarge_seed3 w=5000 s2=both] Stage 2 solve (enc=stage2_packing.lp)...
+  cmd: clingcon /tmp/s2_facts_tq1_mch7.lp /home/racquelnina/MultiNetworkBatchingUsingASP/src/experiments/two_stage/final/encodings/stage2_packing.lp -c weight=5000 -c hetero_on=1 -c concentrated_on=1 --time-limit=600 --outf=2 -t 1 --configuration=many
+  [clingcon stderr] *** Info : (clingcon): Sending shutdown signal...
+  [clingcon stderr] *** ERROR: (clingcon): solving stopped by signal
+  [clingcon stderr] *** Info : (clingcon): Shutdown completed in 0.001 seconds
+  mono=26  conc=92  optimal=False
+  R_1=0.8  worst_trip=(l3,l5,tr3,k3)
+  K_1=0.8
+  R_alpha: heaviest_single_0.2=0.6333  heaviest_global_0.2=0.0
+  First solution: R_1=0.8667  R_TR=0.3667  s1_time=0.527  s2_time=0.05
+
+══════════════════════════════════════════════════════════════════════
+  Instance: layered_xlarge_seed4  (type=layered, size=xlarge, seed=4, time_limit=600s
+══════════════════════════════════════════════════════════════════════
+  Parsed: 6 parts, 211 routes
+
+  [layered_xlarge_seed4 w=0] Stage 1 solve (limit=600s, enc=stage_1_flow.lp)...
+  cmd: clingcon /home/racquelnina/MultiNetworkBatchingUsingASP/src/experiments/two_stage/final/encodings/stage_1_flow.lp /home/racquelnina/MultiNetworkBatchingUsingASP/src/instances/generated/layered_xlarge_seed4.lp -c weight=0 -c max_freq=20 -c exposure_n=3 -c use_exposure=1 -c cap_size_divide=1 --time-limit=600 --outf=2 -t 1 --configuration=many
+  [clingcon stderr] *** Info : (clingcon): Sending shutdown signal...
+  [clingcon stderr] *** ERROR: (clingcon): solving stopped by signal
+  [clingcon stderr] *** Info : (clingcon): Shutdown completed in 0.007 seconds
+  Stage 1: cost=16215  routes=44  loads=124  optimal=False
+  R_TR=0.5333  worst_arc=(l3,l4,tr2)
+
+  [layered_xlarge_seed4 w=0 s2=off_off] Stage 2 solve (enc=stage2_packing.lp)...
+  cmd: clingcon /tmp/s2_facts_g4nceq9q.lp /home/racquelnina/MultiNetworkBatchingUsingASP/src/experiments/two_stage/final/encodings/stage2_packing.lp -c weight=0 -c hetero_on=0 -c concentrated_on=0 --time-limit=600 --outf=2 -t 1 --configuration=many
+  [clingcon stderr] *** Info : (clingcon): Sending shutdown signal...
+  [clingcon stderr] *** ERROR: (clingcon): solving stopped by signal
+  [clingcon stderr] *** Info : (clingcon): Shutdown completed in 0.000 seconds
+  mono=28  conc=84  optimal=False
+  R_1=0.7333  worst_trip=(l2,l8,tr2,k1)
+  K_1=0.7333
+  R_alpha: heaviest_single_0.2=0.7  heaviest_global_0.2=0.0
+  First solution: R_1=0.8667  R_TR=0.4667  s1_time=0.526  s2_time=0.056
+
+  [layered_xlarge_seed4 w=0 s2=hetero] Stage 2 solve (enc=stage2_packing.lp)...
+  cmd: clingcon /tmp/s2_facts_bzgcio8c.lp /home/racquelnina/MultiNetworkBatchingUsingASP/src/experiments/two_stage/final/encodings/stage2_packing.lp -c weight=0 -c hetero_on=1 -c concentrated_on=0 --time-limit=600 --outf=2 -t 1 --configuration=many
+  [clingcon stderr] *** Info : (clingcon): Sending shutdown signal...
+  [clingcon stderr] *** ERROR: (clingcon): solving stopped by signal
+  [clingcon stderr] *** Info : (clingcon): Shutdown completed in 0.000 seconds
+  mono=4  conc=102  optimal=False
+  R_1=0.7333  worst_trip=(l2,l8,tr2,k1)
+  K_1=0.7333
+  R_alpha: heaviest_single_0.2=0.6667  heaviest_global_0.2=0.0
+  First solution: R_1=0.8667  R_TR=0.4667  s1_time=0.526  s2_time=0.056
+
+  [layered_xlarge_seed4 w=0 s2=conc] Stage 2 solve (enc=stage2_packing.lp)...
+  cmd: clingcon /tmp/s2_facts_38r_upr4.lp /home/racquelnina/MultiNetworkBatchingUsingASP/src/experiments/two_stage/final/encodings/stage2_packing.lp -c weight=0 -c hetero_on=0 -c concentrated_on=1 --time-limit=600 --outf=2 -t 1 --configuration=many
+  [clingcon stderr] *** Info : (clingcon): Sending shutdown signal...
+  [clingcon stderr] *** ERROR: (clingcon): solving stopped by signal
+  [clingcon stderr] *** Info : (clingcon): Shutdown completed in 0.001 seconds
+  mono=32  conc=77  optimal=False
+  R_1=0.8  worst_trip=(l2,l5,tr2,k2)
+  K_1=0.8
+  R_alpha: heaviest_single_0.2=0.5667  heaviest_global_0.2=0.0
+  First solution: R_1=0.8667  R_TR=0.4667  s1_time=0.526  s2_time=0.058
+
+  [layered_xlarge_seed4 w=0 s2=both] Stage 2 solve (enc=stage2_packing.lp)...
+  cmd: clingcon /tmp/s2_facts_r0zmwfju.lp /home/racquelnina/MultiNetworkBatchingUsingASP/src/experiments/two_stage/final/encodings/stage2_packing.lp -c weight=0 -c hetero_on=1 -c concentrated_on=1 --time-limit=600 --outf=2 -t 1 --configuration=many
+  [clingcon stderr] *** Info : (clingcon): Sending shutdown signal...
+  [clingcon stderr] *** ERROR: (clingcon): solving stopped by signal
+  [clingcon stderr] *** Info : (clingcon): Shutdown completed in 0.002 seconds
+  mono=29  conc=77  optimal=False
+  R_1=0.8  worst_trip=(l2,l5,tr2,k2)
+  K_1=0.8
+  R_alpha: heaviest_single_0.2=0.5667  heaviest_global_0.2=0.0
+  First solution: R_1=0.8667  R_TR=0.4667  s1_time=0.526  s2_time=0.058
+
+  [layered_xlarge_seed4 w=1000] Stage 1 solve (limit=600s, enc=stage_1_flow.lp)...
+  cmd: clingcon /home/racquelnina/MultiNetworkBatchingUsingASP/src/experiments/two_stage/final/encodings/stage_1_flow.lp /home/racquelnina/MultiNetworkBatchingUsingASP/src/instances/generated/layered_xlarge_seed4.lp -c weight=1000 -c max_freq=20 -c exposure_n=3 -c use_exposure=1 -c cap_size_divide=1 --time-limit=600 --outf=2 -t 1 --configuration=many
+  [clingcon stderr] *** Info : (clingcon): Sending shutdown signal...
+  [clingcon stderr] *** ERROR: (clingcon): solving stopped by signal
+  [clingcon stderr] *** Info : (clingcon): Shutdown completed in 0.007 seconds
+  Stage 1: cost=22468  routes=44  loads=126  optimal=False
+  R_TR=0.5  worst_arc=(l2,l9,tr1)
+
+  [layered_xlarge_seed4 w=1000 s2=off_off] Stage 2 solve (enc=stage2_packing.lp)...
+  cmd: clingcon /tmp/s2_facts_6oqg9nen.lp /home/racquelnina/MultiNetworkBatchingUsingASP/src/experiments/two_stage/final/encodings/stage2_packing.lp -c weight=1000 -c hetero_on=0 -c concentrated_on=0 --time-limit=600 --outf=2 -t 1 --configuration=many
+  [clingcon stderr] *** Info : (clingcon): Sending shutdown signal...
+  [clingcon stderr] *** ERROR: (clingcon): solving stopped by signal
+  [clingcon stderr] *** Info : (clingcon): Shutdown completed in 0.000 seconds
+  mono=17  conc=89  optimal=False
+  R_1=0.7333  worst_trip=(l3,l9,tr2,k4)
+  K_1=0.7333
+  R_alpha: heaviest_single_0.2=0.5333  heaviest_global_0.2=0.0
+  First solution: R_1=0.8667  R_TR=0.4667  s1_time=0.527  s2_time=0.05
+
+  [layered_xlarge_seed4 w=1000 s2=hetero] Stage 2 solve (enc=stage2_packing.lp)...
+  cmd: clingcon /tmp/s2_facts__v2feu2o.lp /home/racquelnina/MultiNetworkBatchingUsingASP/src/experiments/two_stage/final/encodings/stage2_packing.lp -c weight=1000 -c hetero_on=1 -c concentrated_on=0 --time-limit=600 --outf=2 -t 1 --configuration=many
+  [clingcon stderr] *** Info : (clingcon): Sending shutdown signal...
+  [clingcon stderr] *** ERROR: (clingcon): solving stopped by signal
+  [clingcon stderr] *** Info : (clingcon): Shutdown completed in 0.000 seconds
+  mono=5  conc=88  optimal=False
+  R_1=0.7667  worst_trip=(l3,l9,tr2,k4)
+  K_1=0.7667
+  R_alpha: heaviest_single_0.2=0.5  heaviest_global_0.2=0.0
+  First solution: R_1=0.8667  R_TR=0.4667  s1_time=0.527  s2_time=0.05
+
+  [layered_xlarge_seed4 w=1000 s2=conc] Stage 2 solve (enc=stage2_packing.lp)...
+  cmd: clingcon /tmp/s2_facts_u7qc0gq8.lp /home/racquelnina/MultiNetworkBatchingUsingASP/src/experiments/two_stage/final/encodings/stage2_packing.lp -c weight=1000 -c hetero_on=0 -c concentrated_on=1 --time-limit=600 --outf=2 -t 1 --configuration=many
+  [clingcon stderr] *** Info : (clingcon): Sending shutdown signal...
+  [clingcon stderr] *** ERROR: (clingcon): solving stopped by signal
+  [clingcon stderr] *** Info : (clingcon): Shutdown completed in 0.001 seconds
+  mono=35  conc=82  optimal=False
+  R_1=0.7667  worst_trip=(l2,l9,tr1,k4)
+  K_1=0.7667
+  R_alpha: heaviest_single_0.2=0.5333  heaviest_global_0.2=0.0
+  First solution: R_1=0.8667  R_TR=0.4667  s1_time=0.527  s2_time=0.049
+
+  [layered_xlarge_seed4 w=1000 s2=both] Stage 2 solve (enc=stage2_packing.lp)...
+  cmd: clingcon /tmp/s2_facts_c97z4w8c.lp /home/racquelnina/MultiNetworkBatchingUsingASP/src/experiments/two_stage/final/encodings/stage2_packing.lp -c weight=1000 -c hetero_on=1 -c concentrated_on=1 --time-limit=600 --outf=2 -t 1 --configuration=many
+  [clingcon stderr] *** Info : (clingcon): Sending shutdown signal...
+  [clingcon stderr] *** ERROR: (clingcon): solving stopped by signal
+  [clingcon stderr] *** Info : (clingcon): Shutdown completed in 0.000 seconds
+  mono=29  conc=83  optimal=False
+  R_1=0.7333  worst_trip=(l3,l9,tr2,k4)
+  K_1=0.7333
+  R_alpha: heaviest_single_0.2=0.5667  heaviest_global_0.2=0.0
+  First solution: R_1=0.8667  R_TR=0.4667  s1_time=0.527  s2_time=0.045
+
+  [layered_xlarge_seed4 w=2000] Stage 1 solve (limit=600s, enc=stage_1_flow.lp)...
+  cmd: clingcon /home/racquelnina/MultiNetworkBatchingUsingASP/src/experiments/two_stage/final/encodings/stage_1_flow.lp /home/racquelnina/MultiNetworkBatchingUsingASP/src/instances/generated/layered_xlarge_seed4.lp -c weight=2000 -c max_freq=20 -c exposure_n=3 -c use_exposure=1 -c cap_size_divide=1 --time-limit=600 --outf=2 -t 1 --configuration=many
+  [clingcon stderr] *** Info : (clingcon): Sending shutdown signal...
+  [clingcon stderr] *** ERROR: (clingcon): solving stopped by signal
+  [clingcon stderr] *** Info : (clingcon): Shutdown completed in 0.008 seconds
+  Stage 1: cost=19635  routes=51  loads=123  optimal=False
+  R_TR=0.6333  worst_arc=(l3,l8,tr3)
+
+  [layered_xlarge_seed4 w=2000 s2=off_off] Stage 2 solve (enc=stage2_packing.lp)...
+  cmd: clingcon /tmp/s2_facts_b4yb9blc.lp /home/racquelnina/MultiNetworkBatchingUsingASP/src/experiments/two_stage/final/encodings/stage2_packing.lp -c weight=2000 -c hetero_on=0 -c concentrated_on=0 --time-limit=600 --outf=2 -t 1 --configuration=many

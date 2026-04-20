@@ -130,23 +130,6 @@ def solve_stage1(
     )
 
     for round_num in range(1, max_rounds + 1):
-        elapsed = time.perf_counter() - t0
-        if elapsed >= time_limit:
-            print(f"  Round {round_num}: overall time limit reached", flush=True)
-            break
-
-        remaining = min(round_timeout, int(time_limit - elapsed))
-        print(f"  Round {round_num}: solving (up to {remaining}s) "
-              f"{'[bound < ' + str(best_cost) + ']' if best_cost else '[no bound]'}",
-              end="", flush=True)
-
-        found_this_round: dict | None = None
-        found_cost: int | None = None
-
-        # Use ctl.interrupt() from a timer — safe with clingcon (unlike handle.cancel)
-        timer = threading.Timer(remaining, ctl.interrupt)
-        timer.start()
-
         try:
             with ctl.solve(yield_=True) as handle:
                 for model in handle:
@@ -161,9 +144,7 @@ def solve_stage1(
             # ctl.interrupt() can occasionally trigger a clingcon assertion;
             # treat as timeout — we still have best from previous rounds
             result = None
-        finally:
-            timer.cancel()
-
+   
         # ── Analyse this round ───────────────────────────────────────
         if optimum:
             best = found_this_round
@@ -576,7 +557,7 @@ def run_pipeline(
     instance_path: str | Path,
     *,
     cap_divide: int = 1,
-    max_freq: int = 6,
+    max_freq: int = 20,
     time_limit: int = 30,
     round_timeout: int = 30,
     show_facts: bool = False,

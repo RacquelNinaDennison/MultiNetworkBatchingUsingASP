@@ -1,4 +1,5 @@
-#const cap_size_divide = 1.
+#const cap_size_divide = 10.
+#const exposure_n = 3.
 #const max_freq = 20.
 
 totalSupply(P, Max) :- Max = #sum {V,L : demandOffer(P,L,V), V > 0}, part(P).
@@ -43,6 +44,27 @@ freq(1..max_freq).
         possibleFlow(F, T, TR, P), partSizeSmall(P, S) } <= 7 * TotalCap :-
     routeFreq(F, T, TR, Freq, TotalCap).
 
-#minimize { C*Freq, From, To, TR :
-    routeFreq(From, To, TR, Freq, _), route(From, To, TR, _, C) }.
+_transCost(From, To, TR, C*Freq) :-
+    routeFreq(From, To, TR, Freq, _),
+    route(From, To, TR, _, C).
 
+highExposure(F, T, TR, P) :-
+    possibleFlow(F, T, TR, P),
+    totalSupply(P, Total), Total > 0,
+    &sum { exposure_n * load(F, T, TR, P) } > Total.
+
+
+
+:~ highExposure(F, T, TR, P), use_exposure = 1. [weight@1, exposure, F, T, TR, P]
+:~ _transCost(F, T, TR, V). [V@1, trans, F, T, TR]
+
+
+#show.
+&show { load/4 }.
+#show highExposure/4.
+#show routeFreq/5.
+#show requiredNet/3.
+#show tRCapSmall/2.
+#show partSizeSmall/2.
+#show totalSupply/2.
+#show activeFlow/4.

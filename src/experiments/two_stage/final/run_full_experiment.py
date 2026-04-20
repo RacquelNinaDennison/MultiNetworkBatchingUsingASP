@@ -543,7 +543,7 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--time-xlarge",   type=int, default=300)
     p.add_argument("--time-industrylite", type=int, default=600)
     p.add_argument("--time-paper",    type=int, default=30)
-    p.add_argument("--time-industry", type=int, default=600)
+    p.add_argument("--time-industry", type=int, default=20000)
     p.add_argument("--max-freq",      type=int, default=20)
     p.add_argument("--cap-size-divide", type=int, default=1,
                    help="Divide capacities/part sizes by this factor "

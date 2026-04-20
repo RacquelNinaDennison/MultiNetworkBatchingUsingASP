@@ -24,10 +24,10 @@ actualFrequency(F, T, TR, Count) :-
 &sum { tripLoad(F, T, TR, P, K) : trip(F, T, TR, K) } = N :-
     totalLoad(F, T, TR, P, N).
 
-% Per-trip capacity: each trip must not exceed transport capacity
-&sum { S * tripLoad(F, T, TR, P, K) :
-        totalLoad(F, T, TR, P, _), partSize(P, S) } <= C :-
-    trip(F, T, TR, K), activeRoute(F, T, TR, _, C).
+% % Per-trip capacity: each trip must not exceed transport capacity
+% &sum { S * tripLoad(F, T, TR, P, K) :
+%         totalLoad(F, T, TR, P, _), partSize(P, S) } <= C :-
+%     trip(F, T, TR, K), activeRoute(F, T, TR, _, C).
 
 
 tripHasPart(F, T, TR, K, P) :-
@@ -54,12 +54,6 @@ overloaded(F, T, TR, P, K) :-
     &sum { tripLoad(F, T, TR, P, K) } > Fair,
     fairShare(F, T, TR, P, Fair), trip(F, T, TR, K).
 
-% Half-load threshold (kept for concentrated count metric)
-halfLoad(F, T, TR, P, N/2) :- totalLoad(F, T, TR, P, N), N > 1.
-concentrated(F, T, TR, P, K) :-
-    &sum { tripLoad(F, T, TR, P, K) } >= H,
-    halfLoad(F, T, TR, P, H), trip(F, T, TR, K).
-
 % Mono-part trips on routes with multiple part types
 monoTrip(F, T, TR, K) :-
     tripPartCount(F, T, TR, K, 1),
@@ -69,7 +63,6 @@ monoTrip(F, T, TR, K) :-
 :~ overloaded(F, T, TR, P, K), partVal(P, V), concentrated_on = 1.
    [V@2, F, T, TR, P, K, overload]
 :~ monoTrip(F, T, TR, K), hetero_on = 1. [1@2, F, T, TR, K]
-
 :~ usedTrip(F, T, TR, K). [1@1, F, T, TR, K]
 
 #show.

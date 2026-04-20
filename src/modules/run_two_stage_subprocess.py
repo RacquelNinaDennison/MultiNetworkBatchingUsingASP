@@ -187,6 +187,7 @@ class SubprocessTwoStage(BaseSolver):
         """Parse clingcon JSON output (--outf=2) for Stage 1."""
         try:
             data = json.loads(stdout)
+            print(data)
         except json.JSONDecodeError:
             print("  ERROR: could not parse JSON output")
             return None
@@ -258,6 +259,7 @@ class SubprocessTwoStage(BaseSolver):
             transportCapacity(TR, Cap).
             partSize(P, S).
             partVal(P, V).
+            routeCost(From, To, TR, C).
         """
         inst = self.instance_data
         lines: list[str] = []
@@ -280,6 +282,9 @@ class SubprocessTwoStage(BaseSolver):
 
         for p, v in sorted(inst["part_val"].items()):
             lines.append(f"partVal({p},{v}).")
+
+        for (fr, to, tr), cost in sorted(inst["route_cost"].items()):
+            lines.append(f"routeCost({fr},{to},{tr},{cost}).")
 
         return "\n".join(lines)
 

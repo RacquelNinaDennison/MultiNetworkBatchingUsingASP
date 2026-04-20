@@ -114,9 +114,9 @@ All commands assume you are in the `src/` directory.
 nohup uv run experiments/two_stage/final/run_full_experiment.py \
     --skip-industry \
     --instance-filter layered_paper \
-    --weights 0 300 \
-    --time-paper 60 \
-    -o experiments/two_stage/final/results/sweep_paper.csv \
+    --weights 0 600 \
+    --time-paper 600 \
+    -o experiments/two_stage/final/results/sweep_paper_v2.csv \
     > experiments/two_stage/final/results/sweep_paper.log 2>&1 &
 ```
 11876
@@ -199,10 +199,10 @@ nohup python experiments/two_stage/final/run_full_experiment.py \
 Uses the same resilience encodings as the layered instances (`stage_1_flow.lp` + `stage2_packing.lp`). These are much harder for the solver at industry scale (50 locs, 35 parts, 5610 routes), so longer time limits are needed. Many instances may not find a feasible model within the limit.
 
 ```bash
-nohup python experiments/two_stage/final/run_full_experiment.py \
+nohup uv run experiments/two_stage/final/run_full_experiment.py \
     --skip-layered \
-    --weights 0 1000 \
-    --time-industry 1800 \
+    --weights 0 10000 \
+    --time-industry 200 \
     -o experiments/two_stage/final/results/sweep_industry_heavy.csv \
     > experiments/two_stage/final/results/sweep_industry_heavy.log 2>&1 &
 ```
@@ -240,10 +240,10 @@ The R_alpha metric is computed automatically in the experiment runner. To genera
 nohup uv run experiments/two_stage/final/run_full_experiment.py \
     --skip-industry \
     --instance-filter layered_small \
-    --weights 0 300 500 750 1000 \
-    --time-small 60 --configuration many \
-    -o experiments/two_stage/final/results/sweep_small_ralpha.csv \
-    > experiments/two_stage/final/results/sweep_small_ralpha.log 2>&1 &
+    --weights 0 300 500 750 1000 1500 \
+    --time-small 600 --configuration many \
+    -o experiments/two_stage/final/results/sweep_small_ralpha_v2.csv \
+    > experiments/two_stage/final/results/sweep_small_ralpha_v2.log 2>&1 &
 ```
 
 **Medium (with R_alpha, ~3 hr):**
@@ -251,9 +251,9 @@ nohup uv run experiments/two_stage/final/run_full_experiment.py \
 nohup uv run experiments/two_stage/final/run_full_experiment.py \
     --skip-industry \
     --instance-filter layered_medium \
-    --weights 0 300 500 750 1000 \
-    --time-medium 120 --configuration many \
-    -o experiments/two_stage/final/results/sweep_medium_ralpha.csv \
+    --weights 0 300 500 750 1000 1500\
+    --time-medium 600 --configuration many \
+    -o experiments/two_stage/final/results/sweep_medium_ralpha_v2.csv \
     > experiments/two_stage/final/results/sweep_medium_ralpha.log 2>&1 &
 ```
 
@@ -262,9 +262,9 @@ nohup uv run experiments/two_stage/final/run_full_experiment.py \
 nohup uv run experiments/two_stage/final/run_full_experiment.py \
     --skip-industry \
     --instance-filter layered_xlarge \
-    --weights 0 1000 \
+    --weights 0 1000 2000 5000 \
     --time-xlarge 600 --configuration many \
-    -o experiments/two_stage/final/results/sweep_xlarge_ralpha.csv \
+    -o experiments/two_stage/final/results/sweep_xlarge_ralpha_v2.csv \
     > experiments/two_stage/final/results/sweep_xlarge_ralpha.log 2>&1 &
 ```
 
@@ -273,9 +273,9 @@ nohup uv run experiments/two_stage/final/run_full_experiment.py \
 nohup uv run experiments/two_stage/final/run_full_experiment.py \
     --skip-industry \
     --instance-filter layered_industrylite \
-    --weights 0 1000 \
-    --time-industrylite 900 --configuration many \
-    -o experiments/two_stage/final/results/sweep_industrylite_ralpha.csv \
+    --weights 0 2000 \
+    --time-industrylite 600 --configuration many \
+    -o experiments/two_stage/final/results/sweep_industrylite_ralpha_v2.csv \
     > experiments/two_stage/final/results/sweep_industrylite_ralpha.log 2>&1 &
 ```
 
@@ -283,9 +283,9 @@ nohup uv run experiments/two_stage/final/run_full_experiment.py \
 ```bash
 nohup uv run experiments/two_stage/final/run_full_experiment.py \
     --skip-layered \
-    --weights 0 \
-    --time-industry 2500 --configuration many \
-    -o experiments/two_stage/final/results/sweep_industry_ralpha.csv \
+    --weights 0 100000\
+    --time-industry 20000 --configuration many \
+    -o experiments/two_stage/final/results/sweep_industry_ralpha_full_run_12h.csv \
     > experiments/two_stage/final/results/sweep_industry_ralpha.log 2>&1 &
 ```
 

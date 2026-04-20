@@ -22,7 +22,7 @@ import argparse
 import sys
 from collections import defaultdict
 from pathlib import Path
-
+from modules.run_two_stage_pipeline import RunTwoStagePipeline
 from modules.run_naive import RunNaive
 from modules.run_clingcon import RunClingcon
 from modules.run_two_stage_naive import RunNaiveTwoStage
@@ -571,8 +571,12 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "--solver",
         choices=["naive", "clingcon", "twostage-naive", "twostage-clingcon",
-                 "twostage-subprocess"],
+                 "twostage-subprocess", "twostage-pipeline"],
         required=True, help="Solver to use",
+    )
+    parser.add_argument(
+        "--json-model", type=str, default=None,
+        help="Path to stage 1 JSON output file (for twostage-pipeline)",
     )
     parser.add_argument(
         "--output", "-o", type=str, default=None,
@@ -582,7 +586,7 @@ def build_parser() -> argparse.ArgumentParser:
         "--instance", "-i", default=None, help="Instance .lp file",
     )
     parser.add_argument(
-        "--time-limit", type=int, default=30, help="Time limit in seconds",
+        "--time-limit", type=int, default=200, help="Time limit in seconds",
     )
     parser.add_argument(
         "--bins", type=int, default=1, help="Number of bins",
@@ -606,6 +610,19 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--cap-divide", type=int, default=1000)
     parser.add_argument("--round-timeout", type=int, default=30)
     parser.add_argument("--configurations", type=bool, default=False)
+    parser.add_argument(
+        "--alpha", type=float, nargs="+", default=[0.1, 0.2, 0.3, 0.5],
+        help="Alpha value(s) for r_alpha computation (twostage-pipeline only)",
+    )
+    parser.add_argument(
+        "--r-alpha-mode", choices=["single", "global"], default="single",
+        help="Disruption mode for r_alpha: single arc or all arcs (default: single)",
+    )
+    parser.add_argument(
+        "--r-alpha-strategy", choices=["heaviest", "first", "last"],
+        default="heaviest",
+        help="Trip selection strategy for r_alpha (default: heaviest)",
+    )
     return parser
 
 
@@ -666,6 +683,48 @@ def main() -> int:
             max_freq=args.max_freq,
             weight=args.weight,
         )
+    elif args.solver == "twostage-pipeline":
+        if not args.json_model:
+            print("Error: --json-model is required for twostage-pipeline",
+                  file=sys.stderr)
+            return 1
+        json_path = Path(args.json_model)
+        if not json_path.exists():
+            print(f"Error: JSON model file not found: {json_path}",
+                  file=sys.stderr)
+            return 1
+        solver = RunTwoStagePipeline(
+            str(instance),
+            json_path=str(json_path),
+            time_limit=args.time_limit,
+            weight=args.weight,
+        )
+        result = solver.solve()
+        if result is None:
+            return 1
+
+        # ── R_alpha resilience metrics ────────────────────────────────
+        inst = parse_instance(str(instance))
+        loads     = result["_stage1"]["loads"]
+        trip_loads = result["_stage2"]["trip_loads"]
+
+        print("═" * 65)
+        print("  R_ALPHA RESILIENCE")
+        print("═" * 65)
+        for mode in ["single", "global"]:
+            print(f"  [{mode}]")
+            for alpha in args.alpha:
+                r_alpha, _ = compute_r_alpha(
+                    trip_loads, loads, inst,
+                    alpha=alpha,
+                    mode=mode,
+                    strategy=args.r_alpha_strategy,
+                )
+                print(f"    α={alpha:.2f}  strategy={args.r_alpha_strategy}:"
+                      f"  {r_alpha}")
+            print()
+        print()
+        return 0
     else:
         print(f"Error: unknown solver {args.solver!r}", file=sys.stderr)
         return 1

@@ -2,11 +2,13 @@
 
 Project investigating supply chain resilience through a two-stage decomposition of the multi-commodity network batching problem. Stage 1 solves aggregate network flow; Stage 2 solves per-trip bin packing. Resilience metrics are computed via max-flow simulation of arc and trip disruptions.
 
+> **The main entry point for all solvers and experiments is the `new_code/` directory**, which contains the `multibatch` Python package. The legacy `src/` directory holds earlier prototype code and is retained for reference only.
+
 ---
 
 ## Problem Overview
 
-This project aims to solve the multi batching problem whereby multiple parts need to be assigned to transport resources which are routed around a network. The problem is solved using a logic programming language, ASP. 
+This project solves the multi-batching problem: multiple part types must be assigned to transport resources routed around a logistics network. The problem is formulated and solved using Answer Set Programming (ASP), with both pure ASP and clingcon (ASP + constraint programming) backends.
 
 ---
 
@@ -55,37 +57,41 @@ Computed via max-flow simulation on the trip-level solution:
 
 ```
 combined_encodings/
-├── src/
-│   ├── main.py                          # CLI entry point
-│   ├── modules/                         # Solver implementations
-│   │   ├── run_two_stage.py             # Two-stage pipeline (clingcon)
-│   │   ├── run_two_stage_naive.py       # Two-stage pipeline (pure ASP)
-│   │   ├── run_two_stage_pipeline.py    # Pipeline from pre-computed Stage 1
-│   │   ├── base_solver.py               # Abstract solver interface
-│   │   └── checking.py                  # Solution validation
-│   ├── encoding/
-│   │   ├── twostage/clingcon/           # Clingcon ASP encodings (Stage 1 + Stage 2)
-│   │   └── twostage/naive/             # Pure ASP encodings
-│   ├── instances/
-│   │   ├── generated/                   # Synthetic instances (small → xlarge)
-│   │   └── industry/                    # Industry-derived instances
-│   └── experiments/
-│       └── two_stage/final/
-│           ├── run_full_experiment.py   # Main experiment runner
-│           ├── generate_reports.py      # CSV summaries and analysis tables
-│           └── plot_*.py               # Visualisation scripts
-└── pyproject.toml
+├── new_code/                            # Main package (start here)
+│   ├── pyproject.toml                   # Package config & dependencies
+│   ├── uv.lock
+│   └── src/multibatch/
+│       ├── cli.py                       # CLI entry point
+│       ├── models/                      # Pydantic data models (Instance, Config, Solution)
+│       ├── instance/                    # Instance .lp parser
+│       ├── solvers/                     # Solver implementations
+│       │   ├── naive.py                 # Pure ASP one-shot solver
+│       │   ├── clingcon.py              # Clingcon one-shot solver
+│       │   ├── twostage_naive.py        # Two-stage pure ASP
+│       │   └── twostage_clingcon.py     # Two-stage clingcon
+│       ├── encodings/                   # ASP/LP encoding files
+│       │   ├── naive/                   # Pure ASP encodings
+│       │   ├── clingcon/                # Clingcon encodings
+│       │   └── twostage/               # Two-stage encodings (naive + clingcon)
+│       ├── verification/                # Solution correctness checks
+│       ├── metrics/                     # Quality and resilience metrics
+│       ├── reporting/                   # Console output formatting
+│       ├── visualisation/               # Network visualisation
+│       ├── experiments/                 # Benchmarking and experiment runners
+│       └── instances/                   # Problem instances
+│           └── generated/               # Synthetic instances (paper → xlarge)
+└── src/                                 # Legacy prototype code (reference only)
 ```
 
 ---
 
 ## Installation
 
-Requires Python ≥ 3.13 and [`uv`](https://github.com/astral-sh/uv).
+Requires Python ≥ 3.11 and [`uv`](https://github.com/astral-sh/uv).
 
 ```bash
 git clone <repo-url>
-cd combined_encodings
+cd combined_encodings/new_code
 uv sync
 ```
 
@@ -93,60 +99,92 @@ uv sync
 
 | Package | Purpose |
 |---|---|
+| `clingo` | ASP solver |
 | `clingcon` | ASP + constraint solving |
-| `networkx` + `scipy` | Max-flow for resilience metrics |
-| `pandas` | Experiment result aggregation |
-| `matplotlib` | Plotting |
+| `pydantic` | Data models |
+| `scipy` | Network flow for resilience metrics |
 
 ---
 
 ## Usage
 
+All commands run from the `new_code/` directory.
+
 ### Single solve
 
 ```bash
-# Two-stage pipeline on a small instance
-uv run src/main.py \
-    --solver twostage-clingcon \
-    --instance src/instances/generated/paper.lp
+# Naive one-shot solver (pure ASP)
+uv run multibatch --solver naive_oneshot \
+    -i src/multibatch/instances/generated/layered_paper.lp \
+    --bins 2 --time-limit 60
 
-# With custom timeouts
-uv run src/main.py \
-    --solver twostage-clingcon \
-    --instance src/instances/generated/paper.lp \
-    --round-timeout 30 \
-    --max-rounds 10
+# Clingcon one-shot solver
+uv run multibatch --solver clingcon_oneshot \
+    -i src/multibatch/instances/generated/layered_paper.lp \
+    --bins 2 --time-limit 60
+
+# Two-stage naive solver
+uv run multibatch --solver twostage_naive \
+    -i src/multibatch/instances/generated/layered_paper.lp \
+    --bins 2 --time-limit 60
+
+# Two-stage clingcon solver
+uv run multibatch --solver twostage_clingcon \
+    -i src/multibatch/instances/generated/layered_paper.lp \
+    --bins 2 --time-limit 60
+
+# Use basic (non-optimised) encoding
+uv run multibatch --solver naive_oneshot \
+    -i src/multibatch/instances/generated/layered_paper.lp \
+    --no-optimised --bins 2
+
+# Skip verification
+uv run multibatch --solver naive_oneshot \
+    -i src/multibatch/instances/generated/layered_paper.lp \
+    --no-verify
 ```
 
-### Full experiment
+### Python API
 
-Sweeps across instances, Stage 2 configurations, and resilience weight settings:
+```python
+from multibatch.instance import parse_instance
+from multibatch.solvers.naive import NaiveOneShotSolver
+from multibatch.solvers.clingcon import ClingconOneShotSolver
+from multibatch.models import NaiveOneShotConfig, ClingconOneShotConfig
+from multibatch.verification import verify_solution
 
-```bash
-# Small instances (~1.3h)
-uv run src/experiments/two_stage/final/run_full_experiment.py \
-    --size small --output results/small.json
+# Parse instance
+instance = parse_instance("src/multibatch/instances/generated/layered_small_seed1.lp")
 
-# Medium instances (~5h)
-uv run src/experiments/two_stage/final/run_full_experiment.py \
-    --size medium --output results/medium.json
+# Configure and run solver
+config = NaiveOneShotConfig(num_bins=2, time_limit=30)
+solver = NaiveOneShotSolver("src/multibatch/instances/generated/layered_small_seed1.lp", config)
+result = solver.solve()
+
+# Check result
+if result:
+    passed, errors = verify_solution(result, instance)
+    print(f"Optimum: {result.metadata.optimum}")
+    print(f"Time: {result.metadata.total_time}s")
+    print(f"Valid: {passed}")
 ```
 
-### Reports and plots
+---
 
-```bash
-uv run src/experiments/two_stage/final/generate_reports.py \
-    --input results/ --output reports/
+## Solver Backends
 
-uv run src/experiments/two_stage/final/plot_paper.py \
-    --input results/ --output figures/
-```
+| Backend | Description |
+|---|---|
+| `naive_oneshot` | Pure ASP monolithic encoding with weak constraints |
+| `clingcon_oneshot` | Uses CSP integer variables for flow and frequency |
+| `twostage_naive` | Two-stage pipeline using pure ASP |
+| `twostage_clingcon` | Two-stage pipeline using clingcon CSP variables |
 
 ---
 
 ## Instance Format
 
-Instances are written in ASP fact format:
+Instances are ASP fact files (`.lp`):
 
 ```prolog
 % Locations and parts
@@ -165,20 +203,6 @@ partVal(p1, 1000).           % value per unit (for holding cost)
 transportCapacity(tr1, 15).
 route(l1, l2, tr1, 100, 500).  % From, To, Transport, Distance, Cost
 ```
-
-Instance generators are in `src/instances/modules/`.
-
----
-
-## Solver Backends
-
-| Backend | Description |
-|---|---|
-| `twostage-clingcon` | Two-stage pipeline using clingcon CSP variables (recommended) |
-| `twostage-naive` | Two-stage pipeline using pure ASP (grounding-heavy) |
-| `twostage-pipeline` | Load pre-computed Stage 1 from JSON, run Stage 2 only |
-| `clingcon` | Single-stage clingcon (baseline comparison) |
-| `naive` | Single-stage pure ASP (baseline comparison) |
 
 ---
 

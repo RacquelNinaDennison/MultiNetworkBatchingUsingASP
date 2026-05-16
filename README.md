@@ -154,7 +154,8 @@ uv run multibatch --solver naive_oneshot \
 ```
 
 
-image.png
+<img width="1006" height="473" alt="image" src="https://github.com/user-attachments/assets/24df37d9-dfee-40cd-8f7a-1c409fc6abf2" />
+
 
 
 ### Python API

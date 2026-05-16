@@ -144,6 +144,19 @@ uv run multibatch --solver naive_oneshot \
     --no-verify
 ```
 
+Futhermore, to visualise the packings, run 
+
+```
+uv run multibatch --solver naive_oneshot \
+    -i src/multibatch/instances/generated/layered_paper.lp \
+    --visualise
+
+```
+
+
+image.png
+
+
 ### Python API
 
 ```python

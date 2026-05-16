@@ -1,8 +1,3 @@
-bins(1).
-numFlow(0..15).
-numFreq(0..15).
-numParts(0..3).
-
 netdemandSupply(P,L,0) :- not demandOffer(P,L,_), part(P), location(L).
 netdemandSupply(P,L,D) :- demandOffer(P,L,D).
 
@@ -37,6 +32,3 @@ is_producer(P, L) :- demandOffer(P, L, D), D > 0.
     freq(ID,From,To,TR,F), 
     route(From,To,TR,Distance,Cost)}.
 
-#show pack/6.
-#show freq/5.
-% #show flow/4.

@@ -9,8 +9,6 @@ giving consistent field names and type safety.
 
 from __future__ import annotations
 
-from typing import Any
-
 from pydantic import BaseModel, Field
 
 
@@ -23,11 +21,15 @@ class SolveMetadata(BaseModel):
     """Timing and optimality info attached to any solve result."""
 
     ground_time: float = 0.0
+    solve_time: float = 0.0
     total_time: float = 0.0
     optimum: bool = False
+    satisfiable: bool = False
     cost: int | None = None
-    clingo_stats_solver: dict[str, Any] = None
-    clingo_stats_grounding: dict[str, Any] = None
+    choices: int = 0
+    conflicts: int = 0
+    restarts: int = 0
+    atoms: int = 0
     trajectory: list[dict] = Field(default_factory=list)
 
 

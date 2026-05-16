@@ -96,6 +96,116 @@ def print_oneshot_result(result: OneShotResult, instance: Instance) -> None:
 
 
 def print_twostage_result(result: TwoStageResult, instance: Instance) -> None:
-    """Display a two-stage result with stage 1 flows, stage 2 packings, metrics."""
-    # TODO: implement when two-stage solvers are ported
-    raise NotImplementedError
+    """Display a two-stage result with stage 1 flows and stage 2 packings.
+
+    Format:
+        STAGE 1 — ROUTE FREQUENCIES
+          l1 -> l2 via tr1  freq=3  totalCap=57  (per-trip cap=19)
+
+        STAGE 1 — AGGREGATE LOADS
+          [l1 -> l2] via tr1: p1=5, p2=3
+
+        STAGE 2 — PER-TRIP PACKINGS
+          [l1 -> l2] via tr1  (cap=19, 3 trips used):
+            trip 1: [5xp1, 2xp2]  (weight=15/19)
+            trip 2: [3xp2]        (weight=9/19)
+    """
+    s1 = result.stage1
+    s2 = result.stage2
+
+    # ── Stage 1: Route frequencies ─────────────────────────────────────
+    print()
+    print("─" * 55)
+    print("  STAGE 1 — ROUTE FREQUENCIES")
+    print("─" * 55)
+
+    if not s1.route_freqs:
+        print("  (no active routes)")
+    else:
+        for rf in sorted(s1.route_freqs, key=lambda r: (r.origin, r.destination, r.transport)):
+            cap = instance.transport_capacity.get(rf.transport, 0)
+            print(f"  {rf.origin} -> {rf.destination} via {rf.transport}  "
+                  f"freq={rf.frequency}  totalCap={rf.total_capacity}  "
+                  f"(per-trip cap={cap})")
+
+    # ── Stage 1: Aggregate loads ───────────────────────────────────────
+    print()
+    print("─" * 55)
+    print("  STAGE 1 — AGGREGATE LOADS")
+    print("─" * 55)
+
+    route_loads: dict[tuple[str, str, str], dict[str, int]] = defaultdict(dict)
+    for (f, t, tr, p), n in s1.loads.items():
+        route_loads[(f, t, tr)][p] = n
+
+    if not route_loads:
+        print("  (no loads)")
+    else:
+        for (f, t, tr) in sorted(route_loads):
+            parts = route_loads[(f, t, tr)]
+            items = ", ".join(f"{p}={n}" for p, n in sorted(parts.items()))
+            print(f"  [{f} -> {t}] via {tr}: {items}")
+
+    if s1.high_exposure:
+        print()
+        print(f"  High-exposure arcs: {len(s1.high_exposure)}")
+        for (ef, et, etr, ep) in s1.high_exposure:
+            print(f"    {ef} -> {et} via {etr}, part {ep}")
+
+    # ── Stage 2: Per-trip packings ─────────────────────────────────────
+    print()
+    print("─" * 55)
+    print("  STAGE 2 — PER-TRIP PACKINGS")
+    print("─" * 55)
+
+    # Group trip_loads by route → trip → {part: qty}
+    trips: dict[tuple[str, str, str], dict[int, dict[str, int]]] = defaultdict(
+        lambda: defaultdict(dict)
+    )
+    for (f, t, tr, p, k), q in s2.trip_loads.items():
+        trips[(f, t, tr)][k][p] = q
+
+    if not trips:
+        print("  (no packings)")
+    else:
+        for (f, t, tr) in sorted(trips):
+            cap = instance.transport_capacity.get(tr, 0)
+            n_trips = len(trips[(f, t, tr)])
+            print(f"  [{f} -> {t}] via {tr}  (cap={cap}, {n_trips} trips used):")
+
+            for k in sorted(trips[(f, t, tr)]):
+                parts = trips[(f, t, tr)][k]
+                items = ", ".join(f"{p} x{q}" for p, q in sorted(parts.items()))
+                weight = sum(
+                    q * instance.part_size.get(p, 0) for p, q in parts.items()
+                )
+                print(f"    trip {k}: [{items}]  (weight={weight}/{cap})")
+            print()
+
+    # ── Statistics ─────────────────────────────────────────────────────
+    print("─" * 55)
+    print("  STATISTICS")
+    print("─" * 55)
+
+    print(f"  Active routes:     {len(s1.route_freqs)}")
+    print(f"  Non-zero loads:    {len(s1.loads)}")
+    total_trips_used = len(s2.used_trips)
+    print(f"  Trips used:        {total_trips_used}")
+    print(f"  Mono-part trips:   {s2.mono_count}")
+    print(f"  Concentrated:      {s2.concentrated_count}")
+    print()
+    print(f"  S1 ground time:    {s1.metadata.ground_time}s")
+    print(f"  S1 solve time:     {s1.metadata.solve_time}s")
+    print(f"  S1 total time:     {s1.metadata.total_time}s")
+    print(f"  S1 optimum:        {s1.metadata.optimum}")
+    print(f"  S1 cost:           {s1.metadata.cost}")
+    print()
+    print(f"  S2 ground time:    {s2.metadata.ground_time}s")
+    print(f"  S2 solve time:     {s2.metadata.solve_time}s")
+    print(f"  S2 total time:     {s2.metadata.total_time}s")
+    print(f"  S2 optimum:        {s2.metadata.optimum}")
+    print(f"  S2 cost:           {s2.metadata.cost}")
+    print()
+    print(f"  Combined time:     {result.total_time:.3f}s")
+    print(f"  Both optimal:      {result.optimum}")
+    print()

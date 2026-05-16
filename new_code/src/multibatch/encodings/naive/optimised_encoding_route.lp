@@ -30,11 +30,7 @@ feasiblePackN(P,TR,N) :-
     bins(ID),
     part(P).
 
-% no positive pack on impossible arcs
-:- pack(N,P,ID,From,To,TR), N > 0, is_consumer(P,From).
-:- pack(N,P,ID,From,To,TR), N > 0, is_producer(P,To).
 
-% capacity of each bin
 :- #sum {
         N*Size, P :
             pack(N,P,ID,From,To,TR),

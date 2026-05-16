@@ -87,6 +87,7 @@ class NaiveOneShotSolver(BaseSolver):
         ground_time = time.perf_counter() - t0
 
         best: dict | None = None
+        best_cost: int | None = None
         optimum = False
 
         timer = threading.Timer(self.config.time_limit, ctl.interrupt)
@@ -96,12 +97,12 @@ class NaiveOneShotSolver(BaseSolver):
             with ctl.solve(yield_=True) as handle:
                 for model in handle:
                     best = self._extract(model)
+                    best_cost = model.cost[0] if model.cost else None
                     if model.optimality_proven:
                         optimum = True
                         break
                 solve_result = handle.get()
-                if not optimum and solve_result.satisfiable:    
-                    clingo_stats=ctl.statistics['solving']
+                if not optimum and solve_result.exhausted:
                     optimum = True
         except RuntimeError:
             pass
@@ -109,6 +110,21 @@ class NaiveOneShotSolver(BaseSolver):
             timer.cancel()
 
         total_time = time.perf_counter() - t0
+        solve_time = total_time - ground_time
+
+        # Extract solver statistics
+        choices = conflicts = restarts = atoms = 0
+        try:
+            s = ctl.statistics['solving']['solvers']
+            choices = int(s['choices'])
+            conflicts = int(s['conflicts'])
+            restarts = int(s['restarts'])
+        except (KeyError, IndexError, TypeError):
+            pass
+        try:
+            atoms = int(ctl.statistics['problem']['lp']['atoms'])
+        except (KeyError, IndexError, TypeError):
+            pass
 
         if best is None:
             return None
@@ -116,10 +132,15 @@ class NaiveOneShotSolver(BaseSolver):
         return OneShotResult(
             metadata=SolveMetadata(
                 ground_time=round(ground_time, 3),
+                solve_time=round(solve_time, 3),
                 total_time=round(total_time, 3),
                 optimum=optimum,
-                clingo_stats=clingo_stats,
-                clingo_stats_grounding=ctl.statistics,
+                satisfiable=True,
+                cost=best_cost,
+                choices=choices,
+                conflicts=conflicts,
+                restarts=restarts,
+                atoms=atoms,
             ),
             pack=best["pack"],
             freq=best["freq"],

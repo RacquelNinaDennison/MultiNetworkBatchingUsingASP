@@ -11,10 +11,21 @@ import argparse
 import sys
 from pathlib import Path
 
-from .models import SolverType, NaiveOneShotConfig
+from .models import (
+    SolverType,
+    NaiveOneShotConfig,
+    ClingconOneShotConfig,
+    TwoStageNaiveConfig,
+    TwoStageClingconConfig,
+    OneShotResult,
+    TwoStageResult,
+)
 from .solvers.naive import NaiveOneShotSolver
+from .solvers.clingcon import ClingconOneShotSolver
+from .solvers.twostage_naive import NaiveTwoStageSolver
+from .solvers.twostage_clingcon import ClingconTwoStageSolver
 from .verification import verify_solution
-from .reporting.console import print_oneshot_result
+from .reporting.console import print_oneshot_result, print_twostage_result
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -34,13 +45,47 @@ def _build_naive_oneshot(args) -> NaiveOneShotSolver:
     )
 
 
-# Add new solvers here as they are ported
+def _build_clingcon_oneshot(args) -> ClingconOneShotSolver:
+    config = ClingconOneShotConfig(
+        num_bins=args.bins,
+        time_limit=args.time_limit,
+        max_freq=args.max_freq,
+    )
+    return ClingconOneShotSolver(
+        instance_path=args.instance,
+        config=config,
+    )
+
+
+def _build_twostage_naive(args) -> NaiveTwoStageSolver:
+    config = TwoStageNaiveConfig(
+        time_limit=args.time_limit,
+        max_freq=args.max_freq,
+        weight=args.weight,
+    )
+    return NaiveTwoStageSolver(
+        instance_path=args.instance,
+        config=config,
+    )
+
+
+def _build_twostage_clingcon(args) -> ClingconTwoStageSolver:
+    config = TwoStageClingconConfig(
+        time_limit=args.time_limit,
+        max_freq=args.max_freq,
+        weight=args.weight,
+    )
+    return ClingconTwoStageSolver(
+        instance_path=args.instance,
+        config=config,
+    )
+
+
 SOLVER_REGISTRY = {
     SolverType.NAIVE_ONESHOT: _build_naive_oneshot,
-    # SolverType.CLINGCON_ONESHOT: _build_clingcon_oneshot,
-    # SolverType.TWOSTAGE_NAIVE: _build_twostage_naive,
-    # SolverType.TWOSTAGE_CLINGCON: _build_twostage_clingcon,
-    # SolverType.TWOSTAGE_SUBPROCESS: _build_twostage_subprocess,
+    SolverType.CLINGCON_ONESHOT: _build_clingcon_oneshot,
+    SolverType.TWOSTAGE_NAIVE: _build_twostage_naive,
+    SolverType.TWOSTAGE_CLINGCON: _build_twostage_clingcon,
 }
 
 
@@ -61,13 +106,17 @@ def build_parser() -> argparse.ArgumentParser:
     )
     parser.add_argument("--instance", "-i", required=True, help="Instance .lp file")
     parser.add_argument("--time-limit", type=int, default=30, help="Time limit in seconds")
-    parser.add_argument("--bins", type=int, default=1, help="Number of bins (one-shot solvers)")
+    parser.add_argument("--bins", type=int, default=1, help="Number of bins")
     parser.add_argument("--max-freq", type=int, default=20, help="Maximum frequency")
     parser.add_argument("--weight", type=int, default=1, help="Objective weight (two-stage)")
     parser.add_argument("--optimised", action="store_true", default=True)
     parser.add_argument("--no-optimised", action="store_false", dest="optimised")
     parser.add_argument("--verify", action="store_true", default=True, help="Run verification")
     parser.add_argument("--no-verify", action="store_false", dest="verify")
+    parser.add_argument("--visualise", action="store_true", default=False,
+                        help="Generate interactive HTML visualisation of the solution")
+    parser.add_argument("--output", "-o", type=str, default=None,
+                        help="Output path for visualisation HTML (default: multibatch_solution.html)")
     return parser
 
 
@@ -97,25 +146,43 @@ def main() -> int:
         print("UNSATISFIABLE — no solution found.")
         return 1
 
-    meta = result.metadata
-    status = "OPTIMUM" if meta.optimum else "BEST MODEL"
-    print(f"\n{status} (ground={meta.ground_time}s, total={meta.total_time}s)")
-    print(f"Clingo stats solving: {meta.clingo_stats_solver}")
-    print(f"Clingo stats grounding: {meta.clingo_stats_grounding}")
+    if isinstance(result, OneShotResult):
+        meta = result.metadata
+        status = "OPTIMUM" if meta.optimum else "BEST MODEL"
+        print(f"\n{status} (ground={meta.ground_time}s, solve={meta.solve_time}s, total={meta.total_time}s)")
+        print(f"Cost: {meta.cost}")
+        print(f"Atoms: {meta.atoms}  Choices: {meta.choices}  Conflicts: {meta.conflicts}  Restarts: {meta.restarts}")
 
+        print_oneshot_result(result, solver.instance)
 
-    print_oneshot_result(result, solver.instance)
+        if args.verify:
+            print()
+            passed, errors = verify_solution(result, solver.instance)
+            if passed:
+                print("Verification: PASSED")
+            else:
+                print(f"Verification: FAILED ({len(errors)} errors)")
+                for e in errors:
+                    print(f"  {e}")
+                return 1
 
-    if args.verify:
-        print()
-        passed, errors = verify_solution(result, solver.instance)
-        if passed:
-            print("Verification: PASSED")
-        else:
-            print(f"Verification: FAILED ({len(errors)} errors)")
-            for e in errors:
-                print(f"  {e}")
-            return 1
+        if args.visualise:
+            from .visualisation import visualise_oneshot
+            out = Path(args.output) if args.output else None
+            path = visualise_oneshot(result, solver.instance, output_path=out)
+            print(f"\nVisualisation saved to: {path.resolve()}")
+
+    elif isinstance(result, TwoStageResult):
+        status = "OPTIMUM" if result.optimum else "BEST MODEL"
+        print(f"\n{status} (total={result.total_time:.3f}s)")
+
+        print_twostage_result(result, solver.instance)
+
+        if args.visualise:
+            from .visualisation import visualise_twostage
+            out = Path(args.output) if args.output else None
+            path = visualise_twostage(result, solver.instance, output_path=out)
+            print(f"\nVisualisation saved to: {path.resolve()}")
 
     return 0
 

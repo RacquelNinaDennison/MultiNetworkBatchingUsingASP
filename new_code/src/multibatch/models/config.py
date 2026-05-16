@@ -39,6 +39,7 @@ class ClingconOneShotConfig(BaseConfig):
     """Config for the clingcon one-shot solver."""
 
     num_bins: int = Field(default=1, description="Number of bin configurations per route")
+    optimised: bool = Field(default=True, description="Use optimised encoding variant")
 
 
 class TwoStageNaiveConfig(BaseConfig):

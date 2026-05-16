@@ -9,6 +9,8 @@ giving consistent field names and type safety.
 
 from __future__ import annotations
 
+from typing import Any
+
 from pydantic import BaseModel, Field
 
 
@@ -24,12 +26,9 @@ class SolveMetadata(BaseModel):
     total_time: float = 0.0
     optimum: bool = False
     cost: int | None = None
+    clingo_stats_solver: dict[str, Any] = None
+    clingo_stats_grounding: dict[str, Any] = None
     trajectory: list[dict] = Field(default_factory=list)
-
-
-# ─────────────────────────────────────────────────────────────────────────────
-# One-shot solver atoms
-# ─────────────────────────────────────────────────────────────────────────────
 
 
 class PackAtom(BaseModel):

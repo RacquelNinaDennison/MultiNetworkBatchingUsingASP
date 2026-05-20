@@ -26,7 +26,7 @@ from multibatch.solvers.clingcon import ClingconOneShotSolver
 INSTANCE_DIR = Path(__file__).resolve().parent.parent.parent / "instances" / "generated"
 RESULTS_DIR = Path(__file__).resolve().parent / "results"
 
-BIN_RANGE = range(0, 6)  # 0-5
+BIN_RANGE = range(1, 4)  # 1-3
 REPETITIONS = 5
 TIME_LIMIT = 60
 MAX_FREQ = 20

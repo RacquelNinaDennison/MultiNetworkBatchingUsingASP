@@ -70,7 +70,12 @@ class ClingconTwoStageSolver(BaseSolver):
             "-c", f"cap_size_divide={self.config.cap_size_divide}",
             "-c", f"max_freq={self.config.max_freq}",
             "-c", f"weight={self.config.weight}",
+            "-c", f"exposure_n={self.config.exposure_n}",
         ]
+        if self.config.threads > 1:
+            clingo_args += ["-t", str(self.config.threads)]
+        if self.config.configuration:
+            clingo_args += ["--configuration", self.config.configuration]
 
         ctl = clingo.Control(clingo_args)
         theory.register(ctl)
@@ -132,6 +137,12 @@ class ClingconTwoStageSolver(BaseSolver):
 
             if solve_result is not None and getattr(solve_result, 'unsatisfiable', False):
                 optimum = True
+                break
+
+            if solve_result is not None and solve_result.exhausted:
+                optimum = True
+                if found is not None:
+                    best, best_cost = found, found_cost
                 break
 
             if found is None:
@@ -249,6 +260,10 @@ class ClingconTwoStageSolver(BaseSolver):
             "-c", f"hetero_on={self.config.hetero_on}",
             "-c", f"concentrated_on={self.config.concentrated_on}",
         ]
+        if self.config.threads > 1:
+            clingo_args += ["-t", str(self.config.threads)]
+        if self.config.configuration:
+            clingo_args += ["--configuration", self.config.configuration]
 
         ctl = clingo.Control(clingo_args)
         theory.register(ctl)
@@ -348,10 +363,12 @@ class ClingconTwoStageSolver(BaseSolver):
             raise FileNotFoundError(f"Stage 2 encoding not found: {self.encoding_stage2}")
 
         stage1 = self._solve_stage1()
+        print(stage1)
         if stage1 is None:
             return None
 
         stage2 = self._solve_stage2(stage1)
+        print(stage2)
         if stage2 is None:
             return None
 

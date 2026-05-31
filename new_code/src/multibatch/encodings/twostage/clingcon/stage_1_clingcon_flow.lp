@@ -1,7 +1,8 @@
-#const cap_size_divide = 10.
-#const exposure_n = 3.
+#const cap_size_divide = 1.
+#const exposure_n = 2.
 #const max_freq = 20.
-
+#const use_exposure = 1.
+#const weight = 1.
 totalSupply(P, Max) :- Max = #sum {V,L : demandOffer(P,L,V), V > 0}, part(P).
 
 hasDemand(P, L) :- demandOffer(P, L, V), V < 0.
@@ -19,6 +20,7 @@ requiredNet(P, L, 0)   :- not demand(P,L,_), not offer(P,L,_), location(L), part
 tRCapSmall(TR, Cap) :- transportCapacity(TR, CapB), Cap = CapB / cap_size_divide.
 partSizeSmall(P, S) :- partSize(P, SB), S = SB / cap_size_divide.
 
+% if a part can fit in a transport resource 
 possibleFlow(From, To, TR, P) :-
     route(From, To, TR, _, _),
     partTR(P, TR),
@@ -43,6 +45,11 @@ freq(1..max_freq).
 &sum { 10 * S*load(F, T, TR, P) :
         possibleFlow(F, T, TR, P), partSizeSmall(P, S) } <= 7 * TotalCap :-
     routeFreq(F, T, TR, Freq, TotalCap).
+
+
+% &sum { S*load(F, T, TR, P) :
+%         possibleFlow(F, T, TR, P), partSizeSmall(P, S) } <= TotalCap :-
+%     routeFreq(F, T, TR, Freq, TotalCap).
 
 _transCost(From, To, TR, C*Freq) :-
     routeFreq(From, To, TR, Freq, _),

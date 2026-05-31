@@ -32,3 +32,8 @@ is_producer(P, L) :- demandOffer(P, L, D), D > 0.
     freq(ID,From,To,TR,F), 
     route(From,To,TR,Distance,Cost)}.
 
+
+totalCost(C) :- C = #sum{ F*Distance*Cost, ID, From, To, TR :
+      freq(ID,From,To,TR,F), route(From,To,TR,Distance,Cost) }.
+
+#show totalCost/1.

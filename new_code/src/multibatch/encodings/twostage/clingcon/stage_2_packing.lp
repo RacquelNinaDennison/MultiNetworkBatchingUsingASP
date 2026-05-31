@@ -1,8 +1,5 @@
 #const hetero_on = 1.
 #const concentrated_on = 1.
-
-
-
 trip(F, T, TR, 1..Freq) :- activeRoute(F, T, TR, Freq, _).
 
 
@@ -67,7 +64,6 @@ monoTrip(F, T, TR, K) :-
 #show tripHasPart/5.
 #show tripPartCount/5.
 #show routePartTypes/4.
-#show concentrated/5.
 #show overloaded/5.
 #show monoTrip/4.
 #show usedTrip/4.

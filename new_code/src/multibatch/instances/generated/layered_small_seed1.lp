@@ -2,6 +2,13 @@
 % Generated with seed=10000 locations=6 parts=2 transports=2 routes=17
 
 % ---- locations ----
+
+
+numFlow(0..20).
+numParts(0..5).
+numFreq(0..20).
+bins(0).
+
 location(l1).
 location(l2).
 location(l3).

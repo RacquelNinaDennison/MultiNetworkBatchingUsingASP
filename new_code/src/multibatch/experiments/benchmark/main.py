@@ -70,7 +70,7 @@ def get_instance_size(path: Path) -> str:
     return "unknown"
 
 
-INCLUDE_SIZES = {"paper", "small", "medium"}
+INCLUDE_SIZES = {"paper"}
 
 
 def discover_instances() -> list[Path]:

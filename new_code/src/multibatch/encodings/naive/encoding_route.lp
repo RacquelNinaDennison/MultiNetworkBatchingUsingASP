@@ -4,6 +4,8 @@ netdemandSupply(P,L,D) :- demandOffer(P,L,D).
 is_consumer(P, L) :- demandOffer(P, L, D), D < 0.
 is_producer(P, L) :- demandOffer(P, L, D), D > 0.
 
+numFreq(0..10).
+
 % Flow network
 1{ flow(From,To,Part,N) : numFlow(N) }1 :-
     route(From,To,_,_,_),
@@ -33,7 +35,6 @@ is_producer(P, L) :- demandOffer(P, L, D), D > 0.
     route(From,To,TR,Distance,Cost)}.
 
 
-totalCost(C) :- C = #sum{ F*Distance*Cost, ID, From, To, TR :
-      freq(ID,From,To,TR,F), route(From,To,TR,Distance,Cost) }.
+% totalCost(C) :- C = #sum{ F*Distance*Cost, ID, From, To, TR :
+%       freq(ID,From,To,TR,F), route(From,To,TR,Distance,Cost) }.
 
-#show totalCost/1.

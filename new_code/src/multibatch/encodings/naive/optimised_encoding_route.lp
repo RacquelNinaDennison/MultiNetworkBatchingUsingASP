@@ -4,13 +4,6 @@ netdemandSupply(P,L,D) :- demandOffer(P,L,D).
 is_consumer(P,L) :- demandOffer(P,L,D), D < 0.
 is_producer(P,L) :- demandOffer(P,L,D), D > 0.
 
-% -------- feasible pack values only --------
-feasiblePackN(P,TR,N) :-
-    numParts(N),
-    partSize(P,S),
-    transportCapacity(TR,C),
-    N*S <= C.
-
 % -------- Flow network --------
 1 { flow(From,To,Part,N) : numFlow(N) } 1 :-
     route(From,To,_,_,_),
@@ -25,10 +18,8 @@ feasiblePackN(P,TR,N) :-
    netdemandSupply(Part,Loc,DS).
 
 % -------- Pack choices --------
-1 { pack(N,P,ID,From,To,TR) : feasiblePackN(P,TR,N) } 1 :-
-    route(From,To,TR,_,_),
-    bins(ID),
-    part(P).
+{pack(N,P,ID,From,To,TR) : numParts(N)} = 1 :- 
+    route(From,To,TR,_,_), bins(ID), part(P).
 
 
 :- #sum {
@@ -50,14 +41,6 @@ feasiblePackN(P,TR,N) :-
    pack(N,P,ID,From,To,TR),
    N > 0.
 
-% if frequency is positive, bin must carry something
-has_load(ID,From,To,TR) :-
-    pack(N,P,ID,From,To,TR),
-    N > 0.
-
-:- freq(ID,From,To,TR,F),
-   F > 0,
-   not has_load(ID,From,To,TR).
 
 % -------- flow support --------
 :- #sum {
@@ -68,13 +51,12 @@ has_load(ID,From,To,TR) :-
    flow(From,To,P,Value),
    Value > 0.
 
-% -------- symmetry breaking --------
-used_bin(ID,From,To,TR) :-
-    freq(ID,From,To,TR,F), F > 0.
 
-:- used_bin(ID2,From,To,TR),
-   bins(ID1), ID1 < ID2,
-   not used_bin(ID1,From,To,TR).
+:- freq(ID1,From,To,TR,F1), 
+F1 < 0 , freq(ID2,From,To,TR,F2), 
+F2 > 0, ID1 < ID2. 
+
+
 
 % -------- objective --------
 #minimize {

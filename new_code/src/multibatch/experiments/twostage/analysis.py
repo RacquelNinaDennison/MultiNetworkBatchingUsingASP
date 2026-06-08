@@ -163,6 +163,45 @@ def table_scalability(df: pd.DataFrame) -> pd.DataFrame:
     return _sort_df(grp)
 
 
+def table_with_ci(
+    df: pd.DataFrame,
+    metrics: list[str],
+    group_cols: list[str] | None = None,
+    n_bootstrap: int = 10_000,
+    confidence: float = 0.95,
+) -> pd.DataFrame:
+    """Per-group mean ± std + bootstrap CI for selected metrics.
+
+    Group rows by ``group_cols`` (default: instance_size, weight,
+    s2_config) and compute, for each metric:
+      ``<m>_mean``, ``<m>_std``, ``<m>_ci_lo``, ``<m>_ci_hi``, ``<m>_n``.
+    """
+    if group_cols is None:
+        group_cols = ["instance_size", "weight", "s2_config"]
+
+    rows: list[dict] = []
+    for keys, sub in df.groupby(group_cols):
+        if not isinstance(keys, tuple):
+            keys = (keys,)
+        row = dict(zip(group_cols, keys))
+        for m in metrics:
+            if m not in sub.columns:
+                continue
+            vals = sub[m].dropna().tolist()
+            ci = bootstrap_ci(
+                vals, n_bootstrap=n_bootstrap, confidence=confidence,
+            )
+            row[f"{m}_mean"] = ci["mean"]
+            row[f"{m}_std"] = ci["std"]
+            row[f"{m}_ci_lo"] = ci["ci_lower"]
+            row[f"{m}_ci_hi"] = ci["ci_upper"]
+            row[f"{m}_n"] = ci["n"]
+        rows.append(row)
+
+    out = pd.DataFrame(rows)
+    return _sort_df(out, size_col="instance_size")
+
+
 def table_first_vs_best(df: pd.DataFrame) -> pd.DataFrame:
     """First solution vs best solution quality gap."""
     if "first_r_tr" not in df.columns:

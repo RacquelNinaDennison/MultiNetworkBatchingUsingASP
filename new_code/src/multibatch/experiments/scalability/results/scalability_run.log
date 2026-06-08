@@ -1,0 +1,11 @@
+Scalability: 4 solvers x 25 instances x 3 reps = 300 runs
+  Solvers:     ['naive_oneshot', 'clingcon_oneshot', 'naive_twostage', 'clingcon_twostage']
+  Sizes:       ['paper', 'small', 'medium', 'large', 'xlarge', 'industrylite']
+  Time limits: {'paper': 30, 'small': 30, 'medium': 60, 'large': 120, 'xlarge': 300, 'industrylite': 600}
+  Bins:        3 (one-shot only)
+  Output:      /Users/racqueldennison/Documents/Masters/realdeal_masters/combined_encodings/new_code/src/multibatch/experiments/scalability/results/scalability_raw.csv
+
+============================================================
+  Solver: naive_oneshot
+============================================================
+  [1/300] layered_industrylite_seed2 (t=600s) run 1/3 ... 

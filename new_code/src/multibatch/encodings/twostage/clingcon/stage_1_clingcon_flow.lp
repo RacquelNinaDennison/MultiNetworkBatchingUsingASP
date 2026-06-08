@@ -2,7 +2,8 @@
 #const exposure_n = 2.
 #const max_freq = 20.
 #const use_exposure = 1.
-#const weight = 1.
+#const weight = 0.
+
 totalSupply(P, Max) :- Max = #sum {V,L : demandOffer(P,L,V), V > 0}, part(P).
 
 hasDemand(P, L) :- demandOffer(P, L, V), V < 0.
@@ -39,17 +40,13 @@ activeFlow(From, To, TR, P) :-
     not &sum { load(From, To, TR, P) } = 0.
 
 freq(1..max_freq).
+
 1 { routeFreq(From, To, TR, Freq, C*Freq) : freq(Freq), tRCapSmall(TR, C) } 1 :-
     activeFlow(From, To, TR, _).
 
 &sum { 10 * S*load(F, T, TR, P) :
         possibleFlow(F, T, TR, P), partSizeSmall(P, S) } <= 7 * TotalCap :-
     routeFreq(F, T, TR, Freq, TotalCap).
-
-
-% &sum { S*load(F, T, TR, P) :
-%         possibleFlow(F, T, TR, P), partSizeSmall(P, S) } <= TotalCap :-
-%     routeFreq(F, T, TR, Freq, TotalCap).
 
 _transCost(From, To, TR, C*Freq) :-
     routeFreq(From, To, TR, Freq, _),

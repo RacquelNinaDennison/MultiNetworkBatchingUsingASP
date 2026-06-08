@@ -81,3 +81,18 @@ caffeinate -dims uv run python -m multibatch.experiments.twostage \
 ```
 
 Industry instance file must match pattern `industry_test_<seed>.lp` and live in `src/multibatch/instances/generated/`.
+
+
+Furthermore, to make the experiments easier, we have added in bash scripts. 
+  # scalability — all sizes
+  ./src/multibatch/experiments/scalability/run_all.sh                                                                                                                                             
+
+  # benchmark — paper + small only 
+  ./src/multibatch/experiments/benchmark/run_all.sh paper small
+
+  # custom tag for grouping                                                                                                                                                                       
+  RUN_TAG=baseline_v2 ./src/multibatch/experiments/scalability/run_all.sh
+
+  # tweak via env
+  REPS=5 NUM_BINS=4 ./src/multibatch/experiments/scalability/run_all.sh
+

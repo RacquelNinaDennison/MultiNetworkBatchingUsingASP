@@ -10,6 +10,7 @@ Usage:
 
 from __future__ import annotations
 
+import argparse
 import csv
 import sys
 from dataclasses import dataclass, fields, asdict
@@ -20,16 +21,22 @@ from multibatch.solvers.naive import NaiveOneShotSolver
 from multibatch.solvers.clingcon import ClingconOneShotSolver
 
 # ─────────────────────────────────────────────────────────────────────
-# Configuration
+# Configuration (defaults; overridable via CLI)
 # ─────────────────────────────────────────────────────────────────────
 
 INSTANCE_DIR = Path(__file__).resolve().parent.parent.parent / "instances" / "generated"
 RESULTS_DIR = Path(__file__).resolve().parent / "results"
 
-BIN_RANGE = range(1, 4)  # 1-3
-REPETITIONS = 5
-TIME_LIMIT = 60
-MAX_FREQ = 20
+DEFAULT_BIN_RANGE = [1, 2, 3]
+DEFAULT_REPETITIONS = 5
+DEFAULT_TIME_LIMIT = 60
+DEFAULT_MAX_FREQ = 20
+
+# Mutable globals overridden in main()
+BIN_RANGE: list[int] = list(DEFAULT_BIN_RANGE)
+REPETITIONS: int = DEFAULT_REPETITIONS
+TIME_LIMIT: int = DEFAULT_TIME_LIMIT
+MAX_FREQ: int = DEFAULT_MAX_FREQ
 
 
 # ─────────────────────────────────────────────────────────────────────
@@ -70,14 +77,21 @@ def get_instance_size(path: Path) -> str:
     return "unknown"
 
 
-INCLUDE_SIZES = {"paper"}
+INCLUDE_SIZES: set[str] = {"paper"}
 
 
-def discover_instances() -> list[Path]:
-    instances = sorted(INSTANCE_DIR.glob("*.lp"))
-    instances = [p for p in instances if get_instance_size(p) in INCLUDE_SIZES]
+def discover_instances(
+    instance_dir: Path = INSTANCE_DIR,
+    include_sizes: set[str] | None = None,
+    instance_filter: str | None = None,
+) -> list[Path]:
+    include = include_sizes if include_sizes is not None else INCLUDE_SIZES
+    instances = sorted(instance_dir.glob("*.lp"))
+    instances = [p for p in instances if get_instance_size(p) in include]
+    if instance_filter:
+        instances = [p for p in instances if instance_filter in p.stem]
     if not instances:
-        print(f"No instances found in {INSTANCE_DIR}", file=sys.stderr)
+        print(f"No instances found in {instance_dir}", file=sys.stderr)
         sys.exit(1)
     return instances
 
@@ -256,21 +270,52 @@ def write_summary_csv(rows: list[BenchmarkRow], path: Path) -> None:
 SOLVER_NAMES = ["naive_basic", "naive_optimised", "clingcon", "clingcon_optimised"]
 
 
-def main() -> None:
-    instances = discover_instances()
-    RESULTS_DIR.mkdir(parents=True, exist_ok=True)
+def parse_args() -> argparse.Namespace:
+    p = argparse.ArgumentParser(description="One-shot solver benchmark harness")
+    p.add_argument("--instance-dir", type=Path, default=INSTANCE_DIR)
+    p.add_argument("--instance-filter", type=str, default=None)
+    p.add_argument("--sizes", nargs="+", default=sorted(INCLUDE_SIZES),
+                   choices=SIZE_ORDER)
+    p.add_argument("--solvers", nargs="+", default=SOLVER_NAMES,
+                   choices=SOLVER_NAMES)
+    p.add_argument("--bins", type=int, nargs="+", default=list(DEFAULT_BIN_RANGE))
+    p.add_argument("--reps", type=int, default=DEFAULT_REPETITIONS)
+    p.add_argument("--time-limit", type=int, default=DEFAULT_TIME_LIMIT)
+    p.add_argument("--max-freq", type=int, default=DEFAULT_MAX_FREQ)
+    p.add_argument("--output-dir", type=Path, default=RESULTS_DIR)
+    p.add_argument("--tag", type=str, default=None,
+                   help="Suffix added to output filenames")
+    return p.parse_args()
 
-    total_runs = len(SOLVER_NAMES) * len(instances) * len(BIN_RANGE) * REPETITIONS
-    print(f"Benchmark: {len(SOLVER_NAMES)} solvers x {len(instances)} instances "
+
+def main() -> None:
+    global BIN_RANGE, REPETITIONS, TIME_LIMIT, MAX_FREQ
+    args = parse_args()
+    BIN_RANGE = args.bins
+    REPETITIONS = args.reps
+    TIME_LIMIT = args.time_limit
+    MAX_FREQ = args.max_freq
+
+    instances = discover_instances(
+        instance_dir=args.instance_dir,
+        include_sizes=set(args.sizes),
+        instance_filter=args.instance_filter,
+    )
+    args.output_dir.mkdir(parents=True, exist_ok=True)
+    solvers = args.solvers
+
+    total_runs = len(solvers) * len(instances) * len(BIN_RANGE) * REPETITIONS
+    print(f"Benchmark: {len(solvers)} solvers x {len(instances)} instances "
           f"x {len(BIN_RANGE)} bin sizes x {REPETITIONS} reps = {total_runs} runs")
     print(f"Time limit: {TIME_LIMIT}s | Max freq: {MAX_FREQ} | Bins: {list(BIN_RANGE)}")
-    print(f"Instances: {INSTANCE_DIR}")
+    print(f"Instances: {args.instance_dir}")
+    print(f"Sizes:     {args.sizes}")
     print()
 
     rows: list[BenchmarkRow] = []
     completed = 0
 
-    for solver_name in SOLVER_NAMES:
+    for solver_name in solvers:
         print(f"{'='*60}")
         print(f"  Solver: {solver_name}")
         print(f"{'='*60}")
@@ -298,8 +343,9 @@ def main() -> None:
                         print("UNSAT/ERROR")
 
     # Write results
-    raw_path = RESULTS_DIR / "benchmark_raw.csv"
-    summary_path = RESULTS_DIR / "benchmark_summary.csv"
+    tag = f"_{args.tag}" if args.tag else ""
+    raw_path = args.output_dir / f"benchmark_raw{tag}.csv"
+    summary_path = args.output_dir / f"benchmark_summary{tag}.csv"
 
     write_raw_csv(rows, raw_path)
     write_summary_csv(rows, summary_path)

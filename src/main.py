@@ -607,7 +607,7 @@ def build_parser() -> argparse.ArgumentParser:
         "--weight", type=int, default=1,
         help="Weight for soft constraints (default: 1)",
     )
-    parser.add_argument("--cap-divide", type=int, default=1000)
+    parser.add_argument("--cap-divide", type=int, default=1)
     parser.add_argument("--round-timeout", type=int, default=30)
     parser.add_argument("--configurations", type=bool, default=False)
     parser.add_argument(
@@ -675,13 +675,6 @@ def main() -> int:
             time_limit=args.time_limit,
             round_timeout=args.round_timeout,
             show_facts=False,
-        )
-    elif args.solver == "twostage-subprocess":
-        solver = SubprocessTwoStage(
-            str(instance),
-            time_limit=args.time_limit,
-            max_freq=args.max_freq,
-            weight=args.weight,
         )
     elif args.solver == "twostage-pipeline":
         if not args.json_model:

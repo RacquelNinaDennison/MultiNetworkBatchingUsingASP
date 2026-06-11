@@ -11,11 +11,11 @@ location(l4).
 location(l5).
 
 % ---- transport resources ----
-transportCapacity(tr1,10).
+transportCapacity(tr1,15).
 transportCO2(tr1,60).
 transportCost(tr1,56).
 transportSpeed(tr1,3).
-transportCapacity(tr2,15).
+transportCapacity(tr2,10).
 transportCO2(tr2,45).
 transportCost(tr2,42).
 transportSpeed(tr2,2).

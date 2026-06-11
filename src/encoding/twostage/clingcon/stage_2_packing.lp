@@ -72,4 +72,3 @@ monoTrip(F, T, TR, K) :-
 #show monoTrip/4.
 #show usedTrip/4.
 #show actualFrequency/4.
-`

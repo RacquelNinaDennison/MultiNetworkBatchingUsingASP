@@ -96,3 +96,4 @@ Furthermore, to make the experiments easier, we have added in bash scripts.
   # tweak via env
   REPS=5 NUM_BINS=4 ./src/multibatch/experiments/scalability/run_all.sh
 
+  

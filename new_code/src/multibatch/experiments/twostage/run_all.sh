@@ -16,7 +16,10 @@ set -u  # don't set -e: a single failed size shouldn't kill the rest
 NTFY_TOPIC="${NTFY_TOPIC:-}"
 NTFY_URL="${NTFY_URL:-https://ntfy.sh}"
 
-WEIGHTS=(0 500 10000 50000 75000 100000 150000)
+# Relative weight sweep: each lambda = (exposure penalty) / (mean trip
+# dispatch cost at w=0). lambda=1 means "pay one average dispatch to remove
+# one exposure". Resolved to an absolute integer weight per instance.
+WEIGHTS_REL="${WEIGHTS_REL:-0 0.1 0.25 0.5 1 2 4 8}"
 THREADS="${THREADS:-4}"
 CONFIGURATION="${CONFIGURATION:-many}"
 EXPOSURE_N="${EXPOSURE_N:-3}"
@@ -39,6 +42,11 @@ NEW_CODE_DIR="$(cd "$SCRIPT_DIR/../../../.." && pwd)"
 LOG_DIR="$RESULTS_DIR/logs"
 
 mkdir -p "$RESULTS_DIR" "$LOG_DIR"
+
+# uv 0.9.7 marks .venv contents hidden on macOS and Python >=3.13.9 then
+# skips the editable-install .pth -> ModuleNotFoundError mid-batch.
+# PYTHONPATH bypasses the .pth entirely. Remove once uv is upgraded.
+export PYTHONPATH="$NEW_CODE_DIR/src${PYTHONPATH:+:$PYTHONPATH}"
 
 # ── ntfy helper ───────────────────────────────────────────────────────
 
@@ -65,7 +73,7 @@ run_size() {
     local size="$1" filter="$2" time_limit_flag="$3" time_limit_val="$4"
     local cap_divide="${5:-$CAP_SIZE_DIVIDE}"
 
-    local out="$RESULTS_DIR/experiment_${size}.csv"
+    local out="$RESULTS_DIR/experiment_rel_${size}.csv"
     local log="$LOG_DIR/run_${size}.log"
     local t0 t1 elapsed exit_code
 
@@ -79,14 +87,14 @@ run_size() {
     echo "============================================================"
 
     ntfy "exp:$size start" default "rocket" \
-         "host=$(hostname) filter=$filter cap_divide=$cap_divide weights=${WEIGHTS[*]}"
+         "host=$(hostname) filter=$filter cap_divide=$cap_divide lambdas=$WEIGHTS_REL"
 
     t0=$(date +%s)
 
     (
         cd "$NEW_CODE_DIR" && \
         uv run python -m multibatch.experiments.twostage \
-            --weights "${WEIGHTS[@]}" \
+            --weights-relative $WEIGHTS_REL \
             -t "$THREADS" \
             --configuration "$CONFIGURATION" \
             --exposure-n "$EXPOSURE_N" \
@@ -136,7 +144,7 @@ run_one() {
 if [ "$#" -gt 0 ]; then
     SIZES=("$@")
 else
-    SIZES=(paper small medium large xlarge industrylite industry)
+    SIZES=(paper small medium xlarge industrylite)
 fi
 
 if [ -z "$NTFY_TOPIC" ]; then

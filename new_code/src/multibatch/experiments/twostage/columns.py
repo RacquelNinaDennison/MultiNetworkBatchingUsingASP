@@ -44,6 +44,8 @@ COLUMNS = [
     "capacity_tightness",
     # Experiment parameters
     "weight",
+    "lambda_rel",
+    "weight_normalizer",
     "exposure_n",
     "threads",
     "solver_config",

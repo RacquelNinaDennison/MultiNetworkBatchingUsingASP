@@ -159,6 +159,9 @@ class ExperimentConfig:
     cap_size_divide: int = 1
     threads: int = 1
     configuration: str = "many"
+    # None -> single-shot: one solve with the full time limit. Setting a
+    # value re-enables multi-shot bound tightening with that round length.
+    round_timeout: int | None = None
     time_limits: dict[str, int] = field(default_factory=lambda: {
         "paper": 30,
         "small": 30,

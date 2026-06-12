@@ -101,8 +101,12 @@ class ClingconTwoStageSolver(BaseSolver):
         num_rounds = max(1, self.config.time_limit // self.config.round_timeout)
         effective_timeout = self.config.round_timeout
 
+        # Bound the FULL objective (dispatch + exposure penalty), matching the
+        # two weak constraints at level @1 — bounding dispatch alone can cut
+        # off the true optimum when the incumbent trades exposures for cost.
         BOUND = (
-            ":- #sum {{ V,F,T,TR : _transCost(F,T,TR,V) }} >= {bound}."
+            ":- #sum {{ V,F,T,TR : _transCost(F,T,TR,V); "
+            "{weight},exposure,F,T,TR,P : highExposure(F,T,TR,P) }} >= {bound}."
         )
 
         for round_num in range(1, num_rounds + 1):
@@ -131,8 +135,15 @@ class ClingconTwoStageSolver(BaseSolver):
             finally:
                 timer.cancel()
 
+            # With a correct bound every later-round model is strictly better
+            # than the incumbent; the guard is defensive.
+            improved = found is not None and (
+                best_cost is None or (found_cost is not None and found_cost < best_cost)
+            )
+
             if optimum:
-                best, best_cost = found, found_cost
+                if improved:
+                    best, best_cost = found, found_cost
                 break
 
             if solve_result is not None and getattr(solve_result, 'unsatisfiable', False):
@@ -141,14 +152,15 @@ class ClingconTwoStageSolver(BaseSolver):
 
             if solve_result is not None and solve_result.exhausted:
                 optimum = True
-                if found is not None:
+                if improved:
                     best, best_cost = found, found_cost
                 break
 
             if found is None:
                 break
 
-            best, best_cost = found, found_cost
+            if improved:
+                best, best_cost = found, found_cost
 
             # Tighten bound for next round
             bound_rule = BOUND.format(weight=self.config.weight, bound=best_cost)

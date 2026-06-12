@@ -557,7 +557,7 @@ def run_pipeline(
     instance_path: str | Path,
     *,
     cap_divide: int = 1,
-    max_freq: int = 20,
+    max_freq: int = 30,
     time_limit: int = 30,
     round_timeout: int = 30,
     show_facts: bool = False,

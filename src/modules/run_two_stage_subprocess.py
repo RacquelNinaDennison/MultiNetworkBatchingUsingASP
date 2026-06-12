@@ -106,6 +106,7 @@ class SubprocessTwoStage(BaseSolver):
 
         Returns ``(parsed_result, wall_clock_seconds, raw_stdout)``.
         """
+        print("Calling clingcon for Stage 1...")
         cmd = [
             "clingcon",
             str(self.stage1_lp),

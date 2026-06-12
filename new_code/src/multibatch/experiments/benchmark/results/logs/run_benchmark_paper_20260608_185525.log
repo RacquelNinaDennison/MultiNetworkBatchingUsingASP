@@ -1,0 +1,17 @@
+Using CPython 3.13.12 interpreter at: /home/racquelnina/miniconda3/bin/python3
+Creating virtual environment at: .venv
+   Building multibatch @ file:///home/racquelnina/MultiNetworkBatchingUsingASP/new_code
+Downloading pygments (1.2MiB)
+Downloading debugpy (4.1MiB)
+Downloading jedi (4.7MiB)
+Downloading pillow (6.8MiB)
+Downloading fonttools (4.7MiB)
+Downloading pandas (10.4MiB)
+Downloading matplotlib (8.4MiB)
+Downloading pydantic-core (2.0MiB)
+   Building np==1.0.2
+Downloading numpy (15.9MiB)
+ Downloaded pygments
+      Built multibatch @ file:///home/racquelnina/MultiNetworkBatchingUsingASP/new_code
+      Built np==1.0.2
+ Downloaded pydantic-core

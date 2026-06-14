@@ -1,35 +1,3 @@
-Traceback (most recent call last):
-  File "<frozen runpy>", line 198, in _run_module_as_main
-  File "<frozen runpy>", line 88, in _run_code
-  File "/home/racquelnina/MultiNetworkBatchingUsingASP/new_code/src/multibatch/experiments/twostage/__main__.py", line 4, in <module>
-    main()
-    ~~~~^^
-  File "/home/racquelnina/MultiNetworkBatchingUsingASP/new_code/src/multibatch/experiments/twostage/runner.py", line 663, in main
-    n, _, _ = run_weight_group(
-              ~~~~~~~~~~~~~~~~^
-        inst_path, instance, meta,
-        ^^^^^^^^^^^^^^^^^^^^^^^^^^
-    ...<7 lines>...
-        normalizer=norm,
-        ^^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/home/racquelnina/MultiNetworkBatchingUsingASP/new_code/src/multibatch/experiments/twostage/runner.py", line 254, in run_weight_group
-    stage1 = solver._solve_stage1()
-  File "/home/racquelnina/MultiNetworkBatchingUsingASP/new_code/src/multibatch/solvers/twostage_clingcon.py", line 121, in _solve_stage1
-    for model in handle:
-                 ^^^^^^
-  File "/home/racquelnina/MultiNetworkBatchingUsingASP/new_code/.venv/lib/python3.13/site-packages/clingo/solving.py", line 527, in __iter__
-    m = self.model()
-  File "/home/racquelnina/MultiNetworkBatchingUsingASP/new_code/.venv/lib/python3.13/site-packages/clingo/solving.py", line 596, in model
-    _handle_error(_lib.clingo_solve_handle_model(self._rep, p_model), self._handler)
-    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/racquelnina/MultiNetworkBatchingUsingASP/new_code/.venv/lib/python3.13/site-packages/clingo/_internal.py", line 77, in _handle_error
-    raise handler.error[0](handler.error[1]).with_traceback(handler.error[2])
-  File "/home/racquelnina/MultiNetworkBatchingUsingASP/new_code/.venv/lib/python3.13/site-packages/clingo/control.py", line 130, in _pyclingo_solve_event_callback
-    @_ffi.def_extern(
-    
-KeyboardInterrupt
 ======================================================================
   TWO-STAGE RESILIENCE EXPERIMENT
   S1 encoding:  stage_1_clingcon_flow.lp
@@ -95,4 +63,40 @@ KeyboardInterrupt
   [relative] lambda=4 -> weight=776
   [relative] lambda=8 -> weight=1553
 
-  [layered_small_seed5 w=1553] Stage 1 (limit=600s)...
+  [layered_small_seed5 w=1553] Stage 1 (limit=200s)...
+  Stage 1: cost=5285  routes=12  optimal=False
+{('l1', 'l3', 'tr2', 'p1'): 1, ('l1', 'l3', 'tr2', 'p2'): 3, ('l1', 'l6', 'tr1', 'p1'): 6, ('l1', 'l6', 'tr1', 'p2'): 1, ('l1', 'l6', 'tr2', 'p1'): 8, ('l1', 'l6', 'tr2', 'p2'): 1, ('l2', 'l3', 'tr1', 'p1'): 2, ('l2', 'l3', 'tr1', 'p2'): 9, ('l2', 'l4', 'tr1', 'p1'): 2, ('l2', 'l4', 'tr1', 'p2'): 9, ('l2', 'l4', 'tr2', 'p2'): 5, ('l2', 'l6', 'tr1', 'p1'): 1, ('l2', 'l6', 'tr1', 'p2'): 2, ('l2', 'l6', 'tr2', 'p1'): 10, ('l3', 'l5', 'tr1', 'p1'): 3, ('l3', 'l5', 'tr1', 'p2'): 7, ('l3', 'l5', 'tr2', 'p2'): 5, ('l4', 'l5', 'tr1', 'p1'): 2, ('l4', 'l5', 'tr1', 'p2'): 9, ('l4', 'l5', 'tr2', 'p2'): 5}
+  R_TR=0.6667  worst_arc=(l2,l6,tr2)
+
+  [layered_small_seed5 w=1553 s2=baseline] Stage 2...
+  mono=12  conc=15  optimal=True
+{('l1', 'l6', 'tr1', 'p1', 1): 3, ('l1', 'l6', 'tr1', 'p2', 1): 1, ('l1', 'l6', 'tr1', 'p1', 2): 3, ('l2', 'l3', 'tr1', 'p1', 1): 2, ('l2', 'l3', 'tr1', 'p2', 2): 9, ('l2', 'l4', 'tr1', 'p1', 1): 2, ('l2', 'l4', 'tr1', 'p2', 2): 9, ('l2', 'l6', 'tr1', 'p1', 1): 1, ('l2', 'l6', 'tr1', 'p2', 1): 2, ('l3', 'l5', 'tr1', 'p1', 1): 3, ('l3', 'l5', 'tr1', 'p2', 2): 7, ('l4', 'l5', 'tr1', 'p1', 1): 2, ('l4', 'l5', 'tr1', 'p2', 2): 9, ('l1', 'l3', 'tr2', 'p1', 1): 1, ('l1', 'l3', 'tr2', 'p2', 1): 3, ('l1', 'l6', 'tr2', 'p1', 1): 4, ('l1', 'l6', 'tr2', 'p2', 2): 1, ('l1', 'l6', 'tr2', 'p1', 3): 4, ('l2', 'l4', 'tr2', 'p2', 1): 5, ('l2', 'l6', 'tr2', 'p1', 2): 3, ('l2', 'l6', 'tr2', 'p1', 3): 4, ('l2', 'l6', 'tr2', 'p1', 4): 3, ('l3', 'l5', 'tr2', 'p2', 1): 5, ('l4', 'l5', 'tr2', 'p2', 1): 5}
+  Verification: PASS
+  R_1=0.7
+  K_1=0.7
+
+  [layered_small_seed5 w=1553 s2=mixed] Stage 2...
+  mono=3  conc=11  optimal=True
+{('l1', 'l6', 'tr1', 'p1', 1): 3, ('l1', 'l6', 'tr1', 'p1', 2): 3, ('l1', 'l6', 'tr1', 'p2', 2): 1, ('l2', 'l3', 'tr1', 'p1', 1): 1, ('l2', 'l3', 'tr1', 'p2', 1): 4, ('l2', 'l3', 'tr1', 'p1', 2): 1, ('l2', 'l3', 'tr1', 'p2', 2): 5, ('l2', 'l4', 'tr1', 'p1', 1): 1, ('l2', 'l4', 'tr1', 'p2', 1): 4, ('l2', 'l4', 'tr1', 'p1', 2): 1, ('l2', 'l4', 'tr1', 'p2', 2): 5, ('l2', 'l6', 'tr1', 'p1', 1): 1, ('l2', 'l6', 'tr1', 'p2', 1): 2, ('l3', 'l5', 'tr1', 'p1', 1): 1, ('l3', 'l5', 'tr1', 'p2', 1): 2, ('l3', 'l5', 'tr1', 'p1', 2): 2, ('l3', 'l5', 'tr1', 'p2', 2): 5, ('l4', 'l5', 'tr1', 'p1', 1): 1, ('l4', 'l5', 'tr1', 'p2', 1): 4, ('l4', 'l5', 'tr1', 'p1', 2): 1, ('l4', 'l5', 'tr1', 'p2', 2): 5, ('l1', 'l3', 'tr2', 'p1', 1): 1, ('l1', 'l3', 'tr2', 'p2', 1): 3, ('l1', 'l6', 'tr2', 'p1', 1): 2, ('l1', 'l6', 'tr2', 'p1', 2): 3, ('l1', 'l6', 'tr2', 'p2', 2): 1, ('l1', 'l6', 'tr2', 'p1', 3): 3, ('l2', 'l4', 'tr2', 'p2', 1): 5, ('l2', 'l6', 'tr2', 'p1', 1): 2, ('l2', 'l6', 'tr2', 'p1', 3): 4, ('l2', 'l6', 'tr2', 'p1', 4): 4, ('l3', 'l5', 'tr2', 'p2', 1): 5, ('l4', 'l5', 'tr2', 'p2', 1): 5}
+  Verification: PASS
+  R_1=0.8333
+  K_1=0.8333
+
+  [layered_small_seed5 w=1553 s2=even] Stage 2...
+  mono=3  conc=9  optimal=True
+{('l1', 'l6', 'tr1', 'p1', 1): 3, ('l1', 'l6', 'tr1', 'p2', 1): 1, ('l1', 'l6', 'tr1', 'p1', 2): 3, ('l2', 'l3', 'tr1', 'p1', 1): 1, ('l2', 'l3', 'tr1', 'p2', 1): 5, ('l2', 'l3', 'tr1', 'p1', 2): 1, ('l2', 'l3', 'tr1', 'p2', 2): 4, ('l2', 'l4', 'tr1', 'p1', 1): 1, ('l2', 'l4', 'tr1', 'p2', 1): 5, ('l2', 'l4', 'tr1', 'p1', 2): 1, ('l2', 'l4', 'tr1', 'p2', 2): 4, ('l2', 'l6', 'tr1', 'p1', 1): 1, ('l2', 'l6', 'tr1', 'p2', 1): 2, ('l3', 'l5', 'tr1', 'p1', 1): 1, ('l3', 'l5', 'tr1', 'p2', 1): 3, ('l3', 'l5', 'tr1', 'p1', 2): 2, ('l3', 'l5', 'tr1', 'p2', 2): 4, ('l4', 'l5', 'tr1', 'p1', 1): 1, ('l4', 'l5', 'tr1', 'p2', 1): 4, ('l4', 'l5', 'tr1', 'p1', 2): 1, ('l4', 'l5', 'tr1', 'p2', 2): 5, ('l1', 'l3', 'tr2', 'p1', 1): 1, ('l1', 'l3', 'tr2', 'p2', 1): 3, ('l1', 'l6', 'tr2', 'p1', 1): 2, ('l1', 'l6', 'tr2', 'p2', 1): 1, ('l1', 'l6', 'tr2', 'p1', 2): 4, ('l1', 'l6', 'tr2', 'p1', 3): 2, ('l2', 'l4', 'tr2', 'p2', 1): 5, ('l2', 'l6', 'tr2', 'p1', 1): 2, ('l2', 'l6', 'tr2', 'p1', 2): 2, ('l2', 'l6', 'tr2', 'p1', 3): 4, ('l2', 'l6', 'tr2', 'p1', 4): 2, ('l3', 'l5', 'tr2', 'p2', 1): 5, ('l4', 'l5', 'tr2', 'p2', 1): 5}
+  Verification: PASS
+  R_1=0.8333
+  K_1=0.8333
+
+  [layered_small_seed5 w=1553 s2=full] Stage 2...
+  mono=3  conc=9  optimal=True
+{('l1', 'l6', 'tr1', 'p1', 1): 3, ('l1', 'l6', 'tr1', 'p1', 2): 3, ('l1', 'l6', 'tr1', 'p2', 2): 1, ('l2', 'l3', 'tr1', 'p1', 1): 1, ('l2', 'l3', 'tr1', 'p2', 1): 4, ('l2', 'l3', 'tr1', 'p1', 2): 1, ('l2', 'l3', 'tr1', 'p2', 2): 5, ('l2', 'l4', 'tr1', 'p1', 1): 1, ('l2', 'l4', 'tr1', 'p2', 1): 4, ('l2', 'l4', 'tr1', 'p1', 2): 1, ('l2', 'l4', 'tr1', 'p2', 2): 5, ('l2', 'l6', 'tr1', 'p1', 1): 1, ('l2', 'l6', 'tr1', 'p2', 1): 2, ('l3', 'l5', 'tr1', 'p1', 1): 2, ('l3', 'l5', 'tr1', 'p2', 1): 4, ('l3', 'l5', 'tr1', 'p1', 2): 1, ('l3', 'l5', 'tr1', 'p2', 2): 3, ('l4', 'l5', 'tr1', 'p1', 1): 1, ('l4', 'l5', 'tr1', 'p2', 1): 5, ('l4', 'l5', 'tr1', 'p1', 2): 1, ('l4', 'l5', 'tr1', 'p2', 2): 4, ('l1', 'l3', 'tr2', 'p1', 1): 1, ('l1', 'l3', 'tr2', 'p2', 1): 3, ('l1', 'l6', 'tr2', 'p1', 1): 2, ('l1', 'l6', 'tr2', 'p2', 1): 1, ('l1', 'l6', 'tr2', 'p1', 2): 2, ('l1', 'l6', 'tr2', 'p1', 3): 4, ('l2', 'l4', 'tr2', 'p2', 1): 5, ('l2', 'l6', 'tr2', 'p1', 1): 4, ('l2', 'l6', 'tr2', 'p1', 2): 2, ('l2', 'l6', 'tr2', 'p1', 3): 2, ('l2', 'l6', 'tr2', 'p1', 4): 2, ('l3', 'l5', 'tr2', 'p2', 1): 5, ('l4', 'l5', 'tr2', 'p2', 1): 5}
+  Verification: PASS
+  R_1=0.8333
+  K_1=0.8333
+
+======================================================================
+  COMPLETE: 4 rows in 200.6s
+  Results -> /home/racquelnina/MultiNetworkBatchingUsingASP/new_code/src/multibatch/experiments/twostage/results/experiment_rel_small.csv
+======================================================================

@@ -1,0 +1,12 @@
+nohup: ignoring input
+
+============================================================
+  SIZE: industry
+  filter:           industry_test
+  cap_size_divide:  10
+  out:              /home/racquelnina/MultiNetworkBatchingUsingASP/new_code/src/multibatch/experiments/twostage/results/experiment_rel_industry.csv
+  log:              /home/racquelnina/MultiNetworkBatchingUsingASP/new_code/src/multibatch/experiments/twostage/results/logs/run_industry.log
+============================================================
+  [industry] FAILED exit=137  (see /home/racquelnina/MultiNetworkBatchingUsingASP/new_code/src/multibatch/experiments/twostage/results/logs/run_industry.log)
+
+PARTIAL: ok=(none)  fail=(industry)

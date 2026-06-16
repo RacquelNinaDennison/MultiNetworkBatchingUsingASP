@@ -19,7 +19,7 @@ NTFY_URL="${NTFY_URL:-https://ntfy.sh}"
 # Relative weight sweep: each lambda = (exposure penalty) / (mean trip
 # dispatch cost at w=0). lambda=1 means "pay one average dispatch to remove
 # one exposure". Resolved to an absolute integer weight per instance.
-WEIGHTS_REL="${WEIGHTS_REL:-0 0.1 0.25 0.5 1 2 4 8}"
+WEIGHTS_REL="${WEIGHTS_REL:-0 0.5 1 4 }"
 THREADS="${THREADS:-4}"
 CONFIGURATION="${CONFIGURATION:-many}"
 EXPOSURE_N="${EXPOSURE_N:-3}"
@@ -32,7 +32,7 @@ TIME_SMALL=200
 TIME_MEDIUM=300
 TIME_LARGE=1200
 TIME_XLARGE=1200
-TIME_INDUSTRYLITE=1200
+TIME_INDUSTRYLITE=600
 TIME_INDUSTRY=200000
 
 # Paths

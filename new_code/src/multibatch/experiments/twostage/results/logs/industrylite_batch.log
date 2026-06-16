@@ -1,0 +1,11 @@
+nohup: ignoring input
+
+============================================================
+  SIZE: industrylite
+  filter:           industrylite
+  cap_size_divide:  1
+  out:              /home/racquelnina/MultiNetworkBatchingUsingASP/new_code/src/multibatch/experiments/twostage/results/experiment_rel_industrylite.csv
+  log:              /home/racquelnina/MultiNetworkBatchingUsingASP/new_code/src/multibatch/experiments/twostage/results/logs/run_industrylite.log
+============================================================
+  [industrylite] OK in 9h20m45s
+./src/multibatch/experiments/twostage/run_all.sh: line 171: FAIL_SIZES: unbound variable

@@ -1,0 +1,5 @@
+instance,config,flow_optimum,flow_cost,n_arcs,total_trips,s2_status,s2_optimal,mono_count,concentrated_count,r_tr,r_1,k_1,r_alpha_single_0.2,r_alpha_global_0.2,s1_dispatch_cost,s2_dispatch_cost,cost_saving,s2_time
+layered_medium_seed1,baseline,True,5644,8,38,OK,False,14,27,0.3,0.8,0.8,0.3,0.0,5644,4640,1004,20.011
+layered_medium_seed1,mixed,True,5644,8,38,OK,False,0,37,0.3,0.8333,0.8333,0.3667,0.0,5644,4448,1196,20.007
+layered_medium_seed1,even,True,5644,8,38,OK,False,6,14,0.3,0.8,0.8,0.3667,0.0333,5644,5344,300,20.01
+layered_medium_seed1,full,True,5644,8,38,OK,False,4,14,0.3,0.8,0.8,0.3667,0.0667,5644,5344,300,20.007

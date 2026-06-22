@@ -1,0 +1,13 @@
+SIZES = small
+
+============================================================
+  portfolio size:   small
+  time_limit:       60s
+  configs:          default frumpy handy trendy many
+  threads:          1 4
+  out files:        /Users/racqueldennison/Documents/Masters/realdeal_masters/combined_encodings/new_code/src/multibatch/experiments/benchmark/results/{benchmark_raw,benchmark_summary}_portfolio_small.csv
+  log:              /Users/racqueldennison/Documents/Masters/realdeal_masters/combined_encodings/new_code/src/multibatch/experiments/benchmark/results/logs/run_portfolio_small.log
+============================================================
+  [small] OK in 8h55m57s
+
+ALL DONE in 8h55m59s

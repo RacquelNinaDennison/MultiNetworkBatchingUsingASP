@@ -1,0 +1,13 @@
+solver,encoding_family,backend,instance,instance_size,seed,n_locations,n_parts,n_routes,n_transports,density,capacity_tightness,num_bins,time_limit,run,status,wall_time,total_time,ground_time,solve_time,cost,optimum,satisfiable,choices,conflicts,restarts,atoms,s1_time,s2_time,s1_atoms,s2_atoms,s1_cost,s2_cost,s1_optimum,s2_optimum
+naive_oneshot,one-shot,naive,layered_paper,paper,0,5,2,11,2,0.275,0.982,3,600,1,OK,600.374,600.323,0.31,600.013,7602,False,True,8188973,2792699,6010,222789,,,,,,,,
+naive_oneshot,one-shot,naive,layered_paper,paper,0,5,2,11,2,0.275,0.982,3,600,2,OK,600.4,600.359,0.349,600.011,7602,False,True,7936288,2699230,5746,222789,,,,,,,,
+naive_oneshot,one-shot,naive,layered_paper,paper,0,5,2,11,2,0.275,0.982,3,600,3,OK,600.397,600.355,0.346,600.009,7602,False,True,7852218,2673212,5644,222789,,,,,,,,
+clingcon_oneshot,one-shot,clingcon,layered_paper,paper,0,5,2,11,2,0.275,0.982,3,600,1,OK,55.078,55.062,0.012,55.05,7490,True,True,1258279,941042,8642,1674,,,,,,,,
+clingcon_oneshot,one-shot,clingcon,layered_paper,paper,0,5,2,11,2,0.275,0.982,3,600,2,OK,35.136,35.124,0.007,35.117,7490,True,True,1258279,941042,8642,1674,,,,,,,,
+clingcon_oneshot,one-shot,clingcon,layered_paper,paper,0,5,2,11,2,0.275,0.982,3,600,3,OK,29.379,29.374,0.005,29.369,7490,True,True,1258279,941042,8642,1674,,,,,,,,
+naive_twostage,two-stage,naive,layered_paper,paper,0,5,2,11,2,0.275,0.982,,600,1,OK,12.194,12.187,0.008,12.179,3458,True,True,1328499,1200964,2478,2724,12.177,0.01,1937,787,3458,18,True,True
+naive_twostage,two-stage,naive,layered_paper,paper,0,5,2,11,2,0.275,0.982,,600,2,OK,12.165,12.161,0.007,12.155,3458,True,True,1328499,1200964,2478,2724,12.152,0.009,1937,787,3458,18,True,True
+naive_twostage,two-stage,naive,layered_paper,paper,0,5,2,11,2,0.275,0.982,,600,3,OK,13.065,13.062,0.009,13.054,3458,True,True,1328499,1200964,2478,2724,13.041,0.021,1937,787,3458,18,True,True
+clingcon_twostage,two-stage,clingcon,layered_paper,paper,0,5,2,11,2,0.275,0.982,,600,1,OK,5.482,5.47,0.005,5.465,3458,True,True,1081259,960317,2050,1901,5.465,0.005,1225,676,3458,19,True,True
+clingcon_twostage,two-stage,clingcon,layered_paper,paper,0,5,2,11,2,0.275,0.982,,600,2,OK,5.192,5.189,0.003,5.185,3458,True,True,1081259,960317,2050,1901,5.184,0.005,1225,676,3458,19,True,True
+clingcon_twostage,two-stage,clingcon,layered_paper,paper,0,5,2,11,2,0.275,0.982,,600,3,OK,5.214,5.211,0.003,5.207,3458,True,True,1081259,960317,2050,1901,5.206,0.005,1225,676,3458,19,True,True

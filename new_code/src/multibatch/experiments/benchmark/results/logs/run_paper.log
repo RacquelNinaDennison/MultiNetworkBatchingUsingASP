@@ -1,0 +1,81 @@
+Benchmark: 4 solvers x 1 instances x 3 bin sizes x 5 reps = 60 runs
+Time limit: 60s | Max freq: 20 | Bins: [1, 2, 3]
+Instances: /Users/racqueldennison/Documents/Masters/realdeal_masters/combined_encodings/new_code/src/multibatch/instances/generated
+Sizes:     ['paper']
+
+============================================================
+  Solver: naive_basic
+============================================================
+  [1/60] layered_paper | bins=1 | run 1/5 ... SAT cost=9730 t=60.139s
+  [2/60] layered_paper | bins=1 | run 2/5 ... SAT cost=9730 t=60.133s
+  [3/60] layered_paper | bins=1 | run 3/5 ... SAT cost=9730 t=60.128s
+  [4/60] layered_paper | bins=1 | run 4/5 ... SAT cost=9730 t=60.124s
+  [5/60] layered_paper | bins=1 | run 5/5 ... SAT cost=9730 t=60.127s
+  [6/60] layered_paper | bins=2 | run 1/5 ... SAT cost=7728 t=60.243s
+  [7/60] layered_paper | bins=2 | run 2/5 ... SAT cost=7728 t=60.19s
+  [8/60] layered_paper | bins=2 | run 3/5 ... SAT cost=7728 t=60.212s
+  [9/60] layered_paper | bins=2 | run 4/5 ... SAT cost=7728 t=60.202s
+  [10/60] layered_paper | bins=2 | run 5/5 ... SAT cost=7728 t=60.208s
+  [11/60] layered_paper | bins=3 | run 1/5 ... SAT cost=7882 t=60.412s
+  [12/60] layered_paper | bins=3 | run 2/5 ... SAT cost=7882 t=60.623s
+  [13/60] layered_paper | bins=3 | run 3/5 ... SAT cost=7882 t=60.355s
+  [14/60] layered_paper | bins=3 | run 4/5 ... SAT cost=7658 t=60.313s
+  [15/60] layered_paper | bins=3 | run 5/5 ... SAT cost=7658 t=60.317s
+============================================================
+  Solver: naive_optimised
+============================================================
+  [16/60] layered_paper | bins=1 | run 1/5 ... SAT cost=7882 t=60.154s
+  [17/60] layered_paper | bins=1 | run 2/5 ... SAT cost=7882 t=60.18s
+  [18/60] layered_paper | bins=1 | run 3/5 ... SAT cost=7882 t=60.154s
+  [19/60] layered_paper | bins=1 | run 4/5 ... SAT cost=7882 t=60.23s
+  [20/60] layered_paper | bins=1 | run 5/5 ... SAT cost=7882 t=60.152s
+  [21/60] layered_paper | bins=2 | run 1/5 ... SAT cost=17472 t=60.272s
+  [22/60] layered_paper | bins=2 | run 2/5 ... SAT cost=17416 t=60.255s
+  [23/60] layered_paper | bins=2 | run 3/5 ... SAT cost=17472 t=60.237s
+  [24/60] layered_paper | bins=2 | run 4/5 ... SAT cost=17472 t=60.244s
+  [25/60] layered_paper | bins=2 | run 5/5 ... SAT cost=17332 t=60.234s
+  [26/60] layered_paper | bins=3 | run 1/5 ... SAT cost=8008 t=60.33s
+  [27/60] layered_paper | bins=3 | run 2/5 ... SAT cost=8008 t=60.472s
+  [28/60] layered_paper | bins=3 | run 3/5 ... SAT cost=8008 t=60.367s
+  [29/60] layered_paper | bins=3 | run 4/5 ... SAT cost=8008 t=60.331s
+  [30/60] layered_paper | bins=3 | run 5/5 ... SAT cost=8008 t=60.322s
+============================================================
+  Solver: clingcon
+============================================================
+  [31/60] layered_paper | bins=1 | run 1/5 ... SAT cost=8694 t=60.012s
+  [32/60] layered_paper | bins=1 | run 2/5 ... SAT cost=8694 t=60.012s
+  [33/60] layered_paper | bins=1 | run 3/5 ... SAT cost=8694 t=60.015s
+  [34/60] layered_paper | bins=1 | run 4/5 ... SAT cost=8694 t=60.016s
+  [35/60] layered_paper | bins=1 | run 5/5 ... SAT cost=8694 t=60.012s
+  [36/60] layered_paper | bins=2 | run 1/5 ... SAT cost=14840 t=60.013s
+  [37/60] layered_paper | bins=2 | run 2/5 ... SAT cost=14840 t=60.016s
+  [38/60] layered_paper | bins=2 | run 3/5 ... SAT cost=14840 t=60.02s
+  [39/60] layered_paper | bins=2 | run 4/5 ... SAT cost=14840 t=60.014s
+  [40/60] layered_paper | bins=2 | run 5/5 ... SAT cost=14840 t=60.018s
+  [41/60] layered_paper | bins=3 | run 1/5 ... SAT cost=9912 t=60.048s
+  [42/60] layered_paper | bins=3 | run 2/5 ... SAT cost=9912 t=60.09s
+  [43/60] layered_paper | bins=3 | run 3/5 ... SAT cost=9912 t=60.012s
+  [44/60] layered_paper | bins=3 | run 4/5 ... SAT cost=9912 t=60.016s
+  [45/60] layered_paper | bins=3 | run 5/5 ... SAT cost=9912 t=60.037s
+============================================================
+  Solver: clingcon_optimised
+============================================================
+  [46/60] layered_paper | bins=1 | run 1/5 ... OPT cost=7546 t=4.366s
+  [47/60] layered_paper | bins=1 | run 2/5 ... OPT cost=7546 t=4.535s
+  [48/60] layered_paper | bins=1 | run 3/5 ... OPT cost=7546 t=4.319s
+  [49/60] layered_paper | bins=1 | run 4/5 ... OPT cost=7546 t=7.101s
+  [50/60] layered_paper | bins=1 | run 5/5 ... OPT cost=7546 t=7.621s
+  [51/60] layered_paper | bins=2 | run 1/5 ... OPT cost=7490 t=21.714s
+  [52/60] layered_paper | bins=2 | run 2/5 ... OPT cost=7490 t=22.069s
+  [53/60] layered_paper | bins=2 | run 3/5 ... OPT cost=7490 t=17.827s
+  [54/60] layered_paper | bins=2 | run 4/5 ... OPT cost=7490 t=17.876s
+  [55/60] layered_paper | bins=2 | run 5/5 ... OPT cost=7490 t=17.265s
+  [56/60] layered_paper | bins=3 | run 1/5 ... OPT cost=7490 t=57.574s
+  [57/60] layered_paper | bins=3 | run 2/5 ... OPT cost=7490 t=55.528s
+  [58/60] layered_paper | bins=3 | run 3/5 ... OPT cost=7490 t=55.642s
+  [59/60] layered_paper | bins=3 | run 4/5 ... OPT cost=7490 t=60.003s
+  [60/60] layered_paper | bins=3 | run 5/5 ... OPT cost=7490 t=58.119s
+
+Done! 60 new runs, 0 resumed.
+  Raw:     /Users/racqueldennison/Documents/Masters/realdeal_masters/combined_encodings/new_code/src/multibatch/experiments/benchmark/results/benchmark_raw_paper.csv
+  Summary: /Users/racqueldennison/Documents/Masters/realdeal_masters/combined_encodings/new_code/src/multibatch/experiments/benchmark/results/benchmark_summary_paper.csv

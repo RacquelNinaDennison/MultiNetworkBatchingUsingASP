@@ -1,0 +1,31 @@
+RUN_TAG = 
+SIZES   = paper small medium
+
+============================================================
+  benchmark size:   paper
+  run_tag:          
+  time_limit:       60s
+  out files:        /Users/racqueldennison/Documents/Masters/realdeal_masters/combined_encodings/new_code/src/multibatch/experiments/benchmark/results/{benchmark_raw,benchmark_summary}_paper.csv
+  log:              /Users/racqueldennison/Documents/Masters/realdeal_masters/combined_encodings/new_code/src/multibatch/experiments/benchmark/results/logs/run_paper.log
+============================================================
+  [paper] OK in 0h52m02s
+
+============================================================
+  benchmark size:   small
+  run_tag:          
+  time_limit:       60s
+  out files:        /Users/racqueldennison/Documents/Masters/realdeal_masters/combined_encodings/new_code/src/multibatch/experiments/benchmark/results/{benchmark_raw,benchmark_summary}_small.csv
+  log:              /Users/racqueldennison/Documents/Masters/realdeal_masters/combined_encodings/new_code/src/multibatch/experiments/benchmark/results/logs/run_small.log
+============================================================
+  [small] OK in 3h24m13s
+
+============================================================
+  benchmark size:   medium
+  run_tag:          
+  time_limit:       120s
+  out files:        /Users/racqueldennison/Documents/Masters/realdeal_masters/combined_encodings/new_code/src/multibatch/experiments/benchmark/results/{benchmark_raw,benchmark_summary}_medium.csv
+  log:              /Users/racqueldennison/Documents/Masters/realdeal_masters/combined_encodings/new_code/src/multibatch/experiments/benchmark/results/logs/run_medium.log
+============================================================
+  [medium] OK in 9h49m09s
+
+ALL DONE in 14h05m27s — tag=

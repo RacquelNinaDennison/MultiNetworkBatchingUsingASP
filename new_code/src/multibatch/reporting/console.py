@@ -8,7 +8,7 @@ from __future__ import annotations
 
 from collections import defaultdict
 
-from ..models import Instance, OneShotResult, TwoStageResult
+from ..models import Instance, OneShotResult, Stage2Result, TwoStageResult
 
 
 def print_oneshot_result(result: OneShotResult, instance: Instance) -> None:
@@ -95,6 +95,49 @@ def print_oneshot_result(result: OneShotResult, instance: Instance) -> None:
     print()
 
 
+def print_stage2_packings(s2: Stage2Result, instance: Instance) -> None:
+    """Display Stage 2 per-trip packings.
+
+    Shared by the full two-stage report and the milp_flow / twostage_clingcon
+    stage CLIs so every entry point shows packings identically.
+
+    Format:
+        STAGE 2 — PER-TRIP PACKINGS
+          [l1 -> l2] via tr1  (cap=19, 3 trips used):
+            trip 1: [p1 x5, p2 x2]  (weight=15/19)
+            trip 2: [p2 x3]         (weight=9/19)
+    """
+    print()
+    print("─" * 55)
+    print("  STAGE 2 — PER-TRIP PACKINGS")
+    print("─" * 55)
+
+    # Group trip_loads by route → trip → {part: qty}
+    trips: dict[tuple[str, str, str], dict[int, dict[str, int]]] = defaultdict(
+        lambda: defaultdict(dict)
+    )
+    for (f, t, tr, p, k), q in s2.trip_loads.items():
+        trips[(f, t, tr)][k][p] = q
+
+    if not trips:
+        print("  (no packings)")
+        return
+
+    for (f, t, tr) in sorted(trips):
+        cap = instance.transport_capacity.get(tr, 0)
+        n_trips = len(trips[(f, t, tr)])
+        print(f"  [{f} -> {t}] via {tr}  (cap={cap}, {n_trips} trips used):")
+
+        for k in sorted(trips[(f, t, tr)]):
+            parts = trips[(f, t, tr)][k]
+            items = ", ".join(f"{p} x{q}" for p, q in sorted(parts.items()))
+            weight = sum(
+                q * instance.part_size.get(p, 0) for p, q in parts.items()
+            )
+            print(f"    trip {k}: [{items}]  (weight={weight}/{cap})")
+        print()
+
+
 def print_twostage_result(result: TwoStageResult, instance: Instance) -> None:
     """Display a two-stage result with stage 1 flows and stage 2 packings.
 
@@ -153,34 +196,7 @@ def print_twostage_result(result: TwoStageResult, instance: Instance) -> None:
             print(f"    {ef} -> {et} via {etr}, part {ep}")
 
     # ── Stage 2: Per-trip packings ─────────────────────────────────────
-    print()
-    print("─" * 55)
-    print("  STAGE 2 — PER-TRIP PACKINGS")
-    print("─" * 55)
-
-    # Group trip_loads by route → trip → {part: qty}
-    trips: dict[tuple[str, str, str], dict[int, dict[str, int]]] = defaultdict(
-        lambda: defaultdict(dict)
-    )
-    for (f, t, tr, p, k), q in s2.trip_loads.items():
-        trips[(f, t, tr)][k][p] = q
-
-    if not trips:
-        print("  (no packings)")
-    else:
-        for (f, t, tr) in sorted(trips):
-            cap = instance.transport_capacity.get(tr, 0)
-            n_trips = len(trips[(f, t, tr)])
-            print(f"  [{f} -> {t}] via {tr}  (cap={cap}, {n_trips} trips used):")
-
-            for k in sorted(trips[(f, t, tr)]):
-                parts = trips[(f, t, tr)][k]
-                items = ", ".join(f"{p} x{q}" for p, q in sorted(parts.items()))
-                weight = sum(
-                    q * instance.part_size.get(p, 0) for p, q in parts.items()
-                )
-                print(f"    trip {k}: [{items}]  (weight={weight}/{cap})")
-            print()
+    print_stage2_packings(s2, instance)
 
     # ── Statistics ─────────────────────────────────────────────────────
     print("─" * 55)

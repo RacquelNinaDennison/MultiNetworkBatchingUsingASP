@@ -34,6 +34,7 @@ def parse_instance(path: str | Path) -> Instance:
     transport_capacity: dict[str, int] = {}
     part_size: dict[str, int] = {}
     part_value: dict[str, int] = {}
+    part_transport: set[tuple[str, str]] = set()
 
     for atom in ctl.symbolic_atoms:
         sym = atom.symbol
@@ -62,6 +63,9 @@ def parse_instance(path: str | Path) -> Instance:
         elif name == "partVal" and len(args) == 2:
             part_value[str(args[0])] = args[1].number
 
+        elif name == "partTR" and len(args) == 2:
+            part_transport.add((str(args[0]), str(args[1])))
+
         elif name == "route" and len(args) == 5:
             routes.append(Route(
                 origin=str(args[0]),
@@ -79,4 +83,5 @@ def parse_instance(path: str | Path) -> Instance:
         transport_capacity=transport_capacity,
         part_size=part_size,
         part_value=part_value,
+        part_transport=part_transport,
     )

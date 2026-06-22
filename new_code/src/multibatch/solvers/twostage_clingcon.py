@@ -4,6 +4,12 @@ Stage 1: Network flow with CSP load variables + frequency assignment.
 Stage 2: Per-trip bin packing with CSP tripLoad variables + diversification.
 
 Uses multi-shot iterative bound tightening for stage 1.
+
+Run modes (mirrors `multibatch.solvers.milp_flow`):
+    # ASP/clingcon flow only (also prints the per-arc profile + arc allocation)
+    uv run python -m multibatch.solvers.twostage_clingcon <instance.lp> --mode stage1
+    # ASP/clingcon flow + ASP resilient packing
+    uv run python -m multibatch.solvers.twostage_clingcon <instance.lp> --mode full
 """
 
 from __future__ import annotations
@@ -271,6 +277,10 @@ class ClingconTwoStageSolver(BaseSolver):
         clingo_args: list[str] = [
             "-c", f"hetero_on={self.config.hetero_on}",
             "-c", f"concentrated_on={self.config.concentrated_on}",
+            # Weights for the weighted Stage-2 encoding; harmless extra defines
+            # for the original (lexicographic) encoding, which ignores them.
+            "-c", f"w_hetero={self.config.w_hetero}",
+            "-c", f"w_conc={self.config.w_conc}",
         ]
         if self.config.threads > 1:
             clingo_args += ["-t", str(self.config.threads)]
@@ -458,3 +468,101 @@ class ClingconTwoStageSolver(BaseSolver):
             "mono_count": mono_count,
             "concentrated_count": concentrated_count,
         }
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# CLI — mirrors multibatch.solvers.milp_flow (stage1 / full modes)
+# ─────────────────────────────────────────────────────────────────────────────
+
+
+def main(argv: list[str] | None = None) -> int:
+    import argparse
+    import sys
+
+    p = argparse.ArgumentParser(
+        description="ASP/clingcon two-stage solver (flow + ASP packing)"
+    )
+    p.add_argument("instance")
+    p.add_argument("--mode", choices=["stage1", "full"], default="full",
+                   help="stage1 = clingcon flow only; full = flow + ASP packing")
+    p.add_argument("--weight", type=int, default=0,
+                   help="exposure penalty weight (0 = pure cost)")
+    p.add_argument("--exposure-n", type=int, default=3)
+    p.add_argument("--max-freq", type=int, default=20)
+    p.add_argument("--cap-size-divide", type=int, default=1)
+    p.add_argument("--flow-time-limit", type=int, default=300,
+                   help="total Stage-1 multi-shot budget (seconds)")
+    p.add_argument("--round-timeout", type=int, default=30,
+                   help="per-round timeout for Stage-1 multi-shot")
+    # Stage-2 packing options (full mode only)
+    p.add_argument("--hetero-on", type=int, default=1)
+    p.add_argument("--concentrated-on", type=int, default=1)
+    p.add_argument("--w-hetero", type=int, default=1, help="weighted-packing heterogeneity weight")
+    p.add_argument("--w-conc", type=int, default=1, help="weighted-packing anti-concentration weight")
+    p.add_argument("--weighted-packing", action="store_true",
+                   help="use the single-level weighted Stage-2 encoding (w_hetero/w_conc)")
+    p.add_argument("--stage2-time-limit", type=int, default=60)
+    p.add_argument("--configuration", type=str, default="many")
+    p.add_argument("--threads", type=int, default=1)
+    args = p.parse_args(argv)
+
+    config = TwoStageClingconConfig(
+        weight=args.weight,
+        exposure_n=args.exposure_n,
+        max_freq=args.max_freq,
+        cap_size_divide=args.cap_size_divide,
+        time_limit=args.flow_time_limit,
+        round_timeout=args.round_timeout,
+        hetero_on=args.hetero_on,
+        concentrated_on=args.concentrated_on,
+        w_hetero=args.w_hetero,
+        w_conc=args.w_conc,
+        configuration=(args.configuration or None),
+        threads=args.threads,
+    )
+    stage2_enc = (ENCODING_DIR / "stage_2_packing_weighted.lp") if args.weighted_packing else None
+    solver = ClingconTwoStageSolver(
+        args.instance, config=config, stage2_encoding=stage2_enc,
+    )
+
+    # Reuse the milp_flow CLI's reporting helpers. Imported lazily because
+    # milp_flow imports from this module at load time (circular at top level).
+    from .milp_flow import _per_arc_profile, _arc_allocation
+    from ..reporting.console import print_stage2_packings
+
+    print(f"=== ASP/clingcon Stage 1 on {args.instance} ===")
+    stage1 = solver._solve_stage1()
+    if stage1 is None:
+        print("Stage 1 found NO feasible flow within the budget.")
+        return 1
+    m = stage1.metadata
+    print(f"  feasible flow found. optimum={m.optimum} cost={m.cost} "
+          f"atoms={m.atoms} ground={m.ground_time}s solve={m.solve_time}s")
+    print(f"  active arcs={len(stage1.route_freqs)} "
+          f"total trips={sum(rf.frequency for rf in stage1.route_freqs)}")
+    _per_arc_profile(stage1)
+    _arc_allocation(stage1)
+
+    if args.mode == "stage1":
+        return 0
+
+    # Stage 2 reads config.time_limit for its solve budget.
+    solver.config.time_limit = args.stage2_time_limit
+    print(f"\n=== ASP Stage 2 packing (hetero={args.hetero_on} concentrated={args.concentrated_on}) ===")
+    stage2 = solver._solve_stage2(stage1)
+    if stage2 is None:
+        print("Stage 2 produced no packing (infeasible or no model in budget).")
+        return 1
+    m2 = stage2.metadata
+    print(f"  packing found. optimum={m2.optimum} cost={m2.cost} "
+          f"trips_used={len(stage2.used_trips)} mono={stage2.mono_count} "
+          f"concentrated={stage2.concentrated_count} "
+          f"first={(m2.trajectory[0]['time'] if m2.trajectory else '-')}s total={m2.total_time}s")
+    _ = TwoStageResult(stage1=stage1, stage2=stage2)
+    print_stage2_packings(stage2, solver.instance)
+    return 0
+
+
+if __name__ == "__main__":
+    import sys
+    sys.exit(main())

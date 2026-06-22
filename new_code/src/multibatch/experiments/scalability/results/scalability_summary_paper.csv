@@ -1,0 +1,5 @@
+solver,encoding_family,backend,instance,instance_size,seed,n_locations,n_parts,n_routes,n_transports,density,capacity_tightness,num_bins,time_limit,num_runs,avg_wall_time,avg_total_time,avg_ground_time,avg_solve_time,cost,optimum,satisfiable,avg_choices,avg_conflicts,avg_restarts,atoms,avg_s1_time,avg_s2_time,s1_atoms,s2_atoms,s1_cost,s2_cost,s1_optimum,s2_optimum
+clingcon_oneshot,one-shot,clingcon,layered_paper,paper,0,5,2,11,2,0.275,0.982,3,600,3,39.864,39.853,0.008,39.845,7490,True,True,1258279.0,941042.0,8642.0,1674,,,,,,,,
+clingcon_twostage,two-stage,clingcon,layered_paper,paper,0,5,2,11,2,0.275,0.982,,600,3,5.296,5.29,0.004,5.286,3458,True,True,1081259.0,960317.0,2050.0,1901,5.285,0.005,1225,676,3458,19,True,True
+naive_oneshot,one-shot,naive,layered_paper,paper,0,5,2,11,2,0.275,0.982,3,600,3,600.39,600.346,0.335,600.011,7602,False,True,7992493.0,2721713.667,5800.0,222789,,,,,,,,
+naive_twostage,two-stage,naive,layered_paper,paper,0,5,2,11,2,0.275,0.982,,600,3,12.475,12.47,0.008,12.463,3458,True,True,1328499.0,1200964.0,2478.0,2724,12.457,0.013,1937,787,3458,18,True,True

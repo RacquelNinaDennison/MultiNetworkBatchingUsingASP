@@ -1,0 +1,13 @@
+solver,instance,instance_size,num_bins,num_runs,avg_ground_time,avg_solve_time,avg_total_time,cost,optimum,satisfiable,avg_choices,avg_conflicts,avg_restarts,atoms
+clingcon,layered_paper,paper,1,5,0.006,60.007,60.013,8694,False,True,1124504.2,852791.8,8102.6,784
+clingcon,layered_paper,paper,2,5,0.009,60.007,60.016,14840,False,True,2968903.4,1994137.6,13650.6,1101
+clingcon,layered_paper,paper,3,5,0.023,60.018,60.041,9912,False,True,830474.8,586403.6,5661.2,1418
+clingcon_optimised,layered_paper,paper,1,5,0.007,5.582,5.588,7546,True,True,94935.0,72395.0,1022.0,897
+clingcon_optimised,layered_paper,paper,2,5,0.009,19.342,19.35,7490,True,True,417904.0,317813.0,3068.0,1280
+clingcon_optimised,layered_paper,paper,3,5,0.011,57.362,57.373,7490,True,True,1258279.0,941042.0,8642.0,1674
+naive_basic,layered_paper,paper,1,5,0.124,60.006,60.13,9730,False,True,793053.6,417610.8,1012.4,111841
+naive_basic,layered_paper,paper,2,5,0.205,60.005,60.211,7728,False,True,1071116.8,336124.0,960.8,167315
+naive_basic,layered_paper,paper,3,5,0.394,60.01,60.404,7658,False,True,704240.4,218548.6,628.0,222789
+naive_optimised,layered_paper,paper,1,5,0.169,60.005,60.174,7882,False,True,1031764.0,343808.4,923.2,111841
+naive_optimised,layered_paper,paper,2,5,0.242,60.007,60.248,17332,False,True,500766.8,272760.6,625.6,167315
+naive_optimised,layered_paper,paper,3,5,0.356,60.008,60.364,8008,False,True,721333.4,222696.8,615.4,222789

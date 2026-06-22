@@ -1,0 +1,28 @@
+RUN_TAG = 
+SIZES   = paper small medium
+
+============================================================
+  scalability size:  paper
+  run_tag:           
+  out files:         /Users/racqueldennison/Documents/Masters/realdeal_masters/combined_encodings/new_code/src/multibatch/experiments/scalability/results/{scalability_raw,scalability_summary}_paper.csv
+  log:               /Users/racqueldennison/Documents/Masters/realdeal_masters/combined_encodings/new_code/src/multibatch/experiments/scalability/results/logs/run_paper.log
+============================================================
+  [paper] OK in 0h32m55s
+
+============================================================
+  scalability size:  small
+  run_tag:           
+  out files:         /Users/racqueldennison/Documents/Masters/realdeal_masters/combined_encodings/new_code/src/multibatch/experiments/scalability/results/{scalability_raw,scalability_summary}_small.csv
+  log:               /Users/racqueldennison/Documents/Masters/realdeal_masters/combined_encodings/new_code/src/multibatch/experiments/scalability/results/logs/run_small.log
+============================================================
+  [small] OK in 6h57m37s
+
+============================================================
+  scalability size:  medium
+  run_tag:           
+  out files:         /Users/racqueldennison/Documents/Masters/realdeal_masters/combined_encodings/new_code/src/multibatch/experiments/scalability/results/{scalability_raw,scalability_summary}_medium.csv
+  log:               /Users/racqueldennison/Documents/Masters/realdeal_masters/combined_encodings/new_code/src/multibatch/experiments/scalability/results/logs/run_medium.log
+============================================================
+  [medium] OK in 16h30m07s
+
+ALL DONE in 24h00m43s — tag=

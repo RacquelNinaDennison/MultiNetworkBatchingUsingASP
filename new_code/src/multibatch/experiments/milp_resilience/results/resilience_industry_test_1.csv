@@ -1,0 +1,5 @@
+instance,config,flow_optimum,flow_cost,n_arcs,total_trips,s2_status,s2_optimal,mono_count,concentrated_count,r_tr,r_1,k_1,r_alpha_single_0.2,r_alpha_global_0.2,s1_dispatch_cost,s2_dispatch_cost,cost_saving,s2_time
+industry_test_1,baseline,False,3415081,39,108,OK,False,10,125,0.0,0.0,0.0,0.0,0.0,3415081,3048685,366396,20.021
+industry_test_1,mixed,False,3415081,39,108,OK,False,0,126,0.0,0.0,0.0,0.0,0.0,3415081,3050407,364674,20.018
+industry_test_1,even,False,3415081,39,108,OK,False,4,58,0.0,0.0,0.0,0.0,0.0,3415081,3131305,283776,20.019
+industry_test_1,full,False,3415081,39,108,OK,False,1,59,0.0,0.0,0.0,0.0,0.0,3415081,3358857,56224,20.019

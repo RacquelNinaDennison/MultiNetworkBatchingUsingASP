@@ -61,6 +61,8 @@ class TwoStageClingconConfig(BaseConfig):
     cap_size_divide: int = Field(default=1, description="Capacity scaling divisor")
     hetero_on: int = Field(default=1, description="Enable heterogeneity constraint (1/0)")
     concentrated_on: int = Field(default=1, description="Enable concentration penalty (1/0)")
+    w_hetero: int = Field(default=1, description="Heterogeneity weight (weighted Stage-2 encoding)")
+    w_conc: int = Field(default=1, description="Anti-concentration weight (weighted Stage-2 encoding)")
     round_timeout: int = Field(default=30, description="Per-round timeout for multi-shot")
     threads: int = Field(default=1, description="Solver threads")
     configuration: str | None = Field(default=None, description="Clingo configuration preset")

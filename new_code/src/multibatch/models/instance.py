@@ -47,6 +47,18 @@ class Instance(BaseModel):
     transport_capacity: dict[str, int] = Field(default_factory=dict)
     part_size: dict[str, int] = Field(default_factory=dict)
     part_value: dict[str, int] = Field(default_factory=dict)
+    # partTR(P, TR): which transport resources each part is allowed on. Needed by
+    # the MILP flow solver to build possibleFlow (the ASP encodings read it
+    # straight from the raw .lp, so the ASP solvers don't depend on this field).
+    part_transport: set[tuple[str, str]] = Field(default_factory=set)
+
+    @property
+    def transports_for_part(self) -> dict[str, set[str]]:
+        """Lookup: part → set of transport resources it may travel on."""
+        result: dict[str, set[str]] = {}
+        for p, tr in self.part_transport:
+            result.setdefault(p, set()).add(tr)
+        return result
 
     @property
     def route_cost(self) -> dict[tuple[str, str, str], int]:

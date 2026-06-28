@@ -1,9 +1,0 @@
-{
-  "E1_baseline": {
-    "route_freqs": {},
-    "loads": {},
-    "optimization": [],
-    "solve_time": 30.028,
-    "models_found": 0
-  }
-}

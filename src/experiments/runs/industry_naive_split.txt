@@ -1,9 +1,0 @@
-clingo version 5.8.0
-Reading from encoding/twostage/naive/stage1_flow.lp ...
-UNKNOWN
-
-TIME LIMIT   : 1
-Models       : 0+
-Calls        : 1
-Time         : 600.011s (Solving: 0.00s 1st Model: 0.00s Unsat: 0.00s)
-CPU Time     : 474.975s

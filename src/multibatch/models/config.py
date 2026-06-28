@@ -18,7 +18,11 @@ class SolverType(str, Enum):
     CLINGCON_ONESHOT = "clingcon_oneshot"
     TWOSTAGE_NAIVE = "twostage_naive"
     TWOSTAGE_CLINGCON = "twostage_clingcon"
-    TWOSTAGE_SUBPROCESS = "twostage_subprocess"
+    MILPFLOW_TWOSTAGE = "milpflow_twostage"
+
+    def __str__(self) -> str:
+        # So argparse renders choices/help as "naive_oneshot", not "SolverType.NAIVE_ONESHOT".
+        return self.value
 
 
 class BaseConfig(BaseModel):

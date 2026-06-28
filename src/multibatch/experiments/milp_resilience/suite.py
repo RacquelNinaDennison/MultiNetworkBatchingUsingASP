@@ -64,6 +64,9 @@ WEIGHTED_ENC = ENCODING_DIR / "stage_2_packing_weighted.lp"
 # Instance discovery (mirrors twostage.runner.discover_instances)
 _MULTIBATCH = Path(__file__).resolve().parents[2]  # src/multibatch/
 INSTANCE_DIR = _MULTIBATCH / "instances" / "generated"
+# Anchor output defaults to THIS package dir, not the caller's CWD — otherwise
+# running from src/ duplicated everything into src/src/ (the old path bug).
+RESULTS_DIR = Path(__file__).resolve().parent / "results"
 DEFAULT_GLOBS = ["layered_*.lp", "industry_test_*.lp"]
 
 # Solvers iterated by default (ASP two-stage, then the MILP/"MOP" flow solver)
@@ -417,8 +420,8 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("--flow-time-limit", type=int, default=600)
     p.add_argument("--stage2-time-limit", type=int, default=30)
     p.add_argument("--configuration", default="many")
-    p.add_argument("--cache-dir", default="src/multibatch/experiments/milp_resilience/results/flows")
-    p.add_argument("-o", "--out", default="src/multibatch/experiments/milp_resilience/results/suite.csv")
+    p.add_argument("--cache-dir", default=RESULTS_DIR / "flows")
+    p.add_argument("-o", "--out", default=RESULTS_DIR / "suite.csv")
     args = p.parse_args(argv)
 
     instances = resolve_instances(args)

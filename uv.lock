@@ -820,7 +820,6 @@ dependencies = [
     { name = "clingo" },
     { name = "ipykernel" },
     { name = "matplotlib" },
-    { name = "np" },
     { name = "numpy" },
     { name = "ortools" },
     { name = "pandas" },
@@ -850,7 +849,6 @@ requires-dist = [
     { name = "ipykernel", specifier = ">=7.2.0" },
     { name = "matplotlib", specifier = ">=3.10.9" },
     { name = "matplotlib", marker = "extra == 'experiments'", specifier = ">=3.7" },
-    { name = "np", specifier = ">=1.0.2" },
     { name = "numpy", specifier = ">=2.4.5" },
     { name = "ortools", specifier = ">=9.15.6755" },
     { name = "pandas", specifier = ">=3.0.3" },
@@ -882,12 +880,6 @@ sdist = { url = "https://files.pythonhosted.org/packages/6a/51/63fe664f3908c97be
 wheels = [
     { url = "https://files.pythonhosted.org/packages/9e/c9/b2622292ea83fbb4ec318f5b9ab867d0a28ab43c5717bb85b0a5f6b3b0a4/networkx-3.6.1-py3-none-any.whl", hash = "sha256:d47fbf302e7d9cbbb9e2555a0d267983d2aa476bac30e90dfbe5669bd57f3762", size = 2068504, upload-time = "2025-12-08T17:02:38.159Z" },
 ]
-
-[[package]]
-name = "np"
-version = "1.0.2"
-source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/40/7d/749666e5a9976dcbc4d16d487bbe571efc6bbf4cdf3f4620c0ccc52b57ef/np-1.0.2.tar.gz", hash = "sha256:781265283f3823663ad8fb48741aae62abcf4c78bc19f908f8aa7c1d3eb132f8", size = 7419, upload-time = "2017-10-05T11:26:00.956Z" }
 
 [[package]]
 name = "numpy"

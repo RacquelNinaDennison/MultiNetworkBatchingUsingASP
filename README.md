@@ -121,6 +121,9 @@ uv run multibatch --solver clingcon_oneshot -i src/multibatch/instances/generate
 uv run multibatch --solver twostage_naive    -i src/multibatch/instances/generated/layered_paper.lp --bins 2 --time-limit 60
 uv run multibatch --solver twostage_clingcon -i src/multibatch/instances/generated/layered_paper.lp --bins 2 --time-limit 60
 
+# MILP Stage-1 flow oracle (OR-Tools) + ASP Stage-2 packing
+uv run multibatch --solver milpflow_twostage -i src/multibatch/instances/generated/layered_paper.lp --utilisation 0.7 --flow-time-limit 60 --time-limit 60
+
 # Basic (non-optimised) encoding / skip verification / visualise
 uv run multibatch --solver naive_oneshot -i src/multibatch/instances/generated/layered_paper.lp --no-optimised --bins 2
 uv run multibatch --solver naive_oneshot -i src/multibatch/instances/generated/layered_paper.lp --no-verify

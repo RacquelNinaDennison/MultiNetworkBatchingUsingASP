@@ -24,6 +24,7 @@ from .solvers.naive import NaiveOneShotSolver
 from .solvers.clingcon import ClingconOneShotSolver
 from .solvers.twostage_naive import NaiveTwoStageSolver
 from .solvers.twostage_clingcon import ClingconTwoStageSolver
+from .solvers.milp_flow import MilpFlowTwoStageSolver
 from .verification import verify_solution
 from .reporting.console import print_oneshot_result, print_twostage_result
 
@@ -81,11 +82,28 @@ def _build_twostage_clingcon(args) -> ClingconTwoStageSolver:
     )
 
 
+def _build_milpflow_twostage(args) -> MilpFlowTwoStageSolver:
+    config = TwoStageClingconConfig(
+        time_limit=args.time_limit,
+        max_freq=args.max_freq,
+        weight=args.weight,
+    )
+    return MilpFlowTwoStageSolver(
+        instance_path=args.instance,
+        config=config,
+        backend=args.backend,
+        flow_time_limit=args.flow_time_limit,
+        flow_redundancy_weight=args.flow_redundancy_weight,
+        utilisation=args.utilisation,
+    )
+
+
 SOLVER_REGISTRY = {
     SolverType.NAIVE_ONESHOT: _build_naive_oneshot,
     SolverType.CLINGCON_ONESHOT: _build_clingcon_oneshot,
     SolverType.TWOSTAGE_NAIVE: _build_twostage_naive,
     SolverType.TWOSTAGE_CLINGCON: _build_twostage_clingcon,
+    SolverType.MILPFLOW_TWOSTAGE: _build_milpflow_twostage,
 }
 
 
@@ -106,6 +124,15 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--bins", type=int, default=1, help="Number of bins")
     parser.add_argument("--max-freq", type=int, default=20, help="Maximum frequency")
     parser.add_argument("--weight", type=int, default=1, help="Objective weight (two-stage)")
+    # milpflow_twostage (MILP Stage-1) options
+    parser.add_argument("--backend", default="SCIP", help="MILP backend for milpflow_twostage")
+    parser.add_argument("--utilisation", type=float, default=0.7,
+                        help="Stage-1 capacity-fill fraction (milpflow_twostage); "
+                             "1.0 = the paper's exact constraint, 0.7 = 30%% safety margin")
+    parser.add_argument("--flow-time-limit", type=int, default=300,
+                        help="Stage-1 MILP time limit in seconds (milpflow_twostage)")
+    parser.add_argument("--flow-redundancy-weight", type=int, default=0,
+                        help="push active arcs toward >=2 trips (milpflow_twostage; 0=off)")
     parser.add_argument("--optimised", action="store_true", default=True)
     parser.add_argument("--no-optimised", action="store_false", dest="optimised")
     parser.add_argument("--verify", action="store_true", default=True, help="Run verification")

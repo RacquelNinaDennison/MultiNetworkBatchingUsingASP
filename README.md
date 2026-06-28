@@ -1,86 +1,84 @@
 # Two-Stage Logistics Optimisation with Resilience Analysis
 
-Project investigating supply chain resilience through a two-stage decomposition of the multi-commodity network batching problem. Stage 1 solves aggregate network flow; Stage 2 solves per-trip bin packing. Resilience metrics are computed via max-flow simulation of arc and trip disruptions.
+Masters project investigating supply-chain resilience through a two-stage
+decomposition of the multi-commodity network batching problem. **Stage 1**
+solves aggregate network flow; **Stage 2** solves per-trip bin packing.
+Resilience metrics are computed by max-flow simulation of arc and trip
+disruptions.
 
-> **The main entry point for all solvers and experiments is the `new_code/` directory**, which contains the `multibatch` Python package. The legacy `src/` directory holds earlier prototype code and is retained for reference only.
+The whole project is the `multibatch` Python package (`src/multibatch/`).
 
 ---
 
 ## Problem Overview
 
-This project solves the multi-batching problem: multiple part types must be assigned to transport resources routed around a logistics network. The problem is formulated and solved using Answer Set Programming (ASP), with both pure ASP and clingcon (ASP + constraint programming) backends.
+Multiple part types must be assigned to transport resources routed around a
+logistics network. The model is solved with Answer Set Programming (ASP) —
+pure ASP and clingcon (ASP + constraint programming) backends — with an
+optional MILP oracle for the Stage-1 flow.
 
----
+The core insight: aggregate-optimal flow can be **operationally infeasible** to
+pack into discrete trips. The two-stage decomposition makes the aggregate
+(tactical) and per-trip (operational) decisions explicit, and packing-diversity
+objectives in Stage 2 are shown to improve disruption resilience.
 
-## Approach
+### Stage 1 — Network Flow (tactical)
 
-### Stage 1 — Network Flow (Tactical)
+- `load(From, To, TR, P)` — units of part `P` shipped on each arc
+- `routeFreq(From, To, TR, Freq, TotalCap)` — trips and total capacity per arc
 
-Solves for:
-- `load(From, To, TR, P)` — total units of part P shipped on each arc (CSP variable)
-- `routeFreq(From, To, TR, Freq, TotalCap)` — number of trips and total capacity on each arc
+Minimises CO₂ + transport cost. Two feasibility safeguards keep Stage 1
+solutions packable by Stage 2: a per-item bound and a configurable capacity
+utilisation envelope (default 70%, `1.0` = the paper's exact constraint).
 
-Minimises CO₂ cost + transport cost using iterative bound-tightening (multi-shot solving with `clingcon`).
+Stage 1 can be solved three ways: clingcon multi-shot (`twostage_clingcon`),
+pure ASP (`twostage_naive`), or a MILP oracle (`milpflow_twostage`, OR-Tools).
 
-Two feasibility safeguards ensure Stage 1 solutions are packable by Stage 2:
-1. **Per-item constraint** — load of each part cannot exceed `floor(capacity / size) × frequency`
-2. **80% utilisation headroom** — aggregate volume capped at 80% of total capacity to absorb combinatorial packing effects
+### Stage 2 — Per-Trip Bin Packing (operational)
 
-### Stage 2 — Per-Trip Bin Packing (Operational)
+Takes Stage 1 flows as fixed input and solves `tripLoad(From, To, TR, P, K)`.
+Configurable packing objectives:
 
-Takes Stage 1 aggregate flows as fixed input and solves:
-- `tripLoad(From, To, TR, P, K)` — units of part P on trip K
-
-Core constraints: conservation (all units assigned), per-trip capacity. Configurable objectives:
-
-| Configuration | Objective |
+| Config | Objective |
 |---|---|
-| `baseline` | No quality signal — solver default |
-| `hetero` | Soft penalties for mono-SKU trips (diversity) |
-| `conc` | Soft penalties for load concentration |
-| `both` | Both diversity and concentration penalties |
+| `baseline` | cost only — no quality signal |
+| `hetero` | penalise mono-SKU trips (diversity) |
+| `conc` | penalise load concentration |
+| `both` | diversity + concentration |
 
 ### Resilience Metrics
 
-Computed via max-flow simulation on the trip-level solution:
+Computed by max-flow simulation on the trip-level solution:
 
 | Metric | Description |
 |---|---|
-| **R_TR** | Arc disruption resilience — fraction of demand met if a route is lost |
-| **R_1** | Trip disruption resilience — fraction of demand met if a single trip is lost |
-| **K_1** | Kit completion ratio — fraction of complete orders satisfied under worst-case trip loss |
-| **R_alpha** | Partial disruption resilience — demand met when α% of trips survive |
+| `R_TR` | arc-disruption resilience (one route lost) |
+| `R_resource` | network/fleet-level resilience (a whole transport resource lost) |
+| `R_1` | single-trip-disruption resilience |
+| `K_1` | kit-completion ratio under worst-case trip loss |
+| `R_alpha` / `NRI_alpha` / `CVaR_alpha` | partial-disruption resilience: worst-case / mean / tail when α% of trips survive |
 
 ---
 
 ## Repository Structure
 
 ```
-combined_encodings/
-├── new_code/                            # Main package (start here)
-│   ├── pyproject.toml                   # Package config & dependencies
-│   ├── uv.lock
-│   └── src/multibatch/
-│       ├── cli.py                       # CLI entry point
-│       ├── models/                      # Pydantic data models (Instance, Config, Solution)
-│       ├── instance/                    # Instance .lp parser
-│       ├── solvers/                     # Solver implementations
-│       │   ├── naive.py                 # Pure ASP one-shot solver
-│       │   ├── clingcon.py              # Clingcon one-shot solver
-│       │   ├── twostage_naive.py        # Two-stage pure ASP
-│       │   └── twostage_clingcon.py     # Two-stage clingcon
-│       ├── encodings/                   # ASP/LP encoding files
-│       │   ├── naive/                   # Pure ASP encodings
-│       │   ├── clingcon/                # Clingcon encodings
-│       │   └── twostage/               # Two-stage encodings (naive + clingcon)
-│       ├── verification/                # Solution correctness checks
-│       ├── metrics/                     # Quality and resilience metrics
-│       ├── reporting/                   # Console output formatting
-│       ├── visualisation/               # Network visualisation
-│       ├── experiments/                 # Benchmarking and experiment runners
-│       └── instances/                   # Problem instances
-│           └── generated/               # Synthetic instances (paper → xlarge)
-└── src/                                 # Legacy prototype code (reference only)
+.
+├── pyproject.toml            # package config & dependencies (uv)
+├── uv.lock
+├── src/multibatch/
+│   ├── cli.py                # CLI entry point
+│   ├── models/               # pydantic data models (Instance, Config, Solution)
+│   ├── instance/             # instance .lp parser
+│   ├── solvers/              # naive / clingcon / two-stage / MILP-flow solvers
+│   ├── encodings/            # ASP/LP encoding files (naive, clingcon, twostage)
+│   ├── verification/         # solution correctness checks
+│   ├── metrics/              # coverage & resilience metrics
+│   ├── reporting/            # console output
+│   ├── visualisation/        # interactive network visualisation
+│   ├── instances/generated/  # synthetic instances (paper → xlarge)
+│   └── experiments/          # benchmark / scalability / twostage / milp_resilience / packing_stress
+└── Docs/                     # thesis writing (kept outside git — Overleaf/local)
 ```
 
 ---
@@ -90,10 +88,13 @@ combined_encodings/
 Requires Python ≥ 3.11 and [`uv`](https://github.com/astral-sh/uv).
 
 ```bash
-git clone <repo-url>
-cd combined_encodings/new_code
 uv sync
 ```
+
+> **macOS note:** if `uv run multibatch` fails with `ModuleNotFoundError: No
+> module named 'multibatch'`, the editable-install `.pth` files in `.venv` have
+> been marked hidden by APFS. Fix with `chflags -R nohidden .venv` (wrapped in
+> the `make setup` target).
 
 ### Dependencies
 
@@ -101,86 +102,47 @@ uv sync
 |---|---|
 | `clingo` | ASP solver |
 | `clingcon` | ASP + constraint solving |
-| `pydantic` | Data models |
-| `scipy` | Network flow for resilience metrics |
+| `ortools` | MILP backend for the Stage-1 flow oracle |
+| `pydantic` | data models |
+| `scipy` | max-flow for resilience metrics |
 
 ---
 
 ## Usage
 
-All commands run from the `new_code/` directory.
-
-### Single solve
+All commands run from the repository root.
 
 ```bash
-# Naive one-shot solver (pure ASP)
-uv run multibatch --solver naive_oneshot \
-    -i src/multibatch/instances/generated/layered_paper.lp \
-    --bins 2 --time-limit 60
+# One-shot solvers
+uv run multibatch --solver naive_oneshot    -i src/multibatch/instances/generated/layered_paper.lp --bins 2 --time-limit 60
+uv run multibatch --solver clingcon_oneshot -i src/multibatch/instances/generated/layered_paper.lp --bins 2 --time-limit 60
 
-# Clingcon one-shot solver
-uv run multibatch --solver clingcon_oneshot \
-    -i src/multibatch/instances/generated/layered_paper.lp \
-    --bins 2 --time-limit 60
+# Two-stage solvers
+uv run multibatch --solver twostage_naive    -i src/multibatch/instances/generated/layered_paper.lp --bins 2 --time-limit 60
+uv run multibatch --solver twostage_clingcon -i src/multibatch/instances/generated/layered_paper.lp --bins 2 --time-limit 60
 
-# Two-stage naive solver
-uv run multibatch --solver twostage_naive \
-    -i src/multibatch/instances/generated/layered_paper.lp \
-    --bins 2 --time-limit 60
-
-# Two-stage clingcon solver
-uv run multibatch --solver twostage_clingcon \
-    -i src/multibatch/instances/generated/layered_paper.lp \
-    --bins 2 --time-limit 60
-
-# Use basic (non-optimised) encoding
-uv run multibatch --solver naive_oneshot \
-    -i src/multibatch/instances/generated/layered_paper.lp \
-    --no-optimised --bins 2
-
-# Skip verification
-uv run multibatch --solver naive_oneshot \
-    -i src/multibatch/instances/generated/layered_paper.lp \
-    --no-verify
+# Basic (non-optimised) encoding / skip verification / visualise
+uv run multibatch --solver naive_oneshot -i src/multibatch/instances/generated/layered_paper.lp --no-optimised --bins 2
+uv run multibatch --solver naive_oneshot -i src/multibatch/instances/generated/layered_paper.lp --no-verify
+uv run multibatch --solver naive_oneshot -i src/multibatch/instances/generated/layered_paper.lp --visualise
 ```
-
-Futhermore, to visualise the packings, run 
-
-```
-uv run multibatch --solver naive_oneshot \
-    -i src/multibatch/instances/generated/layered_paper.lp \
-    --visualise
-
-```
-
-
-<img width="1006" height="473" alt="image" src="https://github.com/user-attachments/assets/24df37d9-dfee-40cd-8f7a-1c409fc6abf2" />
-
-
 
 ### Python API
 
 ```python
 from multibatch.instance import parse_instance
 from multibatch.solvers.naive import NaiveOneShotSolver
-from multibatch.solvers.clingcon import ClingconOneShotSolver
-from multibatch.models import NaiveOneShotConfig, ClingconOneShotConfig
+from multibatch.models import NaiveOneShotConfig
 from multibatch.verification import verify_solution
 
-# Parse instance
-instance = parse_instance("src/multibatch/instances/generated/layered_small_seed1.lp")
+inst_path = "src/multibatch/instances/generated/layered_small_seed1.lp"
+instance = parse_instance(inst_path)
 
-# Configure and run solver
 config = NaiveOneShotConfig(num_bins=2, time_limit=30)
-solver = NaiveOneShotSolver("src/multibatch/instances/generated/layered_small_seed1.lp", config)
-result = solver.solve()
-
-# Check result
+result = NaiveOneShotSolver(inst_path, config).solve()
 if result:
     passed, errors = verify_solution(result, instance)
-    print(f"Optimum: {result.metadata.optimum}")
-    print(f"Time: {result.metadata.total_time}s")
-    print(f"Valid: {passed}")
+    print(result.metadata.optimum, result.metadata.total_time, passed)
 ```
 
 ---
@@ -189,10 +151,27 @@ if result:
 
 | Backend | Description |
 |---|---|
-| `naive_oneshot` | Pure ASP monolithic encoding with weak constraints |
-| `clingcon_oneshot` | Uses CSP integer variables for flow and frequency |
-| `twostage_naive` | Two-stage pipeline using pure ASP |
-| `twostage_clingcon` | Two-stage pipeline using clingcon CSP variables |
+| `naive_oneshot` | pure-ASP monolithic encoding with weak constraints |
+| `clingcon_oneshot` | CSP integer variables for flow and frequency |
+| `twostage_naive` | two-stage pipeline, pure ASP |
+| `twostage_clingcon` | two-stage pipeline, clingcon CSP |
+| `milpflow_twostage` | MILP Stage-1 flow oracle (OR-Tools) + ASP Stage-2 packing |
+
+---
+
+## Experiments
+
+Each suite under `src/multibatch/experiments/` produces append-only CSVs and a
+per-folder Jupyter notebook that loads those CSVs and renders the figures and
+tables:
+
+| Suite | Question |
+|---|---|
+| `benchmark/` | one-shot encoding shootout (ASP vs clingcon, basic vs optimised) |
+| `scalability/` | one-shot vs two-stage decomposition scaling |
+| `twostage/` | resilience–cost trade-off: weight sweep × Stage-2 configs |
+| `milp_resilience/` | MILP-flow + ASP-packing resilience suite (the main resilience study) |
+| `packing_stress/` | Stage-2 packing stress test on synthetic arcs |
 
 ---
 
@@ -201,22 +180,12 @@ if result:
 Instances are ASP fact files (`.lp`):
 
 ```prolog
-% Locations and parts
 location(l1). location(l2). location(l3).
 part(p1). part(p2).
-
-% Supply (+) and demand (-)
-demandOffer(p1, l1, 10).    % l1 supplies 10 units of p1
-demandOffer(p1, l2, -10).   % l2 demands 10 units of p1
-
-% Part properties
-partSize(p1, 4).             % 4 volume units per item
-partVal(p1, 1000).           % value per unit (for holding cost)
-
-% Transport and routes
+demandOffer(p1, l1, 10).        % +supply / -demand
+demandOffer(p1, l2, -10).
+partSize(p1, 4).                % volume per unit
+partVal(p1, 1000).              % value per unit (holding cost)
 transportCapacity(tr1, 15).
-route(l1, l2, tr1, 100, 500).  % From, To, Transport, Distance, Cost
+route(l1, l2, tr1, 100, 500).   % From, To, Transport, Distance, Cost
 ```
-
----
-

@@ -1,20 +1,39 @@
-.claude
-.venv
+# --- macOS ---
 .DS_Store
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+.venv/
+*.egg-info/
+.ipynb_checkpoints/
+
+# --- Environment / local settings ---
 .env
-.python-version
-*.pyc
-*.pyo
-*.pyd
-*.pyw
-*.pyz
-*.pywz
+.claude/
+
+# --- Thesis / writing kept outside version control (Overleaf/local) ---
 Docs/
-multibatching-ex-generator/
 
-documentation/
-src/visualisation/*
+# --- Vendored external library (not a dependency we ship) ---
+discrete-optimization/
 
-# Ad-hoc benchmark output (keep under experiments/ or regenerate)
-src/results/
-src/runs/
+# --- Regenerable experiment figures (rendered inline by the per-folder notebooks) ---
+**/results/figures/
+**/results/*.png
+**/results/*.pdf
+
+# --- Regenerable LaTeX table compilations (superseded by the notebooks) ---
+**/results/all_results.*
+**/results/industry_results.*
+
+# --- LaTeX build artifacts ---
+*.aux
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.xdv
+*.out
+
+# --- Background run output ---
+nohup.out

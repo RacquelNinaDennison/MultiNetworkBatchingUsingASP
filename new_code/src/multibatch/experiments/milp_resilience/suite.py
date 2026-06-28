@@ -50,7 +50,7 @@ from collections import defaultdict
 from itertools import product
 from pathlib import Path
 
-from ...metrics.coverage import coverage_report, nri_alpha_from_details
+from ...metrics.coverage import coverage_report, cvar_alpha_from_details, nri_alpha_from_details
 from ...metrics.resilience import compute_r_alpha, compute_r_tr
 from ...models import RouteFreq, SolveMetadata, Stage1Result, TwoStageClingconConfig
 from ...solvers.milp_flow import ENCODING_DIR, MilpFlowTwoStageSolver
@@ -72,6 +72,10 @@ DEFAULT_FLOW_SOLVERS = ["asp", "milp"]
 # Full alpha grid: worst-case R_alpha and expected NRI_alpha at every (mode, alpha)
 R_ALPHA_COLS = [f"r_alpha_{m}_{a}" for m in R_ALPHA_MODES for a in ALPHA_VALUES]
 NRI_ALPHA_COLS = [f"nri_alpha_{m}_{a}" for m in R_ALPHA_MODES for a in ALPHA_VALUES]
+# Tail (CVaR) sibling of NRI_alpha on the SAME alpha scenarios: {R_alpha=min,
+# CVaR_alpha=tail, NRI_alpha=mean} now mirrors {min, cov_cvar10, cov_mean} on the
+# single-trip axis. No extra solve — reuses compute_r_alpha's details.
+CVAR_ALPHA_COLS = [f"cvar_alpha_{m}_{a}" for m in R_ALPHA_MODES for a in ALPHA_VALUES]
 
 CSV_FIELDS = [
     "instance", "flow_solver", "lambda_net", "lambda_flow", "weight_normalizer",
@@ -85,7 +89,7 @@ CSV_FIELDS = [
     "r_tr", *R_ALPHA_COLS,
     "cov_mean", "cov_median", "cov_cvar10", "cov_frac_zero", "cov_dw_mean",
     "cov_mean_addr", "cov_cvar10_addr",
-    "nri", "nri_worst", "nri_addr", *NRI_ALPHA_COLS,
+    "nri", "nri_worst", "nri_addr", *NRI_ALPHA_COLS, *CVAR_ALPHA_COLS,
     "s1_dispatch_cost", "s2_dispatch_cost", "cost_saving",
     # full (time, cost) horizon as JSON — the convergence curve; kept last (wide)
     "s1_trajectory",
@@ -134,6 +138,11 @@ def _metric_panel(stage1, stage2, instance, r_tr) -> dict:
                     stage1, stage2, instance, alpha=a, mode=m, strategy="heaviest")
                 row[f"r_alpha_{m}_{a}"] = ra
                 row[f"nri_alpha_{m}_{a}"] = nri_alpha_from_details(details, m)
+                # single has many scenarios (per-arc) -> 10% tail; global has one
+                # scenario per part (small N) -> use a wider 30% tail so it is not
+                # saturated by a handful of zero-coverage SPOF parts.
+                q = 0.30 if m == "global" else 0.10
+                row[f"cvar_alpha_{m}_{a}"] = cvar_alpha_from_details(details, m, q=q)
     except Exception as e:
         print(f"    R_alpha/NRI_alpha exc: {e}")
     try:
@@ -197,6 +206,9 @@ def _print_all_metrics(row: dict) -> None:
     for m in R_ALPHA_MODES:
         cells = "  ".join(f"a{a}={row.get(f'nri_alpha_{m}_{a}')}" for a in ALPHA_VALUES)
         print(f"        nri_alpha[{m:6s}] : {cells}")
+    for m in R_ALPHA_MODES:
+        cells = "  ".join(f"a{a}={row.get(f'cvar_alpha_{m}_{a}')}" for a in ALPHA_VALUES)
+        print(f"        cvar_alpha[{m:6s}]: {cells}")
     print(f"      cost      : {g('s1_dispatch_cost', 's2_dispatch_cost', 'cost_saving', 'mono_count', 'concentrated_count')}")
 
 
@@ -488,7 +500,9 @@ def _summary(rows: list[dict]) -> None:
         key = (r["instance"], r.get("flow_solver"), r.get("lambda_net"), r.get("lambda_flow"))
         groups[key][r["config"]] = r
     print("\n=== ACROSS-SUITE SUMMARY (win = beats baseline) ===")
-    for metric in ("nri", "cov_cvar10", "nri_addr", "cov_cvar10_addr"):
+    for metric in ("nri", "cov_cvar10", "nri_addr", "cov_cvar10_addr",
+                   "nri_alpha_single_0.4", "cvar_alpha_single_0.4",
+                   "nri_alpha_single_0.6", "cvar_alpha_single_0.6"):
         wins: dict = defaultdict(lambda: [0, 0, 0.0])  # config -> [wins, n, sumDelta]
         for cfgs in groups.values():
             base = cfgs.get("baseline", {}).get(metric)

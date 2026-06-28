@@ -1,0 +1,155 @@
+Instances (10): ['layered_medium_seed1', 'layered_medium_seed2', 'layered_medium_seed3', 'layered_medium_seed4', 'layered_medium_seed5', 'layered_small_seed1', 'layered_small_seed2', 'layered_small_seed3', 'layered_small_seed4', 'layered_small_seed5']
+Strategies: ['heaviest', 'first', 'last']
+
+=== layered_medium_seed1 (flow from cache: 8 arcs) ===
+  baseline   cvar_alpha[heaviest]: a0.2=0.4667  a0.4=0.6  a0.6=0.7333  a0.8=0.8667
+  baseline   cvar_alpha[first   ]: a0.2=0.5222  a0.4=0.6  a0.6=0.7333  a0.8=0.8667
+  baseline   cvar_alpha[last    ]: a0.2=0.5222  a0.4=0.6556  a0.6=0.7889  a0.8=0.8667
+  hetero_w8  cvar_alpha[heaviest]: a0.2=0.5  a0.4=0.6111  a0.6=0.7333  a0.8=0.8667
+  hetero_w8  cvar_alpha[first   ]: a0.2=0.5111  a0.4=0.6444  a0.6=0.7778  a0.8=0.8889
+  hetero_w8  cvar_alpha[last    ]: a0.2=0.5111  a0.4=0.6333  a0.6=0.7445  a0.8=0.8778
+  conc_w8    cvar_alpha[heaviest]: a0.2=0.5111  a0.4=0.5778  a0.6=0.6889  a0.8=0.8
+  conc_w8    cvar_alpha[first   ]: a0.2=0.5222  a0.4=0.6222  a0.6=0.7667  a0.8=0.8333
+  conc_w8    cvar_alpha[last    ]: a0.2=0.5555  a0.4=0.6444  a0.6=0.8  a0.8=0.9
+  full_w8_8  cvar_alpha[heaviest]: a0.2=0.5111  a0.4=0.5778  a0.6=0.6778  a0.8=0.8
+  full_w8_8  cvar_alpha[first   ]: a0.2=0.5556  a0.4=0.6111  a0.6=0.7445  a0.8=0.8333
+  full_w8_8  cvar_alpha[last    ]: a0.2=0.5889  a0.4=0.6778  a0.6=0.8  a0.8=0.8667
+=== layered_medium_seed2 (flow from cache: 9 arcs) ===
+  baseline   cvar_alpha[heaviest]: a0.2=0.7111  a0.4=0.7667  a0.6=0.8333  a0.8=0.8889
+  baseline   cvar_alpha[first   ]: a0.2=0.7111  a0.4=0.7778  a0.6=0.8333  a0.8=0.9111
+  baseline   cvar_alpha[last    ]: a0.2=0.7111  a0.4=0.7778  a0.6=0.8556  a0.8=0.9
+  hetero_w8  cvar_alpha[heaviest]: a0.2=0.7111  a0.4=0.7667  a0.6=0.8333  a0.8=0.8889
+  hetero_w8  cvar_alpha[first   ]: a0.2=0.7111  a0.4=0.7667  a0.6=0.8333  a0.8=0.9111
+  hetero_w8  cvar_alpha[last    ]: a0.2=0.7111  a0.4=0.7778  a0.6=0.8444  a0.8=0.8889
+  conc_w8    cvar_alpha[heaviest]: a0.2=0.7111  a0.4=0.7778  a0.6=0.8  a0.8=0.8667
+  conc_w8    cvar_alpha[first   ]: a0.2=0.7111  a0.4=0.7778  a0.6=0.8444  a0.8=0.8889
+  conc_w8    cvar_alpha[last    ]: a0.2=0.7111  a0.4=0.7889  a0.6=0.8556  a0.8=0.9111
+  full_w8_8  cvar_alpha[heaviest]: a0.2=0.7111  a0.4=0.7667  a0.6=0.8  a0.8=0.8889
+  full_w8_8  cvar_alpha[first   ]: a0.2=0.7111  a0.4=0.7778  a0.6=0.8333  a0.8=0.9
+  full_w8_8  cvar_alpha[last    ]: a0.2=0.7111  a0.4=0.8111  a0.6=0.8556  a0.8=0.9333
+=== layered_medium_seed3 (flow from cache: 9 arcs) ===
+  baseline   cvar_alpha[heaviest]: a0.2=0.5555  a0.4=0.6666  a0.6=0.7778  a0.8=0.8889
+  baseline   cvar_alpha[first   ]: a0.2=0.5667  a0.4=0.6778  a0.6=0.7889  a0.8=0.9
+  baseline   cvar_alpha[last    ]: a0.2=0.5555  a0.4=0.6666  a0.6=0.7778  a0.8=0.8889
+  hetero_w8  cvar_alpha[heaviest]: a0.2=0.5556  a0.4=0.6667  a0.6=0.7778  a0.8=0.8889
+  hetero_w8  cvar_alpha[first   ]: a0.2=0.5667  a0.4=0.6778  a0.6=0.7889  a0.8=0.9
+  hetero_w8  cvar_alpha[last    ]: a0.2=0.5556  a0.4=0.6667  a0.6=0.7778  a0.8=0.8889
+  conc_w8    cvar_alpha[heaviest]: a0.2=0.5  a0.4=0.5667  a0.6=0.6667  a0.8=0.8333
+  conc_w8    cvar_alpha[first   ]: a0.2=0.5667  a0.4=0.6667  a0.6=0.7444  a0.8=0.8778
+  conc_w8    cvar_alpha[last    ]: a0.2=0.5222  a0.4=0.6889  a0.6=0.7667  a0.8=0.8333
+  full_w8_8  cvar_alpha[heaviest]: a0.2=0.5  a0.4=0.5667  a0.6=0.6667  a0.8=0.8334
+  full_w8_8  cvar_alpha[first   ]: a0.2=0.5  a0.4=0.6333  a0.6=0.7667  a0.8=0.8667
+  full_w8_8  cvar_alpha[last    ]: a0.2=0.5667  a0.4=0.6667  a0.6=0.8  a0.8=0.9
+=== layered_medium_seed4 (flow from cache: 8 arcs) ===
+  baseline   cvar_alpha[heaviest]: a0.2=0.6444  a0.4=0.7111  a0.6=0.7889  a0.8=0.8889
+  baseline   cvar_alpha[first   ]: a0.2=0.6444  a0.4=0.7111  a0.6=0.8111  a0.8=0.9
+  baseline   cvar_alpha[last    ]: a0.2=0.6444  a0.4=0.7222  a0.6=0.8111  a0.8=0.8889
+  hetero_w8  cvar_alpha[heaviest]: a0.2=0.6444  a0.4=0.7111  a0.6=0.7778  a0.8=0.8889
+  hetero_w8  cvar_alpha[first   ]: a0.2=0.6444  a0.4=0.7555  a0.6=0.8222  a0.8=0.8889
+  hetero_w8  cvar_alpha[last    ]: a0.2=0.6444  a0.4=0.7111  a0.6=0.8222  a0.8=0.8889
+  conc_w8    cvar_alpha[heaviest]: a0.2=0.6444  a0.4=0.6778  a0.6=0.7778  a0.8=0.8889
+  conc_w8    cvar_alpha[first   ]: a0.2=0.6444  a0.4=0.7556  a0.6=0.8333  a0.8=0.8889
+  conc_w8    cvar_alpha[last    ]: a0.2=0.6444  a0.4=0.7556  a0.6=0.7889  a0.8=0.8889
+  full_w8_8  cvar_alpha[heaviest]: a0.2=0.6444  a0.4=0.6889  a0.6=0.7889  a0.8=0.8889
+  full_w8_8  cvar_alpha[first   ]: a0.2=0.6444  a0.4=0.7444  a0.6=0.8444  a0.8=0.8889
+  full_w8_8  cvar_alpha[last    ]: a0.2=0.6444  a0.4=0.7555  a0.6=0.8  a0.8=0.9
+=== layered_medium_seed5 (flow from cache: 9 arcs) ===
+  baseline   cvar_alpha[heaviest]: a0.2=0.6889  a0.4=0.7667  a0.6=0.8333  a0.8=0.9
+  baseline   cvar_alpha[first   ]: a0.2=0.6889  a0.4=0.7667  a0.6=0.8333  a0.8=0.9111
+  baseline   cvar_alpha[last    ]: a0.2=0.6889  a0.4=0.7667  a0.6=0.8333  a0.8=0.9222
+  hetero_w8  cvar_alpha[heaviest]: a0.2=0.6778  a0.4=0.7556  a0.6=0.8333  a0.8=0.9111
+  hetero_w8  cvar_alpha[first   ]: a0.2=0.6889  a0.4=0.7667  a0.6=0.8444  a0.8=0.9111
+  hetero_w8  cvar_alpha[last    ]: a0.2=0.7  a0.4=0.7667  a0.6=0.8333  a0.8=0.9111
+  conc_w8    cvar_alpha[heaviest]: a0.2=0.6444  a0.4=0.6889  a0.6=0.7778  a0.8=0.8444
+  conc_w8    cvar_alpha[first   ]: a0.2=0.6556  a0.4=0.7  a0.6=0.8111  a0.8=0.8889
+  conc_w8    cvar_alpha[last    ]: a0.2=0.6778  a0.4=0.7222  a0.6=0.8333  a0.8=0.9111
+  full_w8_8  cvar_alpha[heaviest]: a0.2=0.6556  a0.4=0.7  a0.6=0.7889  a0.8=0.8556
+  full_w8_8  cvar_alpha[first   ]: a0.2=0.6889  a0.4=0.7333  a0.6=0.8333  a0.8=0.8889
+  full_w8_8  cvar_alpha[last    ]: a0.2=0.6556  a0.4=0.7222  a0.6=0.8333  a0.8=0.8778
+=== layered_small_seed1 (flow from cache: 6 arcs) ===
+  baseline   cvar_alpha[heaviest]: a0.2=0.55  a0.4=0.6333  a0.6=0.7167  a0.8=0.8
+  baseline   cvar_alpha[first   ]: a0.2=0.5667  a0.4=0.65  a0.6=0.7333  a0.8=0.8167
+  baseline   cvar_alpha[last    ]: a0.2=0.55  a0.4=0.65  a0.6=0.7333  a0.8=0.8167
+  hetero_w8  cvar_alpha[heaviest]: a0.2=0.55  a0.4=0.6334  a0.6=0.7166  a0.8=0.8
+  hetero_w8  cvar_alpha[first   ]: a0.2=0.5666  a0.4=0.6666  a0.6=0.75  a0.8=0.8334
+  hetero_w8  cvar_alpha[last    ]: a0.2=0.55  a0.4=0.6334  a0.6=0.7166  a0.8=0.8
+  conc_w8    cvar_alpha[heaviest]: a0.2=0.4833  a0.4=0.55  a0.6=0.6334  a0.8=0.8
+  conc_w8    cvar_alpha[first   ]: a0.2=0.5  a0.4=0.6667  a0.6=0.7666  a0.8=0.8166
+  conc_w8    cvar_alpha[last    ]: a0.2=0.5  a0.4=0.6  a0.6=0.7  a0.8=0.8166
+  full_w8_8  cvar_alpha[heaviest]: a0.2=0.5  a0.4=0.5667  a0.6=0.6334  a0.8=0.8
+  full_w8_8  cvar_alpha[first   ]: a0.2=0.55  a0.4=0.6167  a0.6=0.7166  a0.8=0.8334
+  full_w8_8  cvar_alpha[last    ]: a0.2=0.5666  a0.4=0.6834  a0.6=0.7334  a0.8=0.8166
+=== layered_small_seed2 (flow from cache: 5 arcs) ===
+  baseline   cvar_alpha[heaviest]: a0.2=0.5166  a0.4=0.5833  a0.6=0.7166  a0.8=0.8
+  baseline   cvar_alpha[first   ]: a0.2=0.5333  a0.4=0.65  a0.6=0.7833  a0.8=0.85
+  baseline   cvar_alpha[last    ]: a0.2=0.5166  a0.4=0.6  a0.6=0.7333  a0.8=0.8
+  hetero_w8  cvar_alpha[heaviest]: a0.2=0.5166  a0.4=0.5833  a0.6=0.7166  a0.8=0.8
+  hetero_w8  cvar_alpha[first   ]: a0.2=0.5334  a0.4=0.6334  a0.6=0.8  a0.8=0.8666
+  hetero_w8  cvar_alpha[last    ]: a0.2=0.5166  a0.4=0.5833  a0.6=0.7166  a0.8=0.8166
+  conc_w8    cvar_alpha[heaviest]: a0.2=0.5  a0.4=0.6  a0.6=0.7  a0.8=0.8334
+  conc_w8    cvar_alpha[first   ]: a0.2=0.5166  a0.4=0.6166  a0.6=0.7167  a0.8=0.8834
+  conc_w8    cvar_alpha[last    ]: a0.2=0.5  a0.4=0.6333  a0.6=0.7834  a0.8=0.8834
+  full_w8_8  cvar_alpha[heaviest]: a0.2=0.5  a0.4=0.6  a0.6=0.7  a0.8=0.8334
+  full_w8_8  cvar_alpha[first   ]: a0.2=0.5  a0.4=0.6167  a0.6=0.7166  a0.8=0.8666
+  full_w8_8  cvar_alpha[last    ]: a0.2=0.5166  a0.4=0.6834  a0.6=0.7833  a0.8=0.8834
+=== layered_small_seed3 (flow from cache: 5 arcs) ===
+  baseline   cvar_alpha[heaviest]: a0.2=0.5  a0.4=0.6  a0.6=0.7333  a0.8=0.85
+  baseline   cvar_alpha[first   ]: a0.2=0.5  a0.4=0.6  a0.6=0.75  a0.8=0.85
+  baseline   cvar_alpha[last    ]: a0.2=0.5  a0.4=0.6  a0.6=0.7333  a0.8=0.85
+  hetero_w8  cvar_alpha[heaviest]: a0.2=0.4667  a0.4=0.6  a0.6=0.7  a0.8=0.85
+  hetero_w8  cvar_alpha[first   ]: a0.2=0.4833  a0.4=0.6  a0.6=0.7167  a0.8=0.85
+  hetero_w8  cvar_alpha[last    ]: a0.2=0.4833  a0.4=0.6334  a0.6=0.7166  a0.8=0.8666
+  conc_w8    cvar_alpha[heaviest]: a0.2=0.45  a0.4=0.5  a0.6=0.65  a0.8=0.8
+  conc_w8    cvar_alpha[first   ]: a0.2=0.5166  a0.4=0.6167  a0.6=0.7166  a0.8=0.8334
+  conc_w8    cvar_alpha[last    ]: a0.2=0.5166  a0.4=0.6333  a0.6=0.7166  a0.8=0.8334
+  full_w8_8  cvar_alpha[heaviest]: a0.2=0.5  a0.4=0.6  a0.6=0.75  a0.8=0.85
+  full_w8_8  cvar_alpha[first   ]: a0.2=0.5  a0.4=0.6  a0.6=0.75  a0.8=0.85
+  full_w8_8  cvar_alpha[last    ]: a0.2=0.5  a0.4=0.6  a0.6=0.75  a0.8=0.85
+=== layered_small_seed4 (flow from cache: 8 arcs) ===
+  baseline   cvar_alpha[heaviest]: a0.2=0.7  a0.4=0.7667  a0.6=0.8334  a0.8=0.9166
+  baseline   cvar_alpha[first   ]: a0.2=0.7  a0.4=0.7667  a0.6=0.85  a0.8=0.9333
+  baseline   cvar_alpha[last    ]: a0.2=0.7  a0.4=0.7834  a0.6=0.8666  a0.8=0.9333
+  hetero_w8  cvar_alpha[heaviest]: a0.2=0.6667  a0.4=0.7333  a0.6=0.8  a0.8=0.8666
+  hetero_w8  cvar_alpha[first   ]: a0.2=0.7  a0.4=0.7666  a0.6=0.8334  a0.8=0.9
+  hetero_w8  cvar_alpha[last    ]: a0.2=0.6667  a0.4=0.7333  a0.6=0.8  a0.8=0.8666
+  conc_w8    cvar_alpha[heaviest]: a0.2=0.6667  a0.4=0.7  a0.6=0.7833  a0.8=0.85
+  conc_w8    cvar_alpha[first   ]: a0.2=0.6667  a0.4=0.7  a0.6=0.8  a0.8=0.8666
+  conc_w8    cvar_alpha[last    ]: a0.2=0.7166  a0.4=0.7666  a0.6=0.85  a0.8=0.9333
+  full_w8_8  cvar_alpha[heaviest]: a0.2=0.7  a0.4=0.75  a0.6=0.8333  a0.8=0.8834
+  full_w8_8  cvar_alpha[first   ]: a0.2=0.7  a0.4=0.7667  a0.6=0.8333  a0.8=0.8834
+  full_w8_8  cvar_alpha[last    ]: a0.2=0.7166  a0.4=0.7834  a0.6=0.8667  a0.8=0.9166
+=== layered_small_seed5 (flow from cache: 6 arcs) ===
+  baseline   cvar_alpha[heaviest]: a0.2=0.6334  a0.4=0.75  a0.6=0.75  a0.8=0.8666
+  baseline   cvar_alpha[first   ]: a0.2=0.6334  a0.4=0.75  a0.6=0.75  a0.8=0.8667
+  baseline   cvar_alpha[last    ]: a0.2=0.6334  a0.4=0.75  a0.6=0.75  a0.8=0.8834
+  hetero_w8  cvar_alpha[heaviest]: a0.2=0.6334  a0.4=0.7167  a0.6=0.7167  a0.8=0.85
+  hetero_w8  cvar_alpha[first   ]: a0.2=0.6334  a0.4=0.7667  a0.6=0.7667  a0.8=0.85
+  hetero_w8  cvar_alpha[last    ]: a0.2=0.6334  a0.4=0.7333  a0.6=0.7333  a0.8=0.8666
+  conc_w8    cvar_alpha[heaviest]: a0.2=0.6334  a0.4=0.7  a0.6=0.7667  a0.8=0.85
+  conc_w8    cvar_alpha[first   ]: a0.2=0.6334  a0.4=0.75  a0.6=0.8334  a0.8=0.9
+  conc_w8    cvar_alpha[last    ]: a0.2=0.6334  a0.4=0.7166  a0.6=0.7834  a0.8=0.85
+  full_w8_8  cvar_alpha[heaviest]: a0.2=0.6334  a0.4=0.7167  a0.6=0.7167  a0.8=0.85
+  full_w8_8  cvar_alpha[first   ]: a0.2=0.6334  a0.4=0.7667  a0.6=0.7667  a0.8=0.9
+  full_w8_8  cvar_alpha[last    ]: a0.2=0.6334  a0.4=0.7167  a0.6=0.7167  a0.8=0.8666
+
+=== CVaR_alpha WIN-RATE vs baseline, per strategy (the artefact test) ===
+
+  strategy = heaviest
+    a=0.2: conc_w8: 1/10 (-0.0222)   full_w8_8: 1/10 (-0.0111)   hetero_w8: 2/10 (-0.0044)
+    a=0.4: conc_w8: 2/10 (-0.0505)   full_w8_8: 1/10 (-0.0311)   hetero_w8: 3/10 (-0.0067)
+    a=0.6: conc_w8: 1/10 (-0.0472)   full_w8_8: 1/10 (-0.0361)   hetero_w8: 0/10 (-0.0111)
+    a=0.8: conc_w8: 1/10 (-0.0300)   full_w8_8: 1/10 (-0.0183)   hetero_w8: 1/10 (-0.0055)
+
+  strategy = first
+    a=0.2: conc_w8: 1/10 (-0.0133)   full_w8_8: 1/10 (-0.0083)   hetero_w8: 1/10 (-0.0028)
+    a=0.4: conc_w8: 4/10 (-0.0078)   full_w8_8: 3/10 (-0.0083)   hetero_w8: 4/10 (+0.0094)
+    a=0.6: conc_w8: 5/10 (-0.0033)   full_w8_8: 3/10 (-0.0061)   hetero_w8: 6/10 (+0.0067)
+    a=0.8: conc_w8: 2/10 (-0.0128)   full_w8_8: 3/10 (-0.0094)   hetero_w8: 3/10 (-0.0006)
+
+  strategy = last
+    a=0.2: conc_w8: 3/10 (-0.0044)   full_w8_8: 4/10 (+0.0078)   hetero_w8: 2/10 (-0.0050)
+    a=0.4: conc_w8: 5/10 (-0.0023)   full_w8_8: 6/10 (+0.0128)   hetero_w8: 2/10 (-0.0100)
+    a=0.6: conc_w8: 3/10 (-0.0005)   full_w8_8: 6/10 (+0.0056)   hetero_w8: 1/10 (-0.0178)
+    a=0.8: conc_w8: 3/10 (+0.0011)   full_w8_8: 4/10 (+0.0061)   hetero_w8: 3/10 (-0.0078)
+
+-> src/multibatch/experiments/milp_resilience/results/strategy_probe.csv

@@ -61,6 +61,7 @@ def solve_milp_flow(
     time_limit: int = 300,
     backend: str = "SCIP",
     flow_redundancy_weight: int = 0,
+    utilisation: float = 0.7,
 ) -> dict | None:
     """Solve the Stage-1 network flow as a MILP. Returns a dict mirroring the
     clingcon Stage-1 output, or None if no feasible flow was found."""
@@ -130,11 +131,15 @@ def solve_milp_flow(
         solver.Add(solver.Sum(inflow_idx.get((p, loc), []))
                    - solver.Sum(outflow_idx.get((p, loc), [])) == net)
 
-    # Feasibility envelope (70% utilisation): 10·Σ sizeS·flow ≤ 7·capS·nb_trips.
+    # Capacity envelope: Σ sizeS·flow ≤ utilisation·capS·nb_trips. Scaled by 100 to
+    # keep integer coefficients. utilisation=1.0 is the paper's exact constraint
+    # (7b: Σ v_p·f ≤ n_r·Q_r); the default 0.7 keeps a 30% safety margin (the
+    # resilience suite relies on it). E.g. 0.7 → 70·cap, recovering 10·size ≤ 7·cap.
+    util_num = round(100 * utilisation)
     for arc, ps in arc_parts.items():
         cap_tr = cap_s[arc[2]]
-        vol = solver.Sum(10 * size_s[p] * flow[(arc[0], arc[1], arc[2], p)] for p in ps)
-        solver.Add(vol <= 7 * cap_tr * nb_trips[arc])
+        vol = solver.Sum(100 * size_s[p] * flow[(arc[0], arc[1], arc[2], p)] for p in ps)
+        solver.Add(vol <= util_num * cap_tr * nb_trips[arc])
 
     # Optional exposure penalty (only when weight > 0; default oracle uses 0).
     he_vars: dict = {}
@@ -230,12 +235,14 @@ class MilpFlowTwoStageSolver(ClingconTwoStageSolver):
         backend: str = "SCIP",
         flow_time_limit: int = 300,
         flow_redundancy_weight: int = 0,
+        utilisation: float = 0.7,
         stage2_encoding=None,
     ):
         super().__init__(instance_path, config=config, stage2_encoding=stage2_encoding)
         self.backend = backend
         self.flow_time_limit = flow_time_limit
         self.flow_redundancy_weight = flow_redundancy_weight
+        self.utilisation = utilisation
 
     def _solve_stage1(self) -> Stage1Result | None:
         sol = solve_milp_flow(
@@ -247,6 +254,7 @@ class MilpFlowTwoStageSolver(ClingconTwoStageSolver):
             time_limit=self.flow_time_limit,
             backend=self.backend,
             flow_redundancy_weight=self.flow_redundancy_weight,
+            utilisation=self.utilisation,
         )
         if sol is None:
             return None
@@ -338,6 +346,9 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("--flow-time-limit", type=int, default=300)
     p.add_argument("--flow-redundancy-weight", type=int, default=0,
                    help="network-level w_flow: push active arcs toward >=2 trips (0=off)")
+    p.add_argument("--utilisation", type=float, default=0.7,
+                   help="capacity fill fraction in Stage-1 envelope; 1.0 = paper's "
+                        "exact constraint (7b), 0.7 = 30%% safety margin (default)")
     # Stage-2 packing options (full mode only)
     p.add_argument("--hetero-on", type=int, default=1)
     p.add_argument("--concentrated-on", type=int, default=1)
@@ -368,6 +379,7 @@ def main(argv: list[str] | None = None) -> int:
         args.instance, config=config, backend=args.backend,
         flow_time_limit=args.flow_time_limit,
         flow_redundancy_weight=args.flow_redundancy_weight,
+        utilisation=args.utilisation,
         stage2_encoding=stage2_enc,
     )
 

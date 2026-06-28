@@ -162,6 +162,45 @@ def nri_alpha_from_details(details: list[dict], mode: str) -> float | None:
     return round(sum(fracs) / len(fracs), 4) if fracs else None
 
 
+def cvar_alpha_from_details(details: list[dict], mode: str, q: float = 0.10) -> float | None:
+    """Tail (CVaR) sibling of nri_alpha_from_details: the mean of the worst
+    q-fraction of alpha-survival scenarios. Sits between R_alpha (min, worst single
+    scenario) and NRI_alpha (mean), reusing compute_r_alpha's `details` so it costs
+    no extra solve. Higher = more resilient.
+
+      * single: aggregate to per-arc served fraction first (exactly as NRI_alpha),
+        then the unweighted mean of the worst q-fraction of arcs.
+      * global: one entry per part; demand-weighted mean over the worst-coverage
+        parts whose cumulative demand fills the q tail (so a few high-demand parts
+        cannot be hidden by many tiny ones). NB: global has one scenario per part,
+        so N is small (~|P|) and the tail is coarse — read it as indicative.
+    """
+    if not details:
+        return None
+    if mode == "global":
+        rows = sorted(((d["coverage"], d["demand"]) for d in details), key=lambda x: x[0])
+        total = sum(w for _, w in rows)
+        if total <= 0:
+            return 1.0
+        cutoff, sat, wsum = q * total, 0.0, 0.0
+        for cov, w in rows:
+            take = min(w, cutoff - wsum)
+            if take <= 0:
+                break
+            sat += cov * take
+            wsum += take
+        return round(sat / wsum, 4) if wsum else round(rows[0][0], 4)
+    by_arc: dict = defaultdict(lambda: [0.0, 0.0])  # lost_arc -> [satisfied, demand]
+    for d in details:
+        by_arc[d.get("lost_arc")][0] += d["coverage"] * d["demand"]
+        by_arc[d.get("lost_arc")][1] += d["demand"]
+    fracs = sorted(sat / dem if dem else 1.0 for sat, dem in by_arc.values())
+    if not fracs:
+        return None
+    k = max(1, int(np.ceil(q * len(fracs))))  # worst q-fraction of arcs
+    return round(sum(fracs[:k]) / k, 4)
+
+
 def compute_nri_alpha(
     stage1: Stage1Result,
     stage2: Stage2Result,

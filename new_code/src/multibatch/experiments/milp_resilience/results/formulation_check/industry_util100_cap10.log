@@ -1,0 +1,33 @@
+=== MILP Stage 1 (SCIP) on src/multibatch/instances/generated/industry_test_1.lp ===
+  feasible flow found. optimum=False cost=1790844 vars=85688 cons=6940 build=0.657s solve=1800.096s
+  active arcs=22 total trips=49
+
+Per-arc profile (22 active arcs):
+  parts/arc      n=86    min=1     med=2     mean=2.3     p90=4     max=13
+  units/arc      n=86    min=3     med=29    mean=51.9    p90=93    max=498
+  trips/arc      n=22    min=1     med=1     mean=2.2     p90=4     max=10
+  arcs >64 trips (packing watch zone): 0 / 22
+
+Arc allocation (22 active arcs):
+  prodloc12->prodloc2 [tr15]  trips=1   cap=221   units=7     util=  3%  parts=1   {part20:7}
+  prodloc12->prodloc3 [tr15]  trips=2   cap=442   units=308   util= 70%  parts=13  {part1:20, part10:20, part15:27, part16:27, part20:20, part22:27, part27:27, part32:27, part33:27, part34:20, part4:26, part5:20, part9:20}
+  prodloc12->prodloc6 [tr15]  trips=1   cap=221   units=71    util= 32%  parts=6   {part0:13, part18:13, part2:13, part26:2, part3:26, part6:4}
+  prodloc18->prodloc24 [tr0]  trips=6   cap=1080  units=498   util= 46%  parts=10  {part15:53, part16:53, part20:53, part22:53, part26:20, part27:53, part30:80, part32:53, part33:53, part6:27}
+  prodloc2->prodloc3 [tr15]  trips=1   cap=221   units=3     util=  1%  parts=1   {part8:3}
+  prodloc22->prodloc2 [tr4]  trips=10  cap=140   units=81    util= 58%  parts=3   {part0:27, part18:27, part2:27}
+  prodloc22->prodloc49 [tr14]  trips=5   cap=70    units=39    util= 56%  parts=3   {part0:13, part18:13, part2:13}
+  prodloc24->prodloc18 [tr0]  trips=1   cap=180   units=31    util= 17%  parts=2   {part14:26, part21:5}
+  prodloc24->prodloc2 [tr15]  trips=1   cap=221   units=14    util=  6%  parts=2   {part20:7, part31:7}
+  prodloc24->prodloc30 [tr15]  trips=2   cap=442   units=20    util=  5%  parts=2   {part12:10, part8:10}
+  prodloc24->prodloc6 [tr15]  trips=1   cap=221   units=7     util=  3%  parts=1   {part8:7}
+  prodloc3->prodloc12 [tr15]  trips=1   cap=221   units=32    util= 14%  parts=3   {part26:2, part3:26, part6:4}
+  prodloc3->prodloc2 [tr15]  trips=4   cap=884   units=69    util=  8%  parts=5   {part12:10, part26:14, part3:14, part31:7, part6:24}
+  prodloc3->prodloc41 [tr15]  trips=2   cap=442   units=23    util=  5%  parts=3   {part12:10, part6:10, part8:3}
+  prodloc3->prodloc6 [tr15]  trips=1   cap=221   units=19    util=  9%  parts=2   {part26:4, part6:15}
+  prodloc33->prodloc24 [tr15]  trips=1   cap=221   units=103   util= 47%  parts=5   {part0:40, part14:11, part18:7, part2:40, part21:5}
+  prodloc33->prodloc6 [tr15]  trips=1   cap=221   units=69    util= 31%  parts=3   {part14:15, part18:33, part21:21}
+  prodloc49->prodloc12 [tr15]  trips=1   cap=221   units=39    util= 18%  parts=3   {part0:13, part18:13, part2:13}
+  prodloc6->prodloc18 [tr4]  trips=3   cap=42    units=21    util= 50%  parts=1   {part21:21}
+  prodloc6->prodloc24 [tr15]  trips=2   cap=442   units=128   util= 29%  parts=7   {part0:13, part14:15, part18:46, part2:13, part26:6, part3:26, part6:9}
+  prodloc6->prodloc30 [tr15]  trips=1   cap=221   units=10    util=  5%  parts=1   {part6:10}
+  prodloc6->prodloc41 [tr15]  trips=1   cap=221   units=7     util=  3%  parts=1   {part8:7}

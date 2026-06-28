@@ -145,6 +145,49 @@ def compute_r_tr(
     return r_tr, details
 
 
+def compute_r_resource(
+    stage1: Stage1Result,
+    instance: Instance,
+) -> tuple[float, list[dict]]:
+    """NETWORK-level resilience: remove an ENTIRE transport resource at once.
+
+    Unlike compute_r_tr (which removes one (origin,dest,transport) ARC at a time),
+    this loses every arc operated by a transport resource tr_k simultaneously — the
+    whole fleet/mode across the network. For each resource and part it zeroes all of
+    that resource's arcs and recomputes surviving demand coverage via max-flow.
+
+    Returns (r_resource, details): r_resource is the worst coverage over all
+    (resource, part) scenarios; `details` keeps every scenario so the caller can form
+    distributional summaries (expected NRI_resource, CVaR_resource, per-resource
+    criticality) the same way as the single-trip and alpha panels.
+    """
+    loads = stage1.loads
+    loc_idx, n_locs = _build_location_index(loads)
+    parts = sorted({p for (f, t, tr, p) in loads})
+    total_demand = _total_demand_per_part(instance, parts)
+    resources = sorted({tr for (_f, _t, tr, _p) in loads})
+
+    details: list[dict] = []
+    all_coverages: list[float] = []
+    for lost_tr in resources:
+        for p in parts:
+            td = total_demand.get(p, 0)
+            if td == 0:
+                continue
+            arc_caps: dict[tuple[str, str], int] = {}
+            for (f, t, tr, part), qty in loads.items():
+                if part != p:
+                    continue
+                cap = 0 if tr == lost_tr else qty   # whole resource removed
+                arc_caps[(f, t)] = arc_caps.get((f, t), 0) + cap
+            coverage = _max_flow_coverage(p, instance, loc_idx, n_locs, arc_caps, td)
+            details.append({"lost_tr": lost_tr, "part": p, "demand": td, "coverage": coverage})
+            all_coverages.append(coverage)
+
+    r_resource = round(min(all_coverages), 4) if all_coverages else 1.0
+    return r_resource, details
+
+
 # ── R_1: Single-trip resilience ───────────────────────────────────────
 
 

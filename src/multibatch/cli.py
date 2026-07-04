@@ -5,8 +5,6 @@ Usage:
     multibatch --solver naive_oneshot -i instances/small_seed1.lp --bins 2
 """
 
-from __future__ import annotations
-
 import argparse
 import sys
 from pathlib import Path

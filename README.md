@@ -110,7 +110,10 @@ uv sync
 
 ## Usage
 
-All commands run from the repository root.
+All commands run from the repository root. Before running the application, you need to ensure that all the environments are setup properly. In the root folder, run 
+```bash
+make setup
+```
 
 ```bash
 # One-shot solvers

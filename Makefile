@@ -1,10 +1,11 @@
 .PHONY: setup test lint
 
-# Install deps and work around the recurring macOS/APFS issue where the editable
-# install's .pth files get marked hidden, causing `ModuleNotFoundError: multibatch`.
+# The venv lives in .venv.nosync so iCloud (Desktop & Documents sync) never
+# evicts its files; .venv is a symlink kept for tooling. Plain `uv sync` and
+# `uv run` work through the symlink once it exists.
 setup:
-	uv sync
-	chflags -R nohidden .venv 2>/dev/null || true
+	UV_PROJECT_ENVIRONMENT=.venv.nosync uv sync
+	@if [ ! -L .venv ]; then rm -rf .venv && ln -s .venv.nosync .venv; fi
 
 test:
 	uv run --no-sync pytest

@@ -4,7 +4,8 @@
 # --- Python ---
 __pycache__/
 *.py[cod]
-.venv/
+.venv
+.venv.nosync/
 *.egg-info/
 .ipynb_checkpoints/
 

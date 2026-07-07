@@ -45,7 +45,7 @@ The MILP flow solver (`solvers/milp_flow.py`) was checked against the paper's
 Stage-1 cost on the industrial instance:
 
 
-With the paper's exact capacity constraint the cost lands roughly 17% above
+With the paper's exact capacity constraint, the cost lands roughly 17% above
 the paper's value, and the residual gap is attributable to the solver budget:
 SCIP does not prove optimality in 1800 s where the paper's Gurobi converges in
 seconds. The Stage-1 formulation is therefore treated as a faithful
@@ -73,8 +73,7 @@ logs, and reproduce commands:
 ## Problem Overview
 
 Multiple part types must be assigned to transport resources routed around a
-logistics network. The model is solved with Answer Set Programming (ASP) —
-pure ASP and clingcon (ASP + constraint programming) backends — with an
+logistics network. The model is solved with Answer Set Programming (ASP) with an
 optional MILP oracle for the Stage-1 flow.
 
 The core insight: aggregate-optimal flow can be **operationally infeasible** to
@@ -84,12 +83,12 @@ objectives in Stage 2 are shown to improve disruption resilience.
 
 ### Stage 1 — Network Flow (tactical)
 
-- `load(From, To, TR, P)` — units of part `P` shipped on each arc
-- `routeFreq(From, To, TR, Freq, TotalCap)` — trips and total capacity per arc
+- `load(From, To, TR, P)` :units of part `P` shipped on each arc
+- `routeFreq(From, To, TR, Freq, TotalCap)` : trips and total capacity per arc
 
 Minimises CO₂ + transport cost. Two feasibility safeguards keep Stage 1
 solutions packable by Stage 2: a per-item bound and a configurable capacity
-utilisation envelope (default 70%, `1.0` = the paper's exact constraint).
+utilisation envelope.
 
 Stage 1 can be solved three ways: clingcon multi-shot (`twostage_clingcon`),
 pure ASP (`twostage_naive`), or a MILP oracle (`milpflow_twostage`, OR-Tools).
@@ -373,15 +372,6 @@ generate/keep instances → `milp_resilience.suite` (long; caches flows) →
 eda notebooks. Both harness families print progress per run and can be
 stopped and resumed (twostage natively via `--resume`; milp_resilience via
 its flow cache).
-
----
-
-## Development
-
-```bash
-make test   # pytest (no test suite is checked in yet)
-make lint   # ruff check src
-```
 
 ---
 

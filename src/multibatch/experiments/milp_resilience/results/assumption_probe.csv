@@ -1,0 +1,13 @@
+concentrated,config,cov_cvar10,cov_mean,instance,maxflow_cvar10,maxflow_cvar10_aff,maxflow_mean,maxflow_mean_aff,mono,n,n_aff,noreroute_cvar10,noreroute_cvar10_aff,noreroute_mean,noreroute_mean_aff,nri,nri_worst,scheme,test
+,baseline,,,industry_test_1,0.8014,0.1959,0.9802,0.7884,,2604,244,0.8014,0.1959,0.9802,0.7884,,,,reroute
+,conc_w8,,,industry_test_1,0.8394,0.337,0.9838,0.8533,,3193,352,0.8394,0.337,0.9838,0.8533,,,,reroute
+,baseline,,,layered_medium_seed1,0.8,0.8,0.9498,0.8908,,87,40,0.8,0.8,0.9498,0.8908,,,,reroute
+,conc_w8,,,layered_medium_seed1,0.86,0.8429,0.9572,0.9447,,102,79,0.86,0.8429,0.9572,0.9447,,,,reroute
+,baseline,,,layered_small_seed1,0.82,0.8083,0.9231,0.9091,,52,44,0.82,0.8083,0.9231,0.9091,,,,reroute
+,conc_w8,,,layered_small_seed1,0.8333,0.8333,0.9394,0.9355,,66,62,0.8333,0.8333,0.9394,0.9355,,,,reroute
+124,baseline,0.8022,0.9802,industry_test_1,,,,,10,,,,,,,0.9819,0.8912,size,synthval
+52,conc_w8,0.8384,0.9837,industry_test_1,,,,,4,,,,,,,0.9851,0.9164,size,synthval
+53,full_w8_8,0.8398,0.9838,industry_test_1,,,,,0,,,,,,,0.9852,0.8959,size,synthval
+124,baseline,0.8022,0.9802,industry_test_1,,,,,10,,,,,,,0.9819,0.8912,uniform,synthval
+52,conc_w8,0.8384,0.9837,industry_test_1,,,,,4,,,,,,,0.9851,0.9164,uniform,synthval
+53,full_w8_8,0.8398,0.9838,industry_test_1,,,,,0,,,,,,,0.9852,0.8959,uniform,synthval

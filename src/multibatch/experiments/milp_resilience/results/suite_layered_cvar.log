@@ -1,0 +1,638 @@
+Instances (10): ['layered_medium_seed1', 'layered_medium_seed2', 'layered_medium_seed3', 'layered_medium_seed4', 'layered_medium_seed5', 'layered_small_seed1', 'layered_small_seed2', 'layered_small_seed3', 'layered_small_seed4', 'layered_small_seed5']
+Solvers: ['milp']
+
+=== layered_medium_seed1  solver=milp ===
+[layered_medium_seed1/milp ln=0 lf=0] solving flow (milp)...
+  [milp] normaliser (mean dispatch cost / trip, cost-optimal) = 148.53
+  [milp] ln=0.0 lf=0.0 (w_net=0 w_flow=0): arcs=8 trips=38 single=3 R_TR=0.3 s1_time=0.339s flow_optimum=True
+      convergence: first=5644@0.339s -> best=5644@0.339s improvements=0 budget=0.339s (optimum=True)
+    baseline       wh=0 wc=0  s2_optimal=False
+      time      : s1_time=0.339  s2_time=30.011  flow_optimum=True
+      converge  : first=5644@0.339s best=5644@0.339s n_improve=0
+      flow      : r_tr=0.3  flow_cost=5644  n_arcs=8  total_trips=38  n_single_trip_arcs=3
+      r_alpha[single] : a0.2=0.3  a0.4=0.4  a0.6=0.6  a0.8=0.6
+      r_alpha[global] : a0.2=0.0  a0.4=0.0  a0.6=0.2667  a0.8=0.4
+      coverage  : cov_mean=0.9498  cov_median=1.0  cov_cvar10=0.8  cov_frac_zero=0.0  cov_dw_mean=0.9498  cov_mean_addr=0.947  cov_cvar10_addr=0.8
+      nri       : nri=0.9498  nri_worst=0.9333  nri_addr=0.947
+        nri_alpha[single] : a0.2=0.8222  a0.4=0.8556  a0.6=0.9028  a0.8=0.9403
+        nri_alpha[global] : a0.2=0.0111  a0.4=0.1555  a0.6=0.4333  a0.8=0.6111
+        cvar_alpha[single]: a0.2=0.4667  a0.4=0.6  a0.6=0.7333  a0.8=0.8667
+        cvar_alpha[global]: a0.2=0.0  a0.4=0.0  a0.6=0.2667  a0.8=0.4
+      cost      : s1_dispatch_cost=5644  s2_dispatch_cost=4448  cost_saving=1196  mono_count=15  concentrated_count=28
+    hetero_w8      wh=8 wc=0  s2_optimal=False
+      time      : s1_time=0.339  s2_time=30.01  flow_optimum=True
+      converge  : first=5644@0.339s best=5644@0.339s n_improve=0
+      flow      : r_tr=0.3  flow_cost=5644  n_arcs=8  total_trips=38  n_single_trip_arcs=3
+      r_alpha[single] : a0.2=0.3333  a0.4=0.4667  a0.6=0.5333  a0.8=0.7
+      r_alpha[global] : a0.2=0.0333  a0.4=0.1667  a0.6=0.3  a0.8=0.6
+      coverage  : cov_mean=0.9531  cov_median=0.9667  cov_cvar10=0.8667  cov_frac_zero=0.0  cov_dw_mean=0.9531  cov_mean_addr=0.9508  cov_cvar10_addr=0.863
+      nri       : nri=0.9531  nri_worst=0.9333  nri_addr=0.9508
+        nri_alpha[single] : a0.2=0.8264  a0.4=0.8583  a0.6=0.8958  a0.8=0.9403
+        nri_alpha[global] : a0.2=0.0444  a0.4=0.2333  a0.6=0.4111  a0.8=0.6333
+        cvar_alpha[single]: a0.2=0.5  a0.4=0.6111  a0.6=0.7333  a0.8=0.8667
+        cvar_alpha[global]: a0.2=0.0333  a0.4=0.1667  a0.6=0.3  a0.8=0.6
+      cost      : s1_dispatch_cost=5644  s2_dispatch_cost=4960  cost_saving=684  mono_count=0  concentrated_count=37
+    conc_w8        wh=0 wc=8  s2_optimal=False
+      time      : s1_time=0.339  s2_time=30.01  flow_optimum=True
+      converge  : first=5644@0.339s best=5644@0.339s n_improve=0
+      flow      : r_tr=0.3  flow_cost=5644  n_arcs=8  total_trips=38  n_single_trip_arcs=3
+      r_alpha[single] : a0.2=0.3667  a0.4=0.4333  a0.6=0.5333  a0.8=0.6
+      r_alpha[global] : a0.2=0.0333  a0.4=0.1333  a0.6=0.2667  a0.8=0.3333
+      coverage  : cov_mean=0.9572  cov_median=0.9667  cov_cvar10=0.8636  cov_frac_zero=0.0  cov_dw_mean=0.9572  cov_mean_addr=0.9556  cov_cvar10_addr=0.86
+      nri       : nri=0.9572  nri_worst=0.9333  nri_addr=0.9556
+        nri_alpha[single] : a0.2=0.8292  a0.4=0.8583  a0.6=0.8986  a0.8=0.9361
+        nri_alpha[global] : a0.2=0.0556  a0.4=0.1889  a0.6=0.4  a0.8=0.5778
+        cvar_alpha[single]: a0.2=0.5111  a0.4=0.5778  a0.6=0.6889  a0.8=0.8
+        cvar_alpha[global]: a0.2=0.0333  a0.4=0.1333  a0.6=0.2667  a0.8=0.3333
+      cost      : s1_dispatch_cost=5644  s2_dispatch_cost=5152  cost_saving=492  mono_count=4  concentrated_count=16
+    full_w8_8      wh=8 wc=8  s2_optimal=False
+      time      : s1_time=0.339  s2_time=30.01  flow_optimum=True
+      converge  : first=5644@0.339s best=5644@0.339s n_improve=0
+      flow      : r_tr=0.3  flow_cost=5644  n_arcs=8  total_trips=38  n_single_trip_arcs=3
+      r_alpha[single] : a0.2=0.3667  a0.4=0.4333  a0.6=0.5333  a0.8=0.6667
+      r_alpha[global] : a0.2=0.0333  a0.4=0.1667  a0.6=0.3333  a0.8=0.4667
+      coverage  : cov_mean=0.9584  cov_median=0.9667  cov_cvar10=0.8697  cov_frac_zero=0.0  cov_dw_mean=0.9584  cov_mean_addr=0.957  cov_cvar10_addr=0.8667
+      nri       : nri=0.9584  nri_worst=0.9333  nri_addr=0.957
+        nri_alpha[single] : a0.2=0.832  a0.4=0.8583  a0.6=0.8972  a0.8=0.9361
+        nri_alpha[global] : a0.2=0.0667  a0.4=0.1889  a0.6=0.4  a0.8=0.5889
+        cvar_alpha[single]: a0.2=0.5111  a0.4=0.5778  a0.6=0.6778  a0.8=0.8
+        cvar_alpha[global]: a0.2=0.0333  a0.4=0.1667  a0.6=0.3333  a0.8=0.4667
+      cost      : s1_dispatch_cost=5644  s2_dispatch_cost=5344  cost_saving=300  mono_count=2  concentrated_count=15
+
+=== layered_medium_seed2  solver=milp ===
+[layered_medium_seed2/milp ln=0 lf=0] solving flow (milp)...
+  [milp] normaliser (mean dispatch cost / trip, cost-optimal) = 116.72
+  [milp] ln=0.0 lf=0.0 (w_net=0 w_flow=0): arcs=9 trips=32 single=3 R_TR=0.5 s1_time=0.169s flow_optimum=True
+      convergence: first=3735@0.169s -> best=3735@0.169s improvements=0 budget=0.169s (optimum=True)
+    baseline       wh=0 wc=0  s2_optimal=True
+      time      : s1_time=0.169  s2_time=0.975  flow_optimum=True
+      converge  : first=3735@0.169s best=3735@0.169s n_improve=0
+      flow      : r_tr=0.5  flow_cost=3735  n_arcs=9  total_trips=32  n_single_trip_arcs=3
+      r_alpha[single] : a0.2=0.5333  a0.4=0.6  a0.6=0.6333  a0.8=0.7667
+      r_alpha[global] : a0.2=0.0333  a0.4=0.1333  a0.6=0.3  a0.8=0.3667
+      coverage  : cov_mean=0.9479  cov_median=0.9667  cov_cvar10=0.8167  cov_frac_zero=0.0  cov_dw_mean=0.9479  cov_mean_addr=0.9459  cov_cvar10_addr=0.8095
+      nri       : nri=0.9479  nri_worst=0.9  nri_addr=0.9459
+        nri_alpha[single] : a0.2=0.858  a0.4=0.8765  a0.6=0.9086  a0.8=0.9346
+        nri_alpha[global] : a0.2=0.0444  a0.4=0.1667  a0.6=0.3667  a0.8=0.5556
+        cvar_alpha[single]: a0.2=0.7111  a0.4=0.7667  a0.6=0.8333  a0.8=0.8889
+        cvar_alpha[global]: a0.2=0.0333  a0.4=0.1333  a0.6=0.3  a0.8=0.3667
+      cost      : s1_dispatch_cost=3735  s2_dispatch_cost=3165  cost_saving=570  mono_count=6  concentrated_count=33
+    hetero_w8      wh=8 wc=0  s2_optimal=True
+      time      : s1_time=0.169  s2_time=0.48  flow_optimum=True
+      converge  : first=3735@0.169s best=3735@0.169s n_improve=0
+      flow      : r_tr=0.5  flow_cost=3735  n_arcs=9  total_trips=32  n_single_trip_arcs=3
+      r_alpha[single] : a0.2=0.5667  a0.4=0.6333  a0.6=0.7333  a0.8=0.7667
+      r_alpha[global] : a0.2=0.0333  a0.4=0.1667  a0.6=0.3  a0.8=0.4
+      coverage  : cov_mean=0.9479  cov_median=0.9667  cov_cvar10=0.8417  cov_frac_zero=0.0  cov_dw_mean=0.9479  cov_mean_addr=0.9459  cov_cvar10_addr=0.8381
+      nri       : nri=0.9479  nri_worst=0.9  nri_addr=0.9459
+        nri_alpha[single] : a0.2=0.8593  a0.4=0.879  a0.6=0.9123  a0.8=0.937
+        nri_alpha[global] : a0.2=0.0444  a0.4=0.1778  a0.6=0.4  a0.8=0.5667
+        cvar_alpha[single]: a0.2=0.7111  a0.4=0.7667  a0.6=0.8333  a0.8=0.8889
+        cvar_alpha[global]: a0.2=0.0333  a0.4=0.1667  a0.6=0.3  a0.8=0.4
+      cost      : s1_dispatch_cost=3735  s2_dispatch_cost=3165  cost_saving=570  mono_count=0  concentrated_count=37
+    conc_w8        wh=0 wc=8  s2_optimal=False
+      time      : s1_time=0.169  s2_time=30.009  flow_optimum=True
+      converge  : first=3735@0.169s best=3735@0.169s n_improve=0
+      flow      : r_tr=0.5  flow_cost=3735  n_arcs=9  total_trips=32  n_single_trip_arcs=3
+      r_alpha[single] : a0.2=0.5333  a0.4=0.6  a0.6=0.6667  a0.8=0.7333
+      r_alpha[global] : a0.2=0.0  a0.4=0.1  a0.6=0.2667  a0.8=0.3333
+      coverage  : cov_mean=0.9533  cov_median=0.9667  cov_cvar10=0.8296  cov_frac_zero=0.0  cov_dw_mean=0.9533  cov_mean_addr=0.9521  cov_cvar10_addr=0.825
+      nri       : nri=0.9533  nri_worst=0.9111  nri_addr=0.9521
+        nri_alpha[single] : a0.2=0.8531  a0.4=0.8716  a0.6=0.9012  a0.8=0.9284
+        nri_alpha[global] : a0.2=0.0111  a0.4=0.1222  a0.6=0.3  a0.8=0.4667
+        cvar_alpha[single]: a0.2=0.7111  a0.4=0.7778  a0.6=0.8  a0.8=0.8667
+        cvar_alpha[global]: a0.2=0.0  a0.4=0.1  a0.6=0.2667  a0.8=0.3333
+      cost      : s1_dispatch_cost=3735  s2_dispatch_cost=3390  cost_saving=345  mono_count=8  concentrated_count=19
+    full_w8_8      wh=8 wc=8  s2_optimal=False
+      time      : s1_time=0.169  s2_time=30.01  flow_optimum=True
+      converge  : first=3735@0.169s best=3735@0.169s n_improve=0
+      flow      : r_tr=0.5  flow_cost=3735  n_arcs=9  total_trips=32  n_single_trip_arcs=3
+      r_alpha[single] : a0.2=0.5333  a0.4=0.6  a0.6=0.6333  a0.8=0.7667
+      r_alpha[global] : a0.2=0.0  a0.4=0.1  a0.6=0.2333  a0.8=0.4333
+      coverage  : cov_mean=0.9516  cov_median=0.9667  cov_cvar10=0.8333  cov_frac_zero=0.0  cov_dw_mean=0.9516  cov_mean_addr=0.9502  cov_cvar10_addr=0.8292
+      nri       : nri=0.9516  nri_worst=0.9  nri_addr=0.9502
+        nri_alpha[single] : a0.2=0.8555  a0.4=0.8741  a0.6=0.9037  a0.8=0.9358
+        nri_alpha[global] : a0.2=0.0333  a0.4=0.1333  a0.6=0.3333  a0.8=0.5222
+        cvar_alpha[single]: a0.2=0.7111  a0.4=0.7667  a0.6=0.8  a0.8=0.8889
+        cvar_alpha[global]: a0.2=0.0  a0.4=0.1  a0.6=0.2333  a0.8=0.4333
+      cost      : s1_dispatch_cost=3735  s2_dispatch_cost=3345  cost_saving=390  mono_count=2  concentrated_count=23
+
+=== layered_medium_seed3  solver=milp ===
+[layered_medium_seed3/milp ln=0 lf=0] solving flow (milp)...
+  [milp] normaliser (mean dispatch cost / trip, cost-optimal) = 179.06
+  [milp] ln=0.0 lf=0.0 (w_net=0 w_flow=0): arcs=9 trips=51 single=0 R_TR=0.2 s1_time=0.296s flow_optimum=True
+      convergence: first=9132@0.296s -> best=9132@0.296s improvements=0 budget=0.296s (optimum=True)
+    baseline       wh=0 wc=0  s2_optimal=False
+      time      : s1_time=0.296  s2_time=30.007  flow_optimum=True
+      converge  : first=9132@0.296s best=9132@0.296s n_improve=0
+      flow      : r_tr=0.2  flow_cost=9132  n_arcs=9  total_trips=51  n_single_trip_arcs=0
+      r_alpha[single] : a0.2=0.2  a0.4=0.4667  a0.6=0.6  a0.8=0.7333
+      r_alpha[global] : a0.2=0.0  a0.4=0.1333  a0.6=0.4  a0.8=0.5667
+      coverage  : cov_mean=0.9561  cov_median=1.0  cov_cvar10=0.8333  cov_frac_zero=0.0  cov_dw_mean=0.9561  cov_mean_addr=0.9561  cov_cvar10_addr=0.8333
+      nri       : nri=0.9561  nri_worst=0.9444  nri_addr=0.9561
+        nri_alpha[single] : a0.2=0.8148  a0.4=0.858  a0.6=0.8901  a0.8=0.9395
+        nri_alpha[global] : a0.2=0.0222  a0.4=0.2333  a0.6=0.4  a0.8=0.6111
+        cvar_alpha[single]: a0.2=0.5555  a0.4=0.6666  a0.6=0.7778  a0.8=0.8889
+        cvar_alpha[global]: a0.2=0.0  a0.4=0.1333  a0.6=0.4  a0.8=0.5667
+      cost      : s1_dispatch_cost=9132  s2_dispatch_cost=7952  cost_saving=1180  mono_count=24  concentrated_count=51
+    hetero_w8      wh=8 wc=0  s2_optimal=False
+      time      : s1_time=0.296  s2_time=30.011  flow_optimum=True
+      converge  : first=9132@0.296s best=9132@0.296s n_improve=0
+      flow      : r_tr=0.2  flow_cost=9132  n_arcs=9  total_trips=51  n_single_trip_arcs=0
+      r_alpha[single] : a0.2=0.3667  a0.4=0.5333  a0.6=0.6667  a0.8=0.7667
+      r_alpha[global] : a0.2=0.0333  a0.4=0.2333  a0.6=0.3  a0.8=0.5667
+      coverage  : cov_mean=0.955  cov_median=0.9667  cov_cvar10=0.8487  cov_frac_zero=0.0  cov_dw_mean=0.955  cov_mean_addr=0.955  cov_cvar10_addr=0.8487
+      nri       : nri=0.955  nri_worst=0.9444  nri_addr=0.955
+        nri_alpha[single] : a0.2=0.8173  a0.4=0.8593  a0.6=0.8938  a0.8=0.9445
+        nri_alpha[global] : a0.2=0.0667  a0.4=0.2667  a0.6=0.4111  a0.8=0.6778
+        cvar_alpha[single]: a0.2=0.5556  a0.4=0.6667  a0.6=0.7778  a0.8=0.8889
+        cvar_alpha[global]: a0.2=0.0333  a0.4=0.2333  a0.6=0.3  a0.8=0.5667
+      cost      : s1_dispatch_cost=9132  s2_dispatch_cost=7480  cost_saving=1652  mono_count=6  concentrated_count=58
+    conc_w8        wh=0 wc=8  s2_optimal=False
+      time      : s1_time=0.296  s2_time=30.006  flow_optimum=True
+      converge  : first=9132@0.296s best=9132@0.296s n_improve=0
+      flow      : r_tr=0.2  flow_cost=9132  n_arcs=9  total_trips=51  n_single_trip_arcs=0
+      r_alpha[single] : a0.2=0.2667  a0.4=0.3667  a0.6=0.5  a0.8=0.7333
+      r_alpha[global] : a0.2=0.0  a0.4=0.1333  a0.6=0.2333  a0.8=0.5333
+      coverage  : cov_mean=0.9624  cov_median=0.9667  cov_cvar10=0.8578  cov_frac_zero=0.0  cov_dw_mean=0.9624  cov_mean_addr=0.9624  cov_cvar10_addr=0.8578
+      nri       : nri=0.9624  nri_worst=0.9444  nri_addr=0.9624
+        nri_alpha[single] : a0.2=0.8074  a0.4=0.8407  a0.6=0.879  a0.8=0.9284
+        nri_alpha[global] : a0.2=0.0333  a0.4=0.1555  a0.6=0.3  a0.8=0.5444
+        cvar_alpha[single]: a0.2=0.5  a0.4=0.5667  a0.6=0.6667  a0.8=0.8333
+        cvar_alpha[global]: a0.2=0.0  a0.4=0.1333  a0.6=0.2333  a0.8=0.5333
+      cost      : s1_dispatch_cost=9132  s2_dispatch_cost=8896  cost_saving=236  mono_count=15  concentrated_count=28
+    full_w8_8      wh=8 wc=8  s2_optimal=False
+      time      : s1_time=0.296  s2_time=30.008  flow_optimum=True
+      converge  : first=9132@0.296s best=9132@0.296s n_improve=0
+      flow      : r_tr=0.2  flow_cost=9132  n_arcs=9  total_trips=51  n_single_trip_arcs=0
+      r_alpha[single] : a0.2=0.2667  a0.4=0.3667  a0.6=0.5667  a0.8=0.6667
+      r_alpha[global] : a0.2=0.0  a0.4=0.1333  a0.6=0.3  a0.8=0.6
+      coverage  : cov_mean=0.9608  cov_median=0.9667  cov_cvar10=0.8511  cov_frac_zero=0.0  cov_dw_mean=0.9608  cov_mean_addr=0.9608  cov_cvar10_addr=0.8511
+      nri       : nri=0.9608  nri_worst=0.9444  nri_addr=0.9608
+        nri_alpha[single] : a0.2=0.8099  a0.4=0.8469  a0.6=0.8864  a0.8=0.9383
+        nri_alpha[global] : a0.2=0.0444  a0.4=0.1889  a0.6=0.3556  a0.8=0.6222
+        cvar_alpha[single]: a0.2=0.5  a0.4=0.5667  a0.6=0.6667  a0.8=0.8334
+        cvar_alpha[global]: a0.2=0.0  a0.4=0.1333  a0.6=0.3  a0.8=0.6
+      cost      : s1_dispatch_cost=9132  s2_dispatch_cost=8011  cost_saving=1121  mono_count=9  concentrated_count=33
+
+=== layered_medium_seed4  solver=milp ===
+[layered_medium_seed4/milp ln=0 lf=0] solving flow (milp)...
+  [milp] normaliser (mean dispatch cost / trip, cost-optimal) = 93.3
+  [milp] ln=0.0 lf=0.0 (w_net=0 w_flow=0): arcs=8 trips=20 single=2 R_TR=0.5333 s1_time=0.024s flow_optimum=True
+      convergence: first=1866@0.024s -> best=1866@0.024s improvements=0 budget=0.024s (optimum=True)
+    baseline       wh=0 wc=0  s2_optimal=True
+      time      : s1_time=0.024  s2_time=0.062  flow_optimum=True
+      converge  : first=1866@0.024s best=1866@0.024s n_improve=0
+      flow      : r_tr=0.5333  flow_cost=1866  n_arcs=8  total_trips=20  n_single_trip_arcs=2
+      r_alpha[single] : a0.2=0.5333  a0.4=0.6333  a0.6=0.6667  a0.8=0.6667
+      r_alpha[global] : a0.2=0.0  a0.4=0.0333  a0.6=0.2  a0.8=0.4
+      coverage  : cov_mean=0.917  cov_median=0.9333  cov_cvar10=0.7556  cov_frac_zero=0.0  cov_dw_mean=0.917  cov_mean_addr=0.9141  cov_cvar10_addr=0.7533
+      nri       : nri=0.917  nri_worst=0.8889  nri_addr=0.9141
+        nri_alpha[single] : a0.2=0.8236  a0.4=0.8375  a0.6=0.8833  a0.8=0.9056
+        nri_alpha[global] : a0.2=0.0  a0.4=0.1111  a0.6=0.2889  a0.8=0.4667
+        cvar_alpha[single]: a0.2=0.6444  a0.4=0.7111  a0.6=0.7889  a0.8=0.8889
+        cvar_alpha[global]: a0.2=0.0  a0.4=0.0333  a0.6=0.2  a0.8=0.4
+      cost      : s1_dispatch_cost=1866  s2_dispatch_cost=1614  cost_saving=252  mono_count=2  concentrated_count=23
+    hetero_w8      wh=8 wc=0  s2_optimal=True
+      time      : s1_time=0.024  s2_time=0.065  flow_optimum=True
+      converge  : first=1866@0.024s best=1866@0.024s n_improve=0
+      flow      : r_tr=0.5333  flow_cost=1866  n_arcs=8  total_trips=20  n_single_trip_arcs=2
+      r_alpha[single] : a0.2=0.5333  a0.4=0.6  a0.6=0.6333  a0.8=0.7667
+      r_alpha[global] : a0.2=0.0  a0.4=0.0  a0.6=0.2333  a0.8=0.4333
+      coverage  : cov_mean=0.917  cov_median=0.9333  cov_cvar10=0.7833  cov_frac_zero=0.0  cov_dw_mean=0.917  cov_mean_addr=0.9141  cov_cvar10_addr=0.7867
+      nri       : nri=0.917  nri_worst=0.8889  nri_addr=0.9141
+        nri_alpha[single] : a0.2=0.8236  a0.4=0.8389  a0.6=0.8833  a0.8=0.9056
+        nri_alpha[global] : a0.2=0.0  a0.4=0.1222  a0.6=0.3  a0.8=0.4778
+        cvar_alpha[single]: a0.2=0.6444  a0.4=0.7111  a0.6=0.7778  a0.8=0.8889
+        cvar_alpha[global]: a0.2=0.0  a0.4=0.0  a0.6=0.2333  a0.8=0.4333
+      cost      : s1_dispatch_cost=1866  s2_dispatch_cost=1614  cost_saving=252  mono_count=0  concentrated_count=25
+    conc_w8        wh=0 wc=8  s2_optimal=False
+      time      : s1_time=0.024  s2_time=30.004  flow_optimum=True
+      converge  : first=1866@0.024s best=1866@0.024s n_improve=0
+      flow      : r_tr=0.5333  flow_cost=1866  n_arcs=8  total_trips=20  n_single_trip_arcs=2
+      r_alpha[single] : a0.2=0.5333  a0.4=0.5667  a0.6=0.6333  a0.8=0.6667
+      r_alpha[global] : a0.2=0.0  a0.4=0.0333  a0.6=0.2667  a0.8=0.4333
+      coverage  : cov_mean=0.917  cov_median=0.9333  cov_cvar10=0.7445  cov_frac_zero=0.0  cov_dw_mean=0.917  cov_mean_addr=0.9141  cov_cvar10_addr=0.74
+      nri       : nri=0.917  nri_worst=0.8889  nri_addr=0.9141
+        nri_alpha[single] : a0.2=0.8236  a0.4=0.8361  a0.6=0.8917  a0.8=0.9153
+        nri_alpha[global] : a0.2=0.0  a0.4=0.1  a0.6=0.3333  a0.8=0.5222
+        cvar_alpha[single]: a0.2=0.6444  a0.4=0.6778  a0.6=0.7778  a0.8=0.8889
+        cvar_alpha[global]: a0.2=0.0  a0.4=0.0333  a0.6=0.2667  a0.8=0.4333
+      cost      : s1_dispatch_cost=1866  s2_dispatch_cost=1614  cost_saving=252  mono_count=1  concentrated_count=15
+    full_w8_8      wh=8 wc=8  s2_optimal=False
+      time      : s1_time=0.024  s2_time=30.009  flow_optimum=True
+      converge  : first=1866@0.024s best=1866@0.024s n_improve=0
+      flow      : r_tr=0.5333  flow_cost=1866  n_arcs=8  total_trips=20  n_single_trip_arcs=2
+      r_alpha[single] : a0.2=0.5333  a0.4=0.6  a0.6=0.6667  a0.8=0.7
+      r_alpha[global] : a0.2=0.0  a0.4=0.0333  a0.6=0.2  a0.8=0.4333
+      coverage  : cov_mean=0.917  cov_median=0.9333  cov_cvar10=0.7556  cov_frac_zero=0.0  cov_dw_mean=0.917  cov_mean_addr=0.9141  cov_cvar10_addr=0.7533
+      nri       : nri=0.917  nri_worst=0.8889  nri_addr=0.9141
+        nri_alpha[single] : a0.2=0.8236  a0.4=0.8375  a0.6=0.8903  a0.8=0.9125
+        nri_alpha[global] : a0.2=0.0  a0.4=0.1111  a0.6=0.3222  a0.8=0.5
+        cvar_alpha[single]: a0.2=0.6444  a0.4=0.6889  a0.6=0.7889  a0.8=0.8889
+        cvar_alpha[global]: a0.2=0.0  a0.4=0.0333  a0.6=0.2  a0.8=0.4333
+      cost      : s1_dispatch_cost=1866  s2_dispatch_cost=1614  cost_saving=252  mono_count=0  concentrated_count=15
+
+=== layered_medium_seed5  solver=milp ===
+[layered_medium_seed5/milp ln=0 lf=0] solving flow (milp)...
+  [milp] normaliser (mean dispatch cost / trip, cost-optimal) = 152.71
+  [milp] ln=0.0 lf=0.0 (w_net=0 w_flow=0): arcs=9 trips=28 single=4 R_TR=0.4333 s1_time=0.025s flow_optimum=True
+      convergence: first=4276@0.025s -> best=4276@0.025s improvements=0 budget=0.025s (optimum=True)
+    baseline       wh=0 wc=0  s2_optimal=True
+      time      : s1_time=0.025  s2_time=0.076  flow_optimum=True
+      converge  : first=4276@0.025s best=4276@0.025s n_improve=0
+      flow      : r_tr=0.4333  flow_cost=4276  n_arcs=9  total_trips=28  n_single_trip_arcs=4
+      r_alpha[single] : a0.2=0.5333  a0.4=0.6  a0.6=0.7  a0.8=0.7
+      r_alpha[global] : a0.2=0.0  a0.4=0.1  a0.6=0.1333  a0.8=0.1667
+      coverage  : cov_mean=0.9323  cov_median=0.9667  cov_cvar10=0.7762  cov_frac_zero=0.0  cov_dw_mean=0.9323  cov_mean_addr=0.9247  cov_cvar10_addr=0.7778
+      nri       : nri=0.9323  nri_worst=0.9  nri_addr=0.9247
+        nri_alpha[single] : a0.2=0.8432  a0.4=0.8802  a0.6=0.8963  a0.8=0.9358
+        nri_alpha[global] : a0.2=0.0  a0.4=0.2445  a0.6=0.3222  a0.8=0.5556
+        cvar_alpha[single]: a0.2=0.6889  a0.4=0.7667  a0.6=0.8333  a0.8=0.9
+        cvar_alpha[global]: a0.2=0.0  a0.4=0.1  a0.6=0.1333  a0.8=0.1667
+      cost      : s1_dispatch_cost=4276  s2_dispatch_cost=3308  cost_saving=968  mono_count=5  concentrated_count=24
+    hetero_w8      wh=8 wc=0  s2_optimal=True
+      time      : s1_time=0.025  s2_time=0.086  flow_optimum=True
+      converge  : first=4276@0.025s best=4276@0.025s n_improve=0
+      flow      : r_tr=0.4333  flow_cost=4276  n_arcs=9  total_trips=28  n_single_trip_arcs=4
+      r_alpha[single] : a0.2=0.5333  a0.4=0.6667  a0.6=0.6667  a0.8=0.7667
+      r_alpha[global] : a0.2=0.0  a0.4=0.1  a0.6=0.1667  a0.8=0.2667
+      coverage  : cov_mean=0.9323  cov_median=0.9667  cov_cvar10=0.8095  cov_frac_zero=0.0  cov_dw_mean=0.9323  cov_mean_addr=0.9247  cov_cvar10_addr=0.8167
+      nri       : nri=0.9323  nri_worst=0.9111  nri_addr=0.9247
+        nri_alpha[single] : a0.2=0.842  a0.4=0.8778  a0.6=0.8951  a0.8=0.9383
+        nri_alpha[global] : a0.2=0.0  a0.4=0.2222  a0.6=0.3111  a0.8=0.5889
+        cvar_alpha[single]: a0.2=0.6778  a0.4=0.7556  a0.6=0.8333  a0.8=0.9111
+        cvar_alpha[global]: a0.2=0.0  a0.4=0.1  a0.6=0.1667  a0.8=0.2667
+      cost      : s1_dispatch_cost=4276  s2_dispatch_cost=3308  cost_saving=968  mono_count=0  concentrated_count=27
+    conc_w8        wh=0 wc=8  s2_optimal=False
+      time      : s1_time=0.025  s2_time=30.009  flow_optimum=True
+      converge  : first=4276@0.025s best=4276@0.025s n_improve=0
+      flow      : r_tr=0.4333  flow_cost=4276  n_arcs=9  total_trips=28  n_single_trip_arcs=4
+      r_alpha[single] : a0.2=0.5  a0.4=0.5667  a0.6=0.7  a0.8=0.7667
+      r_alpha[global] : a0.2=0.0  a0.4=0.1  a0.6=0.2  a0.8=0.3333
+      coverage  : cov_mean=0.938  cov_median=0.9667  cov_cvar10=0.8083  cov_frac_zero=0.0  cov_dw_mean=0.938  cov_mean_addr=0.9322  cov_cvar10_addr=0.8111
+      nri       : nri=0.938  nri_worst=0.9111  nri_addr=0.9322
+        nri_alpha[single] : a0.2=0.8383  a0.4=0.8704  a0.6=0.8889  a0.8=0.9309
+        nri_alpha[global] : a0.2=0.0  a0.4=0.1778  a0.6=0.3222  a0.8=0.5667
+        cvar_alpha[single]: a0.2=0.6444  a0.4=0.6889  a0.6=0.7778  a0.8=0.8444
+        cvar_alpha[global]: a0.2=0.0  a0.4=0.1  a0.6=0.2  a0.8=0.3333
+      cost      : s1_dispatch_cost=4276  s2_dispatch_cost=3660  cost_saving=616  mono_count=0  concentrated_count=17
+    full_w8_8      wh=8 wc=8  s2_optimal=False
+      time      : s1_time=0.025  s2_time=30.01  flow_optimum=True
+      converge  : first=4276@0.025s best=4276@0.025s n_improve=0
+      flow      : r_tr=0.4333  flow_cost=4276  n_arcs=9  total_trips=28  n_single_trip_arcs=4
+      r_alpha[single] : a0.2=0.5  a0.4=0.5667  a0.6=0.7  a0.8=0.7333
+      r_alpha[global] : a0.2=0.0  a0.4=0.1333  a0.6=0.2  a0.8=0.3
+      coverage  : cov_mean=0.938  cov_median=0.9667  cov_cvar10=0.8042  cov_frac_zero=0.0  cov_dw_mean=0.938  cov_mean_addr=0.9322  cov_cvar10_addr=0.8056
+      nri       : nri=0.938  nri_worst=0.9111  nri_addr=0.9322
+        nri_alpha[single] : a0.2=0.8395  a0.4=0.8728  a0.6=0.8914  a0.8=0.9333
+        nri_alpha[global] : a0.2=0.0  a0.4=0.2  a0.6=0.3333  a0.8=0.5222
+        cvar_alpha[single]: a0.2=0.6556  a0.4=0.7  a0.6=0.7889  a0.8=0.8556
+        cvar_alpha[global]: a0.2=0.0  a0.4=0.1333  a0.6=0.2  a0.8=0.3
+      cost      : s1_dispatch_cost=4276  s2_dispatch_cost=3660  cost_saving=616  mono_count=0  concentrated_count=17
+
+=== layered_small_seed1  solver=milp ===
+[layered_small_seed1/milp ln=0 lf=0] solving flow (milp)...
+  [milp] normaliser (mean dispatch cost / trip, cost-optimal) = 108.16
+  [milp] ln=0.0 lf=0.0 (w_net=0 w_flow=0): arcs=6 trips=37 single=1 R_TR=0.4667 s1_time=0.046s flow_optimum=True
+      convergence: first=4002@0.046s -> best=4002@0.046s improvements=0 budget=0.046s (optimum=True)
+    baseline       wh=0 wc=0  s2_optimal=False
+      time      : s1_time=0.046  s2_time=30.009  flow_optimum=True
+      converge  : first=4002@0.046s best=4002@0.046s n_improve=0
+      flow      : r_tr=0.4667  flow_cost=4002  n_arcs=6  total_trips=37  n_single_trip_arcs=1
+      r_alpha[single] : a0.2=0.5  a0.4=0.5333  a0.6=0.5667  a0.8=0.6
+      r_alpha[global] : a0.2=0.0  a0.4=0.0667  a0.6=0.2  a0.8=0.3333
+      coverage  : cov_mean=0.9231  cov_median=0.9333  cov_cvar10=0.8278  cov_frac_zero=0.0  cov_dw_mean=0.9231  cov_mean_addr=0.922  cov_cvar10_addr=0.82
+      nri       : nri=0.9231  nri_worst=0.9  nri_addr=0.922
+        nri_alpha[single] : a0.2=0.6972  a0.4=0.7472  a0.6=0.8222  a0.8=0.875
+        nri_alpha[global] : a0.2=0.05  a0.4=0.15  a0.6=0.3667  a0.8=0.5666
+        cvar_alpha[single]: a0.2=0.55  a0.4=0.6333  a0.6=0.7167  a0.8=0.8
+        cvar_alpha[global]: a0.2=0.0  a0.4=0.0667  a0.6=0.2  a0.8=0.3333
+      cost      : s1_dispatch_cost=4002  s2_dispatch_cost=2788  cost_saving=1214  mono_count=7  concentrated_count=27
+    hetero_w8      wh=8 wc=0  s2_optimal=False
+      time      : s1_time=0.046  s2_time=30.009  flow_optimum=True
+      converge  : first=4002@0.046s best=4002@0.046s n_improve=0
+      flow      : r_tr=0.4667  flow_cost=4002  n_arcs=6  total_trips=37  n_single_trip_arcs=1
+      r_alpha[single] : a0.2=0.5  a0.4=0.6  a0.6=0.6333  a0.8=0.6667
+      r_alpha[global] : a0.2=0.0333  a0.4=0.1333  a0.6=0.3333  a0.8=0.4333
+      coverage  : cov_mean=0.9231  cov_median=0.9333  cov_cvar10=0.8444  cov_frac_zero=0.0  cov_dw_mean=0.9231  cov_mean_addr=0.922  cov_cvar10_addr=0.84
+      nri       : nri=0.9231  nri_worst=0.9  nri_addr=0.922
+        nri_alpha[single] : a0.2=0.6972  a0.4=0.7472  a0.6=0.8222  a0.8=0.875
+        nri_alpha[global] : a0.2=0.0333  a0.4=0.1833  a0.6=0.45  a0.8=0.6
+        cvar_alpha[single]: a0.2=0.55  a0.4=0.6334  a0.6=0.7166  a0.8=0.8
+        cvar_alpha[global]: a0.2=0.0333  a0.4=0.1333  a0.6=0.3333  a0.8=0.4333
+      cost      : s1_dispatch_cost=4002  s2_dispatch_cost=2788  cost_saving=1214  mono_count=0  concentrated_count=36
+    conc_w8        wh=0 wc=8  s2_optimal=False
+      time      : s1_time=0.046  s2_time=30.009  flow_optimum=True
+      converge  : first=4002@0.046s best=4002@0.046s n_improve=0
+      flow      : r_tr=0.4667  flow_cost=4002  n_arcs=6  total_trips=37  n_single_trip_arcs=1
+      r_alpha[single] : a0.2=0.4667  a0.4=0.5333  a0.6=0.5667  a0.8=0.6333
+      r_alpha[global] : a0.2=0.0333  a0.4=0.1333  a0.6=0.2  a0.8=0.3
+      coverage  : cov_mean=0.9394  cov_median=0.9667  cov_cvar10=0.8381  cov_frac_zero=0.0  cov_dw_mean=0.9394  cov_mean_addr=0.9391  cov_cvar10_addr=0.8381
+      nri       : nri=0.9394  nri_worst=0.9  nri_addr=0.9391
+        nri_alpha[single] : a0.2=0.6917  a0.4=0.7334  a0.6=0.7944  a0.8=0.8611
+        nri_alpha[global] : a0.2=0.05  a0.4=0.1833  a0.6=0.3167  a0.8=0.5
+        cvar_alpha[single]: a0.2=0.4833  a0.4=0.55  a0.6=0.6334  a0.8=0.8
+        cvar_alpha[global]: a0.2=0.0333  a0.4=0.1333  a0.6=0.2  a0.8=0.3
+      cost      : s1_dispatch_cost=4002  s2_dispatch_cost=3650  cost_saving=352  mono_count=3  concentrated_count=18
+    full_w8_8      wh=8 wc=8  s2_optimal=False
+      time      : s1_time=0.046  s2_time=30.009  flow_optimum=True
+      converge  : first=4002@0.046s best=4002@0.046s n_improve=0
+      flow      : r_tr=0.4667  flow_cost=4002  n_arcs=6  total_trips=37  n_single_trip_arcs=1
+      r_alpha[single] : a0.2=0.5  a0.4=0.5667  a0.6=0.6  a0.8=0.6667
+      r_alpha[global] : a0.2=0.0667  a0.4=0.1333  a0.6=0.2333  a0.8=0.3333
+      coverage  : cov_mean=0.9394  cov_median=0.9667  cov_cvar10=0.8428  cov_frac_zero=0.0  cov_dw_mean=0.9394  cov_mean_addr=0.9391  cov_cvar10_addr=0.8428
+      nri       : nri=0.9394  nri_worst=0.9  nri_addr=0.9391
+        nri_alpha[single] : a0.2=0.6972  a0.4=0.7389  a0.6=0.7972  a0.8=0.8639
+        nri_alpha[global] : a0.2=0.0667  a0.4=0.1833  a0.6=0.3167  a0.8=0.5333
+        cvar_alpha[single]: a0.2=0.5  a0.4=0.5667  a0.6=0.6334  a0.8=0.8
+        cvar_alpha[global]: a0.2=0.0667  a0.4=0.1333  a0.6=0.2333  a0.8=0.3333
+      cost      : s1_dispatch_cost=4002  s2_dispatch_cost=3650  cost_saving=352  mono_count=1  concentrated_count=18
+
+=== layered_small_seed2  solver=milp ===
+[layered_small_seed2/milp ln=0 lf=0] solving flow (milp)...
+  [milp] normaliser (mean dispatch cost / trip, cost-optimal) = 77.59
+  [milp] ln=0.0 lf=0.0 (w_net=0 w_flow=0): arcs=5 trips=22 single=3 R_TR=0.3667 s1_time=0.017s flow_optimum=True
+      convergence: first=1707@0.017s -> best=1707@0.017s improvements=0 budget=0.017s (optimum=True)
+    baseline       wh=0 wc=0  s2_optimal=True
+      time      : s1_time=0.017  s2_time=0.119  flow_optimum=True
+      converge  : first=1707@0.017s best=1707@0.017s n_improve=0
+      flow      : r_tr=0.3667  flow_cost=1707  n_arcs=5  total_trips=22  n_single_trip_arcs=3
+      r_alpha[single] : a0.2=0.4  a0.4=0.4333  a0.6=0.5  a0.8=0.6
+      r_alpha[global] : a0.2=0.0667  a0.4=0.1333  a0.6=0.2667  a0.8=0.4
+      coverage  : cov_mean=0.9382  cov_median=0.9333  cov_cvar10=0.85  cov_frac_zero=0.0  cov_dw_mean=0.9382  cov_mean_addr=0.9357  cov_cvar10_addr=0.8333
+      nri       : nri=0.9382  nri_worst=0.8834  nri_addr=0.9357
+        nri_alpha[single] : a0.2=0.8133  a0.4=0.8367  a0.6=0.8833  a0.8=0.91
+        nri_alpha[global] : a0.2=0.1167  a0.4=0.2333  a0.6=0.4667  a0.8=0.6
+        cvar_alpha[single]: a0.2=0.5166  a0.4=0.5833  a0.6=0.7166  a0.8=0.8
+        cvar_alpha[global]: a0.2=0.0667  a0.4=0.1333  a0.6=0.2667  a0.8=0.4
+      cost      : s1_dispatch_cost=1707  s2_dispatch_cost=1391  cost_saving=316  mono_count=2  concentrated_count=22
+    hetero_w8      wh=8 wc=0  s2_optimal=True
+      time      : s1_time=0.017  s2_time=0.097  flow_optimum=True
+      converge  : first=1707@0.017s best=1707@0.017s n_improve=0
+      flow      : r_tr=0.3667  flow_cost=1707  n_arcs=5  total_trips=22  n_single_trip_arcs=3
+      r_alpha[single] : a0.2=0.4  a0.4=0.4667  a0.6=0.5333  a0.8=0.6667
+      r_alpha[global] : a0.2=0.0667  a0.4=0.1667  a0.6=0.3  a0.8=0.4667
+      coverage  : cov_mean=0.9382  cov_median=0.9333  cov_cvar10=0.8583  cov_frac_zero=0.0  cov_dw_mean=0.9382  cov_mean_addr=0.9357  cov_cvar10_addr=0.8444
+      nri       : nri=0.9382  nri_worst=0.9  nri_addr=0.9357
+        nri_alpha[single] : a0.2=0.8133  a0.4=0.8367  a0.6=0.8833  a0.8=0.91
+        nri_alpha[global] : a0.2=0.1167  a0.4=0.2334  a0.6=0.4666  a0.8=0.6
+        cvar_alpha[single]: a0.2=0.5166  a0.4=0.5833  a0.6=0.7166  a0.8=0.8
+        cvar_alpha[global]: a0.2=0.0667  a0.4=0.1667  a0.6=0.3  a0.8=0.4667
+      cost      : s1_dispatch_cost=1707  s2_dispatch_cost=1391  cost_saving=316  mono_count=0  concentrated_count=21
+    conc_w8        wh=0 wc=8  s2_optimal=False
+      time      : s1_time=0.017  s2_time=30.006  flow_optimum=True
+      converge  : first=1707@0.017s best=1707@0.017s n_improve=0
+      flow      : r_tr=0.3667  flow_cost=1707  n_arcs=5  total_trips=22  n_single_trip_arcs=3
+      r_alpha[single] : a0.2=0.4333  a0.4=0.5667  a0.6=0.7  a0.8=0.8
+      r_alpha[global] : a0.2=0.0667  a0.4=0.2  a0.6=0.3333  a0.8=0.4667
+      coverage  : cov_mean=0.9523  cov_median=0.9667  cov_cvar10=0.8867  cov_frac_zero=0.0  cov_dw_mean=0.9523  cov_mean_addr=0.9526  cov_cvar10_addr=0.8833
+      nri       : nri=0.9523  nri_worst=0.9  nri_addr=0.9526
+        nri_alpha[single] : a0.2=0.8067  a0.4=0.8333  a0.6=0.8667  a0.8=0.91
+        nri_alpha[global] : a0.2=0.0833  a0.4=0.2166  a0.6=0.3833  a0.8=0.6
+        cvar_alpha[single]: a0.2=0.5  a0.4=0.6  a0.6=0.7  a0.8=0.8334
+        cvar_alpha[global]: a0.2=0.0667  a0.4=0.2  a0.6=0.3333  a0.8=0.4667
+      cost      : s1_dispatch_cost=1707  s2_dispatch_cost=1707  cost_saving=0  mono_count=7  concentrated_count=11
+    full_w8_8      wh=8 wc=8  s2_optimal=False
+      time      : s1_time=0.017  s2_time=30.009  flow_optimum=True
+      converge  : first=1707@0.017s best=1707@0.017s n_improve=0
+      flow      : r_tr=0.3667  flow_cost=1707  n_arcs=5  total_trips=22  n_single_trip_arcs=3
+      r_alpha[single] : a0.2=0.4333  a0.4=0.5667  a0.6=0.7  a0.8=0.7667
+      r_alpha[global] : a0.2=0.1  a0.4=0.2333  a0.6=0.4333  a0.8=0.5667
+      coverage  : cov_mean=0.9447  cov_median=0.9333  cov_cvar10=0.8833  cov_frac_zero=0.0  cov_dw_mean=0.9447  cov_mean_addr=0.9437  cov_cvar10_addr=0.8917
+      nri       : nri=0.9447  nri_worst=0.9  nri_addr=0.9438
+        nri_alpha[single] : a0.2=0.81  a0.4=0.84  a0.6=0.88  a0.8=0.9167
+        nri_alpha[global] : a0.2=0.1  a0.4=0.25  a0.6=0.45  a0.8=0.6334
+        cvar_alpha[single]: a0.2=0.5  a0.4=0.6  a0.6=0.7  a0.8=0.8334
+        cvar_alpha[global]: a0.2=0.1  a0.4=0.2333  a0.6=0.4333  a0.8=0.5667
+      cost      : s1_dispatch_cost=1707  s2_dispatch_cost=1539  cost_saving=168  mono_count=0  concentrated_count=18
+
+=== layered_small_seed3  solver=milp ===
+[layered_small_seed3/milp ln=0 lf=0] solving flow (milp)...
+  [milp] normaliser (mean dispatch cost / trip, cost-optimal) = 122.47
+  [milp] ln=0.0 lf=0.0 (w_net=0 w_flow=0): arcs=5 trips=47 single=0 R_TR=0.1667 s1_time=0.054s flow_optimum=True
+      convergence: first=5756@0.054s -> best=5756@0.054s improvements=0 budget=0.054s (optimum=True)
+    baseline       wh=0 wc=0  s2_optimal=False
+      time      : s1_time=0.054  s2_time=30.006  flow_optimum=True
+      converge  : first=5756@0.054s best=5756@0.054s n_improve=0
+      flow      : r_tr=0.1667  flow_cost=5756  n_arcs=5  total_trips=47  n_single_trip_arcs=0
+      r_alpha[single] : a0.2=0.3333  a0.4=0.5  a0.6=0.5667  a0.8=0.7
+      r_alpha[global] : a0.2=0.0667  a0.4=0.2  a0.6=0.4333  a0.8=0.6667
+      coverage  : cov_mean=0.9554  cov_median=0.9667  cov_cvar10=0.8875  cov_frac_zero=0.0  cov_dw_mean=0.9554  cov_mean_addr=0.9554  cov_cvar10_addr=0.8875
+      nri       : nri=0.9554  nri_worst=0.9334  nri_addr=0.9554
+        nri_alpha[single] : a0.2=0.69  a0.4=0.7467  a0.6=0.83  a0.8=0.9067
+        nri_alpha[global] : a0.2=0.1  a0.4=0.2166  a0.6=0.5  a0.8=0.7333
+        cvar_alpha[single]: a0.2=0.5  a0.4=0.6  a0.6=0.7333  a0.8=0.85
+        cvar_alpha[global]: a0.2=0.0667  a0.4=0.2  a0.6=0.4333  a0.8=0.6667
+      cost      : s1_dispatch_cost=5756  s2_dispatch_cost=5176  cost_saving=580  mono_count=20  concentrated_count=43
+    hetero_w8      wh=8 wc=0  s2_optimal=False
+      time      : s1_time=0.054  s2_time=30.01  flow_optimum=True
+      converge  : first=5756@0.054s best=5756@0.054s n_improve=0
+      flow      : r_tr=0.1667  flow_cost=5756  n_arcs=5  total_trips=47  n_single_trip_arcs=0
+      r_alpha[single] : a0.2=0.2333  a0.4=0.3667  a0.6=0.4667  a0.8=0.7667
+      r_alpha[global] : a0.2=0.1  a0.4=0.1667  a0.6=0.3667  a0.8=0.7
+      coverage  : cov_mean=0.9531  cov_median=0.9667  cov_cvar10=0.8875  cov_frac_zero=0.0  cov_dw_mean=0.9531  cov_mean_addr=0.9531  cov_cvar10_addr=0.8875
+      nri       : nri=0.9531  nri_worst=0.9334  nri_addr=0.9531
+        nri_alpha[single] : a0.2=0.6767  a0.4=0.74  a0.6=0.8233  a0.8=0.9067
+        nri_alpha[global] : a0.2=0.1  a0.4=0.25  a0.6=0.4667  a0.8=0.7334
+        cvar_alpha[single]: a0.2=0.4667  a0.4=0.6  a0.6=0.7  a0.8=0.85
+        cvar_alpha[global]: a0.2=0.1  a0.4=0.1667  a0.6=0.3667  a0.8=0.7
+      cost      : s1_dispatch_cost=5756  s2_dispatch_cost=4632  cost_saving=1124  mono_count=11  concentrated_count=46
+    conc_w8        wh=0 wc=8  s2_optimal=False
+      time      : s1_time=0.054  s2_time=30.01  flow_optimum=True
+      converge  : first=5756@0.054s best=5756@0.054s n_improve=0
+      flow      : r_tr=0.1667  flow_cost=5756  n_arcs=5  total_trips=47  n_single_trip_arcs=0
+      r_alpha[single] : a0.2=0.2667  a0.4=0.3667  a0.6=0.5667  a0.8=0.7
+      r_alpha[global] : a0.2=0.0  a0.4=0.1  a0.6=0.4  a0.8=0.6
+      coverage  : cov_mean=0.9595  cov_median=0.9667  cov_cvar10=0.8889  cov_frac_zero=0.0  cov_dw_mean=0.9595  cov_mean_addr=0.9595  cov_cvar10_addr=0.8889
+      nri       : nri=0.9595  nri_worst=0.9334  nri_addr=0.9595
+        nri_alpha[single] : a0.2=0.67  a0.4=0.7167  a0.6=0.8067  a0.8=0.8967
+        nri_alpha[global] : a0.2=0.05  a0.4=0.15  a0.6=0.45  a0.8=0.6666
+        cvar_alpha[single]: a0.2=0.45  a0.4=0.5  a0.6=0.65  a0.8=0.8
+        cvar_alpha[global]: a0.2=0.0  a0.4=0.1  a0.6=0.4  a0.8=0.6
+      cost      : s1_dispatch_cost=5756  s2_dispatch_cost=5448  cost_saving=308  mono_count=31  concentrated_count=28
+    full_w8_8      wh=8 wc=8  s2_optimal=False
+      time      : s1_time=0.054  s2_time=30.01  flow_optimum=True
+      converge  : first=5756@0.054s best=5756@0.054s n_improve=0
+      flow      : r_tr=0.1667  flow_cost=5756  n_arcs=5  total_trips=47  n_single_trip_arcs=0
+      r_alpha[single] : a0.2=0.2333  a0.4=0.3  a0.6=0.5  a0.8=0.7
+      r_alpha[global] : a0.2=0.0667  a0.4=0.1333  a0.6=0.3333  a0.8=0.6
+      coverage  : cov_mean=0.9531  cov_median=0.9667  cov_cvar10=0.8875  cov_frac_zero=0.0  cov_dw_mean=0.9531  cov_mean_addr=0.9531  cov_cvar10_addr=0.8875
+      nri       : nri=0.9531  nri_worst=0.9334  nri_addr=0.9531
+        nri_alpha[single] : a0.2=0.6867  a0.4=0.7467  a0.6=0.8367  a0.8=0.9067
+        nri_alpha[global] : a0.2=0.0833  a0.4=0.25  a0.6=0.45  a0.8=0.6666
+        cvar_alpha[single]: a0.2=0.5  a0.4=0.6  a0.6=0.75  a0.8=0.85
+        cvar_alpha[global]: a0.2=0.0667  a0.4=0.1333  a0.6=0.3333  a0.8=0.6
+      cost      : s1_dispatch_cost=5756  s2_dispatch_cost=4768  cost_saving=988  mono_count=18  concentrated_count=33
+
+=== layered_small_seed4  solver=milp ===
+[layered_small_seed4/milp ln=0 lf=0] solving flow (milp)...
+  [milp] normaliser (mean dispatch cost / trip, cost-optimal) = 108.11
+  [milp] ln=0.0 lf=0.0 (w_net=0 w_flow=0): arcs=8 trips=35 single=3 R_TR=0.4333 s1_time=0.142s flow_optimum=True
+      convergence: first=3784@0.142s -> best=3784@0.142s improvements=0 budget=0.142s (optimum=True)
+    baseline       wh=0 wc=0  s2_optimal=True
+      time      : s1_time=0.142  s2_time=4.653  flow_optimum=True
+      converge  : first=3784@0.142s best=3784@0.142s n_improve=0
+      flow      : r_tr=0.4333  flow_cost=3784  n_arcs=8  total_trips=35  n_single_trip_arcs=3
+      r_alpha[single] : a0.2=0.5  a0.4=0.6  a0.6=0.6667  a0.8=0.8333
+      r_alpha[global] : a0.2=0.0667  a0.4=0.2  a0.6=0.2667  a0.8=0.5667
+      coverage  : cov_mean=0.9414  cov_median=0.9333  cov_cvar10=0.8778  cov_frac_zero=0.0  cov_dw_mean=0.9414  cov_mean_addr=0.9403  cov_cvar10_addr=0.8733
+      nri       : nri=0.9414  nri_worst=0.9167  nri_addr=0.9403
+        nri_alpha[single] : a0.2=0.8271  a0.4=0.8625  a0.6=0.8979  a0.8=0.9375
+        nri_alpha[global] : a0.2=0.0833  a0.4=0.25  a0.6=0.3833  a0.8=0.6167
+        cvar_alpha[single]: a0.2=0.7  a0.4=0.7667  a0.6=0.8334  a0.8=0.9166
+        cvar_alpha[global]: a0.2=0.0667  a0.4=0.2  a0.6=0.2667  a0.8=0.5667
+      cost      : s1_dispatch_cost=3784  s2_dispatch_cost=2904  cost_saving=880  mono_count=9  concentrated_count=32
+    hetero_w8      wh=8 wc=0  s2_optimal=False
+      time      : s1_time=0.142  s2_time=30.009  flow_optimum=True
+      converge  : first=3784@0.142s best=3784@0.142s n_improve=0
+      flow      : r_tr=0.4333  flow_cost=3784  n_arcs=8  total_trips=35  n_single_trip_arcs=3
+      r_alpha[single] : a0.2=0.4667  a0.4=0.5667  a0.6=0.6667  a0.8=0.8
+      r_alpha[global] : a0.2=0.0667  a0.4=0.2333  a0.6=0.4  a0.8=0.5667
+      coverage  : cov_mean=0.9434  cov_median=0.9333  cov_cvar10=0.8945  cov_frac_zero=0.0  cov_dw_mean=0.9434  cov_mean_addr=0.9427  cov_cvar10_addr=0.8933
+      nri       : nri=0.9434  nri_worst=0.9333  nri_addr=0.9427
+        nri_alpha[single] : a0.2=0.825  a0.4=0.8604  a0.6=0.8958  a0.8=0.9312
+        nri_alpha[global] : a0.2=0.0833  a0.4=0.25  a0.6=0.4166  a0.8=0.5833
+        cvar_alpha[single]: a0.2=0.6667  a0.4=0.7333  a0.6=0.8  a0.8=0.8666
+        cvar_alpha[global]: a0.2=0.0667  a0.4=0.2333  a0.6=0.4  a0.8=0.5667
+      cost      : s1_dispatch_cost=3784  s2_dispatch_cost=2984  cost_saving=800  mono_count=4  concentrated_count=40
+    conc_w8        wh=0 wc=8  s2_optimal=False
+      time      : s1_time=0.142  s2_time=30.009  flow_optimum=True
+      converge  : first=3784@0.142s best=3784@0.142s n_improve=0
+      flow      : r_tr=0.4333  flow_cost=3784  n_arcs=8  total_trips=35  n_single_trip_arcs=3
+      r_alpha[single] : a0.2=0.5  a0.4=0.5667  a0.6=0.6333  a0.8=0.7667
+      r_alpha[global] : a0.2=0.0333  a0.4=0.1667  a0.6=0.2333  a0.8=0.3667
+      coverage  : cov_mean=0.9489  cov_median=0.9667  cov_cvar10=0.8571  cov_frac_zero=0.0  cov_dw_mean=0.9489  cov_mean_addr=0.9488  cov_cvar10_addr=0.85
+      nri       : nri=0.9489  nri_worst=0.9167  nri_addr=0.9488
+        nri_alpha[single] : a0.2=0.8208  a0.4=0.8479  a0.6=0.8854  a0.8=0.9188
+        nri_alpha[global] : a0.2=0.0666  a0.4=0.1667  a0.6=0.3333  a0.8=0.5
+        cvar_alpha[single]: a0.2=0.6667  a0.4=0.7  a0.6=0.7833  a0.8=0.85
+        cvar_alpha[global]: a0.2=0.0333  a0.4=0.1667  a0.6=0.2333  a0.8=0.3667
+      cost      : s1_dispatch_cost=3784  s2_dispatch_cost=3464  cost_saving=320  mono_count=22  concentrated_count=20
+    full_w8_8      wh=8 wc=8  s2_optimal=False
+      time      : s1_time=0.142  s2_time=30.01  flow_optimum=True
+      converge  : first=3784@0.142s best=3784@0.142s n_improve=0
+      flow      : r_tr=0.4333  flow_cost=3784  n_arcs=8  total_trips=35  n_single_trip_arcs=3
+      r_alpha[single] : a0.2=0.5333  a0.4=0.6  a0.6=0.6667  a0.8=0.8333
+      r_alpha[global] : a0.2=0.0667  a0.4=0.2333  a0.6=0.3333  a0.8=0.5667
+      coverage  : cov_mean=0.9472  cov_median=0.9667  cov_cvar10=0.8778  cov_frac_zero=0.0  cov_dw_mean=0.9472  cov_mean_addr=0.9469  cov_cvar10_addr=0.8778
+      nri       : nri=0.9472  nri_worst=0.9167  nri_addr=0.9469
+        nri_alpha[single] : a0.2=0.825  a0.4=0.8542  a0.6=0.8917  a0.8=0.9271
+        nri_alpha[global] : a0.2=0.1  a0.4=0.25  a0.6=0.4  a0.8=0.6
+        cvar_alpha[single]: a0.2=0.7  a0.4=0.75  a0.6=0.8333  a0.8=0.8834
+        cvar_alpha[global]: a0.2=0.0667  a0.4=0.2333  a0.6=0.3333  a0.8=0.5667
+      cost      : s1_dispatch_cost=3784  s2_dispatch_cost=3384  cost_saving=400  mono_count=7  concentrated_count=25
+
+=== layered_small_seed5  solver=milp ===
+[layered_small_seed5/milp ln=0 lf=0] solving flow (milp)...
+  [milp] normaliser (mean dispatch cost / trip, cost-optimal) = 185.65
+  [milp] ln=0.0 lf=0.0 (w_net=0 w_flow=0): arcs=6 trips=23 single=0 R_TR=0.3 s1_time=0.228s flow_optimum=True
+      convergence: first=4270@0.228s -> best=4270@0.228s improvements=0 budget=0.228s (optimum=True)
+    baseline       wh=0 wc=0  s2_optimal=True
+      time      : s1_time=0.228  s2_time=0.024  flow_optimum=True
+      converge  : first=4270@0.228s best=4270@0.228s n_improve=0
+      flow      : r_tr=0.3  flow_cost=4270  n_arcs=6  total_trips=23  n_single_trip_arcs=0
+      r_alpha[single] : a0.2=0.3  a0.4=0.5  a0.6=0.5  a0.8=0.7333
+      r_alpha[global] : a0.2=0.0  a0.4=0.2  a0.6=0.2  a0.8=0.4333
+      coverage  : cov_mean=0.9108  cov_median=0.9166  cov_cvar10=0.7584  cov_frac_zero=0.0  cov_dw_mean=0.9108  cov_mean_addr=0.9108  cov_cvar10_addr=0.7584
+      nri       : nri=0.9108  nri_worst=0.8666  nri_addr=0.9108
+        nri_alpha[single] : a0.2=0.7472  a0.4=0.8056  a0.6=0.8389  a0.8=0.9
+        nri_alpha[global] : a0.2=0.0  a0.4=0.2166  a0.6=0.35  a0.8=0.6
+        cvar_alpha[single]: a0.2=0.6334  a0.4=0.75  a0.6=0.75  a0.8=0.8666
+        cvar_alpha[global]: a0.2=0.0  a0.4=0.2  a0.6=0.2  a0.8=0.4333
+      cost      : s1_dispatch_cost=4270  s2_dispatch_cost=3185  cost_saving=1085  mono_count=11  concentrated_count=19
+    hetero_w8      wh=8 wc=0  s2_optimal=True
+      time      : s1_time=0.228  s2_time=1.545  flow_optimum=True
+      converge  : first=4270@0.228s best=4270@0.228s n_improve=0
+      flow      : r_tr=0.3  flow_cost=4270  n_arcs=6  total_trips=23  n_single_trip_arcs=0
+      r_alpha[single] : a0.2=0.3  a0.4=0.4667  a0.6=0.4667  a0.8=0.7
+      r_alpha[global] : a0.2=0.0  a0.4=0.2  a0.6=0.2667  a0.8=0.5333
+      coverage  : cov_mean=0.9158  cov_median=0.95  cov_cvar10=0.7333  cov_frac_zero=0.0  cov_dw_mean=0.9157  cov_mean_addr=0.9158  cov_cvar10_addr=0.7333
+      nri       : nri=0.9158  nri_worst=0.85  nri_addr=0.9158
+        nri_alpha[single] : a0.2=0.7556  a0.4=0.8028  a0.6=0.8361  a0.8=0.9028
+        nri_alpha[global] : a0.2=0.05  a0.4=0.2334  a0.6=0.3667  a0.8=0.6333
+        cvar_alpha[single]: a0.2=0.6334  a0.4=0.7167  a0.6=0.7167  a0.8=0.85
+        cvar_alpha[global]: a0.2=0.0  a0.4=0.2  a0.6=0.2667  a0.8=0.5333
+      cost      : s1_dispatch_cost=4270  s2_dispatch_cost=3360  cost_saving=910  mono_count=5  concentrated_count=21
+    conc_w8        wh=0 wc=8  s2_optimal=False
+      time      : s1_time=0.228  s2_time=30.006  flow_optimum=True
+      converge  : first=4270@0.228s best=4270@0.228s n_improve=0
+      flow      : r_tr=0.3  flow_cost=4270  n_arcs=6  total_trips=23  n_single_trip_arcs=0
+      r_alpha[single] : a0.2=0.3  a0.4=0.4333  a0.6=0.5667  a0.8=0.7
+      r_alpha[global] : a0.2=0.0  a0.4=0.1333  a0.6=0.2667  a0.8=0.4
+      coverage  : cov_mean=0.9278  cov_median=0.9333  cov_cvar10=0.8  cov_frac_zero=0.0  cov_dw_mean=0.9278  cov_mean_addr=0.9278  cov_cvar10_addr=0.8
+      nri       : nri=0.9278  nri_worst=0.85  nri_addr=0.9278
+        nri_alpha[single] : a0.2=0.7528  a0.4=0.7861  a0.6=0.85  a0.8=0.9
+        nri_alpha[global] : a0.2=0.0334  a0.4=0.15  a0.6=0.35  a0.8=0.55
+        cvar_alpha[single]: a0.2=0.6334  a0.4=0.7  a0.6=0.7667  a0.8=0.85
+        cvar_alpha[global]: a0.2=0.0  a0.4=0.1333  a0.6=0.2667  a0.8=0.4
+      cost      : s1_dispatch_cost=4270  s2_dispatch_cost=3955  cost_saving=315  mono_count=12  concentrated_count=12
+    full_w8_8      wh=8 wc=8  s2_optimal=False
+      time      : s1_time=0.228  s2_time=30.009  flow_optimum=True
+      converge  : first=4270@0.228s best=4270@0.228s n_improve=0
+      flow      : r_tr=0.3  flow_cost=4270  n_arcs=6  total_trips=23  n_single_trip_arcs=0
+      r_alpha[single] : a0.2=0.3  a0.4=0.4667  a0.6=0.4667  a0.8=0.7
+      r_alpha[global] : a0.2=0.0  a0.4=0.1667  a0.6=0.2  a0.8=0.4333
+      coverage  : cov_mean=0.9157  cov_median=0.9333  cov_cvar10=0.7333  cov_frac_zero=0.0  cov_dw_mean=0.9157  cov_mean_addr=0.9157  cov_cvar10_addr=0.7333
+      nri       : nri=0.9157  nri_worst=0.85  nri_addr=0.9157
+        nri_alpha[single] : a0.2=0.7472  a0.4=0.7917  a0.6=0.8306  a0.8=0.8972
+        nri_alpha[global] : a0.2=0.0  a0.4=0.1667  a0.6=0.3167  a0.8=0.5833
+        cvar_alpha[single]: a0.2=0.6334  a0.4=0.7167  a0.6=0.7167  a0.8=0.85
+        cvar_alpha[global]: a0.2=0.0  a0.4=0.1667  a0.6=0.2  a0.8=0.4333
+      cost      : s1_dispatch_cost=4270  s2_dispatch_cost=3395  cost_saving=875  mono_count=7  concentrated_count=15
+
+=== ACROSS-SUITE SUMMARY (win = beats baseline) ===
+
+  nri:
+    conc_w8          wins 9/10  meanΔ=+0.0084
+    full_w8_8        wins 8/10  meanΔ=+0.0054
+    hetero_w8        wins 3/10  meanΔ=+0.0007
+
+  cov_cvar10:
+    conc_w8          wins 8/10  meanΔ=+0.0191
+    full_w8_8        wins 6/10  meanΔ=+0.0155
+    hetero_w8        wins 8/10  meanΔ=+0.0185
+
+  nri_addr:
+    conc_w8          wins 9/10  meanΔ=+0.0092
+    full_w8_8        wins 8/10  meanΔ=+0.0061
+    hetero_w8        wins 3/10  meanΔ=+0.0008
+
+  cov_cvar10_addr:
+    conc_w8          wins 8/10  meanΔ=+0.0208
+    full_w8_8        wins 7/10  meanΔ=+0.0193
+    hetero_w8        wins 8/10  meanΔ=+0.0205
+
+  nri_alpha_single_0.4:
+    conc_w8          wins 1/10  meanΔ=-0.0112
+    full_w8_8        wins 2/10  meanΔ=-0.0045
+    hetero_w8        wins 4/10  meanΔ=-0.0006
+
+  cvar_alpha_single_0.4:
+    conc_w8          wins 2/10  meanΔ=-0.0505
+    full_w8_8        wins 1/10  meanΔ=-0.0311
+    hetero_w8        wins 3/10  meanΔ=-0.0067
+
+  nri_alpha_single_0.6:
+    conc_w8          wins 2/10  meanΔ=-0.0091
+    full_w8_8        wins 2/10  meanΔ=-0.0048
+    hetero_w8        wins 2/10  meanΔ=-0.0012
+
+  cvar_alpha_single_0.6:
+    conc_w8          wins 1/10  meanΔ=-0.0472
+    full_w8_8        wins 1/10  meanΔ=-0.0361
+    hetero_w8        wins 0/10  meanΔ=-0.0111
+
+=== FLOW SOLVE-TIME (MILP vs ASP) ===
+  layered_medium_seed1         milp: mean=0.34s max=0.34s opt=1/1
+  layered_medium_seed2         milp: mean=0.17s max=0.17s opt=1/1
+  layered_medium_seed3         milp: mean=0.30s max=0.30s opt=1/1
+  layered_medium_seed4         milp: mean=0.02s max=0.02s opt=1/1
+  layered_medium_seed5         milp: mean=0.03s max=0.03s opt=1/1
+  layered_small_seed1          milp: mean=0.05s max=0.05s opt=1/1
+  layered_small_seed2          milp: mean=0.02s max=0.02s opt=1/1
+  layered_small_seed3          milp: mean=0.05s max=0.05s opt=1/1
+  layered_small_seed4          milp: mean=0.14s max=0.14s opt=1/1
+  layered_small_seed5          milp: mean=0.23s max=0.23s opt=1/1
+
+-> src/multibatch/experiments/milp_resilience/results/suite_layered_cvar.csv

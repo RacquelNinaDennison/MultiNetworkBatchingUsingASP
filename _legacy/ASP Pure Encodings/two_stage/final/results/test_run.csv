@@ -1,5 +1,0 @@
-instance_name,instance_size,seed,div_weight,nominal_cost,dominant_count,r_tr,worst_arc,worst_arc_coverage,s1_optimal,s1_time,status
-large_seed1,large,1,0,,,,,,False,,UNSAT
-large_seed1,large,1,100,,,,,,False,,UNSAT
-large_seed1,large,1,500,,,,,,False,,UNSAT
-large_seed2,large,2,0,,,,,,False,,UNSAT

@@ -1,0 +1,80 @@
+Instances (1): ['industry_test_1']
+Solvers: ['milp']
+
+=== industry_test_1  solver=milp ===
+  (synthesised partVal for 35 parts via 'size')
+[industry_test_1/milp ln=0 lf=0] solving flow (milp)...
+  [milp] normaliser (mean dispatch cost / trip, cost-optimal) = 29871.78
+  [milp] ln=0.0 lf=0.0 (w_net=0 w_flow=0): arcs=35 trips=106 single=17 R_TR=0.0 s1_time=600.697s flow_optimum=False
+      convergence: first=3166409@600.697s -> best=3166409@600.697s improvements=0 budget=600.697s (optimum=False)
+    baseline       wh=0 wc=0  s2_optimal=False
+      time      : s1_time=600.697  s2_time=100.024  flow_optimum=False
+      converge  : first=3166409@600.697s best=3166409@600.697s n_improve=0
+      flow      : r_tr=0.0  flow_cost=3166409  n_arcs=35  total_trips=106  n_single_trip_arcs=17
+      r_alpha[single] : a0.2=0.0  a0.4=0.0  a0.6=0.0  a0.8=0.0
+      r_alpha[global] : a0.2=0.0  a0.4=0.0  a0.6=0.0  a0.8=0.0
+      coverage  : cov_mean=0.9802  cov_median=1.0  cov_cvar10=0.8022  cov_frac_zero=0.0046  cov_dw_mean=0.9819  cov_mean_addr=0.9833  cov_cvar10_addr=0.8331
+      nri       : nri=0.9819  nri_worst=0.8912  nri_addr=0.9832
+        nri_alpha[single] : a0.2=0.957  a0.4=0.9592  a0.6=0.9661  a0.8=0.9702
+        nri_alpha[global] : a0.2=0.0133  a0.4=0.063  a0.6=0.2049  a0.8=0.2865
+      cost      : s1_dispatch_cost=3166409  s2_dispatch_cost=2767853  cost_saving=398556  mono_count=10  concentrated_count=124
+    hetero_w8      wh=8 wc=0  s2_optimal=False
+      time      : s1_time=600.697  s2_time=100.021  flow_optimum=False
+      converge  : first=3166409@600.697s best=3166409@600.697s n_improve=0
+      flow      : r_tr=0.0  flow_cost=3166409  n_arcs=35  total_trips=106  n_single_trip_arcs=17
+      r_alpha[single] : a0.2=0.0  a0.4=0.0  a0.6=0.0  a0.8=0.0
+      r_alpha[global] : a0.2=0.0  a0.4=0.0  a0.6=0.0  a0.8=0.0
+      coverage  : cov_mean=0.9804  cov_median=1.0  cov_cvar10=0.8044  cov_frac_zero=0.0042  cov_dw_mean=0.9821  cov_mean_addr=0.9835  cov_cvar10_addr=0.8355
+      nri       : nri=0.9821  nri_worst=0.8912  nri_addr=0.9835
+        nri_alpha[single] : a0.2=0.9569  a0.4=0.9594  a0.6=0.9672  a0.8=0.9716
+        nri_alpha[global] : a0.2=0.0093  a0.4=0.0584  a0.6=0.2294  a0.8=0.3276
+      cost      : s1_dispatch_cost=3166409  s2_dispatch_cost=2769429  cost_saving=396980  mono_count=0  concentrated_count=129
+    conc_w8        wh=0 wc=8  s2_optimal=False
+      time      : s1_time=600.697  s2_time=100.02  flow_optimum=False
+      converge  : first=3166409@600.697s best=3166409@600.697s n_improve=0
+      flow      : r_tr=0.0  flow_cost=3166409  n_arcs=35  total_trips=106  n_single_trip_arcs=17
+      r_alpha[single] : a0.2=0.0  a0.4=0.0  a0.6=0.0  a0.8=0.0
+      r_alpha[global] : a0.2=0.0  a0.4=0.0  a0.6=0.0  a0.8=0.0
+      coverage  : cov_mean=0.9837  cov_median=1.0  cov_cvar10=0.8384  cov_frac_zero=0.0025  cov_dw_mean=0.9851  cov_mean_addr=0.9868  cov_cvar10_addr=0.8708
+      nri       : nri=0.9851  nri_worst=0.9164  nri_addr=0.9868
+        nri_alpha[single] : a0.2=0.9576  a0.4=0.9615  a0.6=0.9675  a0.8=0.973
+        nri_alpha[global] : a0.2=0.0245  a0.4=0.1061  a0.6=0.2076  a0.8=0.3395
+      cost      : s1_dispatch_cost=3166409  s2_dispatch_cost=2830857  cost_saving=335552  mono_count=4  concentrated_count=52
+    full_w8_8      wh=8 wc=8  s2_optimal=False
+      time      : s1_time=600.697  s2_time=100.021  flow_optimum=False
+      converge  : first=3166409@600.697s best=3166409@600.697s n_improve=0
+      flow      : r_tr=0.0  flow_cost=3166409  n_arcs=35  total_trips=106  n_single_trip_arcs=17
+      r_alpha[single] : a0.2=0.0  a0.4=0.0  a0.6=0.0  a0.8=0.0
+      r_alpha[global] : a0.2=0.0  a0.4=0.0  a0.6=0.0  a0.8=0.0
+      coverage  : cov_mean=0.9838  cov_median=1.0  cov_cvar10=0.8398  cov_frac_zero=0.0025  cov_dw_mean=0.9852  cov_mean_addr=0.987  cov_cvar10_addr=0.8721
+      nri       : nri=0.9852  nri_worst=0.8959  nri_addr=0.9869
+        nri_alpha[single] : a0.2=0.9575  a0.4=0.9615  a0.6=0.9676  a0.8=0.9735
+        nri_alpha[global] : a0.2=0.0219  a0.4=0.0981  a0.6=0.2115  a0.8=0.3462
+      cost      : s1_dispatch_cost=3166409  s2_dispatch_cost=3104737  cost_saving=61672  mono_count=0  concentrated_count=53
+
+=== ACROSS-SUITE SUMMARY (win = beats baseline) ===
+
+  nri:
+    conc_w8          wins 1/1  meanΔ=+0.0032
+    full_w8_8        wins 1/1  meanΔ=+0.0033
+    hetero_w8        wins 1/1  meanΔ=+0.0002
+
+  cov_cvar10:
+    conc_w8          wins 1/1  meanΔ=+0.0362
+    full_w8_8        wins 1/1  meanΔ=+0.0376
+    hetero_w8        wins 1/1  meanΔ=+0.0022
+
+  nri_addr:
+    conc_w8          wins 1/1  meanΔ=+0.0036
+    full_w8_8        wins 1/1  meanΔ=+0.0037
+    hetero_w8        wins 1/1  meanΔ=+0.0003
+
+  cov_cvar10_addr:
+    conc_w8          wins 1/1  meanΔ=+0.0377
+    full_w8_8        wins 1/1  meanΔ=+0.0390
+    hetero_w8        wins 1/1  meanΔ=+0.0024
+
+=== FLOW SOLVE-TIME (MILP vs ASP) ===
+  industry_test_1              milp: mean=600.70s max=600.70s opt=0/1
+
+-> src/multibatch/experiments/milp_resilience/results/suite_industry.csv

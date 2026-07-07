@@ -1,8 +1,0 @@
-div_weight,nominal_cost,dominant_count,s1_optimal,s1_time,r_tr,worst_arc,worst_arc_coverage,recovery_cost,regret,load_deviation,robust_optimal,robust_time
-0,520,4,True,0.048,0.125,"(l1,l2,tr1)",0.125,470,-50,,False,8.062
-50,540,0,True,0.038,0.5,"(l1,l2,tr1)",0.5,500,-40,,False,8.169
-100,540,0,True,0.088,0.5,"(l1,l2,tr1)",0.5,500,-40,,False,8.536
-150,540,0,True,0.028,0.5,"(l1,l2,tr1)",0.5,500,-40,,False,8.885
-200,540,0,True,0.023,0.5,"(l1,l2,tr1)",0.5,,,,False,
-250,540,0,True,0.02,0.5,"(l1,l2,tr1)",0.5,,,,False,
-300,540,0,True,0.02,0.5,"(l1,l2,tr1)",0.5,500,-40,,False,8.752

@@ -44,12 +44,6 @@ and the industrial instance.
 The MILP flow solver (`solvers/milp_flow.py`) was checked against the paper's
 Stage-1 cost on the industrial instance:
 
-| Run | Capacity envelope | Stage-1 flow cost |
-|---|---|---|
-| Paper (2-step MILP flow, Gurobi 11.1) | 100% (eq. 7b) | ≈ 2,102,555 – 2,124,968 |
-| Paper (LP/MILP lower bound) | | ≈ 1,616,940 |
-| Ours (SCIP via OR-Tools, 1800 s) | 100% | 2,450,071 (not proven optimal) |
-| Ours, experiment default | 70% | 3,415,081 |
 
 With the paper's exact capacity constraint the cost lands roughly 17% above
 the paper's value, and the residual gap is attributable to the solver budget:

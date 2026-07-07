@@ -6,6 +6,8 @@ __pycache__/
 *.py[cod]
 .venv
 .venv.nosync/
+# iCloud conflict copies of the .venv symlink (".venv 2" etc.)
+.venv[ ]*
 *.egg-info/
 .ipynb_checkpoints/
 

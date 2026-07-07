@@ -10,6 +10,72 @@ The whole project is the `multibatch` Python package (`src/multibatch/`).
 
 ---
 
+## What This Repository Reproduces
+
+The reference model is the multi-batching problem of Dietz et al., *Scaling
+Industrial Logistics — Tackling Multi-Batching Problems via Sequential Solving*
+(CP 2026). The paper decomposes the problem sequentially: an aggregated-flow
+MILP ("MOP") decides how many units of each product travel on each arc, and a
+subsequent step packs those flows into discrete trips.
+
+This repository reproduces the paper's **Stage-1 aggregated-flow model** and
+its **industrial instance**, then uses that validated base for a resilience
+study the paper does not attempt.
+
+### Instance reproduction
+
+`src/multibatch/instances/generated/industry_test_1.lp` matches the paper's
+industrial instance (§6.1) exactly:
+
+| | Paper | `industry_test_1.lp` |
+|---|---|---|
+| locations | 50 | 50 |
+| OD pairs | 1,532 | 1,532 |
+| routes | 5,610 | 5,610 |
+| transport resources | 16 | 16 |
+| products | 35 | 35 |
+
+The synthetic `layered_*` instances (paper, small, medium, large, xlarge,
+industrylite; several seeds each) scale the same generator between toy size
+and the industrial instance.
+
+### Formulation validation
+
+The MILP flow solver (`solvers/milp_flow.py`) was checked against the paper's
+Stage-1 cost on the industrial instance:
+
+| Run | Capacity envelope | Stage-1 flow cost |
+|---|---|---|
+| Paper (2-step MILP flow, Gurobi 11.1) | 100% (eq. 7b) | ≈ 2,102,555 – 2,124,968 |
+| Paper (LP/MILP lower bound) | | ≈ 1,616,940 |
+| Ours (SCIP via OR-Tools, 1800 s) | 100% | 2,450,071 (not proven optimal) |
+| Ours, experiment default | 70% | 3,415,081 |
+
+With the paper's exact capacity constraint the cost lands roughly 17% above
+the paper's value, and the residual gap is attributable to the solver budget:
+SCIP does not prove optimality in 1800 s where the paper's Gurobi converges in
+seconds. The Stage-1 formulation is therefore treated as a faithful
+reproduction. The experiments deliberately keep a **70% utilisation envelope**
+as a packability safety margin; it is a design choice, not a bug. Full details,
+logs, and reproduce commands:
+`src/multibatch/experiments/milp_resilience/results/formulation_check/README.md`.
+
+### What the project adds beyond the paper
+
+1. **ASP implementations.** Both stages are solved with Answer Set
+   Programming (pure ASP and clingcon backends), with the paper-style MILP
+   available as a Stage-1 oracle (`milpflow_twostage`). The encodings live in
+   `src/multibatch/encodings/`.
+2. **Packing-diversity objectives.** Stage 2 gains optional soft constraints
+   (`hetero`, `conc`) that diversify how parts are spread across trips.
+3. **Resilience analysis.** Trip-level solutions are stress-tested by max-flow
+   simulation of disruptions (lost arcs, lost trips, lost transport
+   resources), quantified by the metrics below. The central research question:
+   does paying a small dispatch-cost premium for diversified packing buy
+   measurable disruption tolerance?
+
+---
+
 ## Problem Overview
 
 Multiple part types must be assigned to transport resources routed around a
@@ -48,7 +114,8 @@ Configurable packing objectives:
 
 ### Resilience Metrics
 
-Computed by max-flow simulation on the trip-level solution:
+Computed by max-flow simulation on the trip-level solution
+(`src/multibatch/metrics/`):
 
 | Metric | Description |
 |---|---|
@@ -66,8 +133,9 @@ Computed by max-flow simulation on the trip-level solution:
 .
 ├── pyproject.toml            # package config & dependencies (uv)
 ├── uv.lock
+├── Makefile                  # setup / test / lint targets
 ├── src/multibatch/
-│   ├── cli.py                # CLI entry point
+│   ├── cli.py                # CLI entry point (single solves)
 │   ├── models/               # pydantic data models (Instance, Config, Solution)
 │   ├── instance/             # instance .lp parser
 │   ├── solvers/              # naive / clingcon / two-stage / MILP-flow solvers
@@ -76,25 +144,33 @@ Computed by max-flow simulation on the trip-level solution:
 │   ├── metrics/              # coverage & resilience metrics
 │   ├── reporting/            # console output
 │   ├── visualisation/        # interactive network visualisation
-│   ├── instances/generated/  # synthetic instances (paper → xlarge)
-│   └── experiments/          # benchmark / scalability / twostage / milp_resilience / packing_stress
+│   ├── instances/generated/  # synthetic instances (paper → xlarge) + industry_test_1
+│   └── experiments/          # the five experiment suites (see below)
 └── Docs/                     # thesis writing (kept outside git — Overleaf/local)
 ```
 
 ---
 
-## Installation
+## Installation and Environment
 
 Requires Python ≥ 3.11 and [`uv`](https://github.com/astral-sh/uv).
 
 ```bash
-uv sync
+make setup
 ```
 
-> **macOS note:** if `uv run multibatch` fails with `ModuleNotFoundError: No
-> module named 'multibatch'`, the editable-install `.pth` files in `.venv` have
-> been marked hidden by APFS. Fix with `chflags -R nohidden .venv` (wrapped in
-> the `make setup` target).
+`make setup` runs `uv sync` into `.venv.nosync` and keeps `.venv` as a symlink
+to it. After that, plain `uv run ...` works as normal.
+
+> **macOS / iCloud warning.** This repo lives under `~/Documents`, which iCloud
+> "Optimize Mac Storage" silently interferes with: it evicts `.venv` file
+> contents (symptom: `ModuleNotFoundError: No module named 'multibatch'` even
+> though `uv sync` reports everything fine), replaces the `.venv` symlink with
+> a real directory, and occasionally resurrects deleted files or evicts
+> tracked ones (symptom: unexpected ` D` / `??` entries in `git status`). The
+> venv itself is safe inside `.venv.nosync` (iCloud skips `*.nosync`
+> directories). If the environment breaks, rerun `make setup`; if tracked
+> files vanish, restore them with `git restore <path>`.
 
 ### Dependencies
 
@@ -108,12 +184,9 @@ uv sync
 
 ---
 
-## Usage
+## Usage — Single Solves
 
-All commands run from the repository root. Before running the application, you need to ensure that all the environments are setup properly. In the root folder, run 
-```bash
-make setup
-```
+All commands run from the repository root.
 
 ```bash
 # One-shot solvers
@@ -132,6 +205,18 @@ uv run multibatch --solver naive_oneshot -i src/multibatch/instances/generated/l
 uv run multibatch --solver naive_oneshot -i src/multibatch/instances/generated/layered_paper.lp --no-verify
 uv run multibatch --solver naive_oneshot -i src/multibatch/instances/generated/layered_paper.lp --visualise
 ```
+
+`uv run multibatch --help` lists every flag.
+
+### Solver Backends
+
+| Backend | Description |
+|---|---|
+| `naive_oneshot` | pure-ASP monolithic encoding with weak constraints |
+| `clingcon_oneshot` | CSP integer variables for flow and frequency |
+| `twostage_naive` | two-stage pipeline, pure ASP |
+| `twostage_clingcon` | two-stage pipeline, clingcon CSP |
+| `milpflow_twostage` | MILP Stage-1 flow oracle (OR-Tools) + ASP Stage-2 packing |
 
 ### Python API
 
@@ -153,23 +238,10 @@ if result:
 
 ---
 
-## Solver Backends
-
-| Backend | Description |
-|---|---|
-| `naive_oneshot` | pure-ASP monolithic encoding with weak constraints |
-| `clingcon_oneshot` | CSP integer variables for flow and frequency |
-| `twostage_naive` | two-stage pipeline, pure ASP |
-| `twostage_clingcon` | two-stage pipeline, clingcon CSP |
-| `milpflow_twostage` | MILP Stage-1 flow oracle (OR-Tools) + ASP Stage-2 packing |
-
----
-
 ## Experiments
 
-Each suite under `src/multibatch/experiments/` produces append-only CSVs and a
-per-folder Jupyter notebook that loads those CSVs and renders the figures and
-tables:
+The five suites under `src/multibatch/experiments/` answer the thesis
+questions in sequence:
 
 | Suite | Question |
 |---|---|
@@ -178,6 +250,144 @@ tables:
 | `twostage/` | resilience–cost trade-off: weight sweep × Stage-2 configs |
 | `milp_resilience/` | MILP-flow + ASP-packing resilience suite (the main resilience study) |
 | `packing_stress/` | Stage-2 packing stress test on synthetic arcs |
+
+### Conventions shared by all suites
+
+- **Results are checked in.** Every suite's `results/` directory contains the
+  captured CSVs, so all notebooks render their figures and tables without
+  re-running a single solver. Re-running the harnesses is only needed to
+  produce new data.
+- **Harnesses are modules.** Each suite is invoked as
+  `uv run python -m multibatch.experiments.<suite>.<module>`; every harness
+  accepts `--help`. `benchmark/`, `scalability/`, and `twostage/` also ship a
+  `run_all.sh` batch wrapper for full overnight sweeps.
+- **Notebooks come in two kinds.** The twostage notebooks
+  (`results/eda.ipynb`, `results/eda_rel.ipynb`) are **generated** by
+  `results/_build_eda.py` and `results/_build_eda_rel.py`. Edit the builder,
+  regenerate, then execute; never hand-edit those notebooks, or the edits die
+  at the next regeneration. All other notebooks are hand-written and edited
+  directly.
+- Output paths are anchored on each package's own directory, so any command
+  can be run from any working directory.
+
+### `benchmark/` — one-shot encoding shootout
+
+Compares `naive_oneshot` and `clingcon_oneshot` (basic and optimised
+encodings) across instance sizes and bin counts.
+
+```bash
+uv run python -m multibatch.experiments.benchmark.main --help
+src/multibatch/experiments/benchmark/run_all.sh        # full sweep
+src/multibatch/experiments/benchmark/run_portfolio.sh  # clingo configuration portfolio
+```
+
+Outputs `results/benchmark_raw_<tag>.csv` + `results/benchmark_summary_<tag>.csv`.
+Analysis: `results/eda.ipynb`.
+
+### `scalability/` — one-shot vs two-stage
+
+Runs the four ASP solver variants across sizes paper → industrylite with
+per-size time limits. Note the time-limit semantics: two-stage solvers get the
+budget **per stage**, so combined wall time can reach twice the one-shot
+budget; the `wall_time` column records the real combined wall clock.
+
+```bash
+uv run python -m multibatch.experiments.scalability.main --help
+src/multibatch/experiments/scalability/run_all.sh
+```
+
+Outputs raw + summary CSVs in `results/`. Analysis: `results/eda.ipynb`.
+
+### `twostage/` — resilience–cost trade-off (clingcon)
+
+The weight sweep at the heart of the thesis: Stage-1 exposure weight (absolute
+`w`, or dimensionless `λ` in relative mode) × Stage-2 packing configs
+(`baseline / mixed / even / full`), with all resilience metrics recorded per
+run. Appends one CSV row per completed run and resumes idempotently
+(`--resume`).
+
+```bash
+uv run python -m multibatch.experiments.twostage --help
+src/multibatch/experiments/twostage/run_all.sh
+
+# summary tables (mean ± bootstrap CI):
+uv run python -m multibatch.experiments.twostage.make_summary_tables
+```
+
+Outputs `results/experiment_*.csv` (absolute sweep) and
+`results/experiment_rel_*.csv` (λ sweep). Analysis: `results/eda.ipynb`
+(absolute) and `results/eda_rel.ipynb` (relative) — both generated, see
+conventions above.
+
+### `milp_resilience/` — the main resilience study
+
+MILP cost-optimal flow (Stage 1) + ASP packing (Stage 2) under a
+`(w_net, w_flow)` flow-weight grid × packing configs
+(`baseline / hetero_w8 / conc_w8 / full_w8_8`), on the layered and industrial
+instances. Stage-1 flows are cached as JSON under `results/flows/`, so packing
+sweeps and probes re-use solved flows instead of re-solving.
+
+The pipeline, in order:
+
+```bash
+# 1. run the suite (writes suite_*.csv; caches flows)
+uv run python -m multibatch.experiments.milp_resilience.suite --help
+
+# 2. merge the captured suite CSVs into one dataset
+uv run python -m multibatch.experiments.milp_resilience.consolidate
+
+# 3. thesis tables (win rates, interactions, SPOF) and tuning figures
+uv run python -m multibatch.experiments.milp_resilience.analyze --csv src/multibatch/experiments/milp_resilience/results/suite_consolidated.csv
+
+# 4. publication figures (PNG+PDF into results/figures/)
+uv run python -m multibatch.experiments.milp_resilience.plots
+uv run python -m multibatch.experiments.milp_resilience.plots_cost
+uv run python -m multibatch.experiments.milp_resilience.plots_levers
+uv run python -m multibatch.experiments.milp_resilience.plots_tradeoff
+```
+
+Companion probes (each `--help`-documented): `strategy_probe` (R_α removal
+strategies), `resource_probe` (fleet-level resilience), `assumption_probe`
+(coverage assumption checks), `coverage_report`, `diagnose`.
+
+Analysis artifacts: `report_figures_tables.ipynb` reproduces every figure and
+table of the resilience report inline; the `results/*_ANALYSIS.md` files
+record written findings; `results/formulation_check/` holds the paper
+validation (see above).
+
+### `packing_stress/` — Stage-2 packing stress test
+
+Sweeps synthetic single-arc instances along three scaling axes (parts, trips,
+load) at the cheapest and hardest packing configs. Each trial runs in its own
+subprocess with a wall-clock timeout and optional memory cap, so runaway
+groundings are recorded as timeouts rather than hanging the sweep.
+
+```bash
+uv run python -m multibatch.experiments.packing_stress.sweep --help
+uv run python -m multibatch.experiments.packing_stress.industry_probe  # real industrial arcs
+```
+
+Outputs `results/stress.csv`.
+
+### Reproducing the headline study from scratch
+
+With captured CSVs deleted, the full resilience study is:
+generate/keep instances → `milp_resilience.suite` (long; caches flows) →
+`consolidate` → `analyze` + `plots*` → execute
+`report_figures_tables.ipynb`. The twostage sweep is the same shape:
+`twostage` runner (long) → `make_summary_tables` → regenerate + execute the
+eda notebooks. Both harness families print progress per run and can be
+stopped and resumed (twostage natively via `--resume`; milp_resilience via
+its flow cache).
+
+---
+
+## Development
+
+```bash
+make test   # pytest (no test suite is checked in yet)
+make lint   # ruff check src
+```
 
 ---
 

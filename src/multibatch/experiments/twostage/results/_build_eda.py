@@ -49,6 +49,7 @@ Six instance sizes: `paper, small, medium, large, xlarge, industrylite`.
 
 Section A ports the visualisations from the legacy `plot_*` scripts.
 Section B adds new diagnostic plots worth inspecting before the next sweep.
+Section C cross-compares the two-stage results against the one-shot benchmark.
 """))
 
 CELLS.append(code("""\
@@ -925,7 +926,7 @@ Y = S2 dispatch cost increase relative to `baseline` at w=0 (%). Read as:
 One figure per instance size."""))
 
 CELLS.append(code("""\
-def plot_ralpha_cost_tradeoff(df, alpha=0.8, mode="global"):
+def plot_ralpha_cost_tradeoff(df, alpha=0.8, mode="single"):
     col = f"r_heaviest_{mode}_{alpha}"
     if col not in df.columns:
         print(f"[SKIP] missing {col}")
@@ -989,7 +990,7 @@ def plot_ralpha_cost_tradeoff(df, alpha=0.8, mode="global"):
         ax.legend(title="config", fontsize=9)
         fig.tight_layout(); plt.show()
 
-plot_ralpha_cost_tradeoff(df, alpha=0.8, mode="global")
+plot_ralpha_cost_tradeoff(df, alpha=0.8, mode="single")
 """))
 
 CELLS.append(md("""\
@@ -1078,6 +1079,159 @@ summary = (df.groupby(["instance_size", "weight", "s2_config"], observed=True)
              .round(3))
 summary
 """))
+
+
+
+# ─────────────────────────────────────────────────────────────────────────
+# C. Cross-comparison vs the one-shot benchmark (salvaged from the legacy
+#    results_analysis.ipynb before its deletion)
+# ─────────────────────────────────────────────────────────────────────────
+CELLS.append(md("""\
+## C1. Cross-comparison: one-shot vs two-stage
+
+Compares the benchmark one-shot encodings (naive/clingcon) against the two-stage
+decomposition on the instances both experiments cover:
+- Solve time: one-shot total vs S1+S2 combined
+- Solution quality: one-shot cost vs S1 nominal cost
+- Average solve-time breakdown
+
+Reads the per-size summary CSVs from `experiments/benchmark/results/`; skips
+gracefully when none are present."""))
+
+CELLS.append(code("""\
+# Load benchmark one-shot summaries (per-size CSVs)
+BENCH_DIR = Path("../../benchmark/results")
+bench_files = sorted(BENCH_DIR.glob("benchmark_summary_*.csv"))
+if bench_files:
+    bench = pd.concat([pd.read_csv(f) for f in bench_files], ignore_index=True)
+    print(f"Loaded benchmark: {len(bench)} rows from {len(bench_files)} files")
+    print(f"Solvers: {bench['solver'].unique()}")
+    print(f"Sizes: {bench['instance_size'].unique()}")
+else:
+    bench = None
+    print(f"No benchmark_summary_*.csv under {BENCH_DIR.resolve()} — skipping cross-comparison")
+"""))
+
+CELLS.append(code("""\
+def plot_cross_comparison(df_twostage, df_bench):
+    # Compare one-shot vs two-stage: time, cost, grounding.
+    if df_bench is None:
+        print("No benchmark data loaded — skipping cross-comparison")
+        return
+
+    # --- Prepare two-stage summary (one row per instance × weight, baseline config) ---
+    ts = df_twostage[df_twostage["s2_config"] == "baseline"].copy()
+    ts["total_time"] = ts["s1_time"] + ts["s2_time"]
+    ts_agg = ts.groupby(["instance_name", "instance_size"]).agg(
+        ts_total_time=("total_time", "mean"),
+        ts_s1_time=("s1_time", "mean"),
+        ts_s2_time=("s2_time", "mean"),
+        ts_cost=("nominal_cost", "mean"),
+    ).reset_index()
+
+    # --- Prepare benchmark summary (best cost per instance × solver) ---
+    # Use num_bins with best cost for each solver
+    bench_best = df_bench.loc[
+        df_bench.groupby(["solver", "instance"])["cost"].idxmin()
+    ].copy()
+    bench_best = bench_best.rename(columns={
+        "instance": "instance_name",
+        "avg_total_time": "os_total_time",
+        "cost": "os_cost",
+        "atoms": "os_atoms",
+    })
+
+    # --- Merge on instance name ---
+    common_instances = set(ts_agg["instance_name"]) & set(bench_best["instance_name"])
+    if not common_instances:
+        print("No common instances between two-stage and benchmark")
+        print(f"  Two-stage instances: {ts_agg['instance_name'].unique()[:5]}")
+        print(f"  Benchmark instances: {bench_best['instance_name'].unique()[:5]}")
+        return
+
+    merged = ts_agg[ts_agg["instance_name"].isin(common_instances)].merge(
+        bench_best[["instance_name", "solver", "os_total_time", "os_cost", "os_atoms"]],
+        on="instance_name", how="inner"
+    )
+
+    if merged.empty:
+        print("No overlapping data after merge")
+        return
+
+    print(f"Cross-comparison on {len(common_instances)} instances:")
+    print(f"  {sorted(common_instances)}")
+
+    fig, axes = plt.subplots(1, 3, figsize=(18, 5))
+
+    # --- Panel 1: Solve Time ---
+    ax = axes[0]
+    for solver in merged["solver"].unique():
+        s_df = merged[merged["solver"] == solver]
+        ax.scatter(s_df["os_total_time"], s_df["ts_total_time"],
+                   label=f"vs {solver}", s=80, alpha=0.7, edgecolors="k", linewidths=0.5)
+    max_time = max(merged["os_total_time"].max(), merged["ts_total_time"].max()) * 1.1
+    ax.plot([0, max_time], [0, max_time], "k--", alpha=0.4, label="x=y")
+    ax.set_xlabel("One-shot total time (s)")
+    ax.set_ylabel("Two-stage (S1+S2) time (s)")
+    ax.set_title("Solve Time Comparison")
+    ax.legend(fontsize=8)
+
+    # --- Panel 2: Solution Cost ---
+    ax = axes[1]
+    for solver in merged["solver"].unique():
+        s_df = merged[merged["solver"] == solver]
+        ax.scatter(s_df["os_cost"], s_df["ts_cost"],
+                   label=f"vs {solver}", s=80, alpha=0.7, edgecolors="k", linewidths=0.5)
+    max_cost = max(merged["os_cost"].max(), merged["ts_cost"].max()) * 1.1
+    ax.plot([0, max_cost], [0, max_cost], "k--", alpha=0.4, label="x=y")
+    ax.set_xlabel("One-shot cost (best)")
+    ax.set_ylabel("Two-stage S1 cost")
+    ax.set_title("Solution Quality Comparison")
+    ax.legend(fontsize=8)
+
+    # --- Panel 3: Time breakdown bar ---
+    ax = axes[2]
+    # Average times by approach
+    ts_times = ts_agg[ts_agg["instance_name"].isin(common_instances)]
+    avg_s1 = ts_times["ts_s1_time"].mean()
+    avg_s2 = ts_times["ts_s2_time"].mean()
+
+    bar_data = {"Two-Stage\\n(S1+S2)": [avg_s1, avg_s2]}
+    for solver in merged["solver"].unique():
+        s_df = merged[merged["solver"] == solver]
+        bar_data[f"One-Shot\\n({solver})"] = [s_df["os_total_time"].mean(), 0]
+
+    x_labels = list(bar_data.keys())
+    s1_vals = [v[0] for v in bar_data.values()]
+    s2_vals = [v[1] for v in bar_data.values()]
+
+    x = np.arange(len(x_labels))
+    ax.bar(x, s1_vals, label="S1 / One-shot", color="steelblue")
+    ax.bar(x, s2_vals, bottom=s1_vals, label="S2", color="coral")
+    ax.set_xticks(x)
+    ax.set_xticklabels(x_labels)
+    ax.set_ylabel("Avg Time (s)")
+    ax.set_title("Average Solve Time Breakdown")
+    ax.legend()
+
+    fig.suptitle("One-Shot vs Two-Stage Decomposition", fontsize=13, y=1.02)
+    plt.tight_layout()
+    plt.show()
+
+    # --- Summary table ---
+    print("\\n--- Cross-comparison summary ---")
+    for solver in merged["solver"].unique():
+        s_df = merged[merged["solver"] == solver]
+        print(f"\\n  vs {solver} ({len(s_df)} instances):")
+        print(f"    Avg one-shot time:  {s_df['os_total_time'].mean():.2f}s")
+        print(f"    Avg two-stage time: {s_df['ts_total_time'].mean():.2f}s")
+        speedup = s_df["os_total_time"].mean() / max(s_df["ts_total_time"].mean(), 0.001)
+        print(f"    Speedup factor:     {speedup:.1f}x")
+        print(f"    Avg one-shot cost:  {s_df['os_cost'].mean():.0f}")
+        print(f"    Avg two-stage cost: {s_df['ts_cost'].mean():.0f}")
+
+
+plot_cross_comparison(df, bench)"""))
 
 
 nb = {

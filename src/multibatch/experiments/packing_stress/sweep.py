@@ -162,7 +162,7 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("--threads", type=int, default=1)
     p.add_argument("--mem-cap-mb", type=int, default=0)
     p.add_argument("-o", "--out", type=str,
-                   default="src/multibatch/experiments/packing_stress/results/stress.csv")
+                   default=str(Path(__file__).resolve().parent / "results" / "stress.csv"))
     args = p.parse_args(argv)
 
     configs = [c for c in CONFIGS if c[0] in args.configs]

@@ -27,8 +27,8 @@ from ...instance.parser import parse_instance
 from ...metrics.resilience import compute_r_resource, compute_r_tr
 from .suite import INSTANCE_DIR, _load_flow
 
-CACHE = Path("src/multibatch/experiments/milp_resilience/results/flows")
-RES = Path("src/multibatch/experiments/milp_resilience/results")
+RES = Path(__file__).resolve().parent / "results"
+CACHE = RES / "flows"
 NAME_RE = re.compile(r"flow_(?P<solver>\w+?)_ln(?P<ln>[\d.]+)_lf(?P<lf>[\d.]+)_(?P<stem>.+)\.json")
 
 

@@ -33,7 +33,8 @@ from .suite import INSTANCE_DIR, WEIGHTED_ENC, _load_flow, discover_instances
 
 STRATEGIES = ["heaviest", "first", "last"]
 COMBOS = [("baseline", 0, 0), ("hetero_w8", 8, 0), ("conc_w8", 0, 8), ("full_w8_8", 8, 8)]
-CACHE = Path("src/multibatch/experiments/milp_resilience/results/flows")
+RES = Path(__file__).resolve().parent / "results"
+CACHE = RES / "flows"
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -48,7 +49,7 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("--stage2-time-limit", type=int, default=30)
     p.add_argument("--configuration", default="many")
     p.add_argument("-o", "--out",
-                   default="src/multibatch/experiments/milp_resilience/results/strategy_probe.csv")
+                   default=str(RES / "strategy_probe.csv"))
     args = p.parse_args(argv)
 
     instances = discover_instances(args.instance_dir, args.instance_glob, args.instance_filter)

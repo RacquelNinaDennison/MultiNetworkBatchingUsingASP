@@ -205,7 +205,8 @@ def scaling_table(df: pd.DataFrame, out_dir: Path) -> None:
 def main(argv: list[str] | None = None) -> int:
     p = argparse.ArgumentParser(description="Analyse suite CSV(s) into thesis deliverables")
     p.add_argument("--csv", nargs="+", required=True)
-    p.add_argument("--out-dir", default="src/multibatch/experiments/milp_resilience/results/analysis")
+    p.add_argument("--out-dir",
+                   default=str(Path(__file__).resolve().parent / "results" / "analysis"))
     args = p.parse_args(argv)
 
     out_dir = Path(args.out_dir)

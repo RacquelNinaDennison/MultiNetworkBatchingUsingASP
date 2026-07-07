@@ -8,9 +8,9 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
-RES = Path("src/multibatch/experiments/milp_resilience/results")
+RES = Path(__file__).resolve().parent / "results"
 FIG = RES / "figures"
-FIG.mkdir(exist_ok=True)
+FIG.mkdir(parents=True, exist_ok=True)
 
 
 def apply():

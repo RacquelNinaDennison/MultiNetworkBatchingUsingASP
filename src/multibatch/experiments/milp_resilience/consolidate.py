@@ -8,7 +8,7 @@ from pathlib import Path
 
 import pandas as pd
 
-RES = Path("src/multibatch/experiments/milp_resilience/results")
+RES = Path(__file__).resolve().parent / "results"
 SRC = ["suite_full_smallmed.csv", "suite_full_smallmed_part2.csv",
        "suite_full_industry.csv", "suite_full_industry_wn4.csv"]
 

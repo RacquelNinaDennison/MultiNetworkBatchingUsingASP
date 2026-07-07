@@ -87,8 +87,8 @@ CSV_GLOB = "experiment_rel_*.csv"
 
 SIZE_ORDER   = ["paper", "small", "medium", "large", "xlarge", "industrylite"]
 CONFIG_ORDER = ["baseline", "mixed", "even", "full"]
-CONFIG_COLOR = {"baseline": "#bdbdbd", "mixed": "#74c0fc",
-                "even":     "#ffa94d", "full":  "#69db7c"}
+CONFIG_COLOR = {"baseline": "#1f77b4", "mixed": "#ff7f0e",
+                "even":     "#ffa94d", "full":  "#9467bd"}
 SIZE_COLOR   = {"paper": "#2ca02c", "small": "#1f77b4", "medium": "#ff7f0e",
                 "large": "#d62728", "xlarge": "#9467bd", "industrylite": "#8c564b"}
 SIZE_MARKER  = {"paper": "o", "small": "s", "medium": "^",
@@ -257,6 +257,9 @@ intermediate lambda can dip before exposures vanish."""))
 CELLS.append(code("""\
 def plot_rtr_vs_lambda(df):
     s1 = df.drop_duplicates(["instance_name", "lambda_rel"])
+    sizes = ['small', 'medium', 'xlarge']
+    s1 = s1[s1["instance_size"].isin(sizes)]
+    present_sizes = [s for s in sizes if s in set(df["instance_size"])]
     fig, ax = plt.subplots(figsize=(9, 5))
     for size in present_sizes:
         s = s1[s1["instance_size"] == size]
@@ -264,9 +267,9 @@ def plot_rtr_vs_lambda(df):
         x = np.arange(len(g))
         ax.plot(x, g["mean"], marker=SIZE_MARKER[size], color=SIZE_COLOR[size],
                 label=size, linewidth=1.8)
-        sd = g["std"].fillna(0)
-        ax.fill_between(x, g["mean"] - sd, g["mean"] + sd,
-                        color=SIZE_COLOR[size], alpha=0.12)
+        # sd = g["std"].fillna(0)
+        # ax.fill_between(x, g["mean"] - sd, g["mean"] + sd,
+        #                 color=SIZE_COLOR[size], alpha=0.12)
     ax.set_xticks(range(len(LAMBDAS)))
     ax.set_xticklabels([f"{v:g}" for v in LAMBDAS])
     ax.set_xlabel("lambda"); ax.set_ylabel("R_TR")
@@ -623,6 +626,9 @@ def plot_ralpha_cost_tradeoff(df, alpha=0.8, mode="global"):
         return
     markers = {"baseline": "o", "mixed": "s", "even": "D", "full": "^"}
     lam_lo, lam_hi = min(LAMBDAS), max(LAMBDAS)
+    instances_focus =  ['small']
+    sub = df[df["instance_size"].isin(instances_focus)]
+    present_sizes = [s for s in instances_focus if s in set(df["instance_size"])]
     for size in present_sizes:
         sub = df[df["instance_size"] == size]
         ref = sub[(sub["lambda_rel"] == 0) & (sub["s2_config"] == "baseline")]
@@ -650,8 +656,8 @@ def plot_ralpha_cost_tradeoff(df, alpha=0.8, mode="global"):
                             xytext=(4, 4), fontsize=6)
         ax.axhline(0, color="gray", linewidth=1, alpha=0.5)
         ax.set_xlabel(f"{mode.title()} R_alpha at alpha={alpha} (%)")
-        ax.set_ylabel("S2 cost increase vs (baseline, lambda=0) (%)")
-        ax.set_title(f"Cost vs disruption tolerance — {size} (labels = lambda)")
+        ax.set_ylabel("Network increase relative to the baseline")
+        ax.set_title(f"Cost vs disruption tolerance for packages")
         ax.grid(True, linestyle=":", alpha=0.6)
         ax.legend(title="config", fontsize=9)
         fig.tight_layout(); plt.show()
@@ -681,6 +687,8 @@ CELLS.append(code("""\
 def plot_cost_vs_rtr_frontier(df, size="small"):
     s1 = df.drop_duplicates(["instance_name", "lambda_rel"])
     s = s1[s1["instance_size"] == size]
+    lamda_filter = [0,1,2,4,8]
+    s = s[s["lambda_rel"].isin(lamda_filter)]
     if s.empty:
         print(f"[SKIP] no rows for size={size}")
         return
@@ -699,6 +707,9 @@ def plot_cost_vs_rtr_frontier(df, size="small"):
     fig.tight_layout(); plt.show()
 
 plot_cost_vs_rtr_frontier(df, "small")
+plot_cost_vs_rtr_frontier(df, "medium")
+plot_cost_vs_rtr_frontier(df, "xlarge")
+plot_cost_vs_rtr_frontier(df, "industrylite")
 """))
 
 CELLS.append(md("""\
@@ -712,10 +723,24 @@ you actually pay after packing to gain arc-level resilience."""))
 CELLS.append(code("""\
 def plot_cost_increase_vs_rtr(df):
     sub = df[df["s2_config"] == "baseline"].copy()
+
+    # per-size lambda selection
+    lambda_map = {
+        "small":        [0, 8],
+        "medium":       [0, 8],
+        "xlarge":       [0, 8],
+        "industrylite": [0, 4],
+    }
+
+    instances_focus = list(lambda_map.keys())
+    sub = sub[sub["instance_size"].isin(instances_focus)]
+
     sizes = [s for s in SIZE_ORDER if (sub["instance_size"] == s).any()]
     fig, ax = plt.subplots(figsize=(9, 5.5))
     for size in sizes:
         s = sub[sub["instance_size"] == size]
+        s = s[s["lambda_rel"].isin(lambda_map[size])]   # <-- per-size filter
+
         ref = s[s["lambda_rel"] == 0]
         if ref.empty:
             continue
@@ -733,15 +758,14 @@ def plot_cost_increase_vs_rtr(df):
             ax.annotate(f"{lam:g}", (rtr, pct), textcoords="offset points",
                         xytext=(0, 8), ha="center", fontsize=7, fontweight="bold")
     ax.axhline(0, color="gray", linewidth=1, alpha=0.5)
-    ax.set_xlabel("Resilience  R_TR (%)")
-    ax.set_ylabel("S2 cost increase vs same-size lambda=0 (%)")
-    ax.set_title("Cost increase vs resilience gain by size (config=baseline, labels=lambda)")
+    ax.set_xlabel("Network level resilience (R_TR %)")
+    ax.set_ylabel("Network cost increase (%)")
+    ax.set_title("Cost increase vs resilience gain")
     ax.grid(True, linestyle=":", alpha=0.6)
     ax.legend(title="size", fontsize=9)
     fig.tight_layout(); plt.show()
 
-plot_cost_increase_vs_rtr(df)
-"""))
+plot_cost_increase_vs_rtr(df)"""))
 
 CELLS.append(md("""\
 ### 4.3 Pareto view — cost vs R_TR coloured by lambda

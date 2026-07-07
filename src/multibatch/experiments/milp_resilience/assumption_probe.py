@@ -30,8 +30,8 @@ from ...models import TwoStageClingconConfig
 from ...solvers.milp_flow import MilpFlowTwoStageSolver
 from .suite import INSTANCE_DIR, WEIGHTED_ENC, _load_flow
 
-CACHE = Path("src/multibatch/experiments/milp_resilience/results/flows")
-RES = Path("src/multibatch/experiments/milp_resilience/results")
+RES = Path(__file__).resolve().parent / "results"
+CACHE = RES / "flows"
 
 
 def _build(inst_path, stage2_tl):

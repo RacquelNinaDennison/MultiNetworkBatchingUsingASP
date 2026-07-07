@@ -131,10 +131,6 @@ def solve_milp_flow(
         solver.Add(solver.Sum(inflow_idx.get((p, loc), []))
                    - solver.Sum(outflow_idx.get((p, loc), [])) == net)
 
-    # Capacity envelope: Σ sizeS·flow ≤ utilisation·capS·nb_trips. Scaled by 100 to
-    # keep integer coefficients. utilisation=1.0 is the paper's exact constraint
-    # (7b: Σ v_p·f ≤ n_r·Q_r); the default 0.7 keeps a 30% safety margin (the
-    # resilience suite relies on it). E.g. 0.7 → 70·cap, recovering 10·size ≤ 7·cap.
     util_num = round(100 * utilisation)
     for arc, ps in arc_parts.items():
         cap_tr = cap_s[arc[2]]
@@ -153,10 +149,6 @@ def solve_milp_flow(
             solver.Add(exposure_n * v <= ts + exposure_n * ts * b)
             he_vars[key] = b
 
-    # Optional network-level redundancy term (w_flow): softly push every ACTIVE
-    # arc toward >= 2 trips, creating multi-trip arcs that (a) reduce single-trip
-    # SPOFs and (b) give the ASP packing trips to redistribute across. Only added
-    # when flow_redundancy_weight > 0 (keeps the base MILP small/fast).
     under2_vars: dict = {}
     if flow_redundancy_weight > 0:
         for arc in arc_parts:
@@ -272,8 +264,8 @@ class MilpFlowTwoStageSolver(ClingconTwoStageSolver):
                 optimum=sol["optimum"],
                 satisfiable=True,
                 cost=sol["cost"],
-                atoms=sol["n_vars"],          # reuse 'atoms' column for MILP var count
-                conflicts=sol["n_cons"],      # and 'conflicts' for constraint count
+                atoms=sol["n_vars"],         
+                conflicts=sol["n_cons"],     
                 trajectory=[],
             ),
             loads=sol["loads"],

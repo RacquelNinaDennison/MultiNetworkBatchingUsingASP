@@ -22,12 +22,7 @@ def _r_alpha_columns() -> list[str]:
     ]
 
 
-def _first_r_alpha_columns() -> list[str]:
-    return [f"first_{c}" for c in _r_alpha_columns()]
-
-
 R_ALPHA_COLUMNS = _r_alpha_columns()
-FIRST_R_ALPHA_COLUMNS = _first_r_alpha_columns()
 
 COLUMNS = [
     # Instance metadata
@@ -78,19 +73,6 @@ COLUMNS = [
     "s2_optimal",
     "s2_time",
     "s2_trajectory",
-    # First-solution metrics
-    "first_s1_time",
-    "first_s1_cost",
-    "first_r_tr",
-    "first_s2_time",
-    "first_s2_cost",
-    "first_r_1",
-    "first_k_1",
-    "first_mono_count",
-    "first_concentrated_count",
-    "first_s1_dispatch_cost",
-    "first_s2_dispatch_cost",
-    *FIRST_R_ALPHA_COLUMNS,
     # Status
     "status",
 ]

@@ -13,7 +13,7 @@ The whole project is the `multibatch` Python package (`src/multibatch/`).
 ## What This Repository Reproduces
 
 The reference model is the multi-batching problem of Dietz et al., *Scaling
-Industrial Logistics — Tackling Multi-Batching Problems via Sequential Solving*
+Industrial Logistics: Tackling Multi-Batching Problems via Sequential Solving*
 (CP 2026). The paper decomposes the problem sequentially: an aggregated-flow
 MILP ("MOP") decides how many units of each product travel on each arc, and a
 subsequent step packs those flows into discrete trips.
@@ -39,20 +39,6 @@ The synthetic `layered_*` instances (paper, small, medium, large, xlarge,
 industrylite; several seeds each) scale the same generator between toy size
 and the industrial instance.
 
-### Formulation validation
-
-The MILP flow solver (`solvers/milp_flow.py`) was checked against the paper's
-Stage-1 cost on the industrial instance:
-
-
-With the paper's exact capacity constraint, the cost lands roughly 17% above
-the paper's value, and the residual gap is attributable to the solver budget:
-SCIP does not prove optimality in 1800 s where the paper's Gurobi converges in
-seconds. The Stage-1 formulation is therefore treated as a faithful
-reproduction. The experiments deliberately keep a **70% utilisation envelope**
-as a packability safety margin; it is a design choice, not a bug. Full details,
-logs, and reproduce commands:
-`src/multibatch/experiments/milp_resilience/results/formulation_check/README.md`.
 
 ### What the project adds beyond the paper
 
@@ -154,16 +140,6 @@ make setup
 
 `make setup` runs `uv sync` into `.venv.nosync` and keeps `.venv` as a symlink
 to it. After that, plain `uv run ...` works as normal.
-
-> **macOS / iCloud warning.** This repo lives under `~/Documents`, which iCloud
-> "Optimize Mac Storage" silently interferes with: it evicts `.venv` file
-> contents (symptom: `ModuleNotFoundError: No module named 'multibatch'` even
-> though `uv sync` reports everything fine), replaces the `.venv` symlink with
-> a real directory, and occasionally resurrects deleted files or evicts
-> tracked ones (symptom: unexpected ` D` / `??` entries in `git status`). The
-> venv itself is safe inside `.venv.nosync` (iCloud skips `*.nosync`
-> directories). If the environment breaks, rerun `make setup`; if tracked
-> files vanish, restore them with `git restore <path>`.
 
 ### Dependencies
 
@@ -320,60 +296,6 @@ MILP cost-optimal flow (Stage 1) + ASP packing (Stage 2) under a
 instances. Stage-1 flows are cached as JSON under `results/flows/`, so packing
 sweeps and probes re-use solved flows instead of re-solving.
 
-The pipeline, in order:
-
-```bash
-# 1. run the suite (writes suite_*.csv; caches flows)
-uv run python -m multibatch.experiments.milp_resilience.suite --help
-
-# 2. merge the captured suite CSVs into one dataset
-uv run python -m multibatch.experiments.milp_resilience.consolidate
-
-# 3. thesis tables (win rates, interactions, SPOF) and tuning figures
-uv run python -m multibatch.experiments.milp_resilience.analyze --csv src/multibatch/experiments/milp_resilience/results/suite_consolidated.csv
-
-# 4. publication figures (PNG+PDF into results/figures/)
-uv run python -m multibatch.experiments.milp_resilience.plots
-uv run python -m multibatch.experiments.milp_resilience.plots_cost
-uv run python -m multibatch.experiments.milp_resilience.plots_levers
-uv run python -m multibatch.experiments.milp_resilience.plots_tradeoff
-```
-
-Companion probes (each `--help`-documented): `strategy_probe` (R_α removal
-strategies), `resource_probe` (fleet-level resilience), `assumption_probe`
-(coverage assumption checks), `coverage_report`, `diagnose`.
-
-Analysis artifacts: `report_figures_tables.ipynb` reproduces every figure and
-table of the resilience report inline; the `results/*_ANALYSIS.md` files
-record written findings; `results/formulation_check/` holds the paper
-validation (see above).
-
-### `packing_stress/` — Stage-2 packing stress test
-
-Sweeps synthetic single-arc instances along three scaling axes (parts, trips,
-load) at the cheapest and hardest packing configs. Each trial runs in its own
-subprocess with a wall-clock timeout and optional memory cap, so runaway
-groundings are recorded as timeouts rather than hanging the sweep.
-
-```bash
-uv run python -m multibatch.experiments.packing_stress.sweep --help
-uv run python -m multibatch.experiments.packing_stress.industry_probe  # real industrial arcs
-```
-
-Outputs `results/stress.csv`.
-
-### Reproducing the headline study from scratch
-
-With captured CSVs deleted, the full resilience study is:
-generate/keep instances → `milp_resilience.suite` (long; caches flows) →
-`consolidate` → `analyze` + `plots*` → execute
-`report_figures_tables.ipynb`. The twostage sweep is the same shape:
-`twostage` runner (long) → `make_summary_tables` → regenerate + execute the
-eda notebooks. Both harness families print progress per run and can be
-stopped and resumed (twostage natively via `--resume`; milp_resilience via
-its flow cache).
-
----
 
 ## Instance Format
 

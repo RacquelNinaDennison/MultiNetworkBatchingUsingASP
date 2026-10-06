@@ -220,22 +220,6 @@ reports and rerunning solvers. Each of the six suites has its own instructions:
 | [MILP resilience](src/multibatch/experiments/milp_resilience/README.md) | Weighted MILP/ASP network and packing experiments; tables and figures |
 
 
-Run the documented commands from the repository root. Each guide identifies
-inputs, explicit settings, expected outputs, and overwrite/cache/resume behaviour.
-Some legacy probes and reports have fixed paths and no `--help` parser.
-
-To rebuild the revised paper figures from the saved consolidated data after
-installing the main environment:
-
-```bash
-make paper-figures
-```
-
-This validates the reported plotting data and exports PDFs, PNGs and an audit
-file; it does not run the solvers. See the MILP resilience guide for fresh solver
-runs and for the archived data selection behind each paper result. New solves
-use separate output/cache directories because time-limited results may differ.
-
 ## Instance Format
 
 Instances are ASP fact files (`.lp`):

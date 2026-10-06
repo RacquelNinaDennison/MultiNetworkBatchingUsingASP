@@ -55,8 +55,8 @@ monoTrip(F, T, TR, K) :-
 
 
 :~ overloaded(F, T, TR, P, K), partVal(P, V), concentrated_on = 1.
-   [V@2, F, T, TR, P, K, overload]
-:~ monoTrip(F, T, TR, K), hetero_on = 1. [1@2, F, T, TR, K]
+   [V@1, F, T, TR, P, K, overload]
+:~ monoTrip(F, T, TR, K), hetero_on = 1. [1@1, F, T, TR, K]
 :~ usedTrip(F, T, TR, K). [1@1, F, T, TR, K]
 
 #show.

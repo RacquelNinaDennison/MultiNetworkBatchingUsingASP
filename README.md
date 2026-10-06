@@ -209,93 +209,34 @@ if result:
 
 ## Experiments
 
-The five suites under `src/multibatch/experiments/` answer the thesis
-questions in sequence:
+Start with the [experiment reproduction guide](src/multibatch/experiments/README.md)
+for environment setup, run records and the distinction between rebuilding saved
+reports and rerunning solvers. Each of the six suites has its own instructions:
 
-| Suite | Question |
-|---|---|
-| `benchmark/` | one-shot encoding shootout (ASP vs clingcon, basic vs optimised) |
-| `scalability/` | one-shot vs two-stage decomposition scaling |
-| `twostage/` | resilience–cost trade-off: weight sweep × Stage-2 configs |
-| `milp_resilience/` | MILP-flow + ASP-packing resilience suite (the main resilience study) |
-| `packing_stress/` | Stage-2 packing stress test on synthetic arcs |
+| Suite | Experiment and reproduction instructions |
+| --- | --- |
+| [Benchmark](src/multibatch/experiments/benchmark/README.md) | Four one-shot encoding variants, bin counts and repeated solves |
+| [Scalability](src/multibatch/experiments/scalability/README.md) | One-shot versus two-stage ASP/clingcon |
+| [Two-stage resilience](src/multibatch/experiments/twostage/ReadMe.md) | Clingcon exposure-weight and Boolean packing sweeps |
+| [MILP resilience](src/multibatch/experiments/milp_resilience/README.md) | Weighted MILP/ASP network and packing experiments; SACAIR tables and figures |
+| [Packing stress](src/multibatch/experiments/packing_stress/README.md) | Synthetic single-arc Stage-2 scaling and industrial profiling |
+| [Cost–CO2 Pareto](src/multibatch/experiments/pareto/README.md) | Separate asprin extension, pilot and proven reference-front workflow |
 
-### Conventions shared by all suites
+Run the documented commands from the repository root. Each guide identifies
+inputs, explicit settings, expected outputs, and overwrite/cache/resume behaviour.
+Some legacy probes and reports have fixed paths and no `--help` parser.
 
-- **Results are checked in.** Every suite's `results/` directory contains the
-  captured CSVs, so all notebooks render their figures and tables without
-  re-running a single solver. Re-running the harnesses is only needed to
-  produce new data.
-- **Harnesses are modules.** Each suite is invoked as
-  `uv run python -m multibatch.experiments.<suite>.<module>`; every harness
-  accepts `--help`. `benchmark/`, `scalability/`, and `twostage/` also ship a
-  `run_all.sh` batch wrapper for full overnight sweeps.
-- **Notebooks come in two kinds.** The twostage notebooks
-  (`results/eda.ipynb`, `results/eda_rel.ipynb`) are **generated** by
-  `results/_build_eda.py` and `results/_build_eda_rel.py`. Edit the builder,
-  regenerate, then execute; never hand-edit those notebooks, or the edits die
-  at the next regeneration. All other notebooks are hand-written and edited
-  directly.
-- Output paths are anchored on each package's own directory, so any command
-  can be run from any working directory.
-
-### `benchmark/` — one-shot encoding shootout
-
-Compares `naive_oneshot` and `clingcon_oneshot` (basic and optimised
-encodings) across instance sizes and bin counts.
+To rebuild the revised paper figures from the saved consolidated data after
+installing the main environment:
 
 ```bash
-uv run python -m multibatch.experiments.benchmark.main --help
-src/multibatch/experiments/benchmark/run_all.sh        # full sweep
-src/multibatch/experiments/benchmark/run_portfolio.sh  # clingo configuration portfolio
+make paper-figures
 ```
 
-Outputs `results/benchmark_raw_<tag>.csv` + `results/benchmark_summary_<tag>.csv`.
-Analysis: `results/eda.ipynb`.
-
-### `scalability/` — one-shot vs two-stage
-
-Runs the four ASP solver variants across sizes paper → industrylite with
-per-size time limits. Note the time-limit semantics: two-stage solvers get the
-budget **per stage**, so combined wall time can reach twice the one-shot
-budget; the `wall_time` column records the real combined wall clock.
-
-```bash
-uv run python -m multibatch.experiments.scalability.main --help
-src/multibatch/experiments/scalability/run_all.sh
-```
-
-Outputs raw + summary CSVs in `results/`. Analysis: `results/eda.ipynb`.
-
-### `twostage/` — resilience–cost trade-off (clingcon)
-
-The weight sweep at the heart of the thesis: Stage-1 exposure weight (absolute
-`w`, or dimensionless `λ` in relative mode) × Stage-2 packing configs
-(`baseline / mixed / even / full`), with all resilience metrics recorded per
-run. Appends one CSV row per completed run and resumes idempotently
-(`--resume`).
-
-```bash
-uv run python -m multibatch.experiments.twostage --help
-src/multibatch/experiments/twostage/run_all.sh
-
-# summary tables (mean ± bootstrap CI):
-uv run python -m multibatch.experiments.twostage.make_summary_tables
-```
-
-Outputs `results/experiment_*.csv` (absolute sweep) and
-`results/experiment_rel_*.csv` (λ sweep). Analysis: `results/eda.ipynb`
-(absolute) and `results/eda_rel.ipynb` (relative) — both generated, see
-conventions above.
-
-### `milp_resilience/` — the main resilience study
-
-MILP cost-optimal flow (Stage 1) + ASP packing (Stage 2) under a
-`(w_net, w_flow)` flow-weight grid × packing configs
-(`baseline / hetero_w8 / conc_w8 / full_w8_8`), on the layered and industrial
-instances. Stage-1 flows are cached as JSON under `results/flows/`, so packing
-sweeps and probes re-use solved flows instead of re-solving.
-
+This validates the reported plotting data and exports PDFs, PNGs and an audit
+file; it does not run the solvers. See the MILP resilience guide for fresh solver
+runs and for the archived data selection behind each paper result. New solves
+use separate output/cache directories because time-limited results may differ.
 
 ## Instance Format
 

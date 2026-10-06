@@ -1,109 +1,80 @@
-# Scalability Experiments
+# Scalability experiment reproduction
 
-How does the two-stage decomposition scale against the one-shot encoding,
-for both the naive (pure ASP) and clingcon (CASP) backends?
+Compare one-shot and two-stage decomposition using four solvers:
+`naive_oneshot`, `clingcon_oneshot`, `naive_twostage`, and `clingcon_twostage`.
+See the [shared setup](../README.md). Run commands from the repository root.
+Inputs are the saved `.lp` files in `src/multibatch/instances/generated/`.
 
-## Solvers Compared
+## Settings and time budgets
 
-| Name | Class | Encoding family | Backend |
-|------|-------|-----------------|---------|
-| `naive_oneshot` | `NaiveOneShotSolver` (optimised) | one-shot | naive |
-| `clingcon_oneshot` | `ClingconOneShotSolver` (optimised) | one-shot | clingcon |
-| `naive_twostage` | `NaiveTwoStageSolver` | two-stage | naive |
-| `clingcon_twostage` | `ClingconTwoStageSolver` (baseline, weight=0) | two-stage | clingcon |
+The CLI defaults to all six generated sizes, three repetitions, one-shot bin
+setting 3 and maximum frequency 20. The two-stage baseline disables the
+resilience penalties. The shell wrapper has longer budgets than the CLI:
 
-Two-stage solvers run with `weight=0`, `hetero_on=0`, `concentrated_on=0`,
-so Stage 1 minimises pure transport cost (no exposure penalty) and Stage 2
-minimises used trips with no diversification penalties. This is the closest
-analogue to the one-shot objective.
+| Size | Python CLI default (seconds) | `run_all.sh` budget (seconds) |
+| --- | ---: | ---: |
+| paper | 30 | 600 |
+| small | 30 | 600 |
+| medium | 60 | 600 |
+| large | 120 | 1200 |
+| xlarge | 300 | 1200 |
+| industrylite | 600 | 1200 |
 
-## Time-Limit Semantics
+One-shot receives one budget. Two-stage receives the budget **per stage**, so
+combined solving time can approach twice that amount, plus overhead. Compare
+`wall_time` for actual elapsed time; `total_time` combines the solver's stage
+measurements. This is not an equal-total-wall-budget experiment.
 
-| Family | Budget |
-|--------|--------|
-| One-shot | `time_limit` seconds, single solve. |
-| Two-stage | `time_limit` seconds **per stage**. Combined wall time can therefore reach ~2x `time_limit`. |
-
-Per-stage budgets keep Stage 1's multi-shot bound-tightening and Stage 2's
-packing search each properly resourced. The runner records both:
-
-- `total_time` = `s1.total_time + s2.total_time` (matches `TwoStageResult.total_time`)
-- `wall_time` = `perf_counter` measured around `solver.solve()`, includes inter-stage glue
-
-## Cost Comparability
-
-| Column | One-shot | Two-stage |
-|--------|----------|-----------|
-| `cost` | transport-cost objective | `s1_cost` (transport cost from Stage 1) |
-| `s1_cost` | `None` | Stage 1 transport cost |
-| `s2_cost` | `None` | Stage 2 used-trip count |
-
-So `cost` is apples-to-apples across all four solvers. `s2_cost` is the
-Stage 2 objective and should not be compared directly to one-shot `cost`.
-
-## Parameters
-
-- **Sizes**: paper, small, medium, large, xlarge, industrylite
-- **Reps**: 3 per (solver, instance) (default)
-- **Time limits** (per stage for two-stage):
-  - paper, small: 30s
-  - medium: 60s
-  - large: 120s
-  - xlarge: 300s
-  - industrylite: 600s
-- **Bins**: 3 (one-shot only)
-- **Max frequency**: 20
-
-## Running
-
-From `new_code/`:
+## Small installation check
 
 ```bash
-# Full sweep (4 solvers x all sizes x 3 reps)
-uv run python -m multibatch.experiments.scalability.main
-
-# Restrict to small instances for a quick run
-uv run python -m multibatch.experiments.scalability.main --sizes paper small --reps 2
-
-# Override time limits
-uv run python -m multibatch.experiments.scalability.main --time-large 300 --time-xlarge 600
-
-# Just one solver family
-uv run python -m multibatch.experiments.scalability.main \
-    --solvers naive_oneshot naive_twostage
+uv run --no-sync python -m multibatch.experiments.scalability.main --help
+uv run --no-sync python -m multibatch.experiments.scalability.main \
+  --sizes paper --solvers clingcon_oneshot clingcon_twostage \
+  --reps 1 --num-bins 3 --max-freq 20 --time-paper 10 \
+  --output-dir output/reproduction/scalability-smoke --tag paper
 ```
 
-## Output
+## Reproduce the recorded small-instance budget
 
-- `results/scalability_raw.csv` — every run (one row per solver x instance x rep)
-- `results/scalability_summary.csv` — averaged across reps per (solver, instance)
+The saved `results/scalability_raw_small.csv` has 60 rows and records a
+600-second budget, not the CLI's 30-second default:
 
-### CSV Columns
+```bash
+uv run --no-sync python -m multibatch.experiments.scalability.main \
+  --sizes small \
+  --solvers naive_oneshot clingcon_oneshot naive_twostage clingcon_twostage \
+  --reps 3 --num-bins 3 --max-freq 20 --time-small 600 \
+  --output-dir output/reproduction/scalability --tag small
+```
 
-Identification: `solver`, `encoding_family`, `backend`, `instance`,
-`instance_size`, `seed`, `num_bins`, `time_limit`, `run`, `status`.
+Five instances, four solvers and three repetitions give 60 scheduled records.
+For the wrapper's full design, select all sizes and pass the six wrapper budgets
+in the table explicitly. Alternatively, `bash
+src/multibatch/experiments/scalability/run_all.sh` uses them and writes tagged
+files/logs under `results/`; keep `NTFY_TOPIC` unset for no notifications.
 
-Instance properties (from `experiments/twostage/config.py`):
-`n_locations`, `n_parts`, `n_routes`, `n_transports`, `density`,
-`capacity_tightness`.
+## Outputs and interpretation
 
-Timing: `wall_time`, `total_time`, `ground_time`, `solve_time`.
+The example writes `scalability_raw_small.csv` and
+`scalability_summary_small.csv` under its output directory. Reusing a path
+replaces the outputs; no resume option is exposed. Both files are written
+after the sweep, so an interruption can lose runs not yet saved.
 
-Quality + search: `cost`, `optimum`, `satisfiable`, `choices`,
-`conflicts`, `restarts`, `atoms`.
+Raw rows include instance properties, `status`, times, cost, search statistics,
+and stage-specific fields. Inspect `OK`, `TIMEOUT`, `S1_UNSAT`, `S2_UNSAT` and
+`ERROR` statuses alongside feasibility and optimality; don't average failures as
+zero-cost solutions.
 
-Two-stage extras (None for one-shot rows): `s1_time`, `s2_time`,
-`s1_atoms`, `s2_atoms`, `s1_cost`, `s2_cost`, `s1_optimum`, `s2_optimum`.
+The `cost` column uses the one-shot objective or the two-stage `s1_cost`.
+`s2_cost` is a separate packing objective, not directly interchangeable with
+monetary dispatch cost. Check the encoding revision and cost formula when
+comparing with the MILP resilience or Pareto suites.
 
-`status` ∈ {`OK`, `S1_UNSAT`, `S2_UNSAT`, `TIMEOUT`, `ERROR`}.
+## Saved-result analysis
 
-## What the Experiment Tests
-
-1. **Decomposition vs monolithic** — does splitting flow + packing scale
-   better than solving them jointly?
-2. **Backend x decomposition interaction** — does CASP (clingcon) benefit
-   more or less from decomposition than pure ASP (naive)?
-3. **Where the cost is paid** — `ground_time` vs `solve_time`, plus
-   `s1_time` vs `s2_time` for two-stage, locates the bottleneck.
-4. **Atom growth** — `atoms` (and `s1_atoms`, `s2_atoms`) shows ground
-   program size by size and family, the key signal for ASP scaling.
+Open `results/eda.ipynb` using the project kernel and its `results/` directory as
+the working directory. It loads the saved raw CSVs for paper, small and medium.
+For fresh results, copy the notebook and change its input paths to your output
+directory. Current notebook inputs do not automatically include tagged reruns or
+all larger sizes.

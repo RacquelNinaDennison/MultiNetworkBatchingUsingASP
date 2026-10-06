@@ -1,62 +1,86 @@
-# Benchmark Experiments
+# One-shot benchmark reproduction
 
-Benchmarks for comparing one-shot solver configurations on the multi-commodity network batching problem.
+Compare `naive_basic`, `naive_optimised`, `clingcon`, and
+`clingcon_optimised` on the same saved instances and bin settings. See the
+[shared setup](../README.md) first. All commands below start at the repository root.
 
-## Solvers Tested
+## Inputs and current defaults
 
-| Name | Encoding | Description |
-|------|----------|-------------|
-| `naive_basic` | `encoding_route.lp` | Pure ASP, no symmetry breaking |
-| `naive_optimised` | `optimised_encoding_route.lp` | Pure ASP + feasibility pruning + symmetry breaking |
-| `clingcon` | `clingcon_binpacking.lp` | CASP with CSP flow/frequency variables |
-| `clingcon_optimised` | `optimised_clingcon_binpacking.lp` | CASP + tighter domains + symmetry breaking + freq-pack consistency |
+Inputs: `src/multibatch/instances/generated/*.lp`.
+`main.py` defaults to **paper only**, all four solvers, bin settings **1, 2, 3**,
+five repetitions, 60 seconds per solve and maximum frequency 20. These are
+current CLI defaults, not an assurance of historical run provenance. Bin values
+are passed to the solver's `num_bins` parameter; use the same encoding revision
+when comparing them.
 
-## Parameters
-
-- **Bins**: 0-5 (number of bin configurations per route)
-- **Repetitions**: 5 per configuration (results averaged)
-- **Time limit**: 60s per run
-- **Max frequency**: 20
-
-## Running
-
-From the `new_code/` directory:
+## Small installation check
 
 ```bash
-# Full benchmark (all solvers, all instances, bins 0-5, 5 reps)
-uv run python -m multibatch.experiments.benchmark.main
+uv run --no-sync python -m multibatch.experiments.benchmark.main --help
+uv run --no-sync python -m multibatch.experiments.benchmark.main \
+  --sizes paper --solvers clingcon --bins 1 --reps 1 \
+  --time-limit 10 --max-freq 20 \
+  --output-dir output/reproduction/benchmark-smoke --tag paper
 ```
 
-## Output
+This checks that a run can produce records; a short timeout does not guarantee a
+feasible or optimal answer.
 
-Results are written to `results/`:
+## Reproduce the small-instance comparison design
 
-- `benchmark_raw.csv` — every individual run
-- `benchmark_summary.csv` — averaged across repetitions per (solver, instance, bins)
+```bash
+uv run --no-sync python -m multibatch.experiments.benchmark.main \
+  --sizes small \
+  --solvers naive_basic naive_optimised clingcon clingcon_optimised \
+  --bins 1 2 3 --reps 5 --time-limit 60 --max-freq 20 \
+  --output-dir output/reproduction/benchmark --tag small
+```
 
-### CSV Columns
+With five selected small instances, this schedules `5 * 4 * 3 * 5 = 300` runs,
+matching the row count of the saved small raw CSV. It does not prove that every
+historical setting was recorded: the raw schema omits some configuration and
+budget metadata. Use `--instance-filter` for a filename substring, and
+`--instance-dir` to supply an explicit dataset directory.
 
-| Column | Description |
-|--------|-------------|
-| `solver` | Solver configuration name |
-| `instance` | Instance filename (without .lp) |
-| `instance_size` | Size category: paper, small, medium, large, xlarge, industrylite |
-| `num_bins` | Number of bins (0-5) |
-| `run` | Repetition number (raw CSV only) |
-| `ground_time` | Time to ground the program (seconds) |
-| `solve_time` | Time spent solving after grounding (seconds) |
-| `total_time` | Total wall time including grounding (seconds) |
-| `cost` | Objective value of best solution found |
-| `optimum` | Whether optimality was proven |
-| `satisfiable` | Whether any solution was found |
-| `choices` | Solver decision points (search space explored) |
-| `conflicts` | Dead ends / backtrack points |
-| `restarts` | Full search restarts with learned clauses |
-| `atoms` | Number of ground atoms (program size after grounding) |
+For more sizes, run one invocation per size with explicit time limits. The
+existing `run_all.sh` wrapper instead uses:
 
-## What the Experiments Test
+| Size | Wrapper time limit (seconds) |
+| --- | ---: |
+| paper / small | 60 |
+| medium | 120 |
+| large | 300 |
+| xlarge | 600 |
+| industrylite | 1200 |
 
-1. **Grounding vs solving tradeoff** — CPU time as bins increase (naive grounds large programs; clingcon stays compact)
-2. **Symmetry breaking benefit** — naive_basic vs naive_optimised, clingcon vs clingcon_optimised
-3. **ASP vs CASP atom comparison** — ground program size across approaches
-4. **Scalability** — how each solver handles small through xlarge instances
+The wrapper defaults to all six sizes, bins 1/2/3 and five repetitions. It writes
+uniquely tagged files and logs under this suite's `results/`. Notifications are
+optional; leave `NTFY_TOPIC` unset to run without sending them.
+
+**Known runner limitations:** the current benchmark size classifier checks
+`large` before `xlarge`, so xlarge filenames can be labelled as large. Inspect
+selected filenames before relying on a large/xlarge comparison. Also,
+`run_portfolio.sh` passes `--config-sweep`, `--thread-sweep` and `--resume`, which
+this version of `main.py` does not accept. The archived portfolio CSVs can be
+analysed, but that wrapper is not currently a working reproduction command.
+
+## Outputs and checking a run
+
+`--output-dir` and `--tag small` produce:
+
+- `benchmark_raw_small.csv`: individual runs, including run index, feasibility,
+  optimality, cost, grounding/solving times and search statistics.
+- `benchmark_summary_small.csv`: aggregate values across repetitions.
+
+The harness writes these files with mode `w` at the end of the sweep. Reusing a
+destination overwrites it; it has no supported resume flag and interruption can
+lose unsaved runs. Keep fresh results outside the archived `results/` directory.
+Do not treat missing cost or `optimum=False` as an optimum or as zero cost.
+
+## Rebuild analysis from saved results
+
+Open `results/eda.ipynb` with the project kernel, working from this suite's
+`results/` directory, and run its analysis cells. It explicitly reads the saved
+paper/small/medium raw and summary CSVs plus the portfolio-small CSVs. It does
+not automatically discover newly tagged reruns. To analyse fresh data, copy the
+notebook and adjust its input paths; preserve the original saved-result analysis.

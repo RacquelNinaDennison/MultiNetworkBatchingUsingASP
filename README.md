@@ -217,10 +217,8 @@ reports and rerunning solvers. Each of the six suites has its own instructions:
 | --- | --- |
 | [Benchmark](src/multibatch/experiments/benchmark/README.md) | Four one-shot encoding variants, bin counts and repeated solves |
 | [Scalability](src/multibatch/experiments/scalability/README.md) | One-shot versus two-stage ASP/clingcon |
-| [Two-stage resilience](src/multibatch/experiments/twostage/ReadMe.md) | Clingcon exposure-weight and Boolean packing sweeps |
-| [MILP resilience](src/multibatch/experiments/milp_resilience/README.md) | Weighted MILP/ASP network and packing experiments; SACAIR tables and figures |
-| [Packing stress](src/multibatch/experiments/packing_stress/README.md) | Synthetic single-arc Stage-2 scaling and industrial profiling |
-| [Cost–CO2 Pareto](src/multibatch/experiments/pareto/README.md) | Separate asprin extension, pilot and proven reference-front workflow |
+| [MILP resilience](src/multibatch/experiments/milp_resilience/README.md) | Weighted MILP/ASP network and packing experiments; tables and figures |
+
 
 Run the documented commands from the repository root. Each guide identifies
 inputs, explicit settings, expected outputs, and overwrite/cache/resume behaviour.
